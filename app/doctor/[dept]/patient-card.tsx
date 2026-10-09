@@ -1,8 +1,9 @@
 "use client";
 
 import useSWR from "swr";
-import { CheckCircle2, FileText, Loader2, PhoneCall } from "lucide-react";
+import { CheckCircle2, Loader2, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { PreConsultBrief } from "@/components/pre-consult-brief";
 import { ReasonTrail } from "@/components/reason-trail";
 import { TriageBadge } from "@/components/triage-badge";
 import { fetcher, type VisitDetail } from "@/lib/client/api";
@@ -28,7 +29,7 @@ export function PatientCard({
   onCall: () => void;
   onSeen: () => void;
 }) {
-  const { data: d } = useSWR<VisitDetail>(`/api/visits/${visitId}`, fetcher, { refreshInterval: 5000 });
+  const { data: d, mutate } = useSWR<VisitDetail>(`/api/visits/${visitId}`, fetcher, { refreshInterval: 5000 });
   if (!d) return <Loader2 className="m-10 animate-spin text-muted-foreground" />;
 
   const { visit, patient } = d;
@@ -88,25 +89,8 @@ export function PatientCard({
         </Section>
       </div>
 
-      <Section title="Pre-consultation brief · from patient's old reports">
-        {d.facts.length === 0 ? (
-          <p className="text-sm text-muted-foreground">
-            No reports on file. The patient can add old reports at the Records desk using their token QR.
-          </p>
-        ) : (
-          <ul className="flex flex-col gap-1 text-sm">
-            {d.facts.map((f) => (
-              <li key={f.id}>
-                <span className="text-muted-foreground capitalize">{f.kind}:</span> {f.label}
-                {f.value ? ` ${f.value}${f.unit ? ` ${f.unit}` : ""}` : ""}
-                {f.date ? <span className="text-muted-foreground"> · {f.date}</span> : null}
-              </li>
-            ))}
-          </ul>
-        )}
-        <p className="mt-3 flex items-center gap-1 text-xs text-muted-foreground">
-          <FileText className="size-3.5" /> {d.documents.length} document(s) · orientation only, verify at examination
-        </p>
+      <Section title="Pre-consultation brief · from patient's old reports" className="border-primary/30">
+        <PreConsultBrief detail={d} onGenerated={() => void mutate()} />
       </Section>
 
       <Section title="Routing">

@@ -5,6 +5,8 @@ const NAV = [
   { href: "/nurse", label: "Nurse" },
   { href: "/doctor", label: "Doctor" },
   { href: "/records", label: "Records" },
+  { href: "/impact", label: "Impact" },
+  { href: "/eval", label: "Evaluation" },
 ];
 
 export function AppHeader({ title, children }: { title: string; children?: React.ReactNode }) {

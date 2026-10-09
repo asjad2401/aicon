@@ -24,7 +24,7 @@ export function TriageBadge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full font-semibold text-white",
+        "inline-flex items-center gap-1.5 whitespace-nowrap rounded-full font-semibold text-white",
         m.bg,
         size === "sm" && "px-2 py-0.5 text-xs",
         size === "md" && "px-3 py-1 text-sm",

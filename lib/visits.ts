@@ -8,6 +8,7 @@ import type { Routing } from "@/lib/routing/route";
 import { triage, type Vitals } from "@/lib/triage/sats";
 import type { Colour } from "@/lib/triage/discriminators";
 import { rankQueue } from "@/lib/queue";
+import { generateBrief, PROMPT_VERSION_BRIEF } from "@/lib/ai/brief";
 
 const DEPT_PREFIX: Record<string, string> = {
   emergency: "E",
@@ -231,4 +232,56 @@ export async function setVisitStatus(id: number, action: "call" | "seen" | "canc
   const [updated] = await db.update(schema.visits).set(patch).where(eq(schema.visits.id, id)).returning();
   if (updated) await db.insert(schema.auditLog).values({ visitId: id, actor, action: `visit_${action}` });
   return updated ?? null;
+}
+
+// ── Pre-consultation brief ───────────────────────────────────────────────────
+
+const DOC_NAMES: Record<string, string> = {
+  lab_report: "Lab report",
+  prescription: "Prescription",
+  discharge_summary: "Discharge summary",
+  ecg_report: "ECG report",
+  imaging_report: "Imaging report",
+  referral: "Referral",
+};
+
+/** Generate (or regenerate when new facts arrive) the cited brief for a visit. */
+export async function ensureBrief(visitId: number, { force = false } = {}) {
+  const detail = await getVisitDetail(visitId);
+  if (!detail?.visit.intake) return null;
+  if (detail.facts.length === 0) return { summary: null };
+
+  const existing = detail.summary?.summary as { factCount?: number } | undefined;
+  if (!force && existing?.factCount === detail.facts.length) return { summary: detail.summary };
+
+  const docs = new Map(detail.documents.map((d) => [d.id, d]));
+  const { brief, dropped, model } = await generateBrief({
+    complaint: detail.visit.intake.chief_complaint,
+    summary: detail.visit.intake.summary_en,
+    age: detail.patient.age,
+    sex: detail.patient.sex,
+    facts: detail.facts.map((f) => {
+      const doc = docs.get(f.documentId);
+      return {
+        id: f.id,
+        kind: f.kind,
+        label: f.label,
+        value: f.value,
+        unit: f.unit,
+        date: f.date,
+        flag: f.flag,
+        source: [DOC_NAMES[doc?.docType ?? ""] ?? "Document", doc?.docDate, doc?.facility].filter(Boolean).join(", "),
+      };
+    }),
+  });
+
+  const [summary] = await getDb()
+    .insert(schema.summaries)
+    .values({
+      visitId,
+      summary: { ...brief, dropped, factCount: detail.facts.length, promptVersion: PROMPT_VERSION_BRIEF },
+      model,
+    })
+    .returning();
+  return { summary };
 }

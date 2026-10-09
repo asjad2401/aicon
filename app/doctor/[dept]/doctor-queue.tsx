@@ -17,11 +17,11 @@ function Sla({ minutes, colour }: { minutes: number; colour: Colour }) {
   return <span className="text-muted-foreground">{formatWait(minutes)} left</span>;
 }
 
-export function DoctorQueue({ department }: { department: DepartmentId }) {
+export function DoctorQueue({ department, initialVisit }: { department: DepartmentId; initialVisit: number | null }) {
   const { data, mutate } = useSWR<{ items: QueueEntry[] }>(`/api/queue?dept=${department}`, fetcher, {
     refreshInterval: 3000,
   });
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(initialVisit);
   const [calling, setCalling] = useState(false);
 
   const items = data?.items ?? [];

@@ -15,6 +15,13 @@
       "when": 1791573418672,
       "tag": "0001_fact_flag",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791577202400,
+      "tag": "0002_visit_area",
+      "breakpoints": true
     }
   ]
 }

@@ -2,6 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { generateJSON, ThinkingLevel } from "./client";
 import { DISCRIMINATORS, DISCRIMINATOR_IDS } from "@/lib/triage/discriminators";
+import { SYNDROMES, SYNDROME_IDS } from "@/lib/surveillance/config";
 
 /**
  * AI #1: Intake extraction.
@@ -10,7 +11,7 @@ import { DISCRIMINATORS, DISCRIMINATOR_IDS } from "@/lib/triage/discriminators";
  * The model only extracts; the SATS engine assigns the colour.
  */
 
-export const PROMPT_VERSION_INTAKE = "intake-v1";
+export const PROMPT_VERSION_INTAKE = "intake-v2";
 
 export const IntakeSchema = z.object({
   transcript: z.string().describe("Verbatim transcript of what the patient said, in the original language and script"),
@@ -32,6 +33,9 @@ export const IntakeSchema = z.object({
       evidence: z.string().describe("The patient's exact words that support this discriminator"),
     }),
   ),
+  syndromes: z
+    .array(z.enum(SYNDROME_IDS))
+    .describe("Surveillance syndromes whose case definition the description meets; empty if none"),
   pain_score: z.number().min(0).max(10).nullable().describe("Only if the patient states or clearly implies a pain level"),
   pregnant: z.boolean().nullable(),
   trauma: z.boolean().nullable().describe("True if the complaint follows an injury or accident"),
@@ -57,9 +61,14 @@ Your job is EXTRACTION ONLY. You do not diagnose and you do not assign a triage 
    (e.g. "seenay mein dard" = chest pain, "saans nahi aa rahi" = shortness of breath, "ulti mein khoon" = vomiting blood).
 4. If the patient gives a pain level (numeric or words like "bardasht se bahar" = unbearable), set pain_score.
 5. Set confidence below 0.6 if the input is unclear, very short, or contradictory.
+6. Tag public-health surveillance syndromes ONLY when the description meets the case definition.
+   Most patients have none. This is for anonymous district surveillance, not diagnosis.
 
 SATS discriminators (id: label: when it applies):
-${DISCRIMINATORS.map((d) => `- ${d.id}: ${d.label}: ${d.hint}`).join("\n")}`;
+${DISCRIMINATORS.map((d) => `- ${d.id}: ${d.label}: ${d.hint}`).join("\n")}
+
+Surveillance syndromes (id: case definition):
+${SYNDROMES.map((s) => `- ${s.id}: ${s.definition}`).join("\n")}`;
 
 export type IntakeInput =
   | { kind: "text"; text: string }

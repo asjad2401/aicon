@@ -41,6 +41,8 @@ export const visits = pgTable("visits", {
   overrideColour: text("override_colour"),
   overrideReason: text("override_reason"),
   department: text("department").notNull(),
+  /** Catchment area (for anonymous syndromic surveillance). */
+  area: text("area"),
   routing: jsonb("routing").$type<Routing>(),
   status: text("status").notNull().default("waiting"), // waiting | triaged | called | seen | cancelled
   arrivedAt: timestamp("arrived_at", { withTimezone: true }).notNull().defaultNow(),

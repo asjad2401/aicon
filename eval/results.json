@@ -1,6 +1,6 @@
 {
   "summary": {
-    "run_at": "2026-10-09T19:06:49.236Z",
+    "run_at": "2026-10-09T20:26:45.731Z",
     "n": 28,
     "completed": 28,
     "errors": 0,
@@ -9,7 +9,7 @@
     "over_triage_rate": 0,
     "dept_top1_accuracy": 96.4,
     "dept_acceptable_accuracy": 100,
-    "median_ms": 5970
+    "median_ms": 5984
   },
   "results": [
     {
@@ -38,10 +38,10 @@
         "Chest pain → ORANGE"
       ],
       "routing_reasons": [
-        "Chest pain radiating to the arm is a classic symptom of cardiac issues.",
-        "Sweating can also be associated with cardiac events."
+        "Chest pain radiating to the left arm is a classic symptom of cardiac issues.",
+        "Sweating is also a common accompanying symptom of a heart attack or angina."
       ],
-      "ms": 10212
+      "ms": 11239
     },
     {
       "id": "v02",
@@ -64,7 +64,7 @@
         },
         {
           "id": "reduced_consciousness",
-          "evidence": "very drowsy and confused"
+          "evidence": "now I feel very drowsy and confused"
         }
       ],
       "reasons": [
@@ -72,11 +72,11 @@
         "Level of consciousness reduced → ORANGE"
       ],
       "routing_reasons": [
-        "Seizure can be a symptom of various underlying medical conditions.",
-        "Drowsiness and confusion are non-specific symptoms that require medical evaluation.",
-        "No clear surgical or traumatic cause identified."
+        "Patient is experiencing post-seizure drowsiness and confusion.",
+        "Seizures can have various underlying causes that fall under general medicine.",
+        "No immediate signs of trauma or surgical emergency."
       ],
-      "ms": 11196
+      "ms": 10627
     },
     {
       "id": "v03",
@@ -102,11 +102,11 @@
         "Focal neurology – acute → ORANGE"
       ],
       "routing_reasons": [
-        "Sudden onset of neurological symptoms like difficulty speaking and arm weakness can indicate a stroke.",
-        "Stroke is a medical emergency that requires immediate evaluation and management.",
-        "While cardiology might be considered if there's a cardiac cause, the primary presentation is neurological."
+        "Sudden onset of neurological symptoms like difficulty speaking and weakness can indicate a stroke.",
+        "While stroke is a medical emergency, initial assessment and management often fall under general medicine in a government hospital setting if not immediately life-threatening.",
+        "The symptoms are not clearly surgical, cardiac, or orthopedic in nature."
       ],
-      "ms": 22365
+      "ms": 9813
     },
     {
       "id": "v04",
@@ -133,11 +133,11 @@
       ],
       "routing_reasons": [
         "RED triage → Emergency first",
-        "Severe difficulty breathing",
+        "Severe shortness of breath",
         "Blue lips (cyanosis)",
-        "Symptoms suggestive of acute cardiorespiratory distress"
+        "Symptoms suggest a cardiac or respiratory emergency"
       ],
-      "ms": 22084
+      "ms": 11293
     },
     {
       "id": "v05",
@@ -156,18 +156,18 @@
       "discriminators": [
         {
           "id": "coughing_blood",
-          "evidence": "Coughing up blood since yesterday"
+          "evidence": "Coughing up blood"
         }
       ],
       "reasons": [
         "Coughing blood → ORANGE"
       ],
       "routing_reasons": [
-        "Coughing blood can be a sign of serious underlying conditions like TB or lung cancer.",
-        "Weight loss is a non-specific symptom that warrants investigation.",
-        "These symptoms fall under the general scope of internal medicine."
+        "Coughing blood can be a symptom of various medical conditions like infections or malignancy.",
+        "Weight loss is a non-specific symptom that falls under general medicine.",
+        "No specific surgical or cardiac signs mentioned to warrant those departments."
       ],
-      "ms": 16669
+      "ms": 5857
     },
     {
       "id": "v06",
@@ -196,9 +196,9 @@
       ],
       "routing_reasons": [
         "Vomiting blood can indicate gastrointestinal bleeding, which may require surgical intervention.",
-        "The acute onset of vomiting blood is a significant symptom."
+        "The complaint is acute and severe."
       ],
-      "ms": 7225
+      "ms": 5012
     },
     {
       "id": "v07",
@@ -220,12 +220,12 @@
           "evidence": "I am seven months pregnant and I have strong pain in my stomach"
         },
         {
-          "id": "abdominal_pain",
-          "evidence": "strong pain in my stomach"
-        },
-        {
           "id": "pain_severe",
           "evidence": "strong pain"
+        },
+        {
+          "id": "abdominal_pain",
+          "evidence": "strong pain in my stomach"
         }
       ],
       "reasons": [
@@ -234,10 +234,10 @@
         "Abdominal pain → YELLOW"
       ],
       "routing_reasons": [
-        "Patient is pregnant",
+        "Patient is 7 months pregnant",
         "Chief complaint is abdominal pain during pregnancy"
       ],
-      "ms": 6298
+      "ms": 5629
     },
     {
       "id": "v08",
@@ -269,7 +269,7 @@
         "No specific surgical signs mentioned.",
         "Patient is female but not pregnant."
       ],
-      "ms": 17076
+      "ms": 6101
     },
     {
       "id": "v09",
@@ -295,11 +295,10 @@
         "Fracture – closed → YELLOW"
       ],
       "routing_reasons": [
-        "Wrist injury",
-        "Swelling and deformity of the wrist",
-        "Trauma from motorbike fall"
+        "Patient has a swollen and bent wrist after a fall.",
+        "The chief complaint is related to a potential fracture or dislocation."
       ],
-      "ms": 4803
+      "ms": 6524
     },
     {
       "id": "v10",
@@ -320,10 +319,10 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Fever and body aches are general symptoms",
-        "No specific signs pointing to other departments"
+        "Fever and body pain are general symptoms",
+        "No specific surgical or other specialty signs mentioned"
       ],
-      "ms": 5551
+      "ms": 6595
     },
     {
       "id": "v11",
@@ -344,11 +343,11 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Patient presents with an itchy rash",
-        "Rash is located on both arms",
-        "Duration of two weeks"
+        "Patient presents with an itchy rash on both arms.",
+        "The duration of the rash is two weeks.",
+        "Dermatology is the specialty for skin conditions."
       ],
-      "ms": 12608
+      "ms": 4739
     },
     {
       "id": "v12",
@@ -369,10 +368,10 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Chief complaint of toothache",
-        "Associated cheek swelling"
+        "Chief complaint is toothache",
+        "Swollen cheek is likely related to dental issue"
       ],
-      "ms": 5984
+      "ms": 5964
     },
     {
       "id": "v13",
@@ -393,10 +392,10 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Patient presents with left ear pain and discharge",
-        "Symptoms are localized to the ear"
+        "Patient presents with left ear pain and discharge.",
+        "These symptoms are directly related to the ear, nose, and throat."
       ],
-      "ms": 5453
+      "ms": 5628
     },
     {
       "id": "v14",
@@ -417,10 +416,10 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Chief complaint is red eye",
-        "Symptoms of red eye and watering are localized to the eye"
+        "Chief complaint is red and watery eye",
+        "Symptoms localized to the eye"
       ],
-      "ms": 5291
+      "ms": 3766
     },
     {
       "id": "v15",
@@ -441,11 +440,11 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Patient reports feeling low, insomnia, and anhedonia.",
-        "Symptoms have been present for a month.",
+        "Patient reports low mood, insomnia, and lack of interest.",
+        "Symptoms have been present for one month.",
         "These are classic symptoms of depression."
       ],
-      "ms": 6219
+      "ms": 6310
     },
     {
       "id": "v16",
@@ -463,23 +462,23 @@
       "dept_acceptable": true,
       "discriminators": [
         {
-          "id": "diabetic_hyperglycaemia",
-          "evidence": "sugar ki mareez hoon, sugar 450 aa rahi hai"
+          "id": "diabetic_ketosis",
+          "evidence": "sugar 450 aa rahi hai, ultiyan ho rahi hain aur saans tez chal rahi hai"
         },
         {
-          "id": "sob_acute",
-          "evidence": "saans tez chal rahi hai"
+          "id": "vomiting_persistent",
+          "evidence": "ultiyan ho rahi hain"
         }
       ],
       "reasons": [
-        "Shortness of breath – acute → ORANGE",
-        "Diabetic – glucose > 17, no ketonuria → YELLOW"
+        "Diabetic – glucose > 11 with ketonuria → ORANGE",
+        "Vomiting – persistent → YELLOW"
       ],
       "routing_reasons": [
-        "Known diabetic with high blood sugar",
-        "Vomiting and rapid breathing are common symptoms of diabetic ketoacidosis or hyperosmolar hyperglycemic state, which fall under general medicine."
+        "Known diabetic with high sugar",
+        "Vomiting and fast breathing are common in uncontrolled diabetes or diabetic ketoacidosis, managed by internal medicine"
       ],
-      "ms": 5806
+      "ms": 9993
     },
     {
       "id": "v17",
@@ -498,7 +497,7 @@
       "discriminators": [
         {
           "id": "poisoning_overdose",
-          "evidence": "He swallowed rat poison"
+          "evidence": "swallowed rat poison"
         }
       ],
       "reasons": [
@@ -508,7 +507,7 @@
       "routing_reasons": [
         "Patient is under 12"
       ],
-      "ms": 3859
+      "ms": 4467
     },
     {
       "id": "v18",
@@ -538,9 +537,9 @@
       "routing_reasons": [
         "The patient has a burn injury on her hand.",
         "The presence of a blister indicates a partial-thickness burn.",
-        "Burns with blisters are typically managed by the surgical department."
+        "Surgical OPD manages wounds and burns."
       ],
-      "ms": 5970
+      "ms": 5869
     },
     {
       "id": "v19",
@@ -561,10 +560,10 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Chronic knee pain",
-        "Worse with stairs"
+        "Patient reports knee pain for six months",
+        "Pain is worse when climbing stairs"
       ],
-      "ms": 11077
+      "ms": 5607
     },
     {
       "id": "v20",
@@ -586,9 +585,9 @@
       ],
       "routing_reasons": [
         "Patient is female with chief complaint of heavy periods",
-        "Weakness can be associated with heavy menstrual bleeding"
+        "Heavy menstrual bleeding is a primary concern for Gynae/Obs"
       ],
-      "ms": 4238
+      "ms": 6006
     },
     {
       "id": "v21",
@@ -613,9 +612,9 @@
       "routing_reasons": [
         "Patient presents with a neck lump",
         "The lump has been growing for three months",
-        "Lumps are typically managed by the surgical department"
+        "Surgical OPD manages lumps"
       ],
-      "ms": 5328
+      "ms": 16962
     },
     {
       "id": "v22",
@@ -641,11 +640,11 @@
         "Severe pain (8–10/10) → ORANGE"
       ],
       "routing_reasons": [
-        "Sudden severe headache can be a symptom of various conditions.",
-        "No specific signs pointing to a surgical or cardiac cause.",
-        "The complaint is general and requires initial medical assessment."
+        "Sudden severe headache can be a symptom of various serious conditions.",
+        "While the description is alarming, without more specific neurological signs or a history of trauma, a definitive diagnosis cannot be made.",
+        "General medicine is a starting point for undifferentiated severe headaches."
       ],
-      "ms": 5510
+      "ms": 5372
     },
     {
       "id": "v23",
@@ -671,10 +670,10 @@
         "Burn – >20% / electrical / circumferential / chemical → ORANGE"
       ],
       "routing_reasons": [
-        "The patient has a burn injury on the hand.",
-        "Burns and electrical injuries are typically managed by the surgical department."
+        "Patient has a burn injury on the hand",
+        "Burns are typically managed by the surgical department"
       ],
-      "ms": 5412
+      "ms": 6421
     },
     {
       "id": "v24",
@@ -698,10 +697,9 @@
       ],
       "routing_reasons": [
         "Cough is a general symptom",
-        "No specific surgical or cardiac signs mentioned",
-        "Patient is young and has no significant past medical history"
+        "No surgical signs or specific organ system involvement mentioned"
       ],
-      "ms": 4844
+      "ms": 5271
     },
     {
       "id": "v25",
@@ -730,7 +728,7 @@
       "routing_reasons": [
         "Patient is under 12"
       ],
-      "ms": 5045
+      "ms": 5984
     },
     {
       "id": "v26",
@@ -756,10 +754,10 @@
         "Haemorrhage – controlled → YELLOW"
       ],
       "routing_reasons": [
-        "Patient has a cut wound",
-        "Bleeding has stopped, but wound needs assessment"
+        "Patient has a cut on the hand",
+        "Bleeding has stopped, indicating it is not an immediate emergency"
       ],
-      "ms": 5497
+      "ms": 5545
     },
     {
       "id": "v27",
@@ -783,10 +781,10 @@
         "No SATS discriminators matched → GREEN"
       ],
       "routing_reasons": [
-        "Patient reports palpitations, which can be a cardiac symptom.",
-        "Anxiety is also mentioned, which can sometimes be related to cardiac issues or mimic them."
+        "Patient reports palpitations",
+        "Palpitations can be a symptom of cardiac issues"
       ],
-      "ms": 6135
+      "ms": 5636
     },
     {
       "id": "v28",
@@ -812,18 +810,23 @@
         {
           "id": "sob_acute",
           "evidence": "I can't breathe properly"
+        },
+        {
+          "id": "pain_severe",
+          "evidence": "Severe chest tightness"
         }
       ],
       "reasons": [
         "Chest pain → ORANGE",
-        "Shortness of breath – acute → ORANGE"
+        "Shortness of breath – acute → ORANGE",
+        "Severe pain (8–10/10) → ORANGE"
       ],
       "routing_reasons": [
         "Severe chest tightness",
         "Difficulty breathing",
-        "Symptoms suggest acute cardiac event"
+        "Symptoms are acute and severe"
       ],
-      "ms": 5880
+      "ms": 6091
     }
   ]
 }

@@ -6,6 +6,7 @@ import { Keyboard, Loader2, Mic, RotateCcw, Square, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TriageBadge } from "@/components/triage-badge";
 import { DEPARTMENT_BY_ID } from "@/lib/routing/departments";
+import { AREAS } from "@/lib/surveillance/config";
 import type { Intake } from "@/lib/ai/intake";
 import type { Routing } from "@/lib/routing/route";
 import type { TriageResult } from "@/lib/triage/sats";
@@ -44,6 +45,7 @@ export function Kiosk() {
   const [text, setText] = useState("");
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [area, setArea] = useState("");
   const [code, setCode] = useState("");
   const [returning, setReturning] = useState<Returning | null>(null);
   const [lookupError, setLookupError] = useState<string | null>(null);
@@ -98,6 +100,7 @@ export function Kiosk() {
           routing: analysis.routing,
           model: analysis.model,
           passportToken: returning?.passportToken,
+          area: area || undefined,
         }),
       });
       const data = await res.json();
@@ -174,6 +177,19 @@ export function Kiosk() {
               inputMode="numeric"
               className="h-14 rounded-xl border px-4 text-2xl tabular-nums"
             />
+          </label>
+          <label className="flex flex-col gap-2">
+            <span className="text-sm text-muted-foreground">
+              Where do you live? (optional) · <span className="font-urdu">آپ کا علاقہ</span>
+            </span>
+            <select value={area} onChange={(e) => setArea(e.target.value)} className="h-14 rounded-xl border bg-background px-4 text-xl">
+              <option value="">Prefer not to say</option>
+              {AREAS.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.name}, {a.city}
+                </option>
+              ))}
+            </select>
           </label>
           <div className="grid grid-cols-2 gap-4">
             {(

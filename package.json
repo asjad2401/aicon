@@ -10,7 +10,8 @@
     "test": "vitest run",
     "eval": "tsx --conditions=react-server --env-file=.env.local scripts/run-eval.mts",
     "db:generate": "drizzle-kit generate",
-    "db:migrate": "node --env-file=.env.local node_modules/drizzle-kit/bin.cjs migrate"
+    "db:migrate": "node --env-file=.env.local node_modules/drizzle-kit/bin.cjs migrate",
+    "seed": "tsx --conditions=react-server --env-file=.env.local scripts/seed.mts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

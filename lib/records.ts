@@ -101,3 +101,14 @@ export async function addDocument(patientId: number, file: { bytes: Buffer; mime
 export async function deleteFact(id: number) {
   await getDb().delete(schema.facts).where(eq(schema.facts.id, id));
 }
+
+/** Known history for routing: diagnoses, allergies and medications as short strings. */
+export async function knownHistory(patientId: number) {
+  const rows = await getDb()
+    .select({ kind: schema.facts.kind, label: schema.facts.label, value: schema.facts.value, date: schema.facts.date })
+    .from(schema.facts)
+    .where(eq(schema.facts.patientId, patientId));
+  return rows
+    .filter((f) => ["diagnosis", "allergy", "medication", "procedure"].includes(f.kind))
+    .map((f) => `${f.kind}: ${f.label}${f.value ? ` ${f.value}` : ""}${f.date ? ` (${f.date.slice(0, 4)})` : ""}`);
+}

@@ -45,6 +45,7 @@ export async function createVisit(input: {
   intake: Intake;
   routing: Routing;
   model?: string;
+  passportToken?: string;
 }) {
   const db = getDb();
 
@@ -56,15 +57,25 @@ export async function createVisit(input: {
     uncertain: input.intake.confidence < 0.6,
   });
 
-  const [patient] = await db
-    .insert(schema.patients)
-    .values({
-      passportToken: newPassportToken(),
-      name: input.name || null,
-      age: input.age ?? null,
-      sex: input.sex ?? null,
-    })
-    .returning();
+  // Returning patients keep their health passport (and its digitised history).
+  const [existing] = input.passportToken
+    ? await db.select().from(schema.patients).where(eq(schema.patients.passportToken, input.passportToken.toUpperCase()))
+    : [];
+  const [patient] = existing
+    ? await db
+        .update(schema.patients)
+        .set({ age: input.age ?? existing.age, name: input.name || existing.name, sex: input.sex ?? existing.sex })
+        .where(eq(schema.patients.id, existing.id))
+        .returning()
+    : await db
+        .insert(schema.patients)
+        .values({
+          passportToken: newPassportToken(),
+          name: input.name || null,
+          age: input.age ?? null,
+          sex: input.sex ?? null,
+        })
+        .returning();
 
   const [{ count }] = await db
     .select({ count: sql<number>`count(*)::int` })

@@ -1,4 +1,5 @@
 import { runIntakePipeline } from "@/lib/pipeline";
+import { findPatient, knownHistory } from "@/lib/records";
 
 export const maxDuration = 60;
 
@@ -12,6 +13,7 @@ export async function POST(request: Request) {
   const audio = form.get("audio") as File | null;
   const age = form.get("age") ? Number(form.get("age")) : undefined;
   const sex = (form.get("sex") as string | null) ?? undefined;
+  const passport = (form.get("passport") as string | null)?.trim();
 
   if (!text && !audio) {
     return Response.json({ error: "Provide text or audio" }, { status: 400 });
@@ -29,8 +31,11 @@ export async function POST(request: Request) {
         }
       : { kind: "text" as const, text: text! };
 
-    const result = await runIntakePipeline(input, { age, sex });
-    return Response.json(result);
+    // Returning patient: known history from digitised reports sharpens routing.
+    const patient = passport ? await findPatient(passport) : null;
+    const history = patient ? await knownHistory(patient.id) : [];
+    const result = await runIntakePipeline(input, { age, sex, knownHistory: history });
+    return Response.json({ ...result, knownHistoryUsed: history.length });
   } catch (err) {
     console.error("[intake] failed", err);
     return Response.json({ error: "Could not understand the input. Please try again." }, { status: 502 });

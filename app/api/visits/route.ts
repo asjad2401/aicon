@@ -19,6 +19,7 @@ const BodySchema = z.object({
   intake: IntakeSchema,
   routing: RoutingSchema,
   model: z.string().optional(),
+  passportToken: z.string().max(20).optional(),
 });
 
 // POST: patient confirmed the analysis → create patient + visit + token.

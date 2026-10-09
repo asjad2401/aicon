@@ -12,7 +12,15 @@ import type { TriageResult } from "@/lib/triage/sats";
 import { cn } from "@/lib/utils";
 import { useRecorder } from "./use-recorder";
 
-type Analysis = { intake: Intake; triage: TriageResult; routing: Routing; model: string; ms: number };
+type Analysis = {
+  intake: Intake;
+  triage: TriageResult;
+  routing: Routing;
+  model: string;
+  ms: number;
+  knownHistoryUsed: number;
+};
+type Returning = { passportToken: string; name: string | null; reports: number };
 type Step = "details" | "describe" | "processing" | "confirm" | "saving";
 type Sex = "male" | "female";
 
@@ -36,6 +44,23 @@ export function Kiosk() {
   const [text, setText] = useState("");
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [code, setCode] = useState("");
+  const [returning, setReturning] = useState<Returning | null>(null);
+  const [lookupError, setLookupError] = useState<string | null>(null);
+
+  async function lookup() {
+    setLookupError(null);
+    const res = await fetch(`/api/patients/lookup?code=${encodeURIComponent(code.trim())}`);
+    const data = await res.json();
+    if (!res.ok) {
+      setLookupError("Code not recognised · کوڈ درست نہیں");
+      return;
+    }
+    setReturning(data);
+    if (data.name) setName(data.name);
+    if (data.age != null) setAge(String(data.age));
+    if (data.sex === "male" || data.sex === "female") setSex(data.sex);
+  }
 
   async function analyze(input: { audio?: Blob; text?: string }) {
     setStep("processing");
@@ -45,6 +70,7 @@ export function Kiosk() {
     if (input.text) form.append("text", input.text);
     form.append("age", age);
     if (sex) form.append("sex", sex);
+    if (returning) form.append("passport", returning.passportToken);
     try {
       const res = await fetch("/api/intake/analyze", { method: "POST", body: form });
       const data = await res.json();
@@ -71,6 +97,7 @@ export function Kiosk() {
           intake: analysis.intake,
           routing: analysis.routing,
           model: analysis.model,
+          passportToken: returning?.passportToken,
         }),
       });
       const data = await res.json();
@@ -100,6 +127,36 @@ export function Kiosk() {
       {step === "details" && (
         <section className="flex flex-col gap-6">
           <Bilingual ur="خوش آمدید — اپنی معلومات دیں" en="Welcome. Tell us about yourself" />
+          <div className="rounded-xl border border-dashed p-4">
+            {returning ? (
+              <p className="text-center">
+                Welcome back{returning.name ? `, ${returning.name}` : ""} ·{" "}
+                <span className="font-urdu">دوبارہ خوش آمدید</span>
+                <span className="block text-sm text-muted-foreground">
+                  {returning.reports} old report(s) on file: your doctor will see them
+                </span>
+              </p>
+            ) : (
+              <div className="flex flex-col gap-2">
+                <span className="text-sm text-muted-foreground">
+                  Been here before? Enter the code under the QR on your old slip ·{" "}
+                  <span className="font-urdu">پرانی پرچی کا کوڈ</span>
+                </span>
+                <div className="flex gap-2">
+                  <input
+                    value={code}
+                    onChange={(e) => setCode(e.target.value.toUpperCase())}
+                    className="h-12 flex-1 rounded-xl border px-4 text-lg tracking-widest"
+                    autoComplete="off"
+                  />
+                  <Button variant="outline" className="h-12" disabled={code.trim().length < 4} onClick={lookup}>
+                    Find me
+                  </Button>
+                </div>
+                {lookupError && <span className="text-sm text-destructive">{lookupError}</span>}
+              </div>
+            )}
+          </div>
           <label className="flex flex-col gap-2">
             <span className="text-sm text-muted-foreground">Name (optional) · <span className="font-urdu">نام</span></span>
             <input
@@ -254,6 +311,9 @@ export function Kiosk() {
               <strong>{DEPARTMENT_BY_ID[analysis.routing.department].name}</strong> ·{" "}
               <span className="font-urdu">{DEPARTMENT_BY_ID[analysis.routing.department].urdu}</span>
             </p>
+            {analysis.knownHistoryUsed > 0 && (
+              <p className="text-xs text-muted-foreground">Routing also used your medical history on file</p>
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">

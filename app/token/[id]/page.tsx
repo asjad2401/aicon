@@ -47,6 +47,7 @@ async function TokenSlip({ params }: { params: Promise<{ id: string }> }) {
         <p className="font-urdu text-2xl">{dept.urdu}</p>
       </div>
       <div className="size-40" dangerouslySetInnerHTML={{ __html: qrSvg }} />
+      <p className="-mt-3 font-mono text-sm tracking-widest">{patient.passportToken}</p>
       <p className="text-xs text-muted-foreground">
         Health passport: show this QR at every visit · <span className="font-urdu">ہر بار یہ کیو آر دکھائیں</span>
       </p>

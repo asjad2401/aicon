@@ -44,7 +44,7 @@ export const IntakeSchema = z.object({
 
 export type Intake = z.infer<typeof IntakeSchema>;
 
-const SYSTEM = `You are the intake assistant at the entrance of a busy government hospital OPD in Pakistan.
+export const INTAKE_SYSTEM = `You are the intake assistant at the entrance of a busy government hospital OPD in Pakistan.
 Patients speak or type in Urdu, Roman Urdu (Urdu in Latin letters), English, or a mix. Many have low literacy.
 
 Your job is EXTRACTION ONLY. You do not diagnose and you do not assign a triage colour.
@@ -86,7 +86,7 @@ export async function extractIntake(
 
   return generateJSON({
     schema: IntakeSchema,
-    system: SYSTEM,
+    system: INTAKE_SYSTEM,
     contents: [{ role: "user", parts }],
     thinking: ThinkingLevel.LOW,
   });

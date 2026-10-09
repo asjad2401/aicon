@@ -14,15 +14,26 @@ import { z } from "zod";
 export { ThinkingLevel };
 
 export const MODELS = {
-  fast: process.env.AI_MODEL_FAST ?? "gemini-3.8-flash",
-  /** Simple classification calls; supports MINIMAL thinking. */
-  fastest: process.env.AI_MODEL_FASTEST ?? "gemini-3.5-flash",
+  // Real-time path uses stable GA models: Gemini 3.x previews showed 2–30 s latency swings.
+  fast: process.env.AI_MODEL_FAST ?? "gemini-2.5-flash",
+  /** Simple classification calls. */
+  fastest: process.env.AI_MODEL_FASTEST ?? "gemini-2.5-flash-lite",
+  /** Non-real-time reasoning (e.g. history summaries). */
   smart: process.env.AI_MODEL_SMART ?? "gemini-3.1-pro-preview",
-  fallback: process.env.AI_MODEL_FALLBACK ?? "gemini-2.5-flash",
+  fallback: process.env.AI_MODEL_FALLBACK ?? "gemini-2.5-flash-lite",
 } as const;
 
 /** Per-request timeout so a dropped connection falls back instead of hanging. */
-const REQUEST_TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS ?? 25_000);
+const REQUEST_TIMEOUT_MS = Number(process.env.AI_TIMEOUT_MS ?? 15_000);
+
+/** Gemini 2.x uses a token budget instead of a thinking level. */
+const THINKING_BUDGET: Record<string, number> = { MINIMAL: 0, LOW: 512, MEDIUM: 2048, HIGH: 8192 };
+
+function thinkingConfig(model: string, level: ThinkingLevel) {
+  if (model.startsWith("gemini-3")) return { thinkingLevel: level };
+  if (model.startsWith("gemini-2.5")) return { thinkingBudget: THINKING_BUDGET[level] ?? 512 };
+  return undefined;
+}
 
 let client: GoogleGenAI | null = null;
 
@@ -70,7 +81,7 @@ type GenerateJSONOptions<T extends z.ZodType> = {
   system?: string;
   model?: string;
   temperature?: number;
-  /** Gemini 3.x only; ignored for older fallback models. */
+  /** Mapped to a thinking level (Gemini 3.x) or token budget (Gemini 2.5). */
   thinking?: ThinkingLevel;
 };
 
@@ -102,7 +113,7 @@ export async function generateJSON<T extends z.ZodType>({
           temperature,
           responseMimeType: "application/json",
           responseJsonSchema,
-          ...(m.startsWith("gemini-3") && { thinkingConfig: { thinkingLevel: thinking } }),
+          thinkingConfig: thinkingConfig(m, m === model ? thinking : ThinkingLevel.MINIMAL),
         },
       });
       const parsed = schema.safeParse(JSON.parse(res.text ?? ""));

@@ -1,0 +1,35 @@
+# Hackathon instructions (not part of the solution)
+Instuctions/
+
+# Private planning / design workspace (plans, mind maps, notes)
+_planning/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Dependencies & builds
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+venv/
+dist/
+build/
+.next/
+
+# Next.js / Vercel
+/.next/
+/out/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+*.pem
+npm-debug.log*
+/coverage

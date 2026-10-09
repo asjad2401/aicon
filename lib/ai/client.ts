@@ -83,6 +83,8 @@ type GenerateJSONOptions<T extends z.ZodType> = {
   temperature?: number;
   /** Mapped to a thinking level (Gemini 3.x) or token budget (Gemini 2.5). */
   thinking?: ThinkingLevel;
+  /** Override the default per-request timeout (e.g. for images). */
+  timeoutMs?: number;
 };
 
 /**
@@ -97,6 +99,7 @@ export async function generateJSON<T extends z.ZodType>({
   model = MODELS.fast,
   temperature = 0.2,
   thinking = ThinkingLevel.LOW,
+  timeoutMs,
 }: GenerateJSONOptions<T>): Promise<{ data: z.infer<T>; model: string }> {
   const ai = getAI();
   const responseJsonSchema = z.toJSONSchema(schema, { target: "openapi-3.0" });
@@ -114,6 +117,7 @@ export async function generateJSON<T extends z.ZodType>({
           responseMimeType: "application/json",
           responseJsonSchema,
           thinkingConfig: thinkingConfig(m, m === model ? thinking : ThinkingLevel.MINIMAL),
+          ...(timeoutMs && { httpOptions: { timeout: timeoutMs } }),
         },
       });
       const parsed = schema.safeParse(JSON.parse(res.text ?? ""));

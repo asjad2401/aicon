@@ -1,11 +1,13 @@
 import "server-only";
 import { randomBytes } from "node:crypto";
-import { and, eq, gte, sql } from "drizzle-orm";
+import { and, desc, eq, gte, inArray, sql } from "drizzle-orm";
 import { getDb, schema } from "@/lib/db";
 import type { Intake } from "@/lib/ai/intake";
 import { PROMPT_VERSION_INTAKE } from "@/lib/ai/intake";
 import type { Routing } from "@/lib/routing/route";
-import { triage } from "@/lib/triage/sats";
+import { triage, type Vitals } from "@/lib/triage/sats";
+import type { Colour } from "@/lib/triage/discriminators";
+import { rankQueue } from "@/lib/queue";
 
 const DEPT_PREFIX: Record<string, string> = {
   emergency: "E",
@@ -99,4 +101,134 @@ export async function createVisit(input: {
   });
 
   return { visit, patient, triage: result };
+}
+
+// ── Queue & visit lifecycle ──────────────────────────────────────────────────
+
+const ACTIVE_STATUSES = ["waiting", "triaged", "called"] as const;
+
+const queueColumns = {
+  id: schema.visits.id,
+  tokenNo: schema.visits.tokenNo,
+  colour: schema.visits.colour,
+  department: schema.visits.department,
+  status: schema.visits.status,
+  arrivedAt: schema.visits.arrivedAt,
+  calledAt: schema.visits.calledAt,
+  chiefComplaint: sql<string>`${schema.visits.intake}->>'chief_complaint'`,
+  provisional: sql<boolean>`${schema.visits.finalTriage} is null`,
+  patientName: schema.patients.name,
+  age: schema.patients.age,
+  sex: schema.patients.sex,
+};
+
+/** Nurse view: everyone awaiting vitals. Doctor view: active patients in one department. */
+export async function listQueue(opts: { view: "nurse" } | { view: "doctor"; department: string }) {
+  const db = getDb();
+  const where =
+    opts.view === "nurse"
+      ? eq(schema.visits.status, "waiting")
+      : and(
+          eq(schema.visits.department, opts.department),
+          inArray(schema.visits.status, [...ACTIVE_STATUSES]),
+        );
+  const rows = await db
+    .select(queueColumns)
+    .from(schema.visits)
+    .innerJoin(schema.patients, eq(schema.visits.patientId, schema.patients.id))
+    .where(and(where, gte(schema.visits.arrivedAt, new Date(Date.now() - 24 * 3600_000))));
+  return rankQueue(rows as (typeof rows[number] & { colour: Colour })[]);
+}
+
+export async function getVisitDetail(id: number) {
+  const db = getDb();
+  const [row] = await db
+    .select({ visit: schema.visits, patient: schema.patients })
+    .from(schema.visits)
+    .innerJoin(schema.patients, eq(schema.visits.patientId, schema.patients.id))
+    .where(eq(schema.visits.id, id));
+  if (!row) return null;
+  const documents = await db
+    .select()
+    .from(schema.documents)
+    .where(eq(schema.documents.patientId, row.patient.id))
+    .orderBy(desc(schema.documents.createdAt));
+  const facts = await db.select().from(schema.facts).where(eq(schema.facts.patientId, row.patient.id));
+  const [summary] = await db
+    .select()
+    .from(schema.summaries)
+    .where(eq(schema.summaries.visitId, id))
+    .orderBy(desc(schema.summaries.createdAt))
+    .limit(1);
+  return { ...row, documents, facts, summary: summary ?? null };
+}
+
+/** Nurse confirms vitals → final SATS triage. Optional override is logged with a reason. */
+export async function recordVitals(
+  id: number,
+  input: { vitals: Vitals; overrideColour?: Colour; overrideReason?: string; actor?: string },
+) {
+  const db = getDb();
+  const [visit] = await db.select().from(schema.visits).where(eq(schema.visits.id, id));
+  if (!visit?.intake) return null;
+  const [patient] = await db.select().from(schema.patients).where(eq(schema.patients.id, visit.patientId));
+
+  const result = triage({
+    discriminatorIds: visit.intake.discriminators.map((d) => d.id),
+    painScore: visit.intake.pain_score ?? undefined,
+    age: patient?.age ?? undefined,
+    vitals: input.vitals,
+  });
+  const colour = input.overrideColour ?? result.colour;
+
+  // RED goes to Emergency first; remember the specialty for after stabilisation.
+  let department = visit.department;
+  let routing = visit.routing;
+  if (colour === "RED" && department !== "emergency" && routing) {
+    routing = {
+      ...routing,
+      specialty: routing.department,
+      department: "emergency",
+      reasons: ["RED after vitals → Emergency first", ...routing.reasons],
+    };
+    department = "emergency";
+  }
+
+  const [updated] = await db
+    .update(schema.visits)
+    .set({
+      vitals: input.vitals,
+      finalTriage: result,
+      colour,
+      overrideColour: input.overrideColour ?? null,
+      overrideReason: input.overrideReason ?? null,
+      department,
+      routing,
+      status: "triaged",
+      triagedAt: new Date(),
+    })
+    .where(eq(schema.visits.id, id))
+    .returning();
+
+  await db.insert(schema.auditLog).values({
+    visitId: id,
+    actor: input.actor ?? "nurse",
+    action: input.overrideColour ? "triage_override" : "triage_confirmed",
+    payload: { computed: result.colour, final: colour, tews: result.tews, reason: input.overrideReason },
+  });
+  return { visit: updated, triage: result };
+}
+
+export async function setVisitStatus(id: number, action: "call" | "seen" | "cancel", actor = "doctor") {
+  const db = getDb();
+  const now = new Date();
+  const patch =
+    action === "call"
+      ? { status: "called", calledAt: now }
+      : action === "seen"
+        ? { status: "seen", seenAt: now }
+        : { status: "cancelled" };
+  const [updated] = await db.update(schema.visits).set(patch).where(eq(schema.visits.id, id)).returning();
+  if (updated) await db.insert(schema.auditLog).values({ visitId: id, actor, action: `visit_${action}` });
+  return updated ?? null;
 }

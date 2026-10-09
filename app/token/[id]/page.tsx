@@ -57,6 +57,9 @@ async function TokenSlip({ params }: { params: Promise<{ id: string }> }) {
       </p>
       <div className="flex gap-3 print:hidden">
         <PrintButton />
+        <Link href={`/records?code=${patient.passportToken}`} className="rounded-lg border px-4 py-2 text-sm hover:bg-muted">
+          Add old reports
+        </Link>
         <Link href="/kiosk" className="rounded-lg border px-4 py-2 text-sm hover:bg-muted">
           New patient
         </Link>

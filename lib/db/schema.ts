@@ -79,6 +79,7 @@ export const facts = pgTable("facts", {
   value: text("value"),
   unit: text("unit"),
   date: text("date"),
+  flag: text("flag"), // high | low | abnormal | normal
   box: jsonb("box").$type<[number, number, number, number]>(),
   confidence: real("confidence"),
   verified: boolean("verified").notNull().default(true),

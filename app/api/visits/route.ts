@@ -23,7 +23,7 @@ const BodySchema = z.object({
 
 // POST: patient confirmed the analysis → create patient + visit + token.
 export async function POST(request: Request) {
-  const parsed = BodySchema.safeParse(await request.json());
+  const parsed = BodySchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) {
     return Response.json({ error: "Invalid request", issues: parsed.error.issues }, { status: 400 });
   }

@@ -31,10 +31,12 @@ function newPassportToken() {
   return [...randomBytes(10)].map((b) => alphabet[b % alphabet.length]).join("");
 }
 
-function startOfToday() {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  return d;
+/** Start of the current OPD day in Pakistan time (UTC+5, no DST), whatever the server's timezone. */
+function startOfTodayPK() {
+  const PK_OFFSET_MS = 5 * 3600_000;
+  const pkNow = new Date(Date.now() + PK_OFFSET_MS);
+  pkNow.setUTCHours(0, 0, 0, 0);
+  return new Date(pkNow.getTime() - PK_OFFSET_MS);
 }
 
 export async function createVisit(input: {
@@ -77,16 +79,17 @@ export async function createVisit(input: {
         })
         .returning();
 
-  const [{ count }] = await db
-    .select({ count: sql<number>`count(*)::int` })
+  // Next token = highest number issued today in this department + 1 (never reuses a number).
+  const [{ last }] = await db
+    .select({ last: sql<number>`coalesce(max(substring(${schema.visits.tokenNo} from '[0-9]+$')::int), 0)` })
     .from(schema.visits)
     .where(
       and(
         eq(schema.visits.department, input.routing.department),
-        gte(schema.visits.arrivedAt, startOfToday()),
+        gte(schema.visits.arrivedAt, startOfTodayPK()),
       ),
     );
-  const tokenNo = `${DEPT_PREFIX[input.routing.department] ?? "X"}-${String(count + 1).padStart(3, "0")}`;
+  const tokenNo = `${DEPT_PREFIX[input.routing.department] ?? "X"}-${String(last + 1).padStart(3, "0")}`;
 
   const [visit] = await db
     .insert(schema.visits)

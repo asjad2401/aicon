@@ -1,0 +1,813 @@
+{
+  "summary": {
+    "run_at": "2026-10-09T18:54:04.131Z",
+    "n": 28,
+    "completed": 27,
+    "errors": 1,
+    "triage_accuracy": 100,
+    "under_triage_rate": 0,
+    "over_triage_rate": 0,
+    "dept_top1_accuracy": 92.6,
+    "dept_acceptable_accuracy": 96.3,
+    "median_ms": 11561
+  },
+  "results": [
+    {
+      "id": "v01",
+      "lang": "roman_urdu",
+      "age": 55,
+      "sex": "male",
+      "text": "seenay mein dard hai jo baayen baazu tak ja raha hai, paseena bhi aa raha hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical"
+      ],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "cardiology",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "chest_pain",
+          "evidence": "seenay mein dard hai jo baayen baazu tak ja raha hai, paseena bhi aa raha hai"
+        }
+      ],
+      "reasons": [
+        "Chest pain → ORANGE"
+      ],
+      "routing_reasons": [
+        "Chest pain radiating to the left arm is a classic sign of myocardial ischemia.",
+        "Accompanying sweating further supports a cardiac origin.",
+        "Age of 55 years increases the risk of acute coronary syndrome."
+      ],
+      "ms": 53138
+    },
+    {
+      "id": "v02",
+      "lang": "english",
+      "age": 16,
+      "sex": "male",
+      "text": "I had a fit about ten minutes ago and now I feel very drowsy and confused",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "seizure_post_ictal",
+          "evidence": "I had a fit about ten minutes ago and now I feel very drowsy and confused"
+        },
+        {
+          "id": "reduced_consciousness",
+          "evidence": "now I feel very drowsy and confused"
+        }
+      ],
+      "reasons": [
+        "Seizure – post-ictal → ORANGE",
+        "Level of consciousness reduced → ORANGE"
+      ],
+      "routing_reasons": [
+        "Patient experienced a seizure 10 minutes ago and is currently drowsy and confused.",
+        "New-onset seizure and post-ictal state require comprehensive medical evaluation and workup.",
+        "No history of trauma or focal surgical signs is reported."
+      ],
+      "ms": 12947
+    },
+    {
+      "id": "v03",
+      "lang": "urdu",
+      "age": 68,
+      "sex": "male",
+      "text": "مجھے اچانک بولنے میں مشکل ہو رہی ہے اور دائیں بازو میں کمزوری ہے",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "focal_neurology_acute",
+          "evidence": "مجھے اچانک بولنے میں مشکل ہو رہی ہے اور دائیں بازو میں کمزوری ہے"
+        }
+      ],
+      "reasons": [
+        "Focal neurology – acute → ORANGE"
+      ],
+      "routing_reasons": [
+        "Sudden difficulty speaking and right arm weakness are classic signs of an acute stroke.",
+        "Stroke management and initial neurological workup fall under General Medicine / Neurology in standard Pakistani government hospital OPDs.",
+        "The patient requires urgent medical evaluation for focal neurological deficits."
+      ],
+      "ms": 10574
+    },
+    {
+      "id": "v04",
+      "lang": "roman_urdu",
+      "age": 60,
+      "sex": "female",
+      "text": "saans bilkul nahi aa rahi, honth neelay ho rahe hain",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "got_colour": "RED",
+      "triage": "correct",
+      "got_department": "emergency",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "not_breathing",
+          "evidence": "saans bilkul nahi aa rahi, honth neelay ho rahe hain"
+        },
+        {
+          "id": "sob_acute",
+          "evidence": "saans bilkul nahi aa rahi"
+        }
+      ],
+      "reasons": [
+        "Not breathing / severe respiratory distress → RED",
+        "Shortness of breath – acute → ORANGE"
+      ],
+      "routing_reasons": [
+        "RED triage → Emergency first",
+        "Patient presents with severe respiratory distress and cannot breathe at all",
+        "Cyanosis (blue lips) indicates critical hypoxia requiring immediate life-saving intervention",
+        "These symptoms represent an acute, life-threatening emergency that cannot wait for an outpatient clinic"
+      ],
+      "ms": 10319
+    },
+    {
+      "id": "v05",
+      "lang": "english",
+      "age": 40,
+      "sex": "male",
+      "text": "Coughing up blood since yesterday and I have been losing weight for two months",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "coughing_blood",
+          "evidence": "Coughing up blood"
+        }
+      ],
+      "reasons": [
+        "Coughing blood → ORANGE"
+      ],
+      "routing_reasons": [
+        "Coughing blood (hemoptysis) and weight loss are classic systemic symptoms of pulmonary diseases like tuberculosis or malignancy.",
+        "General medical OPD is the primary department for evaluating chronic cough, hemoptysis, and unexplained weight loss.",
+        "There is no history of trauma or acute surgical abdomen that would warrant surgical OPD initially."
+      ],
+      "ms": 12055
+    },
+    {
+      "id": "v06",
+      "lang": "roman_urdu",
+      "age": 45,
+      "sex": "male",
+      "text": "subah se ulti mein khoon aa raha hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "vomiting_fresh_blood",
+          "evidence": "ulti mein khoon aa raha hai"
+        }
+      ],
+      "reasons": [
+        "Vomiting fresh blood → ORANGE"
+      ],
+      "routing_reasons": [
+        "Vomiting blood (hematemesis) is a medical emergency often caused by upper GI bleeding, requiring urgent medical evaluation",
+        "No history of trauma or surgical signs is reported, making medical management the primary initial step"
+      ],
+      "ms": 20980
+    },
+    {
+      "id": "v07",
+      "lang": "english",
+      "age": 28,
+      "sex": "female",
+      "text": "I am seven months pregnant and I have strong pain in my stomach",
+      "expected_colour": "ORANGE",
+      "expected_department": "gynae",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "gynae",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "pregnancy_abdo",
+          "evidence": "I am seven months pregnant and I have strong pain in my stomach"
+        },
+        {
+          "id": "abdominal_pain",
+          "evidence": "pain in my stomach"
+        }
+      ],
+      "reasons": [
+        "Pregnancy with abdominal pain or trauma → ORANGE",
+        "Abdominal pain → YELLOW"
+      ],
+      "routing_reasons": [
+        "Patient is 7 months pregnant and presenting with severe abdominal pain",
+        "Requires urgent obstetric evaluation to rule out preterm labor or placental complications"
+      ],
+      "ms": 11561
+    },
+    {
+      "id": "v08",
+      "lang": "roman_urdu",
+      "age": 30,
+      "sex": "female",
+      "text": "do din se pait mein dard hai aur halka bukhar hai",
+      "expected_colour": "YELLOW",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "got_colour": "YELLOW",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "abdominal_pain",
+          "evidence": "pait mein dard hai"
+        }
+      ],
+      "reasons": [
+        "Abdominal pain → YELLOW"
+      ],
+      "routing_reasons": [
+        "Presents with generalized abdominal pain and mild fever for two days without acute surgical signs",
+        "General medical evaluation is appropriate for initial workup of infectious or inflammatory GI causes",
+        "No pregnancy or localized pelvic symptoms are reported to immediately warrant Gynae OPD"
+      ],
+      "ms": 53431
+    },
+    {
+      "id": "v09",
+      "lang": "english",
+      "age": 22,
+      "sex": "male",
+      "text": "Fell off my motorbike, my wrist is swollen and looks bent",
+      "expected_colour": "YELLOW",
+      "expected_department": "orthopaedics",
+      "accept": [],
+      "got_colour": "YELLOW",
+      "triage": "correct",
+      "got_department": "orthopaedics",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "fracture_closed",
+          "evidence": "my wrist is swollen and looks bent"
+        }
+      ],
+      "reasons": [
+        "Fracture – closed → YELLOW"
+      ],
+      "routing_reasons": [
+        "Patient has a history of trauma from a motorbike fall.",
+        "Presents with a swollen and bent wrist, strongly suggesting a fracture or dislocation.",
+        "Orthopaedics is the definitive department for managing acute bone and joint injuries."
+      ],
+      "ms": 44534
+    },
+    {
+      "id": "v10",
+      "lang": "urdu",
+      "age": 30,
+      "sex": "female",
+      "text": "تین دن سے بخار ہے اور جسم میں درد ہے",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "Patient presents with acute fever and generalized body aches of 3 days duration.",
+        "These are classic systemic symptoms of a viral or bacterial infection, which fall under general medicine.",
+        "There are no localized surgical, gynecological, or organ-specific symptoms requiring other specialty OPDs."
+      ],
+      "ms": 9661
+    },
+    {
+      "id": "v11",
+      "lang": "english",
+      "age": 22,
+      "sex": "male",
+      "text": "Itchy rash on both arms for two weeks",
+      "expected_colour": "GREEN",
+      "expected_department": "dermatology",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "dermatology",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The primary complaint is an itchy rash on both arms lasting for two weeks.",
+        "Skin rashes and itching fall directly under the scope of Dermatology."
+      ],
+      "ms": 9065
+    },
+    {
+      "id": "v12",
+      "lang": "roman_urdu",
+      "age": 35,
+      "sex": "male",
+      "text": "teen din se daant mein dard hai aur gaal thora sooj gaya hai",
+      "expected_colour": "GREEN",
+      "expected_department": "dental",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "dental",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The primary complaint is a toothache of 3 days duration.",
+        "The patient has associated mild cheek swelling, which is commonly secondary to a dental infection."
+      ],
+      "ms": 5792
+    },
+    {
+      "id": "v13",
+      "lang": "english",
+      "age": 19,
+      "sex": "female",
+      "text": "Pain and discharge from my left ear for five days",
+      "expected_colour": "GREEN",
+      "expected_department": "ent",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "ent",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The patient presents with left ear pain and ear discharge of five days duration.",
+        "Ear pain and discharge are classic symptoms of otitis media or externa, which are managed by the ENT department."
+      ],
+      "ms": 60270
+    },
+    {
+      "id": "v14",
+      "lang": "roman_urdu",
+      "age": 27,
+      "sex": "male",
+      "text": "do din se aankh laal hai aur paani aa raha hai",
+      "expected_colour": "GREEN",
+      "expected_department": "eye",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "eye",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The patient's chief complaint is a red and watery eye.",
+        "Symptoms are localized entirely to the eye for two days.",
+        "The Eye OPD is the specialized department for managing acute eye redness and discharge."
+      ],
+      "ms": 5333
+    },
+    {
+      "id": "v15",
+      "lang": "english",
+      "age": 33,
+      "sex": "female",
+      "text": "I have been feeling very low for a month, I can't sleep and have no interest in anything",
+      "expected_colour": "GREEN",
+      "expected_department": "psychiatry",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "psychiatry",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "Patient presents with persistent low mood.",
+        "Patient reports insomnia.",
+        "Patient experiences anhedonia (lack of interest in activities)."
+      ],
+      "ms": 68519
+    },
+    {
+      "id": "v16",
+      "lang": "roman_urdu",
+      "age": 50,
+      "sex": "female",
+      "text": "sugar ki mareez hoon, sugar 450 aa rahi hai, ultiyan ho rahi hain aur saans tez chal rahi hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "diabetic_ketosis",
+          "evidence": "sugar ki mareez hoon, sugar 450 aa rahi hai, ultiyan ho rahi hain aur saans tez chal rahi hai"
+        },
+        {
+          "id": "sob_acute",
+          "evidence": "saans tez chal rahi hai"
+        }
+      ],
+      "reasons": [
+        "Diabetic – glucose > 11 with ketonuria → ORANGE",
+        "Shortness of breath – acute → ORANGE"
+      ],
+      "routing_reasons": [
+        "Patient presents with severe hyperglycemia (450 mg/dL) accompanied by vomiting and rapid breathing, highly suggestive of Diabetic Ketoacidosis (DKA).",
+        "General medical OPD is equipped to manage acute metabolic and endocrine crises like severe diabetes complications.",
+        "The symptoms do not point to a surgical, cardiac, or other specialty-specific presentation."
+      ],
+      "ms": 9616
+    },
+    {
+      "id": "v17",
+      "lang": "english",
+      "age": 4,
+      "sex": "male",
+      "text": "He swallowed rat poison about half an hour ago",
+      "expected_colour": "ORANGE",
+      "expected_department": "paediatrics",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "paediatrics",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "poisoning_overdose",
+          "evidence": "He swallowed rat poison"
+        }
+      ],
+      "reasons": [
+        "Poisoning / overdose → ORANGE",
+        "Under 12: adult TEWS not applicable, nurse to assess with paediatric chart"
+      ],
+      "routing_reasons": [
+        "Patient is under 12"
+      ],
+      "ms": 6425
+    },
+    {
+      "id": "v18",
+      "lang": "roman_urdu",
+      "age": 26,
+      "sex": "female",
+      "text": "haath par garam paani gir gaya, chhaala ban gaya hai",
+      "expected_colour": "YELLOW",
+      "expected_department": "surgical",
+      "accept": [
+        "dermatology"
+      ],
+      "error": "Error: AI generation failed: ApiError: {\"error\":{\"code\":504,\"message\":\"Deadline expired before operation could complete.\",\"status\":\"DEADLINE_EXCEEDED\"}}"
+    },
+    {
+      "id": "v19",
+      "lang": "english",
+      "age": 58,
+      "sex": "female",
+      "text": "Knee pain for six months, worse when climbing stairs",
+      "expected_colour": "GREEN",
+      "expected_department": "orthopaedics",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "orthopaedics",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The patient presents with chronic knee pain lasting for six months.",
+        "The pain worsens when climbing stairs, which is highly indicative of a joint or musculoskeletal issue.",
+        "Orthopaedics is the specialized department for managing chronic joint pain and degenerative joint diseases."
+      ],
+      "ms": 6250
+    },
+    {
+      "id": "v20",
+      "lang": "roman_urdu",
+      "age": 38,
+      "sex": "female",
+      "text": "do hafton se periods bohat zyada aa rahe hain aur kamzori hai",
+      "expected_colour": "GREEN",
+      "expected_department": "gynae",
+      "accept": [],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "gynae",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The primary complaint is heavy menstrual bleeding lasting for two weeks, which falls under female reproductive health.",
+        "The associated weakness is likely secondary to anemia from the prolonged and heavy menstrual blood loss."
+      ],
+      "ms": 7862
+    },
+    {
+      "id": "v21",
+      "lang": "english",
+      "age": 45,
+      "sex": "male",
+      "text": "There is a lump in my neck that has been growing for three months",
+      "expected_colour": "GREEN",
+      "expected_department": "surgical",
+      "accept": [
+        "ent"
+      ],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "surgical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The patient presents with a progressively growing neck lump of three months duration.",
+        "Lumps, masses, and potential excisions are primarily managed by the Surgical OPD."
+      ],
+      "ms": 56771
+    },
+    {
+      "id": "v22",
+      "lang": "roman_urdu",
+      "age": 42,
+      "sex": "female",
+      "text": "achanak sar mein shadeed dard shuru hua, zindagi ka sab se bura dard hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "emergency",
+      "dept_top1": false,
+      "dept_acceptable": false,
+      "discriminators": [
+        {
+          "id": "pain_severe",
+          "evidence": "zindagi ka sab se bura dard hai"
+        }
+      ],
+      "reasons": [
+        "Severe pain (8–10/10) → ORANGE"
+      ],
+      "routing_reasons": [
+        "Sudden onset of severe headache described as the worst pain of her life is a classic presentation of a subarachnoid hemorrhage.",
+        "This is a red-flag symptom requiring immediate emergency evaluation and imaging rather than routine outpatient management."
+      ],
+      "ms": 5474
+    },
+    {
+      "id": "v23",
+      "lang": "english",
+      "age": 30,
+      "sex": "male",
+      "text": "Got an electric shock while fixing a wire, there is a burn on my hand",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "surgical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "burn_major",
+          "evidence": "Got an electric shock while fixing a wire, there is a burn on my hand"
+        }
+      ],
+      "reasons": [
+        "Burn – >20% / electrical / circumferential / chemical → ORANGE"
+      ],
+      "routing_reasons": [
+        "The patient has an electrical burn on his hand, which requires specialized wound care and assessment for deep tissue damage.",
+        "Surgical OPD is the primary department for managing burns, debridement, and assessing the need for surgical intervention."
+      ],
+      "ms": 64298
+    },
+    {
+      "id": "v24",
+      "lang": "urdu",
+      "age": 25,
+      "sex": "male",
+      "text": "مجھے ایک ہفتے سے کھانسی ہے",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "ent"
+      ],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The patient presents with a cough lasting for one week, which is a common respiratory symptom.",
+        "General medical OPD is the primary department for managing acute respiratory infections and coughs.",
+        "There are no red flags or trauma indicating a need for emergency or surgical intervention."
+      ],
+      "ms": 61237
+    },
+    {
+      "id": "v25",
+      "lang": "roman_urdu",
+      "age": 3,
+      "sex": "male",
+      "text": "do din se dast aur ultiyan ho rahi hain, kuch khaa pee nahi raha",
+      "expected_colour": "YELLOW",
+      "expected_department": "paediatrics",
+      "accept": [],
+      "got_colour": "YELLOW",
+      "triage": "correct",
+      "got_department": "paediatrics",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "vomiting_persistent",
+          "evidence": "kuch khaa pee nahi raha"
+        }
+      ],
+      "reasons": [
+        "Vomiting – persistent → YELLOW",
+        "Under 12: adult TEWS not applicable, nurse to assess with paediatric chart"
+      ],
+      "routing_reasons": [
+        "Patient is under 12"
+      ],
+      "ms": 4628
+    },
+    {
+      "id": "v26",
+      "lang": "english",
+      "age": 29,
+      "sex": "male",
+      "text": "I cut my hand with a kitchen knife, the bleeding stopped after I pressed on it",
+      "expected_colour": "YELLOW",
+      "expected_department": "surgical",
+      "accept": [],
+      "got_colour": "YELLOW",
+      "triage": "correct",
+      "got_department": "surgical",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "haemorrhage_controlled",
+          "evidence": "the bleeding stopped after I pressed on it"
+        }
+      ],
+      "reasons": [
+        "Haemorrhage – controlled → YELLOW"
+      ],
+      "routing_reasons": [
+        "The patient sustained a cut/laceration on his hand from a kitchen knife.",
+        "Lacerations and wounds require surgical evaluation for proper cleaning, closure, or suturing.",
+        "Surgical OPD is the primary department for managing acute wounds and lacerations."
+      ],
+      "ms": 48212
+    },
+    {
+      "id": "v27",
+      "lang": "roman_urdu",
+      "age": 31,
+      "sex": "female",
+      "text": "kabhi kabhi ghabrahat hoti hai aur dil tez dharakne lagta hai",
+      "expected_colour": "GREEN",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "psychiatry"
+      ],
+      "got_colour": "GREEN",
+      "triage": "correct",
+      "got_department": "medical",
+      "dept_top1": false,
+      "dept_acceptable": true,
+      "discriminators": [],
+      "reasons": [
+        "No SATS discriminators matched → GREEN"
+      ],
+      "routing_reasons": [
+        "The patient presents with a combination of anxiety and palpitations, which are commonly managed initially in General Medicine.",
+        "There is no known cardiac history or high-risk cardiac symptoms to warrant direct cardiology referral.",
+        "A medical workup is needed to rule out systemic causes like hyperthyroidism or anemia."
+      ],
+      "ms": 6394
+    },
+    {
+      "id": "v28",
+      "lang": "english",
+      "age": 62,
+      "sex": "male",
+      "text": "Severe chest tightness for the last hour and I can't breathe properly",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical"
+      ],
+      "got_colour": "ORANGE",
+      "triage": "correct",
+      "got_department": "cardiology",
+      "dept_top1": true,
+      "dept_acceptable": true,
+      "discriminators": [
+        {
+          "id": "chest_pain",
+          "evidence": "Severe chest tightness"
+        },
+        {
+          "id": "sob_acute",
+          "evidence": "I can't breathe properly"
+        }
+      ],
+      "reasons": [
+        "Chest pain → ORANGE",
+        "Shortness of breath – acute → ORANGE"
+      ],
+      "routing_reasons": [
+        "Severe chest tightness and difficulty breathing in a 62-year-old male is highly suggestive of acute coronary syndrome.",
+        "The acute onset and severity of symptoms point towards a cardiac etiology requiring urgent evaluation."
+      ],
+      "ms": 41965
+    }
+  ]
+}

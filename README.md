@@ -91,7 +91,21 @@ _TBD — triage colour accuracy, under-triage rate, over-triage rate and departm
 
 ## Run locally
 
-_TBD — setup steps, environment variables (see `.env.example`), and seed data._
+Requirements: Node 24+, a Google Cloud project with Vertex AI enabled, a Postgres database (Neon).
+
+```bash
+npm install
+cp .env.example .env.local        # fill in project ID and DATABASE_URL
+gcloud auth application-default login   # local Vertex AI auth (no key file needed)
+npm run db:migrate                # create tables
+npm run dev                       # http://localhost:3000
+```
+
+| Command | What it does |
+|---|---|
+| `npm test` | Unit tests for the SATS triage engine |
+| `npm run eval` | Runs the full AI pipeline over the vignette set → `eval/results.json` |
+| `npm run db:generate` | Generate a SQL migration after schema changes |
 
 ## Demo access
 

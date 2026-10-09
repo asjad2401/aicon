@@ -1,186 +1,247 @@
-# Priora — AI Triage & Records for Government OPDs
+# Priora
 
-> **AICON'26 · Build With AI · Domain: Health Operations**
-> Built solo during AICON'26 (9–10 October 2026), SEECS, NUST.
+### The right patient, first.
 
-**Live demo:** [priora.asjad.dev](https://priora.asjad.dev) · **Demo video:** _link to be added_
+**AI triage, routing and patient history for Pakistan's government hospital OPDs, working *before* anyone joins a queue.**
 
-| 🔴 RED median wait | Under-triage | Wrong-line redirects | Doctor time on paper files |
-|---|---|---|---|
-| **1h 5m → 1 min** | **0%** on 28 test cases | **48 → 10** per morning | **5.7 h → 1.9 h** per morning |
-| [simulated](#impact) | [evaluated](#evaluation) | [simulated](#impact) | [simulated](#impact) |
+[**Try it live → priora.asjad.dev**](https://priora.asjad.dev) · Demo video: _link to be added_
+
+| Critical patients wait | Missed emergencies | Patients sent to the wrong line | Doctor hours lost to paper files |
+|:---:|:---:|:---:|:---:|
+| **1h 5m → 1 min** | **0%** under-triage | **48 → 10** a morning | **5.7 h → 1.9 h** a morning |
+
+<sub>Wait, redirect and file-reading figures come from our OPD simulator; under-triage comes from our 28-case evaluation. Details below.</sub>
+
+> AICON'26 · Build With AI · **Health Operations** · Built solo at SEECS, NUST, 9–10 October 2026
 
 ---
 
-## The problem
+## 8:40 AM, a government OPD in Rawalpindi
 
-Government hospital OPDs in Pakistan serve hundreds of patients a day with a few minutes per patient. Three failures compound:
+Ahmed, 54, has chest pain spreading to his left arm. He doesn't know which department to go to, so he joins the longest line: the same line as a student with a skin rash and a man who needs a repeat prescription. In his hand is a plastic bag of reports collected over six years.
 
-1. **Wrong door.** Patients don't know which specialist or OPD to visit for their symptoms. They wait in the wrong line, get redirected, and wait again.
-2. **Flat queues.** A patient with chest pain waits in the same first-come-first-served line as a patient with a mild rash. There is no severity sorting before the queue.
-3. **A bag of files.** Patients carry years of paper reports and prescriptions. Doctors don't have time to read them, so critical history (an old ECG, a rising HbA1c, a drug allergy) is missed.
+Seventy minutes later he reaches a doctor who has three minutes for him. The bag goes unread. Nobody sees the 2021 ECG that already showed signs of heart strain.
 
-_Problem identified, and the solution reviewed, with input from a medical student with first-hand experience of government OPDs. Their feedback: severity-based routing is the core value, **SATS is the triage scale in use**, and an AI history brief is useful for routing, with a proper checkup always following. Priora is designed around exactly that._
+**This happens every day, in every crowded OPD.** Three problems compound before a doctor ever sees the patient:
 
-## The solution
+- 🚪 **The wrong door.** Patients don't know which OPD treats their symptoms. They queue, get redirected, and queue again.
+- 🧍‍♂️🧍‍♀️ **Flat queues.** First come, first served. A heart attack waits behind a rash.
+- 🗂️ **A bag of files.** Years of history on paper that nobody has time to read, so the old ECG, the drug allergy and the rising blood sugar get missed.
 
-Priora is an **operations system for the OPD**, not a consumer symptom checker. It sits **before the queue**:
+_Problem identified, and the solution reviewed, with a medical student who works in government hospitals. Her verdict: severity-based routing is the core value, SATS is the triage scale actually in use, and a history brief helps, with a proper examination always following. Priora is built around exactly that._
 
-1. **Intake:** the patient describes symptoms by **voice or text in Urdu, Roman Urdu or English** at a kiosk or on their phone.
-2. **Triage:** findings are scored with the **South African Triage Scale (SATS)**, a protocol designed for low-resource settings, into 🔴 Red · 🟠 Orange · 🟡 Yellow · 🟢 Green. A nurse adds vitals and confirms.
-3. **Routing:** the patient is directed to the right department (Medical, Surgical, Gynae/Obs, Cardiology, ENT, …).
-4. **Queue:** each department's queue is ordered by severity, with a wait-time fairness rule.
-5. **Records:** photos of old reports are read by AI and turned into a **one-page pre-consultation brief focused on today's complaint**, where **every line links back to the source report**. Known history also sharpens routing (e.g. a known cardiac patient with chest pain goes to Cardiology). The brief orients the doctor; a proper examination always follows.
-6. **Health passport:** the digitized history is attached to a **QR code** on the token slip, so the bag of files is no longer needed.
+---
 
-```
-Problem → Data/Input → AI Component → Solution/Output → Impact
-```
+## Meet Priora
 
-| Stage | What it is in Priora |
-|---|---|
-| **Data / Input** | Patient voice/text (multilingual), nurse-entered vitals, photos of paper medical reports |
-| **AI Component** | Multimodal findings extraction · department routing · document understanding · complaint-aware cited summarization |
-| **Solution / Output** | Triage colour with reason trail, department + token, severity-sorted queues, cited one-page history, QR health passport |
-| **Impact** | Critical patients seen sooner, fewer misdirected visits, less doctor time spent on files (see [Impact](#impact)) |
+Priora is **the front door of the OPD**. Every patient is understood, prioritised and sent to the right place *before* they queue, and the doctor meets them already knowing their history.
 
-## How AI is used
+With Priora, Ahmed's morning goes like this:
 
-AI does four distinct jobs in the pipeline. **It never assigns severity on its own.**
+1. 🎙️ **He speaks.** At a kiosk he says *"seenay mein dard hai, baayen baazu tak ja raha hai"* in Roman Urdu. Priora understands him, and because he's been here before, it also knows his history.
+2. 🟠 **He's prioritised.** Chest pain is very urgent: ORANGE, sent to Cardiology. He gets a printed token with a QR health passport.
+3. 🔴 **The nurse confirms it.** His heart rate is 130. The triage score jumps to RED, and he goes straight to Emergency, ahead of everyone who can safely wait.
+4. 📋 **The doctor is ready.** In seconds, five old reports become a one-page brief: *the 2021 ECG showed ischaemia, HbA1c rose from 7.1% to 8.4%, he's allergic to penicillin, and an echocardiogram was advised twice but never done.* Every line links to the original paper.
+5. 📝 **Nothing is lost again.** The consultation is recorded, and next time his history is already there.
 
-| # | AI component | Input → Output | Why AI |
-|---|---|---|---|
-| 1 | **Intake extraction** | Audio/text (Urdu / Roman Urdu / English) → structured findings + matched SATS discriminators, each with the patient's own words as evidence | Free-form, multilingual, low-literacy speech can't be parsed with rules |
-| 2 | **Department routing** | Findings + age/sex/pregnancy + known history → department, confidence, reasons | Maps messy symptom combinations to specialties; low confidence falls back to Medical OPD + nurse review |
-| 3 | **Document understanding** | Phone photo of a lab report / prescription / discharge slip → typed facts (diagnoses, meds, labs, allergies) with dates and **bounding boxes** | Handwriting, mixed languages, skewed photos |
-| 4 | **Cited pre-consultation brief** | All extracted facts + today's complaint → ranked brief; **every claim cites source facts**, and uncited claims are dropped. Orientation only; examination follows | Relevance depends on the complaint (chest pain → surface the old ECG) |
+---
 
-**Safety design**
-- **Deterministic triage:** AI extracts findings; fixed SATS rules (TEWS score + discriminators) assign the colour. Any emergency sign forces Red.
-- **Human in the loop:** a nurse confirms or overrides every triage (overrides are logged).
-- **Explainable:** every triage shows its reason trail (e.g. _"HR 128 → +2 · chest pain → Orange"_).
-- **Verifiable:** every summary line links to a highlighted region of the original document.
-- **Evaluated:** triage is tested against a vignette set; we report the **under-triage rate** (see [Evaluation](#evaluation)).
-- **Decision support only:** no diagnosis is shown to patients.
+## What Priora does for each person
 
-## Impact
-
-Measured with the built-in **OPD simulator** ([/impact](https://priora.asjad.dev/impact)): a discrete-event simulation of one morning in which **the identical synthetic patient stream** goes through today's single first-come-first-served line and through Priora. Only the process changes.
-
-**Default scenario:** 300 patients over 4 hours, 4 doctors, 4-min mean consult, colour mix 2 / 10 / 30 / 58 % (RED → GREEN), 15 % of patients join the wrong line today vs **3.6 % with Priora** (the department miss rate measured on our eval set), 40 % carry old files (3 min reading today vs 1 min with the cited brief).
-
-| | Today | With Priora |
+| | Before | With Priora |
 |---|---|---|
-| RED median wait | 1h 5m | **1 min** |
-| ORANGE seen within the 10-min SATS target | 14 % | **100 %** |
-| YELLOW seen within 60 min | 40 % | **100 %** |
-| Wrong-line redirects | 48 | **10** |
-| Doctor time spent on paper files | 5.7 h | **1.9 h** |
-| Last patient seen (minutes after opening) | 420 | **343** (77 min earlier) |
+| 🧑 **Patient** | Guesses the department, waits in the wrong line, carries a bag of files | Speaks in their own language, is told where to go, carries a QR instead of paper |
+| 👩‍⚕️ **Triage nurse** | Sorts a crowd by eye | Sees who needs her first; enters vitals and gets an explained triage colour |
+| 🩺 **Doctor** | Three minutes, a stack of illegible paper | A severity-sorted queue and a cited one-page brief focused on today's complaint |
+| 🗃️ **Records clerk** | Photocopies and files | Photographs old reports; AI turns them into searchable history in seconds |
+| 🏥 **Medical superintendent** | No visibility on waits or safety | Live queues, an audit trail, and a built-in clinical validation dashboard |
+| 🛰️ **District health officer** | Hears about outbreaks after lab confirmation, days later | Early-warning alerts from symptom patterns across the district: dengue, cholera, measles and more |
 
-**Trade-off, stated plainly:** GREEN (routine) patients wait longer (median 1h 8m → 1h 37m) because critical patients now go first. They all stay within the SATS 4-hour target, and a fairness rule promotes any GREEN patient who passes it. Every assumption is a slider on the page; the simulation is deterministic (seeded) and unit-tested.
+---
 
-## Evaluation
+## Six things Priora does
 
-28 synthetic patient descriptions (English, Roman Urdu and Urdu script), each with an expected SATS colour and department, run through the **real pipeline**: AI extraction → deterministic SATS rules → AI routing. Results: [/eval](https://priora.asjad.dev/eval) · data: [`eval/`](eval/).
+### 1. Understands every patient, in their own language
+Patients speak or type in **Urdu, Roman Urdu or English**: no forms, no reading required. AI turns what they say into structured clinical findings, quoting their own words as evidence.
 
-| Metric | Result |
+### 2. Puts the sickest first, safely
+Priora uses the **South African Triage Scale (SATS)**, the protocol designed for busy, low-resource hospitals and already in use locally. **The AI never decides severity**: it extracts findings, fixed SATS rules assign the colour, and a nurse confirms it. Every decision shows exactly why: *"Heart rate 130 → +3 · TEWS 7 → RED"*.
+
+### 3. Sends patients to the right door
+Findings, age, pregnancy and **known medical history** route each patient to the right OPD department. Unsure? It defaults to Medical OPD and flags the case for review instead of guessing.
+
+### 4. Turns a bag of files into a one-page brief
+Photograph old lab reports, prescriptions (even handwritten ones), ECGs and discharge slips. AI reads them and writes a brief **focused on today's complaint**. Every line is **cited**: one click shows the exact spot on the original paper. Lines without a valid source are removed automatically.
+
+### 5. Keeps a complete record
+Doctors record notes, diagnoses, prescriptions, lab orders and the outcome in one form. Every visit builds a patient timeline that follows them through their **QR health passport**, so the next doctor starts with the full picture.
+
+### 6. Warns the district before an outbreak spreads
+Every intake is also an anonymous surveillance report. Priora tags symptoms against WHO-style syndrome definitions, compares each area against its own baseline, and raises an alert when something is unusual: *"Dengue-like fever in G-9: 12 cases today against about 1 a day."* The district health officer gets a brief with the evidence and a response checklist **before** lab confirmation arrives.
+
+---
+
+## Built to be trusted
+
+Health care can't run on a black box. Priora is designed so that every decision can be checked.
+
+- ✅ **Rules decide, AI assists.** Severity comes from a validated clinical scale, not a language model.
+- 👩‍⚕️ **People stay in charge.** Nurses confirm every colour; overrides need a reason and are logged.
+- 🔍 **Everything is explained or cited.** Triage shows its reasoning; every brief line and outbreak claim links to its source.
+- 🛡️ **Escalates when in doubt.** An unclear description or a child is never marked as routine without review.
+- 🔐 **Staff-only access by role.** Nurses, doctors (only their own department), records clerks, health officers and administrators each see only what they need. Every action is in the audit log.
+- 🔒 **Private by design.** Report photos are stored privately and only shown to signed-in staff. Surveillance uses anonymous counts. AI runs on Google Cloud Vertex AI, where prompts are not used to train models.
+
+---
+
+## The difference it makes
+
+We didn't want to just claim impact, so we built a **simulator** ([try it](https://priora.asjad.dev/impact)). The same 300 synthetic patients go through one busy morning twice: once through today's single line, once through Priora. Only the process changes.
+
+| One OPD morning · 300 patients · 4 doctors | Today | With Priora |
+|---|:---:|:---:|
+| Median wait for RED (critical) patients | 1h 5m | **1 min** |
+| ORANGE patients seen within 10 minutes | 14% | **100%** |
+| YELLOW patients seen within an hour | 40% | **100%** |
+| Patients redirected from the wrong line | 48 | **10** |
+| Doctor time spent reading paper files | 5.7 h | **1.9 h** |
+| Last patient seen (minutes after opening) | 420 | **343** |
+
+**The honest trade-off:** routine GREEN patients wait a little longer (median 68 → 97 minutes), because emergencies now go first. All of them are still seen within the SATS 4-hour target, and a fairness rule moves anyone who passes it up the queue. Every assumption is a slider you can change.
+
+---
+
+## Proven, not promised
+
+**Tested before trusted.** We ran 28 patient descriptions in English, Roman Urdu and Urdu script through the real system ([results](https://priora.asjad.dev/eval)):
+
+| Triage accuracy | Missed emergencies (under-triage) | Right department | Response time |
+|:---:|:---:|:---:|:---:|
+| **100%** | **0%** | **96.4%** exact · 100% acceptable | **~6 seconds** |
+
+**Validated as it's used.** Priora has a clinical validation study built into the daily workflow:
+- Nurses record their own triage colour **before** the system's result is revealed, so there's no anchoring.
+- Doctors confirm whether the department was right and whether the brief was accurate, at every consultation.
+- A live **validation dashboard** reports nurse-versus-system agreement (Cohen's kappa), under-triage against the nurse, routing accuracy, brief accuracy and real waiting times against SATS targets.
+
+_For the demo, the dashboard is pre-filled with clearly labelled synthetic pilot records; new triages and consultations add real entries live. The 28-case test set is small and written by us. A hospital pilot is the next step, and Priora is already built to run one._
+
+---
+
+## Made for Pakistan
+
+- 🗣️ **Urdu-first and voice-first**, for patients who can't read or write
+- 🏥 **Real government OPD departments**, from Medical and Surgical to Gynae/Obs, Paediatrics and Eye
+- 🦟 **Local disease patterns**: dengue season, XDR typhoid and waterborne diarrhoea are all on the early-warning watchlist
+- 🖨️ **Runs on what hospitals already have**: a tablet or old laptop for the kiosk, a printer for token slips, and a browser for staff. No new hardware.
+
+---
+
+## Ready for a pilot
+
+| Step | What happens |
 |---|---|
-| Triage colour accuracy | **100 %** (28/28) |
-| **Under-triage rate** (serious case marked less urgent) | **0 %** |
-| Over-triage rate | 0 % |
-| Department, exact match | 96.4 % |
-| Department, clinically acceptable | 100 % |
-| Median latency (extraction + routing) | 6.0 s |
+| **1. Pilot** | One district hospital OPD: a kiosk at the entrance and a nurse station |
+| **2. Validate** | The built-in study compares Priora against triage nurses on real patients |
+| **3. Integrate** | Connect to the hospital's HMIS; SMS updates for patients waiting outside |
+| **4. Scale** | District-wide early warning across connected hospitals |
 
-Honest limitations: a small set written by the team, text input only (voice tested manually), provisional colour without vitals. Expectations were fixed before runs and not edited after seeing results. Reproduce with `npm run eval`.
+**What a pilot would add** (honest scope of this prototype): time-slot appointments, CNIC-linked identity, HMIS and lab integration, hospital-managed staff accounts, paediatric triage scoring, offline mode, and clinical sign-off of the triage rules.
 
-**Model choice was measured too:** the newest Gemini 3.x preview models showed 2–37 s latency swings, so the real-time path uses stable `gemini-2.5-flash` (extraction, documents, brief) and `gemini-2.5-flash-lite` (routing, fallback), with 15 s timeouts and automatic fallback. The model swap kept 100 % accuracy at ~6× lower latency.
+**Sustainable Development Goals:** **SDG 3** (good health: faster emergency care, earlier outbreak detection) · **SDG 10** (fairer access for low-literacy and Urdu-speaking patients) · **SDG 9** (resilient health infrastructure).
 
-## Architecture
+---
 
-```
- Kiosk / Phone ──► /api/intake ──► Gemini (AI #1 extraction) ──► SATS engine ──► Gemini (AI #2 routing)
-                                                                     │
- Nurse station ──► vitals ──► TEWS ──► final colour ◄────────────────┘
-                                                                     │
- Records desk ──► photo ──► Gemini (AI #3 doc understanding) ──► facts (w/ bounding boxes)
-                                                                     │
- Doctor dashboard ◄── priority queue ◄── Gemini (AI #4 cited summary) ◄┘
-```
+## Try it yourself
 
-| Layer | Technology |
+**[priora.asjad.dev](https://priora.asjad.dev)**: the kiosk, impact simulator and evaluation are public. Staff screens use these demo accounts (password **`priora2026`** for all, or one click on the sign-in page):
+
+| Role | Username | Sees |
+|---|---|---|
+| Triage nurse | `nurse.ayesha` | Patients awaiting triage |
+| Emergency doctor | `dr.emergency` | Emergency queue, briefs, consultations |
+| Cardiology doctor | `dr.cardio` | Cardiology queue |
+| Records clerk | `records.bilal` | Records desk |
+| District health officer | `officer.dho` | Early warning |
+| Medical superintendent | `admin` | Everything, including clinical validation |
+
+**A 3-minute walkthrough:**
+1. **Kiosk** ([/kiosk](https://priora.asjad.dev/kiosk)): enter **`AHMED54K7Q`** → *Find me* → say or type *"seenay mein dard hai, baayen baazu tak ja raha hai, paseena aa raha hai"* → confirm and get a token.
+2. **Nurse** (`nurse.ayesha`): open his token, enter HR 130 · RR 30 · BP 95 · Temp 37, pick your own colour, then watch SATS reveal **RED**. Confirm.
+3. **Doctor** (`dr.emergency`): Ahmed is at the top. Read the brief, click any citation to see the original report, then record the consultation.
+4. **Early warning** (`officer.dho`): see the dengue cluster in G-9 and the diarrhoea cluster in Dhok Hassu, each with an AI-written response brief.
+5. **Validation** (`admin`): watch your triage appear in the agreement statistics.
+
+---
+
+## Under the hood
+
+For judges and engineers. Priora's AI does **six distinct jobs**, each with a narrow, checkable output.
+
+| | AI component | What goes in → what comes out |
+|---|---|---|
+| 1 | **Intake understanding** | Voice or text (Urdu, Roman Urdu, English) → structured findings and SATS signs, each with the patient's words as evidence |
+| 2 | **Department routing** | Findings + age, sex, pregnancy + known history → department, confidence and reasons |
+| 3 | **Document reading** | Photo of a paper report → typed facts (diagnoses, medications, labs, allergies) with flags and their location on the page |
+| 4 | **Cited pre-consultation brief** | All facts + today's complaint → a ranked brief where every line cites its sources |
+| 5 | **Syndrome tagging** | Each intake → WHO-style surveillance syndromes (dengue-like, acute watery diarrhoea, …) |
+| 6 | **Outbreak alert brief** | Detected cluster statistics → a cited brief for the health officer with actions from a standard checklist |
+
+**Rules where safety matters:** SATS triage (TEWS + discriminators), queue ordering and outbreak detection (CDC EARS-style aberration scoring) are deterministic code, not AI.
+
+| The AICON frame | Priora |
 |---|---|
-| App | Next.js (App Router), TypeScript, Tailwind CSS, shadcn/ui |
-| AI | Google Gemini via **Vertex AI** (`google-genai` SDK) with structured JSON output |
-| Data | Neon Postgres + Drizzle ORM · Vercel Blob (**private** storage for report photos, streamed only through the app) |
-| Hosting | Vercel |
+| **Problem** | Wrong-door visits, flat queues, unread paper history, late outbreak detection |
+| **Data / Input** | Patient voice/text, nurse vitals, photos of paper reports, anonymous intake trends |
+| **AI Component** | The six components above (Gemini on Vertex AI) |
+| **Solution / Output** | Explained triage colour, department and token, severity queues, cited brief, consultation record, outbreak alerts |
+| **Impact** | Critical waits from an hour to a minute, fewer redirects, doctor hours returned, earlier outbreak response |
 
-**Why Vertex AI:** enterprise data controls (prompts are not used for model training) and a path to healthcare-compliant deployment, which matters for a health product.
+**Engineering choices we measured:** we benchmarked six model setups. The newest preview models swung between 2 and 37 seconds per patient, so the real-time path uses stable **Gemini 2.5 Flash / Flash-Lite**, with timeouts and automatic fallback. Same 100% accuracy at roughly 6× the speed. **61 unit tests** cover the triage engine, queue ordering, simulator, outbreak detection and agreement statistics.
 
-## Run locally
+**Stack:** Next.js · TypeScript · Tailwind CSS · Google Gemini on Vertex AI · Neon Postgres + Drizzle · Vercel Blob (private) · Vercel.
 
-Requirements: Node 24+, a Google Cloud project with Vertex AI enabled, a Postgres database (Neon).
+<details>
+<summary><b>Run it locally</b></summary>
+
+Requires Node 24+, a Google Cloud project with Vertex AI, and a Postgres database (Neon).
 
 ```bash
 npm install
-cp .env.example .env.local        # fill in project ID and DATABASE_URL
-gcloud auth application-default login   # local Vertex AI auth (no key file needed)
-npm run db:migrate                # create tables
-npm run dev                       # http://localhost:3000
+cp .env.example .env.local              # project ID, DATABASE_URL, SESSION_SECRET
+gcloud auth application-default login   # local Vertex AI auth
+npm run db:migrate                      # create tables
+npm run seed                            # demo morning: patients, staff, records, surveillance history
+npm run dev                             # http://localhost:3000
 ```
 
-| Command | What it does |
+| Command | Purpose |
 |---|---|
-| `npm test` | 48 unit tests: SATS triage engine, queue ordering, impact simulator |
-| `npm run eval` | Runs the full AI pipeline over the vignette set → `eval/results.json` |
-| `npm run seed` | Resets the database to the demo OPD morning (synthetic) |
-| `npm run db:generate` | Generate a SQL migration after schema changes |
+| `npm test` | 61 unit tests |
+| `npm run eval` | Run the AI pipeline over the 28-case evaluation set |
+| `npm run seed` | Reset to the demo data (synthetic) |
 
-## Demo access
-
-Open **[priora.asjad.dev](https://priora.asjad.dev)**. No login (staff authentication is out of scope for the MVP). Each role has its own screen:
-
-| Screen | Path |
-|---|---|
-| Patient kiosk | [/kiosk](https://priora.asjad.dev/kiosk) |
-| Triage nurse | [/nurse](https://priora.asjad.dev/nurse) |
-| Doctor (pick a department) | [/doctor](https://priora.asjad.dev/doctor) |
-| Records desk | [/records](https://priora.asjad.dev/records) |
-| Impact simulator | [/impact](https://priora.asjad.dev/impact) |
-| Evaluation | [/eval](https://priora.asjad.dev/eval) |
-
-**Suggested walkthrough (returning patient with chest pain):**
-1. **Kiosk:** enter passport code **`AHMED54K7Q`** → *Find me* → speak or type *"seenay mein dard hai, baayen baazu tak ja raha hai, paseena aa raha hai"* → confirm → token slip with QR.
-2. **Nurse:** open his token, enter HR 130, RR 30, SBP 95, Temp 37 → TEWS 7 → **RED** → confirm (moves to Emergency).
-3. **Doctor → Emergency:** he is at the top. Read the cited brief; click any `[n]` to see the source report with the fact highlighted.
-4. **Records:** `/records?code=AHMED54K7Q` shows his 5 digitised reports. *Use sample documents* works for any patient.
-
-## Data & privacy
-
-- **All patient data in this project is synthetic.** No real patient records, reports or personal information were used.
-- Sample medical reports were generated from templates using fictional names, facilities and values.
-- In production, data would stay within the hospital's own cloud project, with access controls and audit logs.
-
-## Disclosures & third-party resources
-
-| Resource | Use |
-|---|---|
-| Google Gemini 2.5 Flash / Flash-Lite (Vertex AI) | All four AI components |
-| Google Chrome (headless) | Rendering the synthetic sample reports in `public/samples/` |
-| South African Triage Scale (SATS) | Triage protocol (public clinical guideline); implemented as deterministic rules |
-| Next.js, Tailwind CSS, shadcn/ui, Drizzle ORM | Open-source frameworks and libraries |
-| Claude Code (AI coding assistant) | Used as a coding and design assistant during the build |
-
-No code, models or datasets were prepared before the event. All work was done during AICON'26.
-
-## Roadmap
-
-- Paediatric TEWS and obstetric triage
-- SMS token updates for patients waiting outside
-- Integration with hospital HMIS / EMR systems
-- District-level outbreak signals from aggregated intake data
+</details>
 
 ---
 
-_Built for AICON'26 Build With AI — SEECS, NUST, Islamabad._
+## Data, privacy and disclosures
+
+- **All patient data in this project is synthetic.** No real patient records or personal information were used. Sample reports were generated from templates with fictional names, facilities and values. Surveillance history and validation pilot records are synthetic and labelled as such in the app.
+- In a real deployment, data stays in the hospital's own cloud project, with role-based access and a full audit trail.
+- Priora is **decision support**: a clinician confirms every triage, and an examination follows every brief. No diagnosis is shown to patients.
+
+| Third-party resource | Used for |
+|---|---|
+| Google Gemini 2.5 Flash / Flash-Lite (Vertex AI) | All six AI components |
+| South African Triage Scale (SATS) | Triage protocol (public clinical guideline), implemented as rules |
+| CDC EARS method · WHO syndromic case definitions | Outbreak detection approach and syndrome definitions |
+| Next.js, Tailwind CSS, shadcn/ui, Drizzle ORM, qrcode | Open-source frameworks and libraries |
+| Google Chrome (headless) | Rendering the synthetic sample reports |
+| Claude Code (AI coding assistant) | Coding and design assistance during the build |
+
+No code, models or datasets were prepared before the event. Everything was built during AICON'26.
+
+---
+
+<p align="center"><b>Priora: the right patient, first.</b><br/>Built for AICON'26 Build With AI · SEECS, NUST, Islamabad</p>

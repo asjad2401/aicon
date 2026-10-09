@@ -1,9 +1,11 @@
 "use client";
 
 import useSWR from "swr";
-import { CheckCircle2, Loader2, PhoneCall } from "lucide-react";
+import Link from "next/link";
+import { Loader2, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PreConsultBrief } from "@/components/pre-consult-brief";
+import { ConsultationForm, ConsultationSummary } from "./consultation-form";
 import { ReasonTrail } from "@/components/reason-trail";
 import { TriageBadge } from "@/components/triage-badge";
 import { fetcher, type VisitDetail } from "@/lib/client/api";
@@ -99,16 +101,40 @@ export function PatientCard({
         </ul>
       </Section>
 
-      <div className="flex gap-3">
-        {visit.status !== "called" && (
-          <Button variant="outline" className="h-12 flex-1" onClick={onCall}>
-            <PhoneCall /> Call this patient
-          </Button>
+      {d.previousVisits.length > 0 && (
+        <Section title={`Previous Priora visits · ${d.previousVisits.length}`}>
+          <ul className="flex flex-col gap-1 text-sm">
+            {d.previousVisits.map((pv) => (
+              <li key={pv.id}>
+                <span className="text-muted-foreground tabular-nums">{new Date(pv.arrivedAt).toLocaleDateString("en-GB", { timeZone: "Asia/Karachi" })}</span>{" "}
+                · {pv.complaint ?? "visit"} {pv.diagnoses?.length ? <span className="font-medium">→ {pv.diagnoses.join("; ")}</span> : null}
+              </li>
+            ))}
+          </ul>
+          <Link href={`/patients/${patient.id}`} className="mt-2 inline-block text-xs text-primary hover:underline">Full patient history →</Link>
+        </Section>
+      )}
+
+      <Section title="Consultation" className="border-primary/30">
+        {d.consultation ? (
+          <ConsultationSummary c={d.consultation} />
+        ) : (
+          <>
+            {visit.status !== "called" && (
+              <Button variant="outline" className="mb-4 h-11 w-full" onClick={onCall}>
+                <PhoneCall /> Call this patient in
+              </Button>
+            )}
+            <ConsultationForm
+              detail={d}
+              onSaved={() => {
+                void mutate();
+                onSeen();
+              }}
+            />
+          </>
         )}
-        <Button className="h-12 flex-1" onClick={onSeen}>
-          <CheckCircle2 /> Mark seen
-        </Button>
-      </div>
+      </Section>
     </div>
   );
 }

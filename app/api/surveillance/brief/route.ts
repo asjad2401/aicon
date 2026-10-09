@@ -3,6 +3,7 @@ import { z } from "zod";
 import { generateOutbreakBrief } from "@/lib/ai/outbreak";
 import { AREA_BY_ID, AREA_IDS, SYNDROME_BY_ID, SYNDROME_IDS, type AreaId } from "@/lib/surveillance/config";
 import { signalContext } from "@/lib/surveillance/data";
+import { requireStaff } from "@/lib/auth/server";
 
 export const maxDuration = 60;
 
@@ -11,6 +12,8 @@ const cache = new Map<string, unknown>();
 
 // POST: AI early-warning brief for one flagged signal (cached per day and count).
 export async function POST(request: NextRequest) {
+  const { error } = await requireStaff(["officer", "admin"]);
+  if (error) return error;
   const parsed = BodySchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) return Response.json({ error: "Invalid request" }, { status: 400 });
   const { area, syndrome } = parsed.data;

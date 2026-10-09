@@ -1,5 +1,6 @@
 import { runIntakePipeline } from "@/lib/pipeline";
 import { findPatient, knownHistory } from "@/lib/records";
+import { priorDiagnoses } from "@/lib/consultations";
 
 export const maxDuration = 60;
 
@@ -33,7 +34,7 @@ export async function POST(request: Request) {
 
     // Returning patient: known history from digitised reports sharpens routing.
     const patient = passport ? await findPatient(passport) : null;
-    const history = patient ? await knownHistory(patient.id) : [];
+    const history = patient ? [...(await knownHistory(patient.id)), ...(await priorDiagnoses(patient.id))] : [];
     const result = await runIntakePipeline(input, { age, sex, knownHistory: history });
     return Response.json({ ...result, knownHistoryUsed: history.length });
   } catch (err) {

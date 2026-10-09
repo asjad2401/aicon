@@ -98,7 +98,10 @@ export function DoctorQueue({ department, initialVisit }: { department: Departme
             key={selected}
             visitId={selected}
             onCall={() => act(selected, "call")}
-            onSeen={() => act(selected, "seen")}
+            onSeen={() => {
+              setSelected(null);
+              void mutate();
+            }}
           />
         ) : (
           <p className="mt-20 text-center text-muted-foreground">Select a patient or press “Call next”.</p>

@@ -93,6 +93,8 @@ function VitalsPanel({ visitId, onDone }: { visitId: number; onDone: () => void 
   const { data: detail } = useSWR<VisitDetail>(`/api/visits/${visitId}`, fetcher);
   const [form, setForm] = useState<FormState>(EMPTY);
   const [override, setOverride] = useState<Colour | "">("");
+  // Validation: the nurse's own colour, chosen before the system's SATS result is revealed.
+  const [nurseColour, setNurseColour] = useState<Colour | null>(null);
   const [reason, setReason] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -135,6 +137,7 @@ function VitalsPanel({ visitId, onDone }: { visitId: number; onDone: () => void 
     try {
       await postJSON(`/api/visits/${visitId}/vitals`, {
         vitals,
+        nurseColour,
         ...(override && { overrideColour: override, overrideReason: reason }),
       });
       onDone();
@@ -222,18 +225,54 @@ function VitalsPanel({ visitId, onDone }: { visitId: number; onDone: () => void 
         </div>
       </div>
 
-      <div className="rounded-xl border bg-card p-4">
+      <div className="flex flex-col gap-3 rounded-xl border bg-card p-4">
+        <p className="text-xs font-medium uppercase text-muted-foreground">
+          1 · Your clinical assessment <span className="normal-case">(before seeing the system&apos;s result)</span>
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {COLOURS.map((c) => (
+            <button
+              key={c}
+              type="button"
+              disabled={!complete}
+              onClick={() => setNurseColour(c)}
+              className={cn("rounded-full border-2 p-0.5 disabled:opacity-40", nurseColour === c ? "border-foreground" : "border-transparent")}
+            >
+              <TriageBadge colour={c} size="sm" />
+            </button>
+          ))}
+        </div>
+        {!complete && <p className="text-xs text-muted-foreground">Enter all vitals first.</p>}
+      </div>
+
+      <div className={cn("rounded-xl border bg-card p-4", !nurseColour && "opacity-60")}>
         <div className="mb-3 flex items-center justify-between">
           <p className="text-xs font-medium uppercase text-muted-foreground">
-            SATS result {preview.tews != null && `· TEWS ${preview.tews}`} {!complete && "· enter all vitals"}
+            2 · SATS result {nurseColour && preview.tews != null && `· TEWS ${preview.tews}`}
           </p>
-          <TriageBadge colour={preview.colour} />
+          {nurseColour && <TriageBadge colour={preview.colour} />}
         </div>
-        <ReasonTrail reasons={preview.reasons} evidence={evidence} />
+        {nurseColour ? (
+          <>
+            <p
+              className={cn(
+                "mb-3 rounded-md p-2 text-sm",
+                nurseColour === preview.colour ? "bg-primary/10 text-primary" : "bg-triage-orange/10 text-triage-orange",
+              )}
+            >
+              {nurseColour === preview.colour
+                ? "Your assessment agrees with SATS."
+                : `You chose ${nurseColour}; SATS computed ${preview.colour}. Review the reasons below, and override if your judgement differs.`}
+            </p>
+            <ReasonTrail reasons={preview.reasons} evidence={evidence} />
+          </>
+        ) : (
+          <p className="text-sm text-muted-foreground">Hidden until you record your own assessment (keeps the validation study unbiased).</p>
+        )}
       </div>
 
       <div className="flex flex-col gap-3 rounded-xl border bg-card p-4">
-        <p className="text-xs font-medium uppercase text-muted-foreground">Clinical override (optional, logged)</p>
+        <p className="text-xs font-medium uppercase text-muted-foreground">3 · Override the final colour (optional, logged)</p>
         <div className="flex gap-2">
           {COLOURS.map((c) => (
             <button
@@ -259,7 +298,7 @@ function VitalsPanel({ visitId, onDone }: { visitId: number; onDone: () => void 
       {error && <p className="text-sm text-destructive">{error}</p>}
       <Button
         className="h-14 text-lg"
-        disabled={!complete || saving || (!!override && reason.trim().length < 3)}
+        disabled={!complete || !nurseColour || saving || (!!override && reason.trim().length < 3)}
         onClick={confirm}
       >
         {saving ? <Loader2 className="animate-spin" /> : null}

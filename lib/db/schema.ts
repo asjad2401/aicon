@@ -13,6 +13,17 @@ import type { Intake } from "@/lib/ai/intake";
 import type { Routing } from "@/lib/routing/route";
 import type { TriageResult, Vitals } from "@/lib/triage/sats";
 
+export const staff = pgTable("staff", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  name: text("name").notNull(),
+  role: text("role").notNull(), // admin | nurse | doctor | records | officer
+  department: text("department"), // doctors only
+  passwordHash: text("password_hash").notNull(),
+  active: boolean("active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const patients = pgTable("patients", {
   id: serial("id").primaryKey(),
   passportToken: text("passport_token").notNull().unique(),
@@ -38,6 +49,9 @@ export const visits = pgTable("visits", {
   finalTriage: jsonb("final_triage").$type<TriageResult>(),
   /** Current effective colour (final if confirmed, else provisional). */
   colour: text("colour").notNull(),
+  /** Nurse's independent colour, recorded BLINDED before the system colour is shown (validation). */
+  nurseColour: text("nurse_colour"),
+  triagedBy: integer("triaged_by"),
   overrideColour: text("override_colour"),
   overrideReason: text("override_reason"),
   department: text("department").notNull(),
@@ -94,6 +108,34 @@ export const summaries = pgTable("summaries", {
     .references(() => visits.id),
   summary: jsonb("summary").notNull(),
   model: text("model"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
+export type Prescription = { drug: string; dose: string; frequency: string; duration: string };
+
+export const consultations = pgTable("consultations", {
+  id: serial("id").primaryKey(),
+  visitId: integer("visit_id")
+    .notNull()
+    .unique()
+    .references(() => visits.id),
+  patientId: integer("patient_id")
+    .notNull()
+    .references(() => patients.id),
+  doctorId: integer("doctor_id").references(() => staff.id),
+  notes: text("notes"),
+  examination: text("examination"),
+  diagnoses: jsonb("diagnoses").$type<string[]>().notNull().default([]),
+  prescriptions: jsonb("prescriptions").$type<Prescription[]>().notNull().default([]),
+  labOrders: jsonb("lab_orders").$type<string[]>().notNull().default([]),
+  disposition: text("disposition").notNull(), // discharged | admitted | referred | follow_up
+  referredTo: text("referred_to"),
+  followUpDate: text("follow_up_date"),
+  // Clinical validation feedback from the doctor
+  departmentCorrect: boolean("department_correct"),
+  correctDepartment: text("correct_department"),
+  briefRating: text("brief_rating"), // accurate | had_error | not_used
+  briefIssue: text("brief_issue"),
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
 });
 

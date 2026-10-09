@@ -2,9 +2,12 @@ import type { NextRequest } from "next/server";
 import { get } from "@vercel/blob";
 import { eq } from "drizzle-orm";
 import { getDb, schema } from "@/lib/db";
+import { requireStaff } from "@/lib/auth/server";
 
 // Streams a private document image to staff screens (images are never public).
 export async function GET(_req: NextRequest, ctx: RouteContext<"/api/documents/[id]/image">) {
+  const { error } = await requireStaff(["records", "nurse", "doctor", "admin"]);
+  if (error) return error;
   const { id } = await ctx.params;
   const [doc] = await getDb()
     .select({ imageUrl: schema.documents.imageUrl })

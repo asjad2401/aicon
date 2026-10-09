@@ -1,5 +1,8 @@
 import type { NextRequest } from "next/server";
 import { addDocument, findPatient, getPatientRecords } from "@/lib/records";
+import { requireStaff } from "@/lib/auth/server";
+
+const RECORD_ROLES = ["records", "nurse", "doctor", "admin"] as const;
 
 export const maxDuration = 60;
 
@@ -8,6 +11,8 @@ const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp", "image/heic"];
 
 // GET /api/records?code=C-001 | PASSPORT  → patient + documents + facts
 export async function GET(request: NextRequest) {
+  const { error } = await requireStaff([...RECORD_ROLES]);
+  if (error) return error;
   const code = request.nextUrl.searchParams.get("code") ?? "";
   const patient = await findPatient(code);
   if (!patient) return Response.json({ error: "No patient found for this code" }, { status: 404 });
@@ -16,6 +21,8 @@ export async function GET(request: NextRequest) {
 
 // POST multipart: code, file → stores the photo privately and extracts facts with AI.
 export async function POST(request: NextRequest) {
+  const { error } = await requireStaff([...RECORD_ROLES]);
+  if (error) return error;
   const form = await request.formData();
   const patient = await findPatient(String(form.get("code") ?? ""));
   if (!patient) return Response.json({ error: "No patient found for this code" }, { status: 404 });

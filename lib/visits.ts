@@ -177,13 +177,36 @@ export async function getVisitDetail(id: number) {
     .where(eq(schema.summaries.visitId, id))
     .orderBy(desc(schema.summaries.createdAt))
     .limit(1);
-  return { ...row, documents, facts, summary: summary ?? null };
+  const [consultation] = await db.select().from(schema.consultations).where(eq(schema.consultations.visitId, id));
+  const previousVisits = await db
+    .select({
+      id: schema.visits.id,
+      arrivedAt: schema.visits.arrivedAt,
+      colour: schema.visits.colour,
+      department: schema.visits.department,
+      complaint: sql<string | null>`${schema.visits.intake}->>'chief_complaint'`,
+      diagnoses: schema.consultations.diagnoses,
+    })
+    .from(schema.visits)
+    .leftJoin(schema.consultations, eq(schema.consultations.visitId, schema.visits.id))
+    .where(and(eq(schema.visits.patientId, row.patient.id), sql`${schema.visits.id} <> ${id}`))
+    .orderBy(desc(schema.visits.arrivedAt))
+    .limit(10);
+  return { ...row, documents, facts, summary: summary ?? null, consultation: consultation ?? null, previousVisits };
 }
 
 /** Nurse confirms vitals → final SATS triage. Optional override is logged with a reason. */
 export async function recordVitals(
   id: number,
-  input: { vitals: Vitals; overrideColour?: Colour; overrideReason?: string; actor?: string },
+  input: {
+    vitals: Vitals;
+    overrideColour?: Colour;
+    overrideReason?: string;
+    /** Nurse's own colour, chosen blinded before the system colour was shown. */
+    nurseColour?: Colour;
+    actor?: string;
+    staffId?: number;
+  },
 ) {
   const db = getDb();
   const [visit] = await db.select().from(schema.visits).where(eq(schema.visits.id, id));
@@ -218,6 +241,8 @@ export async function recordVitals(
       finalTriage: result,
       colour,
       overrideColour: input.overrideColour ?? null,
+      nurseColour: input.nurseColour ?? null,
+      triagedBy: input.staffId ?? null,
       overrideReason: input.overrideReason ?? null,
       department,
       routing,
@@ -231,9 +256,14 @@ export async function recordVitals(
     visitId: id,
     actor: input.actor ?? "nurse",
     action: input.overrideColour ? "triage_override" : "triage_confirmed",
-    payload: { computed: result.colour, final: colour, tews: result.tews, reason: input.overrideReason },
+    payload: { computed: result.colour, nurse: input.nurseColour, final: colour, tews: result.tews, reason: input.overrideReason },
   });
   return { visit: updated, triage: result };
+}
+
+export async function visitDepartment(id: number) {
+  const [v] = await getDb().select({ department: schema.visits.department }).from(schema.visits).where(eq(schema.visits.id, id));
+  return v?.department ?? null;
 }
 
 export async function setVisitStatus(id: number, action: "call" | "seen" | "cancel", actor = "doctor") {

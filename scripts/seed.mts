@@ -14,6 +14,8 @@ import type { Intake } from "@/lib/ai/intake";
 import { addDocument } from "@/lib/records";
 import type { DepartmentId } from "@/lib/routing/departments";
 import { triage, type Vitals } from "@/lib/triage/sats";
+import { hashPassword } from "@/lib/auth/password";
+import type { Colour } from "@/lib/triage/discriminators";
 import { AREA_IDS, SYNDROME_BY_ID } from "@/lib/surveillance/config";
 
 const db = getDb();
@@ -63,7 +65,29 @@ const AHMED = { passportToken: "AHMED54K7Q", name: "Ahmed Khan", age: 54, sex: "
 const AHMED_DOCS = ["ahmed-2019-discharge", "ahmed-2021-ecg", "ahmed-2022-hba1c", "ahmed-2024-labs", "ahmed-2024-prescription"];
 
 console.log("Resetting tables…");
-await db.execute(sql`TRUNCATE audit_log, summaries, facts, documents, visits, patients RESTART IDENTITY CASCADE`);
+await db.execute(sql`TRUNCATE audit_log, consultations, summaries, facts, documents, visits, patients, staff RESTART IDENTITY CASCADE`);
+
+// ── Staff accounts (demo password for all) ─────────────────────────────────
+const DEMO_PASSWORD = "priora2026";
+const STAFF: { username: string; name: string; role: string; department?: string }[] = [
+  { username: "admin", name: "Dr. Qureshi (MS)", role: "admin" },
+  { username: "nurse.ayesha", name: "Nurse Ayesha", role: "nurse" },
+  { username: "dr.emergency", name: "Dr. Hamid", role: "doctor", department: "emergency" },
+  { username: "dr.cardio", name: "Dr. Sana", role: "doctor", department: "cardiology" },
+  { username: "dr.medical", name: "Dr. Imran", role: "doctor", department: "medical" },
+  { username: "dr.surgical", name: "Dr. Asif", role: "doctor", department: "surgical" },
+  { username: "dr.ortho", name: "Dr. Nadia", role: "doctor", department: "orthopaedics" },
+  { username: "dr.gynae", name: "Dr. Rubina", role: "doctor", department: "gynae" },
+  { username: "dr.paeds", name: "Dr. Kamran", role: "doctor", department: "paediatrics" },
+  { username: "records.bilal", name: "Bilal (Records)", role: "records" },
+  { username: "officer.dho", name: "Dr. Farah (DHO)", role: "officer" },
+];
+const staffRows = await db
+  .insert(schema.staff)
+  .values(await Promise.all(STAFF.map(async (m) => ({ ...m, department: m.department ?? null, passwordHash: await hashPassword(DEMO_PASSWORD) }))))
+  .returning();
+const nurseId = staffRows.find((m) => m.role === "nurse")!.id;
+console.log(`  ${staffRows.length} staff accounts (password: ${DEMO_PASSWORD})`);
 
 const now = Date.now();
 for (const p of PATIENTS) {
@@ -100,6 +124,8 @@ for (const p of PATIENTS) {
     provisionalTriage: provisional,
     vitals: p.vitals ?? null,
     finalTriage: final,
+    nurseColour: final?.colour ?? null,
+    triagedBy: final ? nurseId : null,
     colour: (final ?? provisional).colour,
     department: p.dept,
     area: p.area ?? AREA_IDS[PATIENTS.indexOf(p) % AREA_IDS.length],
@@ -196,6 +222,90 @@ for (let i = 0; i < history.length; i += 400) {
   );
 }
 console.log(`  ${history.length} background syndrome visits · clusters: ${CLUSTERS.map((c) => `${SYNDROME_BY_ID[c.syndrome].label} in ${c.area}`).join(", ")}`);
+
+// ── Synthetic pilot records for the clinical validation dashboard ─────────────
+// Clearly tagged (aiModel "seed-pilot"); the dashboard reports how many records are synthetic.
+console.log("Generating synthetic validation pilot records…");
+const PILOT: Record<Colour, { disc: string[]; dept: DepartmentId; complaints: [string, string][] }> = {
+  RED: { disc: ["seizure_current"], dept: "emergency", complaints: [["Severe breathlessness", "Acute severe asthma"], ["Collapsed, unresponsive", "Hypoglycaemia"], ["Fitting at arrival", "Status epilepticus"]] },
+  ORANGE: { disc: ["chest_pain"], dept: "cardiology", complaints: [["Chest pain radiating to arm", "Unstable angina"], ["Chest tightness with sweating", "NSTEMI"], ["Palpitations with chest pain", "Paroxysmal SVT"]] },
+  YELLOW: { disc: ["abdominal_pain"], dept: "medical", complaints: [["Abdominal pain and vomiting", "Acute gastritis"], ["Fever with abdominal pain", "Enteric fever"], ["Right lower abdominal pain", "Acute appendicitis"]] },
+  GREEN: { disc: [], dept: "medical", complaints: [["Cough for a week", "Upper respiratory tract infection"], ["Itchy rash", "Contact dermatitis"], ["Knee pain for months", "Osteoarthritis knee"], ["Burning urine", "Urinary tract infection"]] },
+};
+const RANKED: Colour[] = ["GREEN", "YELLOW", "ORANGE", "RED"];
+const WAIT: Record<Colour, [number, number]> = { RED: [0, 3], ORANGE: [2, 14], YELLOW: [10, 75], GREEN: [30, 210] };
+const pilotMix: Colour[] = [...Array(4).fill("RED"), ...Array(18).fill("ORANGE"), ...Array(38).fill("YELLOW"), ...Array(60).fill("GREEN")];
+for (let i = 0; i < pilotMix.length; i += 60) {
+  const chunk = pilotMix.slice(i, i + 60);
+  const pts = await db
+    .insert(schema.patients)
+    .values(chunk.map((_, j) => ({ passportToken: `PILOT${String(i + j).padStart(5, "0")}`, age: 18 + Math.floor(rand() * 60), sex: rand() < 0.5 ? "male" : "female" })))
+    .returning({ id: schema.patients.id });
+  const visitRows = await db
+    .insert(schema.visits)
+    .values(
+      chunk.map((colour, j) => {
+        const cfg = PILOT[colour];
+        const [complaint] = cfg.complaints[Math.floor(rand() * cfg.complaints.length)];
+        const system = triage({ discriminatorIds: cfg.disc, vitals: NORMAL });
+        // Nurse agrees ~86%; otherwise one step away (more often less urgent: SATS rules lean safe).
+        const r = rand();
+        const k = RANKED.indexOf(system.colour);
+        const nurse = r < 0.86 ? system.colour : r < 0.9 ? RANKED[Math.min(3, k + 1)] : RANKED[Math.max(0, k - 1)];
+        const arrivedAt = new Date(pkMidnight - (1 + Math.floor(rand() * 14)) * 86_400_000 + (8 + rand() * 6) * 3600_000);
+        const [lo, hi] = WAIT[system.colour];
+        const calledAt = new Date(arrivedAt.getTime() + (lo + rand() * (hi - lo)) * 60_000);
+        return {
+          patientId: pts[j].id,
+          tokenNo: "PILOT",
+          complaintText: complaint,
+          language: "english",
+          intake: {
+            transcript: complaint, language: "english", chief_complaint: complaint, summary_en: complaint, summary_ur: "",
+            symptoms: [], discriminators: cfg.disc.map((id) => ({ id, evidence: complaint })), syndromes: [], pain_score: null,
+            pregnant: null, trauma: null, confidence: 0.9, clarifying_question: null,
+          } as Intake,
+          provisionalTriage: system,
+          finalTriage: system,
+          vitals: NORMAL,
+          colour: system.colour,
+          nurseColour: nurse,
+          triagedBy: nurseId,
+          department: cfg.dept,
+          status: "seen",
+          arrivedAt,
+          triagedAt: new Date(arrivedAt.getTime() + 60_000),
+          calledAt,
+          seenAt: new Date(calledAt.getTime() + 6 * 60_000),
+          aiModel: "seed-pilot",
+          promptVersion: "seed",
+        };
+      }),
+    )
+    .returning({ id: schema.visits.id, patientId: schema.visits.patientId, colour: schema.visits.colour, complaint: schema.visits.complaintText });
+  await db.insert(schema.consultations).values(
+    visitRows.map((v) => {
+      const cfg = PILOT[v.colour as Colour];
+      const dx = cfg.complaints.find(([c]) => c === v.complaint)?.[1] ?? "Assessed";
+      const correct = rand() < 0.93;
+      const br = rand();
+      return {
+        visitId: v.id,
+        patientId: v.patientId,
+        doctorId: staffRows.find((m) => m.department === cfg.dept)?.id ?? null,
+        diagnoses: [dx],
+        prescriptions: [],
+        labOrders: [],
+        disposition: v.colour === "RED" ? "admitted" : "discharged",
+        departmentCorrect: correct,
+        correctDepartment: correct ? null : v.colour === "YELLOW" ? "surgical" : "medical",
+        briefRating: br < 0.62 ? "accurate" : br < 0.67 ? "had_error" : "not_used",
+        briefIssue: br >= 0.62 && br < 0.67 ? "Listed an old medication the patient has since stopped" : null,
+      };
+    }),
+  );
+}
+console.log(`  ${pilotMix.length} synthetic pilot triage records with consultations`);
 
 console.log("Creating Ahmed Khan and digitising his reports with AI…");
 const [ahmed] = await db.insert(schema.patients).values(AHMED).returning();

@@ -1,6 +1,7 @@
 import type { NextRequest } from "next/server";
 import { z } from "zod";
 import { recordVitals } from "@/lib/visits";
+import { actorOf, requireStaff } from "@/lib/auth/server";
 
 const COLOURS = ["RED", "ORANGE", "YELLOW", "GREEN"] as const;
 
@@ -17,6 +18,7 @@ const BodySchema = z
     }),
     overrideColour: z.enum(COLOURS).optional(),
     overrideReason: z.string().max(300).optional(),
+    nurseColour: z.enum(COLOURS, { message: "Record your own triage colour first" }),
   })
   .refine((b) => !b.overrideColour || (b.overrideReason?.trim().length ?? 0) >= 3, {
     message: "An override needs a reason",
@@ -25,12 +27,14 @@ const BodySchema = z
 
 // POST: nurse records vitals → final SATS triage (with optional, logged override).
 export async function POST(request: NextRequest, ctx: RouteContext<"/api/visits/[id]/vitals">) {
+  const { user, error } = await requireStaff(["nurse", "admin"]);
+  if (error) return error;
   const { id } = await ctx.params;
   const parsed = BodySchema.safeParse(await request.json().catch(() => null));
   if (!parsed.success) {
     return Response.json({ error: parsed.error.issues[0]?.message ?? "Invalid request" }, { status: 400 });
   }
-  const result = await recordVitals(Number(id), parsed.data);
+  const result = await recordVitals(Number(id), { ...parsed.data, actor: actorOf(user), staffId: user.uid });
   if (!result) return Response.json({ error: "Visit not found" }, { status: 404 });
   return Response.json(result);
 }

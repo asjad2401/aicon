@@ -79,6 +79,11 @@ const STAFF: { username: string; name: string; role: string; department?: string
   { username: "dr.ortho", name: "Dr. Nadia", role: "doctor", department: "orthopaedics" },
   { username: "dr.gynae", name: "Dr. Rubina", role: "doctor", department: "gynae" },
   { username: "dr.paeds", name: "Dr. Kamran", role: "doctor", department: "paediatrics" },
+  { username: "dr.ent", name: "Dr. Zubair", role: "doctor", department: "ent" },
+  { username: "dr.eye", name: "Dr. Mehwish", role: "doctor", department: "eye" },
+  { username: "dr.derm", name: "Dr. Hina", role: "doctor", department: "dermatology" },
+  { username: "dr.psych", name: "Dr. Faisal", role: "doctor", department: "psychiatry" },
+  { username: "dr.dental", name: "Dr. Sara", role: "doctor", department: "dental" },
   { username: "records.bilal", name: "Bilal (Records)", role: "records" },
   { username: "officer.dho", name: "Dr. Farah (DHO)", role: "officer" },
 ];

@@ -9,12 +9,21 @@ export const DEMO_PASSWORD = "priora2026";
 
 const DEMO_ACCOUNTS: { username: string; name: string; role: Role; note: string }[] = [
   { username: "nurse.ayesha", name: "Nurse Ayesha", role: "nurse", note: "Triage station" },
-  { username: "dr.emergency", name: "Dr. Hamid (Emergency)", role: "doctor", note: "Emergency queue" },
-  { username: "dr.cardio", name: "Dr. Sana (Cardiology)", role: "doctor", note: "Cardiology queue" },
-  { username: "dr.medical", name: "Dr. Imran (Medical OPD)", role: "doctor", note: "Medical OPD queue" },
-  { username: "records.bilal", name: "Bilal (Records)", role: "records", note: "Records desk" },
-  { username: "officer.dho", name: "Dr. Farah (DHO)", role: "officer", note: "District early warning" },
-  { username: "admin", name: "Dr. Qureshi (MS)", role: "admin", note: "Everything + validation" },
+  { username: "dr.emergency", name: "Dr. Hamid", role: "doctor", note: "Emergency" },
+  { username: "dr.cardio", name: "Dr. Sana", role: "doctor", note: "Cardiology" },
+  { username: "dr.medical", name: "Dr. Imran", role: "doctor", note: "Medical OPD" },
+  { username: "dr.surgical", name: "Dr. Asif", role: "doctor", note: "Surgical OPD" },
+  { username: "dr.ortho", name: "Dr. Nadia", role: "doctor", note: "Orthopaedics" },
+  { username: "dr.gynae", name: "Dr. Rubina", role: "doctor", note: "Gynae / Obs" },
+  { username: "dr.paeds", name: "Dr. Kamran", role: "doctor", note: "Paediatrics" },
+  { username: "dr.ent", name: "Dr. Zubair", role: "doctor", note: "ENT" },
+  { username: "dr.eye", name: "Dr. Mehwish", role: "doctor", note: "Eye" },
+  { username: "dr.derm", name: "Dr. Hina", role: "doctor", note: "Dermatology" },
+  { username: "dr.psych", name: "Dr. Faisal", role: "doctor", note: "Psychiatry" },
+  { username: "dr.dental", name: "Dr. Sara", role: "doctor", note: "Dental" },
+  { username: "records.bilal", name: "Bilal", role: "records", note: "Records desk" },
+  { username: "officer.dho", name: "Dr. Farah", role: "officer", note: "District early warning" },
+  { username: "admin", name: "Dr. Qureshi", role: "admin", note: "Everything + validation" },
 ];
 
 export function LoginForm({ next, denied }: { next?: string; denied?: string }) {
@@ -72,21 +81,25 @@ export function LoginForm({ next, denied }: { next?: string; denied?: string }) 
         <p className="text-sm text-muted-foreground">
           Password for all: <code className="rounded bg-muted px-1">{DEMO_PASSWORD}</code>. Click to sign in.
         </p>
-        {DEMO_ACCOUNTS.map((a) => (
-          <button
-            key={a.username}
-            onClick={() => submit(a.username, DEMO_PASSWORD)}
-            disabled={loading}
-            className="flex items-center justify-between rounded-lg border px-3 py-2 text-left text-sm hover:border-primary hover:bg-muted/50"
-          >
-            <span>
-              <span className="font-medium">{a.name}</span>
-              <span className="block text-xs text-muted-foreground">
-                {ROLE_LABEL[a.role]} · {a.note}
-              </span>
-            </span>
-            <code className="text-xs text-muted-foreground">{a.username}</code>
-          </button>
+        {(["nurse", "doctor", "records", "officer", "admin"] as Role[]).map((role) => (
+          <div key={role} className="flex flex-col gap-1.5">
+            <p className="mt-1 text-xs font-medium uppercase text-muted-foreground">{ROLE_LABEL[role]}</p>
+            <div className={role === "doctor" ? "grid grid-cols-2 gap-1.5" : "flex flex-col gap-1.5"}>
+              {DEMO_ACCOUNTS.filter((a) => a.role === role).map((a) => (
+                <button
+                  key={a.username}
+                  onClick={() => submit(a.username, DEMO_PASSWORD)}
+                  disabled={loading}
+                  className="flex flex-col rounded-lg border px-3 py-1.5 text-left text-sm hover:border-primary hover:bg-muted/50"
+                >
+                  <span className="font-medium">{role === "doctor" ? a.note : a.name}</span>
+                  <span className="text-xs text-muted-foreground">
+                    {role === "doctor" ? a.name : a.note} · <code>{a.username}</code>
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
         ))}
       </div>
     </div>

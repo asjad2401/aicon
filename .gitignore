@@ -33,3 +33,6 @@ next-env.d.ts
 *.pem
 npm-debug.log*
 /coverage
+
+# Evaluation resume caches
+eval/*.partial.jsonl

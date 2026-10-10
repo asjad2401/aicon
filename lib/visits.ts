@@ -58,6 +58,8 @@ export async function createVisit(input: {
     painScore: input.intake.pain_score ?? undefined,
     age: input.age,
     uncertain: input.intake.confidence < 0.6,
+    readingsDisagreed: input.intake.readings_disagreed,
+    followUp: input.intake.follow_up,
   });
 
   // Returning patients keep their health passport (and its digitised history).

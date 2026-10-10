@@ -40,6 +40,10 @@ export type TriageInput = {
   age?: number;
   /** AI extraction flagged low confidence. */
   uncertain?: boolean;
+  /** Colours from two independent AI readings that disagreed (the more urgent is already applied). */
+  readingsDisagreed?: string[];
+  /** Talking-kiosk follow-up: the question asked and the patient's answer. */
+  followUp?: { question: string; answer: "yes" | "no" | "unsure" };
 };
 
 export type TriageResult = {
@@ -183,6 +187,20 @@ export function triage(input: TriageInput): TriageResult {
       colour: "YELLOW",
     });
     flags.push("nurse_review");
+  }
+
+  if (input.followUp) {
+    const said = { yes: "yes", no: "no", unsure: "not sure" }[input.followUp.answer];
+    reasons.push({ source: "safety", text: `Kiosk asked: “${input.followUp.question}” → patient said ${said}` });
+    if (input.followUp.answer === "unsure" && !flags.includes("nurse_review")) flags.push("nurse_review");
+  }
+
+  if (input.readingsDisagreed && input.readingsDisagreed.length > 1) {
+    reasons.push({
+      source: "safety",
+      text: `Two independent AI readings disagreed (${input.readingsDisagreed.join(" vs ")}): more urgent kept, nurse to review`,
+    });
+    if (!flags.includes("nurse_review")) flags.push("nurse_review");
   }
 
   if (reasons.length === 0) {

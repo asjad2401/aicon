@@ -2,7 +2,7 @@
 
 ### The right patient, first.
 
-**AI triage, routing and patient history for Pakistan's government hospital OPDs, working *before* anyone joins a queue.**
+**An AI triage nurse that speaks Urdu.** It listens to every patient before they queue, asks the one question that matters, reads their old paper reports, keeps working when the internet doesn't, and warns the district when symptoms start to cluster.
 
 [**Try it live → priora.asjad.dev**](https://priora.asjad.dev) · Demo video: _link to be added_
 
@@ -10,7 +10,11 @@
 |:---:|:---:|:---:|:---:|
 | **1h 5m → 1 min** | **0%** under-triage | **48 → 10** a morning | **5.7 h → 1.9 h** a morning |
 
-<sub>Wait, redirect and file-reading figures come from our OPD simulator; under-triage comes from our 28-case evaluation. Details below.</sub>
+| 110 hard test cases | Real Urdu speech | Works offline | Problem scale |
+|:---:|:---:|:---:|:---:|
+| **0%** under-triage with two-reading safety check | **30 / 30** voice clips triaged correctly | **Our own trained model**, 8 ms on a CPU | PIMS Islamabad: **8,000+ patients a day** in a hospital built for 2,000–3,000 |
+
+<sub>Wait, redirect and file-reading figures come from our OPD simulator; accuracy figures from our evaluations; problem figures are sourced below.</sub>
 
 > AICON'26 · Build With AI · **Health Operations** · Built solo at SEECS, NUST, 9–10 October 2026
 
@@ -22,7 +26,20 @@ Ahmed, 54, has chest pain spreading to his left arm. He doesn't know which depar
 
 Seventy minutes later he reaches a doctor who has three minutes for him. The bag goes unread. Nobody sees the 2021 ECG that already showed signs of heart strain.
 
-**This happens every day, in every crowded OPD.** Three problems compound before a doctor ever sees the patient:
+**This happens every day, in every crowded OPD.**
+
+| The scale | Source |
+|---|---|
+| **8,000+ patients a day** at PIMS Islamabad, built for 2,000–3,000 outpatients | Health Ministry reply to the Senate, via [The News, Jun 2026](https://www.thenews.pk/print/1421973-the-system-is-unwell) |
+| **329,000+ OPD and 254,000+ emergency visits** in a year at Holy Family Hospital Rawalpindi, with no recruitment since 2015 | [Dawn, Jan 2025](https://www.dawn.com/news/1884777) |
+| **~1.8 minutes**: the average primary-care consultation in Pakistan | [Irving et al., BMJ Open 2017](https://pmc.ncbi.nlm.nih.gov/articles/PMC5695512/) (2016 data) |
+| **77%** of chronic-disease patients at a Rawalpindi tertiary hospital came directly; only 19% were referred | [Khan et al., PAFMJ 2022](https://pafmj.org/PAFMJ/article/view/8238) |
+| Health information systems **"completely absent"** at all care levels in Rawalpindi/Islamabad; records mostly manual | [PLoS One 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8496784) |
+| **31.4%** of adults have diabetes, the highest prevalence in the world | [IDF Diabetes Atlas 2024](https://diabetesatlas.org/data-by-location/country/pakistan/) |
+| National disease surveillance received **75%** of expected weekly reports, yet still logged **75,129** suspected diarrhoea cases in one week | [NIH Pakistan IDSR bulletin, Week 44-2025](https://www2.nih.org.pk/wp-content/uploads/2025/11/Weekly_Report-44-2025.pdf) |
+| **1 in 3** people aged 10+ cannot read; rural female literacy is **44%** | [Pakistan Economic Survey 2025-26](https://www.finance.gov.pk/survey/chapter_26/11_Health_and_Nutrition.pdf) |
+
+Three problems compound before a doctor ever sees the patient:
 
 - 🚪 **The wrong door.** Patients don't know which OPD treats their symptoms. They queue, get redirected, and queue again.
 - 🧍‍♂️🧍‍♀️ **Flat queues.** First come, first served. A heart attack waits behind a rash.
@@ -38,11 +55,12 @@ Priora is **the front door of the OPD**. Every patient is understood, prioritise
 
 With Priora, Ahmed's morning goes like this:
 
-1. 🎙️ **He speaks.** At a kiosk he says *"seenay mein dard hai, baayen baazu tak ja raha hai"* in Roman Urdu. Priora understands him, and because he's been here before, it also knows his history.
-2. 🟠 **He's prioritised.** Chest pain is very urgent: ORANGE, sent to Cardiology. He gets a printed token with a QR health passport.
-3. 🔴 **The nurse confirms it.** His heart rate is 130. The triage score jumps to RED, and he goes straight to Emergency, ahead of everyone who can safely wait.
-4. 📋 **The doctor is ready.** In seconds, five old reports become a one-page brief: *the 2021 ECG showed ischaemia, HbA1c rose from 7.1% to 8.4%, he's allergic to penicillin, and an echocardiogram was advised twice but never done.* Every line links to the original paper.
-5. 📝 **Nothing is lost again.** The consultation is recorded, and next time his history is already there.
+1. 🎙️ **He speaks.** The kiosk greets him in Urdu. He says *"seenay mein thori si bechaini hai"* ("some unease in my chest"). Priora understands him, and because he's been here before, it also knows his history.
+2. 🗣️ **It asks the one question that matters, out loud.** *"کیا سینے میں درد یا دباؤ ہے، جو بازو یا جبڑے تک جاتا ہے؟"* ("Is there chest pain or pressure, going to the arm or jaw?") He taps **ہاں** (yes).
+3. 🟠 **He's prioritised.** Chest pain is very urgent: ORANGE, sent to Cardiology. The kiosk tells him where to go, in Urdu, and prints a token with a QR health passport.
+4. 🔴 **The nurse confirms it.** His heart rate is 130. The triage score jumps to RED, and he goes straight to Emergency, ahead of everyone who can safely wait.
+5. 📋 **The doctor is ready.** In seconds, five old reports become a one-page brief: *the 2021 ECG showed ischaemia, HbA1c rose from 7.1% to 8.4%, he's allergic to penicillin, and an echocardiogram was advised twice but never done.* Every line links to the original paper.
+6. 📝 **Nothing is lost again.** The consultation is recorded, and next time his history is already there.
 
 ---
 
@@ -59,10 +77,10 @@ With Priora, Ahmed's morning goes like this:
 
 ---
 
-## Six things Priora does
+## What Priora does
 
-### 1. Understands every patient, in their own language
-Patients speak or type in **Urdu, Roman Urdu or English**: no forms, no reading required. AI turns what they say into structured clinical findings, quoting their own words as evidence.
+### 1. Understands every patient, in their own language, and talks back
+Patients speak or type in **Urdu, Roman Urdu or English**: no forms, no reading required. AI turns what they say into structured clinical findings, quoting their own words as evidence. Then Priora thinks about **what it still doesn't know**: if one unmentioned danger sign could change the patient's priority, it **asks that single question out loud in Urdu** and re-triages on the answer. If nothing could change the outcome, it doesn't ask. Like a good triage nurse.
 
 ### 2. Puts the sickest first, safely
 Priora uses the **South African Triage Scale (SATS)**, the protocol designed for busy, low-resource hospitals and already in use locally. **The AI never decides severity**: it extracts findings, fixed SATS rules assign the colour, and a nurse confirms it. Every decision shows exactly why: *"Heart rate 130 → +3 · TEWS 7 → RED"*.
@@ -76,7 +94,10 @@ Photograph old lab reports, prescriptions (even handwritten ones), ECGs and disc
 ### 5. Keeps a complete record
 Doctors record notes, diagnoses, prescriptions, lab orders and the outcome in one form. Every visit builds a patient timeline that follows them through their **QR health passport**, so the next doctor starts with the full picture.
 
-### 6. Warns the district before an outbreak spreads
+### 6. Keeps working when the internet doesn't
+Hospital internet drops. When the cloud AI is unreachable, Priora switches to **Priora Lite**, a triage model **we trained ourselves**: Gemini generated 5,000+ labelled complaints in three languages, and we distilled them into a compact model that runs **with no network in ~8 ms on a CPU**. A hand-curated red-flag phrase list rides alongside and can only add urgency. Offline results are marked provisional and always confirmed by the nurse.
+
+### 7. Warns the district before an outbreak spreads
 Every intake is also an anonymous surveillance report. Priora tags symptoms against WHO-style syndrome definitions, compares each area against its own baseline, and raises an alert when something is unusual: *"Dengue-like fever in G-9: 12 cases today against about 1 a day."* The district health officer gets a brief with the evidence and a response checklist **before** lab confirmation arrives.
 
 ---
@@ -86,6 +107,7 @@ Every intake is also an anonymous surveillance report. Priora tags symptoms agai
 Health care can't run on a black box. Priora is designed so that every decision can be checked.
 
 - ✅ **Rules decide, AI assists.** Severity comes from a validated clinical scale, not a language model.
+- 🔁 **Two readings, not one.** Every complaint is read twice by the AI, in parallel. If the readings disagree, the more urgent one wins and the nurse is told.
 - 👩‍⚕️ **People stay in charge.** Nurses confirm every colour; overrides need a reason and are logged.
 - 🔍 **Everything is explained or cited.** Triage shows its reasoning; every brief line and outbreak claim links to its source.
 - 🛡️ **Escalates when in doubt.** An unclear description or a child is never marked as routine without review.
@@ -113,11 +135,24 @@ We didn't want to just claim impact, so we built a **simulator** ([try it](https
 
 ## Proven, not promised
 
-**Tested before trusted.** We ran 28 patient descriptions in English, Roman Urdu and Urdu script through the real system ([results](https://priora.asjad.dev/eval)):
+**Tested before trusted** ([all results](https://priora.asjad.dev/eval)).
+
+**1. Standard set:** 28 patient descriptions in English, Roman Urdu and Urdu script, through the real system:
 
 | Triage accuracy | Missed emergencies (under-triage) | Right department | Response time |
 |:---:|:---:|:---:|:---:|
 | **100%** | **0%** | **96.4%** exact · 100% acceptable | **~6 seconds** |
+
+**2. Stress test:** 110 deliberately hard cases (hidden red flags in mild wording, negations, one-word complaints, typos and code-switching, relatives speaking, children, pregnancy), plus 30 of them as **real synthesised speech**:
+
+| System | Accuracy | Under-triage |
+|---|:---:|:---:|
+| Gemini, single reading | 93.6% | 0.9% (1 case) |
+| **Gemini, two readings (what ships)** | **92.7%** | **0%** |
+| Voice: real Urdu / English speech | **100%** (30/30) | **0%** |
+| Priora Lite (offline safety net) | 68.2% | 12.7% |
+
+The two-reading check caught the only miss: an electrical burn described as *"he seems fine now"*. Our offline model is honestly weaker on hard cases, which is exactly why it is only a safety net and the nurse confirms every offline result.
 
 **Validated as it's used.** Priora has a clinical validation study built into the daily workflow:
 - Nurses record their own triage colour **before** the system's result is revealed, so there's no anchoring.
@@ -161,12 +196,13 @@ _For the demo, the dashboard is pre-filled with clearly labelled synthetic pilot
 | Triage nurse | `nurse.ayesha` | Patients awaiting triage |
 | Emergency doctor | `dr.emergency` | Emergency queue, briefs, consultations |
 | Cardiology doctor | `dr.cardio` | Cardiology queue |
+| Any other department | `dr.medical`, `dr.surgical`, `dr.ortho`, `dr.gynae`, `dr.paeds`, `dr.ent`, `dr.eye`, `dr.derm`, `dr.psych`, `dr.dental` | That department's queue |
 | Records clerk | `records.bilal` | Records desk |
 | District health officer | `officer.dho` | Early warning |
 | Medical superintendent | `admin` | Everything, including clinical validation |
 
 **A 3-minute walkthrough:**
-1. **Kiosk** ([/kiosk](https://priora.asjad.dev/kiosk)): enter **`AHMED54K7Q`** → *Find me* → say or type *"seenay mein dard hai, baayen baazu tak ja raha hai, paseena aa raha hai"* → confirm and get a token.
+1. **Kiosk** ([/kiosk](https://priora.asjad.dev/kiosk), turn your sound on): enter **`AHMED54K7Q`** → *Find me* → say or type a complaint. Try something vague like *"pait ke neeche dard hai"* as a 28-year-old woman to hear Priora ask a follow-up question in Urdu → answer → confirm and get a token.
 2. **Nurse** (`nurse.ayesha`): open his token, enter HR 130 · RR 30 · BP 95 · Temp 37, pick your own colour, then watch SATS reveal **RED**. Confirm.
 3. **Doctor** (`dr.emergency`): Ahmed is at the top. Read the brief, click any citation to see the original report, then record the consultation.
 4. **Early warning** (`officer.dho`): see the dengue cluster in G-9 and the diarrhoea cluster in Dhok Hassu, each with an AI-written response brief.
@@ -176,7 +212,7 @@ _For the demo, the dashboard is pre-filled with clearly labelled synthetic pilot
 
 ## Under the hood
 
-For judges and engineers. Priora's AI does **six distinct jobs**, each with a narrow, checkable output.
+For judges and engineers. Priora's AI does **seven distinct jobs**, each with a narrow, checkable output, plus a model **we trained ourselves**.
 
 | | AI component | What goes in → what comes out |
 |---|---|---|
@@ -186,6 +222,8 @@ For judges and engineers. Priora's AI does **six distinct jobs**, each with a na
 | 4 | **Cited pre-consultation brief** | All facts + today's complaint → a ranked brief where every line cites its sources |
 | 5 | **Syndrome tagging** | Each intake → WHO-style surveillance syndromes (dengue-like, acute watery diarrhoea, …) |
 | 6 | **Outbreak alert brief** | Detected cluster statistics → a cited brief for the health officer with actions from a standard checklist |
+| 7 | **Follow-up planner** (talking kiosk) | Findings + current colour → the single yes/no question whose answer could raise the triage, or none. Candidates are restricted by code to signs that would change the outcome |
+| ★ | **Priora Lite** (our own model) | Character + word n-gram classifier trained on 5,176 Gemini-generated complaints → SATS signs + department, offline, ~8 ms. [Model card](ml/README.md) |
 
 **Rules where safety matters:** SATS triage (TEWS + discriminators), queue ordering and outbreak detection (CDC EARS-style aberration scoring) are deterministic code, not AI.
 
@@ -193,7 +231,7 @@ For judges and engineers. Priora's AI does **six distinct jobs**, each with a na
 |---|---|
 | **Problem** | Wrong-door visits, flat queues, unread paper history, late outbreak detection |
 | **Data / Input** | Patient voice/text, nurse vitals, photos of paper reports, anonymous intake trends |
-| **AI Component** | The six components above (Gemini on Vertex AI) |
+| **AI Component** | The seven components above (Gemini on Vertex AI) + Priora Lite, our own offline model |
 | **Solution / Output** | Explained triage colour, department and token, severity queues, cited brief, consultation record, outbreak alerts |
 | **Impact** | Critical waits from an hour to a minute, fewer redirects, doctor hours returned, earlier outbreak response |
 
@@ -233,7 +271,9 @@ npm run dev                             # http://localhost:3000
 
 | Third-party resource | Used for |
 |---|---|
-| Google Gemini 2.5 Flash / Flash-Lite (Vertex AI) | All six AI components |
+| Google Gemini 2.5 Flash / Flash-Lite (Vertex AI) | All seven AI components; teacher data for Priora Lite |
+| Gemini 2.5 Flash TTS | Pre-recorded Urdu kiosk voice; synthesised speech for the voice evaluation |
+| scikit-learn | Training Priora Lite (inference re-implemented in TypeScript) |
 | South African Triage Scale (SATS) | Triage protocol (public clinical guideline), implemented as rules |
 | CDC EARS method · WHO syndromic case definitions | Outbreak detection approach and syndrome definitions |
 | Next.js, Tailwind CSS, shadcn/ui, Drizzle ORM, qrcode | Open-source frameworks and libraries |

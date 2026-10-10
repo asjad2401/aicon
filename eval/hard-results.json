@@ -1,0 +1,5043 @@
+{
+  "summary": {
+    "run_at": "2026-10-10T05:30:29.353Z",
+    "n": 110,
+    "systems": {
+      "gemini": {
+        "n": 110,
+        "accuracy": 0.936,
+        "under_triage": 0.009,
+        "over_triage": 0.055,
+        "department_acceptable": 0.982
+      },
+      "gemini_self_consistency": {
+        "n": 110,
+        "accuracy": 0.927,
+        "under_triage": 0,
+        "over_triage": 0.073,
+        "disagreement_rate": 0.064
+      },
+      "priora_lite": {
+        "n": 110,
+        "accuracy": 0.682,
+        "under_triage": 0.127,
+        "over_triage": 0.191
+      },
+      "hybrid": {
+        "n": 110,
+        "accuracy": 0.782,
+        "under_triage": 0.009,
+        "over_triage": 0.209
+      }
+    },
+    "voice": {
+      "n": 30,
+      "voice": {
+        "n": 30,
+        "accuracy": 1,
+        "under_triage": 0,
+        "over_triage": 0,
+        "department_acceptable": 0.967
+      },
+      "same_cases_text": {
+        "n": 30,
+        "accuracy": 0.967,
+        "under_triage": 0,
+        "over_triage": 0.033
+      },
+      "errors": 0
+    },
+    "by_category": {
+      "hidden_red_flag": {
+        "n": 15,
+        "gemini": 0.933,
+        "lite": 0.6,
+        "gemini_under": 0.067
+      },
+      "negation_resolved": {
+        "n": 15,
+        "gemini": 0.933,
+        "lite": 0.467,
+        "gemini_under": 0
+      },
+      "vague_short": {
+        "n": 15,
+        "gemini": 0.8,
+        "lite": 0.867,
+        "gemini_under": 0
+      },
+      "code_switch_typos": {
+        "n": 15,
+        "gemini": 1,
+        "lite": 0.733,
+        "gemini_under": 0
+      },
+      "relative_speaking": {
+        "n": 15,
+        "gemini": 1,
+        "lite": 0.733,
+        "gemini_under": 0
+      },
+      "age_edge": {
+        "n": 10,
+        "gemini": 0.9,
+        "lite": 0.8,
+        "gemini_under": 0
+      },
+      "pregnancy": {
+        "n": 5,
+        "gemini": 1,
+        "lite": 0.8,
+        "gemini_under": 0
+      },
+      "multi_symptom": {
+        "n": 20,
+        "gemini": 0.95,
+        "lite": 0.6,
+        "gemini_under": 0
+      }
+    },
+    "by_language": {
+      "roman_urdu": {
+        "n": 39,
+        "gemini": 0.974,
+        "lite": 0.769
+      },
+      "english": {
+        "n": 45,
+        "gemini": 0.956,
+        "lite": 0.622
+      },
+      "urdu": {
+        "n": 21,
+        "gemini": 0.81,
+        "lite": 0.619
+      },
+      "mixed": {
+        "n": 5,
+        "gemini": 1,
+        "lite": 0.8
+      }
+    },
+    "disagreements_that_caught_under_triage": [
+      "h11"
+    ]
+  },
+  "results": [
+    {
+      "id": "h01",
+      "category": "hidden_red_flag",
+      "lang": "roman_urdu",
+      "age": 58,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "kuch khaas nahi, bas seene pe thoda bojh sa hai subah se aur paseena aa raha hai.",
+        "department": "cardiology",
+        "dept_ok": true
+      },
+      "text": "kuch khaas nahi bas seenay pe thora bojh sa hai subah se aur paseena aa raha hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "over",
+        "signs": [
+          "hypoglycaemia"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "h02",
+      "category": "hidden_red_flag",
+      "lang": "english",
+      "age": 45,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Probably nothing, but my left arm and face feel a bit numb since an hour, and my words are coming out funny.",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "Probably nothing, but my left arm and face feel a bit numb since an hour and my words are coming out funny",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": false,
+        "signs": [
+          "focal_neurology_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h03",
+      "category": "hidden_red_flag",
+      "lang": "urdu",
+      "age": 30,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Thoda sa pet mein dard hai, main char mahine ki hamila hoon.",
+        "department": "gynae",
+        "dept_ok": true
+      },
+      "text": "تھوڑا سا پیٹ میں درد ہے، میں چار مہینے کی حاملہ ہوں",
+      "expected_colour": "ORANGE",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [
+          "pregnancy_abdo",
+          "abdominal_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "pregnancy_abdo"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h04",
+      "category": "hidden_red_flag",
+      "lang": "roman_urdu",
+      "age": 35,
+      "sex": "male",
+      "voice": false,
+      "text": "khansi purani hai, bas aaj subah thook mein khoon aaya",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "coughing_blood"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "coughing_blood"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h05",
+      "category": "hidden_red_flag",
+      "lang": "english",
+      "age": 22,
+      "sex": "male",
+      "voice": false,
+      "text": "I took a few extra sleeping pills last night on purpose, feeling drowsy now, it's fine",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "psychiatry",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "poisoning_overdose",
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h06",
+      "category": "hidden_red_flag",
+      "lang": "roman_urdu",
+      "age": 60,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Ammi thodi si confused lag rahi hain aaj, baat samajh nahi rahi.",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "ammi thori si confused lag rahi hain aaj, baat samajh nahi rahin",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "reduced_consciousness"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h07",
+      "category": "hidden_red_flag",
+      "lang": "english",
+      "age": 50,
+      "sex": "male",
+      "voice": false,
+      "text": "Just a small cough but I've been breathless since this morning, I can't finish a sentence",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": false,
+        "signs": [
+          "sob_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h08",
+      "category": "hidden_red_flag",
+      "lang": "urdu",
+      "age": 40,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Bas thodi si ulti hui, ismein taza khoon tha.",
+        "department": "surgical",
+        "dept_ok": true
+      },
+      "text": "بس تھوڑی سی الٹی ہوئی، اس میں تازہ خون تھا",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "vomiting_fresh_blood"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "vomiting_fresh_blood"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h09",
+      "category": "hidden_red_flag",
+      "lang": "roman_urdu",
+      "age": 25,
+      "sex": "male",
+      "voice": false,
+      "text": "haath pe halki si chot hai par khoon ruk hi nahi raha bees minute se",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "haemorrhage_uncontrolled"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "haemorrhage_uncontrolled",
+          "burn_other"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h10",
+      "category": "hidden_red_flag",
+      "lang": "english",
+      "age": 33,
+      "sex": "female",
+      "voice": false,
+      "text": "My sugar meter shows 2.4 and I'm shaky and sweaty",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "hypoglycaemia"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "hypoglycaemia"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h11",
+      "category": "hidden_red_flag",
+      "lang": "roman_urdu",
+      "age": 28,
+      "sex": "male",
+      "voice": false,
+      "text": "bhai ko bijli ka current laga tha, ab theek lag raha hai, bas haath pe jala hua nishaan hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "burn_other"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "ORANGE",
+          "YELLOW"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": [
+          "burn_other"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "under"
+      }
+    },
+    {
+      "id": "h12",
+      "category": "hidden_red_flag",
+      "lang": "english",
+      "age": 19,
+      "sex": "male",
+      "voice": false,
+      "text": "I had a fit five minutes ago, I'm okay now but very sleepy",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "seizure_post_ictal",
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "seizure_post_ictal"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h13",
+      "category": "hidden_red_flag",
+      "lang": "urdu",
+      "age": 65,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Abbu ka ek taraf ka muh thoda sa teda lag raha hai subah se.",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "ابو کا ایک طرف کا منہ تھوڑا سا ٹیڑھا لگ رہا ہے صبح سے",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "focal_neurology_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "focal_neurology_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h14",
+      "category": "hidden_red_flag",
+      "lang": "english",
+      "age": 70,
+      "sex": "female",
+      "voice": false,
+      "text": "Mild chest discomfort when I walk, and I'm sweating a little today",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "h15",
+      "category": "hidden_red_flag",
+      "lang": "roman_urdu",
+      "age": 38,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Kal raat se pet mein halka dard tha. Ab bilkul bardasht se bahar hai.",
+        "department": "surgical",
+        "dept_ok": true
+      },
+      "text": "kal raat se pait mein halka dard tha, ab bilkul bardasht se bahar hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "abdominal_pain",
+          "pain_severe"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": [
+          "abdominal_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n01",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 40,
+      "sex": "male",
+      "voice": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "transcript": "No chest pain, no breathing problem, just a runny nose for two days.",
+        "department": "ent",
+        "dept_ok": true
+      },
+      "text": "No chest pain, no breathing problem, just a runny nose for two days",
+      "expected_colour": "GREEN",
+      "expected_department": "ent",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "ent",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "over",
+        "signs": [
+          "cardiac_arrest",
+          "not_breathing"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n02",
+      "category": "negation_resolved",
+      "lang": "roman_urdu",
+      "age": 30,
+      "sex": "female",
+      "voice": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "transcript": "کھانسی ہے تین دن سے خون بالکل نہیں آتا بخار بھی نہیں",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "khansi hai teen din se, khoon bilkul nahi aata, bukhar bhi nahi",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "ent"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "coughing_blood"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n03",
+      "category": "negation_resolved",
+      "lang": "urdu",
+      "age": 55,
+      "sex": "male",
+      "voice": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "transcript": "Pichle saal seene mein dard hua tha. Ab bilkul theek hoon, sirf dawai leni hai.",
+        "department": "cardiology",
+        "dept_ok": true
+      },
+      "text": "پچھلے سال سینے میں درد ہوا تھا، اب بالکل ٹھیک ہوں، صرف دوائی لینی ہے",
+      "expected_colour": "GREEN",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "chest_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n04",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 27,
+      "sex": "female",
+      "voice": false,
+      "text": "I fainted once last month, nothing since, here for a routine checkup",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "reduced_consciousness"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n05",
+      "category": "negation_resolved",
+      "lang": "roman_urdu",
+      "age": 45,
+      "sex": "male",
+      "voice": false,
+      "text": "ungli pe chot lagi thi, khoon ruk gaya hai, bas patti chahiye",
+      "expected_colour": "YELLOW",
+      "expected_department": "surgical",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "haemorrhage_controlled"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": [
+          "haemorrhage_controlled"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n06",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 35,
+      "sex": "male",
+      "voice": false,
+      "text": "Not vomiting blood, just some acidity after spicy food, no pain",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n07",
+      "category": "negation_resolved",
+      "lang": "urdu",
+      "age": 29,
+      "sex": "female",
+      "voice": false,
+      "text": "دورہ نہیں پڑا، بس سر میں ہلکا درد رہتا ہے کئی ہفتوں سے",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n08",
+      "category": "negation_resolved",
+      "lang": "roman_urdu",
+      "age": 50,
+      "sex": "female",
+      "voice": false,
+      "text": "saans phoolti hai sirf seerhiyan charhne pe, kai saal se aisa hai, aaj bhi wohi",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "cardiology"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n09",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 24,
+      "sex": "male",
+      "voice": false,
+      "text": "My friend got burnt badly yesterday but I'm only here for my own sore throat",
+      "expected_colour": "GREEN",
+      "expected_department": "ent",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "ent",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n10",
+      "category": "negation_resolved",
+      "lang": "roman_urdu",
+      "age": 33,
+      "sex": "female",
+      "voice": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "transcript": "Pregnant hoon, koi dard nahi, bas routine checkup ke liye aayi hoon.",
+        "department": "gynae",
+        "dept_ok": true
+      },
+      "text": "pregnant hoon, koi dard nahi, bas routine checkup ke liye aayi hoon",
+      "expected_colour": "GREEN",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n11",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 60,
+      "sex": "male",
+      "voice": false,
+      "text": "Had a stroke three years ago, stable now, I need my blood pressure medicine",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "cardiology"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "focal_neurology_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n12",
+      "category": "negation_resolved",
+      "lang": "urdu",
+      "age": 18,
+      "sex": "male",
+      "voice": false,
+      "text": "زہر نہیں کھایا، بس پیٹ خراب ہے دو دن سے",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "abdominal_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "over",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "abdominal_pain",
+          "poisoning_overdose"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "n13",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 42,
+      "sex": "female",
+      "voice": false,
+      "text": "Nosebleed earlier, it stopped on its own after two minutes",
+      "expected_colour": "YELLOW",
+      "expected_department": "ent",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "ent",
+        "dept_ok": true,
+        "signs": [
+          "haemorrhage_controlled"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": [
+          "haemorrhage_controlled"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n14",
+      "category": "negation_resolved",
+      "lang": "roman_urdu",
+      "age": 70,
+      "sex": "male",
+      "voice": false,
+      "text": "behoshi nahi hui, bas thori kamzori hai bohat dino se",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "n15",
+      "category": "negation_resolved",
+      "lang": "english",
+      "age": 31,
+      "sex": "male",
+      "voice": false,
+      "text": "No fits, no fever, I just can't sleep well for a month",
+      "expected_colour": "GREEN",
+      "expected_department": "psychiatry",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "psychiatry",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v01",
+      "category": "vague_short",
+      "lang": "roman_urdu",
+      "age": 40,
+      "sex": "female",
+      "voice": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "transcript": "Pet mein dard",
+        "department": "surgical",
+        "dept_ok": true
+      },
+      "text": "pait mein dard",
+      "expected_colour": "YELLOW",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "abdominal_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": [
+          "abdominal_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v02",
+      "category": "vague_short",
+      "lang": "english",
+      "age": 30,
+      "sex": "male",
+      "voice": false,
+      "text": "fever",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "over",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v03",
+      "category": "vague_short",
+      "lang": "urdu",
+      "age": 45,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Saans nahi aa rahi",
+        "department": "cardiology",
+        "dept_ok": false
+      },
+      "text": "سانس نہیں آ رہی",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "over",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "not_breathing"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "ORANGE"
+        ],
+        "colour": "RED",
+        "verdict": "over",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "over",
+        "signs": [
+          "not_breathing",
+          "cardiac_arrest",
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "v04",
+      "category": "vague_short",
+      "lang": "roman_urdu",
+      "age": 35,
+      "sex": "male",
+      "voice": false,
+      "text": "khoon ki ulti",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "vomiting_fresh_blood"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "vomiting_fresh_blood",
+          "vomiting_persistent",
+          "haemorrhage_uncontrolled"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v05",
+      "category": "vague_short",
+      "lang": "english",
+      "age": 25,
+      "sex": "female",
+      "voice": false,
+      "text": "rash",
+      "expected_colour": "GREEN",
+      "expected_department": "dermatology",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "department": "dermatology",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "over",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "v06",
+      "category": "vague_short",
+      "lang": "roman_urdu",
+      "age": 55,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Seenay mein dard hai",
+        "department": "cardiology",
+        "dept_ok": true
+      },
+      "text": "seene me dard",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "chest_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v07",
+      "category": "vague_short",
+      "lang": "urdu",
+      "age": 30,
+      "sex": "female",
+      "voice": false,
+      "text": "کمر درد",
+      "expected_colour": "GREEN",
+      "expected_department": "orthopaedics",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "orthopaedics",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "over",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v08",
+      "category": "vague_short",
+      "lang": "roman_urdu",
+      "age": 28,
+      "sex": "male",
+      "voice": false,
+      "text": "daant dard",
+      "expected_colour": "GREEN",
+      "expected_department": "dental",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "dental",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v09",
+      "category": "vague_short",
+      "lang": "english",
+      "age": 66,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Can't move left arm suddenly",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "can't move left arm suddenly",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "focal_neurology_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "focal_neurology_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v10",
+      "category": "vague_short",
+      "lang": "urdu",
+      "age": 22,
+      "sex": "female",
+      "voice": false,
+      "text": "آنکھ لال",
+      "expected_colour": "GREEN",
+      "expected_department": "eye",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "department": "eye",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "YELLOW",
+        "verdict": "over",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "v11",
+      "category": "vague_short",
+      "lang": "english",
+      "age": 33,
+      "sex": "male",
+      "voice": false,
+      "text": "ear pain",
+      "expected_colour": "GREEN",
+      "expected_department": "ent",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "ent",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v12",
+      "category": "vague_short",
+      "lang": "roman_urdu",
+      "age": 40,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Zahar kha liya",
+        "department": "emergency",
+        "dept_ok": true
+      },
+      "text": "zehar kha liya",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency",
+        "psychiatry"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "poisoning_overdose"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "poisoning_overdose"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v13",
+      "category": "vague_short",
+      "lang": "urdu",
+      "age": 35,
+      "sex": "male",
+      "voice": false,
+      "text": "پیشاب میں جلن",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "v14",
+      "category": "vague_short",
+      "lang": "roman_urdu",
+      "age": 52,
+      "sex": "female",
+      "voice": false,
+      "text": "ghutno ka dard",
+      "expected_colour": "GREEN",
+      "expected_department": "orthopaedics",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "orthopaedics",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "dislocation_large_joint"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "v15",
+      "category": "vague_short",
+      "lang": "english",
+      "age": 38,
+      "sex": "male",
+      "voice": false,
+      "text": "having fits right now",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "seizure_current"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "seizure_current"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c01",
+      "category": "code_switch_typos",
+      "lang": "mixed",
+      "age": 46,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Doctor sahab, chest mein bahut pressure hai aur left arm bhi heavy hai.",
+        "department": "cardiology",
+        "dept_ok": true
+      },
+      "text": "Doctor sahab chest mein bohat pressure hai and left arm bhi heavy hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "chest_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c02",
+      "category": "code_switch_typos",
+      "lang": "roman_urdu",
+      "age": 27,
+      "sex": "female",
+      "voice": false,
+      "text": "mjhy 3 din se bukhaar hy or jism toot rha hy",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c03",
+      "category": "code_switch_typos",
+      "lang": "english",
+      "age": 36,
+      "sex": "male",
+      "voice": false,
+      "text": "my stomak pain veri bad cant bear it",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "pain_severe",
+          "abdominal_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": [
+          "abdominal_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c04",
+      "category": "code_switch_typos",
+      "lang": "mixed",
+      "age": 55,
+      "sex": "male",
+      "voice": false,
+      "text": "BP high hai aur headache hai since morning",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "cardiology"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c05",
+      "category": "code_switch_typos",
+      "lang": "roman_urdu",
+      "age": 24,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Bike se gira, ankle bilkul ulta murr gaya hai, jagah se hil gaya hai",
+        "department": "orthopaedics",
+        "dept_ok": true
+      },
+      "text": "bike se gira, ankle bilkul ulta mur gaya hai, jagah se hil gaya hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "orthopaedics",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "orthopaedics",
+        "dept_ok": true,
+        "signs": [
+          "dislocation_large_joint",
+          "pain_severe"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "dislocation_large_joint",
+          "threatened_limb"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c06",
+      "category": "code_switch_typos",
+      "lang": "english",
+      "age": 41,
+      "sex": "female",
+      "voice": false,
+      "text": "coughin blood sinse 2 dayz",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "coughing_blood"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "coughing_blood"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c07",
+      "category": "code_switch_typos",
+      "lang": "mixed",
+      "age": 34,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Sugar patient hoon, reading 520 aa rahi hai, vomiting bhi ho rahi hai aur saans tez hai.",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "Sugar patient hoon, reading 520 aa rahi hai, vomiting bhi ho rahi hai aur saans tez hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "diabetic_ketosis",
+          "vomiting_persistent"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "sob_acute",
+          "diabetic_ketosis",
+          "vomiting_persistent"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c08",
+      "category": "code_switch_typos",
+      "lang": "roman_urdu",
+      "age": 29,
+      "sex": "male",
+      "voice": false,
+      "text": "haath kat gaya, khoon thamm gaya hai",
+      "expected_colour": "YELLOW",
+      "expected_department": "surgical",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "haemorrhage_controlled"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "burn_other",
+          "haemorrhage_uncontrolled"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "c09",
+      "category": "code_switch_typos",
+      "lang": "english",
+      "age": 63,
+      "sex": "male",
+      "voice": false,
+      "text": "suddn weekness rite side body n speach problm",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "focal_neurology_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "focal_neurology_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c10",
+      "category": "code_switch_typos",
+      "lang": "mixed",
+      "age": 26,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Pregnancy test positive tha. Ab lower abdomen mein shadeed dard hai.",
+        "department": "gynae",
+        "dept_ok": true
+      },
+      "text": "Pregnancy test positive tha, ab lower abdomen mein shadeed dard hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [
+          "pregnancy_abdo",
+          "abdominal_pain",
+          "pain_severe"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c11",
+      "category": "code_switch_typos",
+      "lang": "roman_urdu",
+      "age": 37,
+      "sex": "male",
+      "voice": false,
+      "text": "aankh mein kuch chala gaya, laal hai aur paani aa raha",
+      "expected_colour": "GREEN",
+      "expected_department": "eye",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "eye",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c12",
+      "category": "code_switch_typos",
+      "lang": "english",
+      "age": 52,
+      "sex": "male",
+      "voice": false,
+      "text": "chest pain plus sweating plus nausea",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "chest_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c13",
+      "category": "code_switch_typos",
+      "lang": "mixed",
+      "age": 44,
+      "sex": "female",
+      "voice": false,
+      "text": "Mujhe skin pe itching hai, khaas taur pe raat ko",
+      "expected_colour": "GREEN",
+      "expected_department": "dermatology",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "dermatology",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "c14",
+      "category": "code_switch_typos",
+      "lang": "roman_urdu",
+      "age": 39,
+      "sex": "male",
+      "voice": false,
+      "text": "tooth pain hai aur gaal sooj gaya",
+      "expected_colour": "GREEN",
+      "expected_department": "dental",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "dental",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "signs": [
+          "fracture_closed"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "c15",
+      "category": "code_switch_typos",
+      "lang": "english",
+      "age": 58,
+      "sex": "female",
+      "voice": false,
+      "text": "breathless suddenly n lips turning blue",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "sob_acute",
+          "not_breathing"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "not_breathing",
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r01",
+      "category": "relative_speaking",
+      "lang": "urdu",
+      "age": 72,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "میرے ابو اچانک بے ہوش ہو گئے اب ہلکا ہلکا جواب دے رہے ہیں",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "میرے ابو اچانک بے ہوش ہو گئے، اب ہلکا ہلکا جواب دے رہے ہیں",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "over",
+        "signs": [
+          "reduced_consciousness",
+          "cardiac_arrest",
+          "hypoglycaemia"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "r02",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 50,
+      "sex": "male",
+      "voice": {
+        "colour": "RED",
+        "verdict": "correct",
+        "transcript": "My husband is shaken all over right now and not responding.",
+        "department": "emergency",
+        "dept_ok": true
+      },
+      "text": "My husband is shaking all over right now and not responding",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "seizure_current",
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "reduced_consciousness",
+          "seizure_current"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r03",
+      "category": "relative_speaking",
+      "lang": "roman_urdu",
+      "age": 35,
+      "sex": "female",
+      "voice": false,
+      "text": "meri behen ne bohat saari goliyan kha li hain",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "psychiatry",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "poisoning_overdose"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "poisoning_overdose",
+          "reduced_consciousness"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r04",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 29,
+      "sex": "female",
+      "voice": false,
+      "text": "My wife is eight months pregnant and fell down the stairs, she says her belly hurts",
+      "expected_colour": "ORANGE",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [
+          "pregnancy_abdo"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": [
+          "pregnancy_trauma"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r05",
+      "category": "relative_speaking",
+      "lang": "roman_urdu",
+      "age": 68,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Ammi ki zubaan lar-khra rahi hai aur haath nahi utha rahi.",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "ammi ki zaban larkhara rahi hai aur haath nahi utha rahin",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "focal_neurology_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "focal_neurology_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r06",
+      "category": "relative_speaking",
+      "lang": "urdu",
+      "age": 30,
+      "sex": "male",
+      "voice": false,
+      "text": "میرے بھائی کا ہاتھ مشین میں آ گیا، ہڈی باہر نکلی ہوئی ہے",
+      "expected_colour": "ORANGE",
+      "expected_department": "orthopaedics",
+      "accept": [
+        "surgical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "fracture_compound"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "fracture_compound"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r07",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 45,
+      "sex": "female",
+      "voice": false,
+      "text": "My mother has a high fever, a rash all over and a runny nose",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "dermatology"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r08",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 20,
+      "sex": "male",
+      "voice": false,
+      "text": "My son stopped breathing for a moment and turned blue, he is gasping now",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "not_breathing"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "not_breathing",
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r09",
+      "category": "relative_speaking",
+      "lang": "urdu",
+      "age": 42,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Meri biwi ka khoon band nahi ho raha. Chaku se hath kat gaya.",
+        "department": "surgical",
+        "dept_ok": true
+      },
+      "text": "میری بیوی کا خون بند نہیں ہو رہا، چاقو سے ہاتھ کٹ گیا",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "haemorrhage_uncontrolled"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "haemorrhage_uncontrolled"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r10",
+      "category": "relative_speaking",
+      "lang": "roman_urdu",
+      "age": 55,
+      "sex": "male",
+      "voice": false,
+      "text": "abbu ko seenay mein dard ho raha hai aur woh bohat pareshaan hain",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "chest_pain"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r11",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 75,
+      "sex": "male",
+      "voice": false,
+      "text": "My father seems confused and isn't making sense since this morning",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r12",
+      "category": "relative_speaking",
+      "lang": "roman_urdu",
+      "age": 60,
+      "sex": "female",
+      "voice": false,
+      "text": "meri saas ko khoon ki ulti aayi hai abhi",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "vomiting_fresh_blood"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "vomiting_fresh_blood"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r13",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 61,
+      "sex": "male",
+      "voice": false,
+      "text": "My husband's sugar dropped, he's sweating and not answering properly",
+      "expected_colour": "RED",
+      "expected_department": "emergency",
+      "accept": [],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "emergency",
+        "dept_ok": true,
+        "signs": [
+          "hypoglycaemia",
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "hypoglycaemia"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "r14",
+      "category": "relative_speaking",
+      "lang": "urdu",
+      "age": 18,
+      "sex": "male",
+      "voice": false,
+      "text": "میرا بیٹا دو دن سے بہت زیادہ الٹیاں کر رہا ہے، کچھ نہیں رکتا",
+      "expected_colour": "YELLOW",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "vomiting_persistent"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "vomiting_persistent",
+          "poisoning_overdose"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "r15",
+      "category": "relative_speaking",
+      "lang": "english",
+      "age": 35,
+      "sex": "female",
+      "voice": false,
+      "text": "My sister spilled hot oil on herself, her whole arm and chest are burnt",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "emergency",
+        "dermatology"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "burn_major"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "burn_major"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p01",
+      "category": "age_edge",
+      "lang": "roman_urdu",
+      "age": 6,
+      "sex": "male",
+      "voice": false,
+      "text": "bachay ko teen din se bukhar hai",
+      "expected_colour": "YELLOW",
+      "expected_department": "paediatrics",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p02",
+      "category": "age_edge",
+      "lang": "english",
+      "age": 3,
+      "sex": "female",
+      "voice": false,
+      "text": "My toddler swallowed some bleach",
+      "expected_colour": "ORANGE",
+      "expected_department": "paediatrics",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [
+          "poisoning_overdose"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "poisoning_overdose"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p03",
+      "category": "age_edge",
+      "lang": "urdu",
+      "age": 8,
+      "sex": "male",
+      "voice": {
+        "colour": "RED",
+        "verdict": "correct",
+        "transcript": "Bachay ko abhi jhatkay lag rahay hain.",
+        "department": "paediatrics",
+        "dept_ok": true
+      },
+      "text": "بچے کو ابھی جھٹکے لگ رہے ہیں",
+      "expected_colour": "RED",
+      "expected_department": "paediatrics",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "correct",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [
+          "seizure_current"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "RED",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "correct",
+        "signs": [
+          "seizure_current"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p04",
+      "category": "age_edge",
+      "lang": "roman_urdu",
+      "age": 10,
+      "sex": "male",
+      "voice": false,
+      "text": "bachay ka haath toot gaya lagta hai, tera ho gaya hai",
+      "expected_colour": "YELLOW",
+      "expected_department": "paediatrics",
+      "accept": [
+        "orthopaedics"
+      ],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [
+          "fracture_closed"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p05",
+      "category": "age_edge",
+      "lang": "english",
+      "age": 2,
+      "sex": "female",
+      "voice": false,
+      "text": "Baby has a mild rash and a cold",
+      "expected_colour": "YELLOW",
+      "expected_department": "paediatrics",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p06",
+      "category": "age_edge",
+      "lang": "roman_urdu",
+      "age": 75,
+      "sex": "male",
+      "voice": false,
+      "text": "dada ji ka bp high rehta hai, aaj normal hai, bas dawai leni hai",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "cardiology"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p07",
+      "category": "age_edge",
+      "lang": "english",
+      "age": 82,
+      "sex": "female",
+      "voice": false,
+      "text": "Grandmother has been more sleepy and confused than usual since yesterday",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p08",
+      "category": "age_edge",
+      "lang": "urdu",
+      "age": 11,
+      "sex": "female",
+      "voice": false,
+      "text": "بچی کا سانس بہت پھول رہا ہے اور بول نہیں پا رہی",
+      "expected_colour": "ORANGE",
+      "expected_department": "paediatrics",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "RED",
+        "verdict": "over",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [
+          "sob_acute",
+          "airway_compromised"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "RED",
+          "ORANGE",
+          "RED"
+        ],
+        "colour": "RED",
+        "verdict": "over",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "RED",
+        "verdict": "over",
+        "signs": [
+          "sob_acute",
+          "airway_compromised",
+          "not_breathing"
+        ]
+      },
+      "hybrid": {
+        "colour": "RED",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "p09",
+      "category": "age_edge",
+      "lang": "roman_urdu",
+      "age": 7,
+      "sex": "male",
+      "voice": false,
+      "text": "bachay ne chooha maar dawai kha li",
+      "expected_colour": "ORANGE",
+      "expected_department": "paediatrics",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "paediatrics",
+        "dept_ok": true,
+        "signs": [
+          "poisoning_overdose"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "poisoning_overdose"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "p10",
+      "category": "age_edge",
+      "lang": "english",
+      "age": 15,
+      "sex": "male",
+      "voice": false,
+      "text": "I have had a sore throat for three days",
+      "expected_colour": "GREEN",
+      "expected_department": "ent",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "ent",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "g01",
+      "category": "pregnancy",
+      "lang": "roman_urdu",
+      "age": 26,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "6 mahine ki pregnant hoon, pet mein dard hai aur thoda khoon bhi aaya.",
+        "department": "gynae",
+        "dept_ok": true
+      },
+      "text": "chhe mahine ki pregnant hoon, pait mein dard hai aur thora khoon bhi aaya",
+      "expected_colour": "ORANGE",
+      "expected_department": "gynae",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [
+          "abdominal_pain",
+          "pregnancy_abdo"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "pregnancy_abdo"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "g02",
+      "category": "pregnancy",
+      "lang": "english",
+      "age": 31,
+      "sex": "female",
+      "voice": false,
+      "text": "My periods have been irregular for six months",
+      "expected_colour": "GREEN",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "g03",
+      "category": "pregnancy",
+      "lang": "urdu",
+      "age": 29,
+      "sex": "female",
+      "voice": false,
+      "text": "حمل کا تیسرا مہینہ ہے، صرف متلی ہے، کوئی درد نہیں",
+      "expected_colour": "GREEN",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "g04",
+      "category": "pregnancy",
+      "lang": "roman_urdu",
+      "age": 34,
+      "sex": "female",
+      "voice": false,
+      "text": "pregnant hoon aur rickshaw se gir gayi, pait pe chot nahi lagi, bas ghutna chhil gaya",
+      "expected_colour": "YELLOW",
+      "expected_department": "gynae",
+      "accept": [
+        "orthopaedics",
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [
+          "pregnancy_trauma"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "g05",
+      "category": "pregnancy",
+      "lang": "english",
+      "age": 24,
+      "sex": "female",
+      "voice": false,
+      "text": "White discharge and itching down there",
+      "expected_colour": "GREEN",
+      "expected_department": "gynae",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "gynae",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "m01",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 57,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "I'm diabetic and came for my sugar check, but for the last hour, I've had this crushing feeling in my chest.",
+        "department": "cardiology",
+        "dept_ok": true
+      },
+      "text": "I'm diabetic and came for my sugar check, but for the last hour I've had this crushing feeling in my chest",
+      "expected_colour": "ORANGE",
+      "expected_department": "cardiology",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "cardiology",
+        "dept_ok": true,
+        "signs": [
+          "chest_pain"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "under",
+        "signs": [
+          "diabetic_hyperglycaemia"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m02",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 43,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Pichle hafte se khansi aur bukhar hai. Aaj se saans lene mein bohat mushkil ho rahi hai.",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "pichle hafte se khansi aur bukhar hai, aaj se saans lene mein bohat mushkil ho rahi hai",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "sob_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m03",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 62,
+      "sex": "male",
+      "voice": false,
+      "text": "sugar ka mareez hoon, paon pe zakham hai jo theek nahi ho raha, halka bukhar bhi hai",
+      "expected_colour": "GREEN",
+      "expected_department": "surgical",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m04",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 49,
+      "sex": "female",
+      "voice": false,
+      "text": "Headache, blurry vision in one eye and my left hand feels weak, it all started suddenly",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [
+        "emergency",
+        "eye"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "focal_neurology_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "focal_neurology_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m05",
+      "category": "multi_symptom",
+      "lang": "urdu",
+      "age": 27,
+      "sex": "male",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "Pet mein daen taraf neeche naqabile bardasht dard, bukhar aur ulti.",
+        "department": "surgical",
+        "dept_ok": true
+      },
+      "text": "پیٹ میں دائیں طرف نیچے ناقابل برداشت درد، بخار اور الٹی",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "abdominal_pain",
+          "pain_severe"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m06",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 34,
+      "sex": "male",
+      "voice": false,
+      "text": "Got hit on the head in a fight, vomited twice and now I feel really drowsy",
+      "expected_colour": "ORANGE",
+      "expected_department": "surgical",
+      "accept": [
+        "medical",
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "reduced_consciousness"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m07",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 41,
+      "sex": "female",
+      "voice": false,
+      "text": "garam chai gir gayi thi, haath pe chhota sa hissa jala hai aur chhaale hain",
+      "expected_colour": "YELLOW",
+      "expected_department": "surgical",
+      "accept": [
+        "dermatology"
+      ],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [
+          "burn_other"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": [
+          "burn_other"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m08",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 58,
+      "sex": "male",
+      "voice": false,
+      "text": "Cough for three weeks, weight loss and night sweats, no blood",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "m09",
+      "category": "multi_symptom",
+      "lang": "urdu",
+      "age": 33,
+      "sex": "female",
+      "voice": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "transcript": "تین دن سے بخار جوڑوں میں ناقابل برداشت درد آنکھوں کے پیچھے درد اور جسم پر دانے",
+        "department": "medical",
+        "dept_ok": true
+      },
+      "text": "تین دن سے بخار، جوڑوں میں ناقابل برداشت درد، آنکھوں کے پیچھے درد اور جسم پر دانے",
+      "expected_colour": "ORANGE",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "pain_severe"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "under",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m10",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 46,
+      "sex": "male",
+      "voice": false,
+      "text": "Fell from a ladder, my shoulder looks out of place and I can't move it",
+      "expected_colour": "ORANGE",
+      "expected_department": "orthopaedics",
+      "accept": [
+        "emergency"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "department": "orthopaedics",
+        "dept_ok": true,
+        "signs": [
+          "dislocation_large_joint"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "ORANGE",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "correct",
+        "signs": [
+          "dislocation_large_joint",
+          "fracture_closed"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m11",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 36,
+      "sex": "female",
+      "voice": false,
+      "text": "do hafte se sar dard, thakan aur neend nahi aati, ghar ke masail bhi hain",
+      "expected_colour": "GREEN",
+      "expected_department": "psychiatry",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "psychiatry",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m12",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 52,
+      "sex": "female",
+      "voice": false,
+      "text": "Knee swelling and pain for months, worse in the morning, both hands stiff too",
+      "expected_colour": "GREEN",
+      "expected_department": "orthopaedics",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "orthopaedics",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m13",
+      "category": "multi_symptom",
+      "lang": "urdu",
+      "age": 47,
+      "sex": "male",
+      "voice": false,
+      "text": "آنکھیں پیلی ہو گئی ہیں، پیشاب گہرا ہے اور بھوک نہیں لگتی ایک ہفتے سے",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m14",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 30,
+      "sex": "male",
+      "voice": false,
+      "text": "subah se paani jaisay dast aa rahe hain, aath dafa, ultiyan bhi, kuch peeta hoon to nikal jata hai",
+      "expected_colour": "YELLOW",
+      "expected_department": "medical",
+      "accept": [],
+      "gemini": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [
+          "vomiting_persistent"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "YELLOW",
+          "YELLOW",
+          "YELLOW"
+        ],
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "correct",
+        "signs": [
+          "vomiting_persistent"
+        ]
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m15",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 39,
+      "sex": "female",
+      "voice": false,
+      "text": "Lump in my breast for two months, not painful",
+      "expected_colour": "GREEN",
+      "expected_department": "surgical",
+      "accept": [
+        "gynae"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "surgical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m16",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 65,
+      "sex": "male",
+      "voice": false,
+      "text": "peshab ruk ruk ke aata hai, raat ko baar baar uthna parta hai, kai mahine se",
+      "expected_colour": "GREEN",
+      "expected_department": "surgical",
+      "accept": [
+        "medical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "m17",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 23,
+      "sex": "female",
+      "voice": false,
+      "text": "Panic attacks, my heart races and I feel I can't breathe for a few minutes, then it settles, happening for weeks",
+      "expected_colour": "GREEN",
+      "expected_department": "psychiatry",
+      "accept": [
+        "medical",
+        "cardiology"
+      ],
+      "gemini": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "department": "psychiatry",
+        "dept_ok": true,
+        "signs": [
+          "sob_acute"
+        ],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "ORANGE",
+          "GREEN",
+          "ORANGE"
+        ],
+        "colour": "ORANGE",
+        "verdict": "over",
+        "disagreement": true
+      },
+      "lite": {
+        "colour": "ORANGE",
+        "verdict": "over",
+        "signs": [
+          "sob_acute"
+        ]
+      },
+      "hybrid": {
+        "colour": "ORANGE",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "m18",
+      "category": "multi_symptom",
+      "lang": "urdu",
+      "age": 54,
+      "sex": "female",
+      "voice": false,
+      "text": "کان سے کم سنائی دیتا ہے اور سیٹی جیسی آواز آتی ہے، کئی مہینوں سے",
+      "expected_colour": "GREEN",
+      "expected_department": "ent",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "ent",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    },
+    {
+      "id": "m19",
+      "category": "multi_symptom",
+      "lang": "english",
+      "age": 44,
+      "sex": "male",
+      "voice": false,
+      "text": "Burning when I pass urine, fever and pain in my lower back on one side",
+      "expected_colour": "GREEN",
+      "expected_department": "medical",
+      "accept": [
+        "surgical"
+      ],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "medical",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "YELLOW",
+        "verdict": "over",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "YELLOW",
+        "verdict": "over"
+      }
+    },
+    {
+      "id": "m20",
+      "category": "multi_symptom",
+      "lang": "roman_urdu",
+      "age": 28,
+      "sex": "female",
+      "voice": false,
+      "text": "chehre pe daane aur kaale dhabbe, bohat saal se, koi dard nahi",
+      "expected_colour": "GREEN",
+      "expected_department": "dermatology",
+      "accept": [],
+      "gemini": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "department": "dermatology",
+        "dept_ok": true,
+        "signs": [],
+        "offline": false
+      },
+      "consistency": {
+        "samples": [
+          "GREEN",
+          "GREEN",
+          "GREEN"
+        ],
+        "colour": "GREEN",
+        "verdict": "correct",
+        "disagreement": false
+      },
+      "lite": {
+        "colour": "GREEN",
+        "verdict": "correct",
+        "signs": []
+      },
+      "hybrid": {
+        "colour": "GREEN",
+        "verdict": "correct"
+      }
+    }
+  ]
+}

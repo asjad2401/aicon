@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Keyboard, Loader2, Mic, RotateCcw, Square, Check } from "lucide-react";
+import { Keyboard, Loader2, Mic, RotateCcw, Square, Check, Volume2, VolumeX, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TriageBadge } from "@/components/triage-badge";
 import { DEPARTMENT_BY_ID } from "@/lib/routing/departments";
@@ -12,6 +12,8 @@ import type { Routing } from "@/lib/routing/route";
 import type { TriageResult } from "@/lib/triage/sats";
 import { cn } from "@/lib/utils";
 import { useRecorder } from "./use-recorder";
+import { useVoice } from "./use-voice";
+import { voiceUrl } from "@/lib/voice/phrases";
 
 type Analysis = {
   offline: boolean;
@@ -21,9 +23,11 @@ type Analysis = {
   model: string;
   ms: number;
   knownHistoryUsed: number;
+  followUp?: FollowUp | null;
 };
 type Returning = { passportToken: string; name: string | null; reports: number };
-type Step = "details" | "describe" | "processing" | "confirm" | "saving";
+type Step = "details" | "describe" | "processing" | "followup" | "confirm" | "saving";
+type FollowUp = { target: string; why: string; question_ur: string; question_en: string };
 type Sex = "male" | "female";
 
 function Bilingual({ ur, en, className }: { ur: string; en: string; className?: string }) {
@@ -66,8 +70,10 @@ function PainScale({ value, onChange }: { value: number | null; onChange: (v: nu
 
 export function Kiosk() {
   const router = useRouter();
-  const recorder = useRecorder((audio) => void analyze({ audio }));
   const [step, setStep] = useState<Step>("details");
+  const voice = useVoice();
+  const [colourBefore, setColourBefore] = useState<string | null>(null);
+  const [answering, setAnswering] = useState(false);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState<Sex | null>(null);
@@ -112,10 +118,55 @@ export function Kiosk() {
       const data = await res.json();
       if (!res.ok) throw new Error(data.error);
       setAnalysis(data);
-      setStep("confirm");
+      setColourBefore(null);
+      if (data.followUp) {
+        setStep("followup");
+        voice.say([voiceUrl("line", "one_question"), voiceUrl("q", data.followUp.target)]);
+      } else {
+        setStep("confirm");
+        speakDirections(data);
+      }
     } catch (e) {
       setError(e instanceof Error && e.message ? e.message : "Something went wrong. Please try again.");
       setStep("describe");
+    }
+  }
+
+  const recorder = useRecorder((audio) => void analyze({ audio }));
+
+  function speakDirections(a: Pick<Analysis, "triage" | "routing">) {
+    voice.say([a.triage.colour === "RED" ? voiceUrl("line", "emergency_now") : voiceUrl("dept", a.routing.department)]);
+  }
+
+  async function answerFollowUp(answer: "yes" | "no" | "unsure") {
+    if (!analysis?.followUp) return;
+    voice.stop();
+    setAnswering(true);
+    try {
+      const res = await fetch("/api/intake/followup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          intake: analysis.intake,
+          routing: analysis.routing,
+          age: age ? Number(age) : undefined,
+          sex: sex ?? undefined,
+          target: analysis.followUp.target,
+          answer,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error);
+      setColourBefore(analysis.triage.colour);
+      const updated = { ...analysis, intake: data.intake, triage: data.triage, routing: data.routing };
+      setAnalysis(updated);
+      setStep("confirm");
+      speakDirections(updated);
+    } catch {
+      setError("Could not record your answer. Please continue.");
+      setStep("confirm");
+    } finally {
+      setAnswering(false);
     }
   }
 
@@ -147,6 +198,7 @@ export function Kiosk() {
   }
 
   function redo() {
+    voice.stop();
     setAnalysis(null);
     setText("");
     setStep("describe");
@@ -165,10 +217,20 @@ export function Kiosk() {
         ) : (
           <span />
         )}
-        <label className="flex items-center gap-1.5">
-          <input type="checkbox" checked={offlineMode} onChange={(e) => setOfflineMode(e.target.checked)} />
-          Simulate internet outage
-        </label>
+        <div className="flex items-center gap-3">
+          {voice.speaking && (
+            <span className="flex items-center gap-1 text-primary">
+              <Volume2 className="size-4 animate-pulse" /> Priora is speaking…
+            </span>
+          )}
+          <button type="button" onClick={voice.toggleMute} className="flex items-center gap-1 hover:text-foreground" aria-label={voice.muted ? "Unmute" : "Mute"}>
+            {voice.muted ? <VolumeX className="size-4" /> : <Volume2 className="size-4" />} {voice.muted ? "Voice off" : "Voice on"}
+          </button>
+          <label className="flex items-center gap-1.5">
+            <input type="checkbox" checked={offlineMode} onChange={(e) => setOfflineMode(e.target.checked)} />
+            Simulate internet outage
+          </label>
+        </div>
       </div>
       {error && (
         <p className="rounded-lg bg-destructive/10 p-3 text-center text-destructive">{error}</p>
@@ -259,7 +321,14 @@ export function Kiosk() {
               </button>
             ))}
           </div>
-          <Button className="h-16 text-xl" disabled={!detailsValid} onClick={() => setStep("describe")}>
+          <Button
+            className="h-16 text-xl"
+            disabled={!detailsValid}
+            onClick={() => {
+              setStep("describe");
+              voice.say([voiceUrl("line", "greeting")]);
+            }}
+          >
             Next · <span className="font-urdu">آگے</span>
           </Button>
         </section>
@@ -337,6 +406,36 @@ export function Kiosk() {
         </section>
       )}
 
+      {step === "followup" && analysis?.followUp && (
+        <section className="flex flex-col items-center gap-6">
+          <Bilingual ur="شکریہ۔ صرف ایک سوال اور" en="Thank you. Just one more question" />
+          <div className="w-full rounded-2xl border-2 border-primary/40 bg-card p-6 text-center">
+            <HelpCircle className="mx-auto mb-3 size-10 text-primary" />
+            <p className="font-urdu text-3xl" dir="rtl">{analysis.followUp.question_ur}</p>
+            <p className="mt-3 text-lg text-muted-foreground">{analysis.followUp.question_en}</p>
+            <button type="button" onClick={voice.replay} className="mt-3 inline-flex items-center gap-1 text-sm text-primary">
+              <Volume2 className="size-4" /> Hear again · <span className="font-urdu">دوبارہ سنیں</span>
+            </button>
+          </div>
+          <div className="grid w-full grid-cols-3 gap-3">
+            {(
+              [
+                ["yes", "ہاں", "Yes"],
+                ["no", "نہیں", "No"],
+                ["unsure", "پتہ نہیں", "Not sure"],
+              ] as const
+            ).map(([value, ur, en]) => (
+              <Button key={value} variant={value === "yes" ? "default" : "outline"} className="h-20 flex-col text-lg" disabled={answering} onClick={() => answerFollowUp(value)}>
+                <span className="font-urdu text-2xl leading-tight">{ur}</span>
+                <span className="text-sm">{en}</span>
+              </Button>
+            ))}
+          </div>
+          {answering && <Loader2 className="animate-spin text-primary" />}
+          <p className="text-center text-xs text-muted-foreground">Why we ask: {analysis.followUp.why}</p>
+        </section>
+      )}
+
       {step === "confirm" && analysis && (
         <section className="flex flex-col gap-6">
           {analysis.triage.colour === "RED" && (
@@ -346,6 +445,11 @@ export function Kiosk() {
             </div>
           )}
 
+          {colourBefore && colourBefore !== analysis.triage.colour && (
+            <p className="rounded-xl bg-triage-orange/10 p-3 text-center text-triage-orange">
+              Updated after your answer: {colourBefore} → <strong>{analysis.triage.colour}</strong>
+            </p>
+          )}
           <Bilingual ur="ہم نے یہ سمجھا:" en="We understood:" />
           <div className="rounded-2xl border bg-card p-6">
             <p className="font-urdu text-2xl" dir="rtl">{analysis.intake.summary_ur}</p>

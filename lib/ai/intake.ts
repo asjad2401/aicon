@@ -46,7 +46,16 @@ export const IntakeSchema = z.object({
     .describe("If something important is ambiguous, one short follow-up question in simple Urdu; else null"),
 });
 
-export type Intake = z.infer<typeof IntakeSchema>;
+/** What we store: the AI output plus pipeline annotations (never asked of the model). */
+export const StoredIntakeSchema = IntakeSchema.extend({
+  readings_disagreed: z.array(z.string()).optional().describe("Colours from two independent AI readings, when they differed"),
+  follow_up: z
+    .object({ target: z.string(), question: z.string(), answer: z.enum(["yes", "no", "unsure"]) })
+    .optional()
+    .describe("The kiosk's spoken follow-up question and the patient's answer"),
+});
+
+export type Intake = z.infer<typeof StoredIntakeSchema>;
 
 export const INTAKE_SYSTEM = `You are the intake assistant at the entrance of a busy government hospital OPD in Pakistan.
 Patients speak or type in Urdu, Roman Urdu (Urdu in Latin letters), English, or a mix. Many have low literacy.
@@ -77,6 +86,7 @@ export type IntakeInput =
 export async function extractIntake(
   input: IntakeInput,
   context: { age?: number; sex?: string } = {},
+  opts: { temperature?: number } = {},
 ) {
   const ctx = [
     context.age != null && `Age: ${context.age}`,
@@ -98,5 +108,6 @@ export async function extractIntake(
     system: INTAKE_SYSTEM,
     contents: [{ role: "user", parts }],
     thinking: ThinkingLevel.LOW,
+    temperature: opts.temperature,
   });
 }

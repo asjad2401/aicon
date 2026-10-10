@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import results from "@/eval/results.json";
 import liteEval from "@/ml/model/eval.json";
 import liteMetrics from "@/ml/model/metrics.json";
+import hard from "@/eval/hard-results.json";
 
 export const metadata: Metadata = { title: "Evaluation · Priora" };
 
@@ -159,6 +160,54 @@ export default function EvalPage() {
             </table>
           </div>
         </div>
+
+        <section className="flex flex-col gap-4 rounded-xl border bg-card p-5">
+          <div>
+            <h2 className="text-xl font-semibold">Stress test: {hard.summary.n} hard cases, text and real speech</h2>
+            <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
+              A second, harder set written independently of the training data: red flags hidden in mild wording, negations and resolved
+              symptoms, one-word complaints, typos and code-switching, relatives speaking, children, pregnancy and long stories.{" "}
+              {hard.summary.voice.n} of them were turned into real Urdu/English speech with Gemini TTS and sent through the voice path.
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm tabular-nums">
+              <thead className="text-left text-xs text-muted-foreground">
+                <tr><th className="py-1">System</th><th>Cases</th><th>Colour accuracy</th><th>Under-triage</th><th>Over-triage</th></tr>
+              </thead>
+              <tbody>
+                {(
+                  [
+                    ["Gemini pipeline (single reading)", hard.summary.systems.gemini],
+                    ["Gemini + self-consistency (two readings, most urgent kept; shipped)", hard.summary.systems.gemini_self_consistency],
+                    ["Priora Lite (offline model)", hard.summary.systems.priora_lite],
+                    ["Voice: real synthesised speech", hard.summary.voice.voice],
+                  ] as const
+                ).map(([label, m]) => (
+                  <tr key={label} className="border-t">
+                    <td className="py-2">{label}</td>
+                    <td>{m.n}</td>
+                    <td className="font-semibold">{Math.round((m.accuracy ?? 0) * 1000) / 10}%</td>
+                    <td className={cn((m.under_triage ?? 0) > 0.05 && "text-triage-red")}>{Math.round((m.under_triage ?? 0) * 1000) / 10}%</td>
+                    <td>{Math.round((m.over_triage ?? 0) * 1000) / 10}%</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {Object.entries(hard.summary.by_category).map(([cat, v]) => (
+              <div key={cat} className="rounded-lg bg-muted/50 p-3 text-sm">
+                <p className="text-xs uppercase text-muted-foreground">{cat.replaceAll("_", " ")}</p>
+                <p className="font-semibold">{Math.round((v.gemini ?? 0) * 100)}% <span className="font-normal text-muted-foreground">Gemini · {Math.round((v.lite ?? 0) * 100)}% Lite · n={v.n}</span></p>
+              </div>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground">
+            The two-reading check is live in the kiosk: in this test it caught the single under-triage (an electrical burn described as
+            &ldquo;he seems fine now&rdquo;), at the cost of a little extra over-triage, which is the safe direction. Raw results: <code className="rounded bg-muted px-1">eval/hard-results.json</code>.
+          </p>
+        </section>
 
         <section className="flex flex-col gap-4 rounded-xl border bg-card p-5">
           <div>

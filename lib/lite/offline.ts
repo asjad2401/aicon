@@ -66,5 +66,5 @@ export function runOfflineIntake(text: string, ctx: { age?: number; painScore?: 
           ? { department: "medical", confidence: pred.departmentConfidence, reasons: ["Offline routing uncertain → Medical OPD, nurse to review", ...reasons], alternatives: [dept], source: "offline_model" }
           : { department: dept, confidence: pred.departmentConfidence, reasons, alternatives: [], source: "offline_model" };
 
-  return { intake, triage: result, routing, model: "priora-lite", ms: Date.now() - started, offline: true as const };
+  return { intake, triage: result, routing, followUp: null, model: "priora-lite", ms: Date.now() - started, offline: true as const };
 }

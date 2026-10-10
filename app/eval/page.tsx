@@ -8,6 +8,7 @@ import results from "@/eval/results.json";
 import liteEval from "@/ml/model/eval.json";
 import liteMetrics from "@/ml/model/metrics.json";
 import hard from "@/eval/hard-results.json";
+import syn from "@/eval/syndrome-results.json";
 
 export const metadata: Metadata = { title: "Evaluation · Priora" };
 
@@ -160,6 +161,29 @@ export default function EvalPage() {
             </table>
           </div>
         </div>
+
+        <section className="flex flex-col gap-3 rounded-xl border bg-card p-5">
+          <h2 className="text-xl font-semibold">Syndrome tagging: the AI feeding the early-warning network</h2>
+          <p className="max-w-3xl text-sm text-muted-foreground">
+            {syn.summary.n} hand-written complaints (Urdu, Roman Urdu, English), including look-alikes that must not be tagged: a fever alone, a cough
+            without fever, a hepatitis follow-up. The measured recall is the default in the outbreak lead-time study.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-4">
+            {(
+              [
+                ["Precision", syn.summary.micro_precision],
+                ["Recall", syn.summary.micro_recall],
+                ["Look-alikes left untagged", syn.summary.negatives_clean],
+                ["Dengue-like recall (n=5)", syn.summary.dengue_recall ?? 0],
+              ] as const
+            ).map(([label, v]) => (
+              <div key={label} className="rounded-lg bg-muted/50 p-3">
+                <p className="text-xs text-muted-foreground">{label}</p>
+                <p className="text-2xl font-semibold">{Math.round(v * 1000) / 10}%</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className="flex flex-col gap-4 rounded-xl border bg-card p-5">
           <div>

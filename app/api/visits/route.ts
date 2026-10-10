@@ -2,7 +2,7 @@ import { z } from "zod";
 import { StoredIntakeSchema } from "@/lib/ai/intake";
 import { DEPARTMENT_IDS } from "@/lib/routing/departments";
 import { createVisit } from "@/lib/visits";
-import { AREA_IDS } from "@/lib/surveillance/config";
+import { AREA_IDS, HOSPITAL_IDS } from "@/lib/surveillance/config";
 
 const RoutingSchema = z.object({
   department: z.enum(DEPARTMENT_IDS),
@@ -22,6 +22,7 @@ const BodySchema = z.object({
   model: z.string().optional(),
   passportToken: z.string().max(20).optional(),
   area: z.enum(AREA_IDS).optional(),
+  hospital: z.enum(HOSPITAL_IDS).optional(),
 });
 
 // POST: patient confirmed the analysis → create patient + visit + token.

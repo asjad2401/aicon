@@ -117,7 +117,7 @@ export function LeadTime() {
             </button>
           </div>
           <Slider label="Patients passing a Priora kiosk" value={p.coverage} min={0.1} max={1} step={0.05} onChange={(v) => set({ coverage: v })} />
-          <Slider label="AI syndrome-tagging recall" value={p.sensitivity} min={0.4} max={1} step={0.05} onChange={(v) => set({ sensitivity: v })} />
+          <Slider label="AI syndrome-tagging recall" value={p.sensitivity} min={0.4} max={1} step={0.01} onChange={(v) => set({ sensitivity: v })} source="Default 87%: measured on our 44-case syndrome evaluation" />
           <Slider label="Suspected cases lab-tested" value={p.testingRate} min={0.05} max={1} step={0.05} onChange={(v) => set({ testingRate: v })} />
           <Slider
             label="Weekly surveillance reports on time"

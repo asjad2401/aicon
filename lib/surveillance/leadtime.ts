@@ -45,7 +45,7 @@ export const DEFAULT_LEADTIME: LeadTimeParams = {
   initialOutbreakCases: [0.5, 2],
   doublingDays: [3, 7],
   coverage: 0.6,
-  sensitivity: 0.85,
+  sensitivity: 0.87, // measured: AI syndrome-tagging micro-recall on eval/syndrome-cases.json (27/31)
   falsePositiveRate: 0.05,
   testingRate: 0.3,
   labSensitivity: 0.9,

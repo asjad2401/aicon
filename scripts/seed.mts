@@ -16,7 +16,7 @@ import type { DepartmentId } from "@/lib/routing/departments";
 import { triage, type Vitals } from "@/lib/triage/sats";
 import { hashPassword } from "@/lib/auth/password";
 import type { Colour } from "@/lib/triage/discriminators";
-import { AREA_IDS, SYNDROME_BY_ID } from "@/lib/surveillance/config";
+import { AREA_BY_ID, AREA_IDS, SYNDROME_BY_ID, type AreaId } from "@/lib/surveillance/config";
 
 const db = getDb();
 const NORMAL: Vitals = { rr: 16, hr: 84, sbp: 124, temp: 37, avpu: "alert", mobility: "walking", trauma: false };
@@ -134,6 +134,7 @@ for (const p of PATIENTS) {
     colour: (final ?? provisional).colour,
     department: p.dept,
     area: p.area ?? AREA_IDS[PATIENTS.indexOf(p) % AREA_IDS.length],
+    hospital: "pims",
     routing: { department: p.dept, confidence: 0.92, reasons: [p.routingReason], alternatives: [], source: p.dept === "paediatrics" ? "rule" : "ai" },
     status: final ? "triaged" : "waiting",
     arrivedAt,
@@ -148,6 +149,21 @@ for (const p of PATIENTS) {
 console.log("Generating 30 days of surveillance history…");
 let seed = 7;
 const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+// Where residents go: Islamabad mostly PIMS/Polyclinic, Rawalpindi mostly Holy Family/BBH.
+// Outbreak cases are spread across all four (patients go wherever is nearest or least crowded).
+const pickHospital = (area: string, outbreak = false) => {
+  const weights = outbreak
+    ? { pims: 0.35, polyclinic: 0.25, hfh: 0.22, bbh: 0.18 }
+    : AREA_BY_ID[area as AreaId]?.city === "Rawalpindi"
+      ? { pims: 0.1, polyclinic: 0.05, hfh: 0.5, bbh: 0.35 }
+      : { pims: 0.55, polyclinic: 0.35, hfh: 0.06, bbh: 0.04 };
+  let u = rand();
+  for (const [h, w] of Object.entries(weights)) {
+    if (u < w) return h;
+    u -= w;
+  }
+  return "pims";
+};
 const poisson = (lambda: number) => {
   let k = 0;
   for (let p = Math.exp(-lambda), sum = p, u = rand(); u > sum; ) sum += p = (p * lambda) / ++k;
@@ -177,17 +193,18 @@ const COMPLAINT: Record<string, string[]> = {
 const DEPT: Record<string, DepartmentId> = { awd: "medical", measles_like: "paediatrics", sari: "medical" };
 
 const pkMidnight = (() => { const d = new Date(now + 5 * 3600_000); d.setUTCHours(0, 0, 0, 0); return d.getTime() - 5 * 3600_000; })();
-const history: { area: string; syndrome: string; at: Date }[] = [];
+const history: { area: string; syndrome: string; at: Date; hospital: string }[] = [];
 for (let daysAgo = 29; daysAgo >= 0; daysAgo--) {
   const dayStart = pkMidnight - daysAgo * 86_400_000;
   const span = daysAgo === 0 ? Math.max(now - dayStart, 60_000) : 14 * 3600_000; // today: only up to now
   const startAt = daysAgo === 0 ? dayStart : dayStart + 8 * 3600_000;
   for (const area of AREA_IDS) {
     for (const [syndrome, rate] of Object.entries(RATES)) {
-      let n = poisson(rate);
+      const n = poisson(rate);
+      for (let i = 0; i < n; i++) history.push({ area, syndrome, at: new Date(startAt + rand() * span), hospital: pickHospital(area) });
       const c = CLUSTERS.find((x) => x.area === area && x.syndrome === syndrome);
-      if (c && daysAgo < c.extra.length) n += c.extra[c.extra.length - 1 - daysAgo];
-      for (let i = 0; i < n; i++) history.push({ area, syndrome, at: new Date(startAt + rand() * span) });
+      const extra = c && daysAgo < c.extra.length ? c.extra[c.extra.length - 1 - daysAgo] : 0;
+      for (let i = 0; i < extra; i++) history.push({ area, syndrome, at: new Date(startAt + rand() * span), hospital: pickHospital(area, true) });
     }
   }
 }
@@ -218,6 +235,7 @@ for (let i = 0; i < history.length; i += 400) {
         colour: "GREEN",
         department: pts[j].age != null && pts[j].age! < 12 ? "paediatrics" : (DEPT[h.syndrome] ?? "medical"),
         area: h.area,
+        hospital: h.hospital,
         status: "seen",
         arrivedAt: h.at,
         aiModel: "seed-history",
@@ -277,6 +295,7 @@ for (let i = 0; i < pilotMix.length; i += 60) {
           nurseColour: nurse,
           triagedBy: nurseId,
           department: cfg.dept,
+          hospital: (["pims", "polyclinic", "hfh", "bbh"] as const)[Math.floor(rand() * 4)],
           status: "seen",
           arrivedAt,
           triagedAt: new Date(arrivedAt.getTime() + 60_000),

@@ -1,14 +1,14 @@
 # Priora
 
-### The right patient, first.
+### Priora sees outbreaks a week before the lab reports do.
 
-**An AI triage nurse that speaks Urdu.** It listens to every patient before they queue, asks the one question that matters, reads their old paper reports, keeps working when the internet doesn't, and warns the district when symptoms start to cluster.
+**An AI triage nurse at every hospital front desk, speaking Urdu, and every conversation becomes an anonymous signal in a district early-warning network.** Patients are understood, prioritised and sent to the right place; the district sees dengue, cholera or measles clusters forming days before lab-confirmed reporting.
 
 [**Try it live → priora.asjad.dev**](https://priora.asjad.dev) · Demo video: _link to be added_
 
-| Critical patients wait | Missed emergencies | Patients sent to the wrong line | Doctor hours lost to paper files |
+| Outbreak warning | Outbreaks caught within 2 weeks | Missed emergencies | Critical patients wait |
 |:---:|:---:|:---:|:---:|
-| **1h 5m → 1 min** | **0%** under-triage | **48 → 10** a morning | **5.7 h → 1.9 h** a morning |
+| **7 days earlier** than lab-confirmed reporting | **86% vs 41%** today | **0%** on 110 hard cases | **1h 5m → 1 min** |
 
 | 110 hard test cases | Real Urdu speech | Works offline | Problem scale |
 |:---:|:---:|:---:|:---:|
@@ -37,6 +37,7 @@ Seventy minutes later he reaches a doctor who has three minutes for him. The bag
 | Health information systems **"completely absent"** at all care levels in Rawalpindi/Islamabad; records mostly manual | [PLoS One 2021](https://pmc.ncbi.nlm.nih.gov/articles/PMC8496784) |
 | **31.4%** of adults have diabetes, the highest prevalence in the world | [IDF Diabetes Atlas 2024](https://diabetesatlas.org/data-by-location/country/pakistan/) |
 | National disease surveillance received **75%** of expected weekly reports, yet still logged **75,129** suspected diarrhoea cases in one week | [NIH Pakistan IDSR bulletin, Week 44-2025](https://www2.nih.org.pk/wp-content/uploads/2025/11/Weekly_Report-44-2025.pdf) |
+| Sindh **officially** reported **819** dengue cases in 2025, while hospitals and labs counted **12,000+** in six weeks | [Dawn, Oct 2025](https://www.dawn.com/news/amp/1949810) |
 | **1 in 3** people aged 10+ cannot read; rural female literacy is **44%** | [Pakistan Economic Survey 2025-26](https://www.finance.gov.pk/survey/chapter_26/11_Health_and_Nutrition.pdf) |
 
 Three problems compound before a doctor ever sees the patient:
@@ -48,6 +49,20 @@ Three problems compound before a doctor ever sees the patient:
 _Problem identified, and the solution reviewed, with a medical student who works in government hospitals. Her verdict: severity-based routing is the core value, SATS is the triage scale actually in use, and a history brief helps, with a proper examination always following. Priora is built around exactly that._
 
 ---
+
+## Two levels, one system
+
+| | For the patient (every front desk) | For the district (every hospital, pooled) |
+|---|---|---|
+| **What happens** | Speak in Urdu → understood → one smart follow-up question, aloud → SATS colour → right department → cited history brief for the doctor | Every intake is tagged with WHO-style syndromes and pooled anonymously across hospitals → daily aberration check → alert, AI brief, surge plan |
+| **Who acts** | Nurse confirms, doctor treats | District health officer investigates and pre-positions resources |
+| **What's different** | No forms, no reading, works offline with our own model | Sees clusters days before lab confirmation, across hospitals that today don't share data |
+
+### The district early-warning network
+- **12 areas, 4 hospitals** (PIMS, Polyclinic, Holy Family, Benazir Bhutto) on one live map. Each alert shows which hospitals saw the cases: in the demo, the busiest single hospital saw only 36–50% of a cluster.
+- **Detection:** a CDC EARS-style aberration check on daily syndrome counts per area (deterministic, explainable).
+- **For each alert:** a cited AI brief for the health officer (actions only from a standard response checklist), a **3-day surge projection** and what to stock: beds (using the sourced 13.3% dengue admission rate from Rawalpindi's teaching hospitals, 2025), NS1 kits, ORS.
+- **Lead-time study** ([/impact](https://priora.asjad.dev/impact)): across 1,000 simulated outbreaks, Priora alerts a **median 7 days earlier** than lab-confirmed weekly reporting (middle half: 2–11 days), catches **86% vs 41%** within two weeks, with about one false alarm every three months across the district. It needs real coverage: below ~40% of care-seeking patients passing a Priora kiosk, today's system wins, which is why the pilot targets the district's largest OPDs. Only the 75% report-compliance figure is sourced; the rest are stated, adjustable assumptions.
 
 ## Meet Priora
 
@@ -154,6 +169,8 @@ We didn't want to just claim impact, so we built a **simulator** ([try it](https
 
 The two-reading check caught the only miss: an electrical burn described as *"he seems fine now"*. Our offline model is honestly weaker on hard cases, which is exactly why it is only a safety net and the nurse confirms every offline result.
 
+**3. Syndrome tagging** (the AI feeding the early-warning network): 44 hand-written complaints including deliberate look-alikes. **Precision 93%, recall 87%, and 16/16 look-alikes correctly left untagged.** The measured recall is what the lead-time study uses. Dengue-like recall was lower on a small sample (3/5); even at 60% recall the study still shows a 5-day lead.
+
 **Validated as it's used.** Priora has a clinical validation study built into the daily workflow:
 - Nurses record their own triage colour **before** the system's result is revealed, so there's no anchoring.
 - Doctors confirm whether the department was right and whether the brief was accurate, at every consultation.
@@ -221,11 +238,11 @@ For judges and engineers. Priora's AI does **seven distinct jobs**, each with a 
 | 3 | **Document reading** | Photo of a paper report → typed facts (diagnoses, medications, labs, allergies) with flags and their location on the page |
 | 4 | **Cited pre-consultation brief** | All facts + today's complaint → a ranked brief where every line cites its sources |
 | 5 | **Syndrome tagging** | Each intake → WHO-style surveillance syndromes (dengue-like, acute watery diarrhoea, …) |
-| 6 | **Outbreak alert brief** | Detected cluster statistics → a cited brief for the health officer with actions from a standard checklist |
+| 6 | **Outbreak alert brief** | Detected cluster statistics (incl. hospital spread and surge projection) → a cited brief for the health officer with actions from a standard checklist |
 | 7 | **Follow-up planner** (talking kiosk) | Findings + current colour → the single yes/no question whose answer could raise the triage, or none. Candidates are restricted by code to signs that would change the outcome |
 | ★ | **Priora Lite** (our own model) | Character + word n-gram classifier trained on 5,176 Gemini-generated complaints → SATS signs + department, offline, ~8 ms. [Model card](ml/README.md) |
 
-**Rules where safety matters:** SATS triage (TEWS + discriminators), queue ordering and outbreak detection (CDC EARS-style aberration scoring) are deterministic code, not AI.
+**Rules where safety matters:** SATS triage (TEWS + discriminators), queue ordering, outbreak detection (CDC EARS-style aberration scoring) and surge projection (log-linear trend, capped growth) are deterministic code, not AI.
 
 | The AICON frame | Priora |
 |---|---|

@@ -4,14 +4,18 @@ import { useState } from "react";
 import useSWR from "swr";
 import { AlertTriangle, Eye, Loader2, ShieldCheck } from "lucide-react";
 import { fetcher } from "@/lib/client/api";
-import { AREAS, AREA_BY_ID, SYNDROMES, SYNDROME_BY_ID, type AreaId } from "@/lib/surveillance/config";
+import { AREAS, AREA_BY_ID, HOSPITALS, HOSPITAL_BY_ID, SYNDROMES, SYNDROME_BY_ID, type AreaId, type HospitalId } from "@/lib/surveillance/config";
+import { DistrictMap } from "./district-map";
+import { HORIZON, projectCases, resourceNeeds } from "@/lib/surveillance/projection";
 import type { Level, Signal } from "@/lib/surveillance/detect";
 import { cn } from "@/lib/utils";
 
+type NetSignal = Signal & { hospitals?: { hospital: string; count: number }[] };
 type SurveillanceData = {
   today: string;
   days: string[];
-  signals: Signal[];
+  signals: NetSignal[];
+  network: { hospital: string; intakes: number }[];
   patientsAnalysed: number;
   syndromeCases: number;
 };
@@ -161,6 +165,81 @@ function AlertBrief({ signal }: { signal: Signal }) {
   );
 }
 
+/** Next-3-day projection for an active cluster, turned into what to stock. */
+function SurgePlan({ signal }: { signal: Signal }) {
+  const p = projectCases(signal.series.map((x) => x.count));
+  const needs = resourceNeeds(signal.syndrome, p);
+  return (
+    <div className="rounded-lg border border-triage-orange/30 bg-triage-orange/5 p-3 text-sm">
+      <p className="mb-2 text-xs font-medium uppercase text-muted-foreground">
+        Surge plan · next {HORIZON} days {p.doublingDays ? `· doubling every ~${p.doublingDays} days` : "· not growing"}
+      </p>
+      <div className="flex flex-wrap gap-2">
+        {p.daily.map((d) => (
+          <div key={d.day} className="rounded-md bg-background px-3 py-1.5 tabular-nums">
+            <span className="text-xs text-muted-foreground">Day +{d.day}</span>{" "}
+            <span className="font-semibold">{d.expected}</span>
+            <span className="text-xs text-muted-foreground"> ({d.low}–{d.high})</span>
+          </div>
+        ))}
+        <div className="rounded-md bg-background px-3 py-1.5 tabular-nums">
+          <span className="text-xs text-muted-foreground">Total</span> <span className="font-semibold">{p.total.expected}</span>
+          <span className="text-xs text-muted-foreground"> ({p.total.low}–{p.total.high}) cases</span>
+        </div>
+      </div>
+      {needs.length > 0 && (
+        <table className="mt-3 w-full text-sm tabular-nums">
+          <tbody>
+            {needs.map((r) => (
+              <tr key={r.item} className="border-t border-triage-orange/15">
+                <td className="py-1.5">{r.item}</td>
+                <td className="font-semibold">{r.expected} {r.unit}</td>
+                <td className="text-xs text-muted-foreground">range {r.low}–{r.high}</td>
+                <td className="text-xs text-muted-foreground" title={r.source}>{r.source.startsWith("assumption") || r.source.includes("(assumption)") ? "assumed ratio" : "sourced ratio ⓘ"}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+      <p className="mt-2 text-xs text-muted-foreground">
+        Log-linear trend of the last 5 days applied to today&apos;s count, growth capped at doubling every 2 days. A planning estimate, not a forecast
+        of record.
+      </p>
+    </div>
+  );
+}
+
+/** Which hospitals saw this cluster: no single hospital sees the whole picture. */
+function NetworkBreakdown({ signal }: { signal: NetSignal }) {
+  const rows = signal.hospitals ?? [];
+  const total = rows.reduce((a, r) => a + r.count, 0) || 1;
+  const top = rows[0];
+  return (
+    <div className="rounded-lg bg-muted/50 p-3 text-sm">
+      <p className="mb-2 text-xs font-medium uppercase text-muted-foreground">Seen across the network · last 3 days</p>
+      <div className="flex h-7 w-full overflow-hidden rounded-md">
+        {rows.map((r, i) => (
+          <div
+            key={r.hospital}
+            className="flex items-center justify-center text-[11px] font-semibold text-white"
+            style={{ width: `${(r.count / total) * 100}%`, background: ["#0f766e", "#14b8a6", "#5eead4", "#99f6e4"][i] ?? "#cbd5e1", color: i >= 2 ? "#0f2a2a" : "#fff" }}
+            title={`${HOSPITAL_BY_ID[r.hospital as HospitalId]?.name ?? r.hospital}: ${r.count}`}
+          >
+            {HOSPITAL_BY_ID[r.hospital as HospitalId]?.name ?? r.hospital} {r.count}
+          </div>
+        ))}
+      </div>
+      {top && (
+        <p className="mt-2 text-muted-foreground">
+          The busiest single hospital saw only <strong className="text-foreground">{Math.round((top.count / total) * 100)}%</strong> of this cluster.
+          In our lead-time study, one hospital&apos;s coverage alone (~20%) detects outbreaks <em>later</em> than lab reporting; the network&apos;s
+          coverage (~60%) detects them a median of 7 days earlier.
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function Surveillance() {
   const { data } = useSWR<SurveillanceData>("/api/surveillance", fetcher, { refreshInterval: 30_000 });
   const [selected, setSelected] = useState<{ area: string; syndrome: string } | null>(null);
@@ -177,7 +256,7 @@ export function Surveillance() {
   return (
     <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 p-6">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight">District early warning</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">District early-warning network</h1>
         <p className="mt-1 max-w-3xl text-muted-foreground">
           Every kiosk intake is tagged with WHO-style syndromes by AI. Daily counts per area are compared with a 7-day baseline (CDC EARS
           method) to flag unusual clusters <strong className="text-foreground">before lab confirmation</strong>. Anonymous counts only.
@@ -187,7 +266,7 @@ export function Surveillance() {
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {[
-          ["Areas monitored", String(AREAS.length)],
+          [`Hospitals in the network · ${data.network.reduce((a, n) => a + n.intakes, 0).toLocaleString()} intakes / 30 days`, String(HOSPITALS.length)],
           ["Syndrome cases, last 30 days", data.syndromeCases.toLocaleString()],
           ["Active alerts", String(alerts.length)],
           ["On watch", String(flagged.length - alerts.length)],
@@ -198,6 +277,15 @@ export function Surveillance() {
           </div>
         ))}
       </div>
+
+      <DistrictMap
+        signals={data.signals}
+        network={data.network}
+        onSelect={(area, syndrome) => {
+          setSelected({ area, syndrome });
+          document.getElementById("alert-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
+        }}
+      />
 
       {flagged.length > 0 ? (
         <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
@@ -229,7 +317,7 @@ export function Surveillance() {
           </div>
 
           {current && (
-            <div className="flex flex-col gap-4 rounded-xl border bg-card p-5">
+            <div id="alert-detail" className="flex flex-col gap-4 rounded-xl border bg-card p-5">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div>
                   <p className="text-xl font-semibold">
@@ -240,6 +328,8 @@ export function Surveillance() {
                 <LevelBadge level={current.level} />
               </div>
               <TrendChart signal={current} />
+              {current.level === "alert" && <SurgePlan signal={current} />}
+              {(current as NetSignal).hospitals?.length ? <NetworkBreakdown signal={current as NetSignal} /> : null}
               <AlertBrief key={`${current.area}-${current.syndrome}`} signal={current} />
             </div>
           )}

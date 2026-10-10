@@ -1,0 +1,510 @@
+{
+  "summary": {
+    "run_at": "2026-10-10T06:39:40.826Z",
+    "n": 44,
+    "errors": 0,
+    "micro_precision": 0.931,
+    "micro_recall": 0.871,
+    "negatives_clean": 1,
+    "dengue_recall": 0.6,
+    "per_syndrome": {
+      "dengue_like": {
+        "support": 5,
+        "tp": 3,
+        "fp": 0,
+        "fn": 2,
+        "precision": 1,
+        "recall": 0.6
+      },
+      "malaria_like": {
+        "support": 2,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "typhoid_like": {
+        "support": 4,
+        "tp": 3,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1,
+        "recall": 0.75
+      },
+      "ili": {
+        "support": 5,
+        "tp": 5,
+        "fp": 1,
+        "fn": 0,
+        "precision": 0.833,
+        "recall": 1
+      },
+      "sari": {
+        "support": 2,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "awd": {
+        "support": 4,
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "precision": 0.75,
+        "recall": 0.75
+      },
+      "bloody_diarrhoea": {
+        "support": 2,
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "jaundice": {
+        "support": 4,
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      },
+      "measles_like": {
+        "support": 3,
+        "tp": 3,
+        "fp": 0,
+        "fn": 0,
+        "precision": 1,
+        "recall": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "id": "n01",
+      "lang": "english",
+      "text": "Itchy rash on both arms for two weeks, no fever",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n02",
+      "lang": "roman_urdu",
+      "text": "khansi hai ek hafte se, bukhar bilkul nahi",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n03",
+      "lang": "english",
+      "text": "Mild fever since this morning, nothing else",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n04",
+      "lang": "urdu",
+      "text": "پیٹ خراب ہے، ایک بار پتلا پاخانہ ہوا، اب ٹھیک ہوں",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n05",
+      "lang": "english",
+      "text": "I had hepatitis B for years, here for my routine follow-up, no new symptoms",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n06",
+      "lang": "roman_urdu",
+      "text": "seenay mein dard hai jo baazu tak ja raha hai",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n07",
+      "lang": "english",
+      "text": "Knee pain for six months, worse on stairs",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n08",
+      "lang": "roman_urdu",
+      "text": "daant mein dard aur gaal sooj gaya hai",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n09",
+      "lang": "english",
+      "text": "Shortness of breath when climbing stairs for years, no fever, no cough",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n10",
+      "lang": "urdu",
+      "text": "سر میں درد رہتا ہے کئی ہفتوں سے، بخار نہیں",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n11",
+      "lang": "english",
+      "text": "Red itchy eye for two days, no fever",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n12",
+      "lang": "roman_urdu",
+      "text": "constipation hai kai dinon se, bukhar nahi",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n13",
+      "lang": "english",
+      "text": "My back hurts after lifting a heavy box yesterday",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n14",
+      "lang": "roman_urdu",
+      "text": "peshab mein jalan hai do din se",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n15",
+      "lang": "english",
+      "text": "Chickenpox-like blisters on my chest, mild itch, no fever",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "n16",
+      "lang": "roman_urdu",
+      "text": "ghabrahat hoti hai aur neend nahi aati",
+      "expected": [],
+      "got": []
+    },
+    {
+      "id": "s01",
+      "lang": "roman_urdu",
+      "text": "teen din se tez bukhar hai, aankhon ke peeche dard aur poora jism toot raha hai",
+      "expected": [
+        "dengue_like"
+      ],
+      "got": [
+        "dengue_like"
+      ]
+    },
+    {
+      "id": "s02",
+      "lang": "urdu",
+      "text": "چار دن سے بخار، جوڑوں میں شدید درد اور جسم پر سرخ دانے نکل آئے ہیں",
+      "expected": [
+        "dengue_like"
+      ],
+      "got": [
+        "dengue_like"
+      ]
+    },
+    {
+      "id": "s03",
+      "lang": "english",
+      "text": "High fever since Monday, terrible headache behind my eyes and my gums bled this morning",
+      "expected": [
+        "dengue_like"
+      ],
+      "got": [
+        "dengue_like"
+      ]
+    },
+    {
+      "id": "s04",
+      "lang": "roman_urdu",
+      "text": "bukhar hai do din se aur ulti ho rahi hai, badan mein shadeed dard",
+      "expected": [
+        "dengue_like"
+      ],
+      "got": []
+    },
+    {
+      "id": "s05",
+      "lang": "english",
+      "text": "Fever with chills and shivering every other day, then sweating",
+      "expected": [
+        "malaria_like"
+      ],
+      "got": [
+        "malaria_like"
+      ]
+    },
+    {
+      "id": "s06",
+      "lang": "roman_urdu",
+      "text": "kapkapi ke saath bukhar aata hai, phir paseena, teen din se",
+      "expected": [
+        "malaria_like"
+      ],
+      "got": [
+        "malaria_like"
+      ]
+    },
+    {
+      "id": "s07",
+      "lang": "urdu",
+      "text": "ایک ہفتے سے بخار ہے، پیٹ میں درد اور کمزوری، بخار اترتا نہیں",
+      "expected": [
+        "typhoid_like"
+      ],
+      "got": [
+        "typhoid_like"
+      ]
+    },
+    {
+      "id": "s08",
+      "lang": "english",
+      "text": "Fever for six days that won't go away, stomach ache and constipation",
+      "expected": [
+        "typhoid_like"
+      ],
+      "got": [
+        "typhoid_like"
+      ]
+    },
+    {
+      "id": "s09",
+      "lang": "roman_urdu",
+      "text": "paanch din se bukhar, pait mein dard aur dast, kuch khaya nahi jata",
+      "expected": [
+        "typhoid_like"
+      ],
+      "got": [
+        "typhoid_like",
+        "awd"
+      ]
+    },
+    {
+      "id": "s10",
+      "lang": "english",
+      "text": "Fever and sore throat since yesterday, body aches",
+      "expected": [
+        "ili"
+      ],
+      "got": [
+        "ili"
+      ]
+    },
+    {
+      "id": "s11",
+      "lang": "roman_urdu",
+      "text": "bukhar aur khansi do din se, gala bhi kharab hai",
+      "expected": [
+        "ili"
+      ],
+      "got": [
+        "ili"
+      ]
+    },
+    {
+      "id": "s12",
+      "lang": "urdu",
+      "text": "بخار کے ساتھ کھانسی اور گلے میں خراش",
+      "expected": [
+        "ili"
+      ],
+      "got": [
+        "ili"
+      ]
+    },
+    {
+      "id": "s13",
+      "lang": "english",
+      "text": "Fever and cough for four days and now I'm struggling to breathe",
+      "expected": [
+        "sari"
+      ],
+      "got": [
+        "sari"
+      ]
+    },
+    {
+      "id": "s14",
+      "lang": "roman_urdu",
+      "text": "abbu ko bukhar aur khansi hai, aur ab saans lene mein bohat mushkil ho rahi hai",
+      "expected": [
+        "sari"
+      ],
+      "got": [
+        "sari"
+      ]
+    },
+    {
+      "id": "s15",
+      "lang": "roman_urdu",
+      "text": "subah se paani jaisay dast, paanch dafa, ultiyan bhi",
+      "expected": [
+        "awd"
+      ],
+      "got": [
+        "awd"
+      ]
+    },
+    {
+      "id": "s16",
+      "lang": "english",
+      "text": "Watery diarrhoea many times since last night and vomiting",
+      "expected": [
+        "awd"
+      ],
+      "got": [
+        "awd"
+      ]
+    },
+    {
+      "id": "s17",
+      "lang": "urdu",
+      "text": "کل رات سے پانی جیسے پتلے دست آ رہے ہیں، بار بار",
+      "expected": [
+        "awd"
+      ],
+      "got": [
+        "awd"
+      ]
+    },
+    {
+      "id": "s18",
+      "lang": "roman_urdu",
+      "text": "bachay ko dast mein khoon aa raha hai aur pait mein marod",
+      "expected": [
+        "bloody_diarrhoea"
+      ],
+      "got": [
+        "bloody_diarrhoea"
+      ]
+    },
+    {
+      "id": "s19",
+      "lang": "english",
+      "text": "Diarrhoea with blood and mucus since two days",
+      "expected": [
+        "bloody_diarrhoea"
+      ],
+      "got": [
+        "bloody_diarrhoea"
+      ]
+    },
+    {
+      "id": "s20",
+      "lang": "urdu",
+      "text": "آنکھیں پیلی ہو گئی ہیں، پیشاب گہرا پیلا ہے اور متلی ہوتی ہے",
+      "expected": [
+        "jaundice"
+      ],
+      "got": [
+        "jaundice"
+      ]
+    },
+    {
+      "id": "s21",
+      "lang": "roman_urdu",
+      "text": "aankhen peeli ho gayi hain aur bukhar bhi hai, peshab ka rang gehra",
+      "expected": [
+        "jaundice"
+      ],
+      "got": [
+        "jaundice"
+      ]
+    },
+    {
+      "id": "s22",
+      "lang": "english",
+      "text": "My skin and eyes have turned yellow this week and I feel sick",
+      "expected": [
+        "jaundice"
+      ],
+      "got": [
+        "jaundice"
+      ]
+    },
+    {
+      "id": "s23",
+      "lang": "english",
+      "text": "Fever, red rash spreading all over the body, runny nose and red eyes",
+      "expected": [
+        "measles_like"
+      ],
+      "got": [
+        "measles_like"
+      ]
+    },
+    {
+      "id": "s24",
+      "lang": "roman_urdu",
+      "text": "bukhar ke baad poore jism pe laal daane, naak beh rahi hai aur khansi",
+      "expected": [
+        "measles_like"
+      ],
+      "got": [
+        "ili",
+        "measles_like"
+      ]
+    },
+    {
+      "id": "s25",
+      "lang": "urdu",
+      "text": "تیز بخار، آنکھیں سرخ، نزلہ اور پورے جسم پر سرخ دانے",
+      "expected": [
+        "measles_like"
+      ],
+      "got": [
+        "measles_like"
+      ]
+    },
+    {
+      "id": "s26",
+      "lang": "english",
+      "text": "Fever, cough and sore throat for two days, and loose watery stools today",
+      "expected": [
+        "ili",
+        "awd"
+      ],
+      "got": [
+        "ili"
+      ]
+    },
+    {
+      "id": "s27",
+      "lang": "roman_urdu",
+      "text": "teen din se tez bukhar, sar dard aur jism dard, ab gala bhi dukh raha hai",
+      "expected": [
+        "dengue_like",
+        "ili"
+      ],
+      "got": [
+        "ili"
+      ]
+    },
+    {
+      "id": "s28",
+      "lang": "english",
+      "text": "Fever for a week, abdominal pain, and my eyes have gone yellow",
+      "expected": [
+        "typhoid_like",
+        "jaundice"
+      ],
+      "got": [
+        "jaundice"
+      ]
+    }
+  ]
+}

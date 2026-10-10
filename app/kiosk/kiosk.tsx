@@ -68,7 +68,7 @@ function PainScale({ value, onChange }: { value: number | null; onChange: (v: nu
   );
 }
 
-export function Kiosk() {
+export function Kiosk({ hospital }: { hospital: string }) {
   const router = useRouter();
   const [step, setStep] = useState<Step>("details");
   const voice = useVoice();
@@ -186,6 +186,7 @@ export function Kiosk() {
           model: analysis.model,
           passportToken: returning?.passportToken,
           area: area || undefined,
+          hospital,
         }),
       });
       const data = await res.json();

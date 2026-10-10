@@ -3,20 +3,33 @@
  * Clinical/public-health configuration, kept separate from logic for review.
  */
 
+/** Catchment areas with approximate centre coordinates (schematic map, not survey-grade). */
 export const AREAS = [
-  { id: "g-6", name: "G-6", city: "Islamabad" },
-  { id: "g-9", name: "G-9", city: "Islamabad" },
-  { id: "g-10", name: "G-10", city: "Islamabad" },
-  { id: "f-7", name: "F-7", city: "Islamabad" },
-  { id: "f-10", name: "F-10", city: "Islamabad" },
-  { id: "i-8", name: "I-8", city: "Islamabad" },
-  { id: "i-10", name: "I-10", city: "Islamabad" },
-  { id: "bhara-kahu", name: "Bhara Kahu", city: "Islamabad" },
-  { id: "saddar", name: "Saddar", city: "Rawalpindi" },
-  { id: "dhok-hassu", name: "Dhok Hassu", city: "Rawalpindi" },
-  { id: "satellite-town", name: "Satellite Town", city: "Rawalpindi" },
-  { id: "chaklala", name: "Chaklala", city: "Rawalpindi" },
+  { id: "g-6", name: "G-6", city: "Islamabad", lat: 33.7172, lon: 73.0868 },
+  { id: "g-9", name: "G-9", city: "Islamabad", lat: 33.6936, lon: 73.0349 },
+  { id: "g-10", name: "G-10", city: "Islamabad", lat: 33.6797, lon: 73.0156 },
+  { id: "f-7", name: "F-7", city: "Islamabad", lat: 33.7215, lon: 73.0563 },
+  { id: "f-10", name: "F-10", city: "Islamabad", lat: 33.6955, lon: 73.0138 },
+  { id: "i-8", name: "I-8", city: "Islamabad", lat: 33.668, lon: 73.077 },
+  { id: "i-10", name: "I-10", city: "Islamabad", lat: 33.6466, lon: 73.0389 },
+  { id: "bhara-kahu", name: "Bhara Kahu", city: "Islamabad", lat: 33.7333, lon: 73.1667 },
+  { id: "saddar", name: "Saddar", city: "Rawalpindi", lat: 33.5985, lon: 73.048 },
+  { id: "dhok-hassu", name: "Dhok Hassu", city: "Rawalpindi", lat: 33.6262, lon: 73.0336 },
+  { id: "satellite-town", name: "Satellite Town", city: "Rawalpindi", lat: 33.6347, lon: 73.0655 },
+  { id: "chaklala", name: "Chaklala", city: "Rawalpindi", lat: 33.5867, lon: 73.0897 },
 ] as const;
+
+/** Hospitals in the network: each kiosk belongs to one. Approximate coordinates. */
+export const HOSPITALS = [
+  { id: "pims", name: "PIMS", full: "Pakistan Institute of Medical Sciences", city: "Islamabad", lat: 33.7046, lon: 73.049 },
+  { id: "polyclinic", name: "Polyclinic", full: "Federal Government Polyclinic", city: "Islamabad", lat: 33.713, lon: 73.082 },
+  { id: "hfh", name: "Holy Family", full: "Holy Family Hospital", city: "Rawalpindi", lat: 33.6375, lon: 73.0691 },
+  { id: "bbh", name: "Benazir Bhutto", full: "Benazir Bhutto Hospital", city: "Rawalpindi", lat: 33.6155, lon: 73.07 },
+] as const;
+
+export type HospitalId = (typeof HOSPITALS)[number]["id"];
+export const HOSPITAL_IDS = HOSPITALS.map((h) => h.id) as [HospitalId, ...HospitalId[]];
+export const HOSPITAL_BY_ID = Object.fromEntries(HOSPITALS.map((h) => [h.id, h])) as Record<HospitalId, (typeof HOSPITALS)[number]>;
 
 export type AreaId = (typeof AREAS)[number]["id"];
 export const AREA_IDS = AREAS.map((a) => a.id) as [AreaId, ...AreaId[]];

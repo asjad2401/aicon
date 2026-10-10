@@ -49,6 +49,7 @@ export async function createVisit(input: {
   model?: string;
   passportToken?: string;
   area?: string;
+  hospital?: string;
 }) {
   const db = getDb();
 
@@ -106,6 +107,7 @@ export async function createVisit(input: {
       colour: result.colour,
       department: input.routing.department,
       area: input.area ?? null,
+      hospital: input.hospital ?? null,
       routing: input.routing,
       aiModel: input.model,
       promptVersion: PROMPT_VERSION_INTAKE,

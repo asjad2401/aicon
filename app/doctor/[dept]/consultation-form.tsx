@@ -125,14 +125,14 @@ export function ConsultationForm({ detail, onSaved }: { detail: VisitDetail; onS
       <div className="flex flex-col gap-1">
         <span className="text-muted-foreground">Prescription</span>
         {rx.map((r, i) => (
-          <div key={i} className="grid grid-cols-[2fr_1fr_1fr_1fr_auto] gap-2">
+          <div key={i} className="grid grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2">
             {(["drug", "dose", "frequency", "duration"] as const).map((k) => (
               <input
                 key={k}
                 value={r[k]}
                 onChange={(e) => setRx(rx.map((x, j) => (j === i ? { ...x, [k]: e.target.value } : x)))}
                 placeholder={{ drug: "Drug", dose: "Dose", frequency: "e.g. BD", duration: "e.g. 5 days" }[k]}
-                className={field}
+                className={cn(field, "w-full min-w-0")}
               />
             ))}
             <button type="button" onClick={() => setRx(rx.length > 1 ? rx.filter((_, j) => j !== i) : [{ ...EMPTY_RX }])} aria-label="Remove"><X className="size-4 text-muted-foreground" /></button>

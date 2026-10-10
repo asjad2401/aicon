@@ -4,7 +4,7 @@
 
 **An AI triage nurse at every hospital front desk, speaking Urdu, and every conversation becomes an anonymous signal in a district early-warning network.** Patients are understood, prioritised and sent to the right place; the district sees dengue, cholera or measles clusters forming days before lab-confirmed reporting.
 
-[**Try it live → priora.asjad.dev**](https://priora.asjad.dev) · Demo video: _link to be added_
+[**Try it live → priora.asjad.dev**](https://priora.asjad.dev) · [**Demo video**](https://youtu.be/hWfAJVGhfbQ) · [**Pitch deck**](https://priora.asjad.dev/deck)
 
 | Outbreak warning | Outbreaks caught within 2 weeks | Missed emergencies | Critical patients wait |
 |:---:|:---:|:---:|:---:|

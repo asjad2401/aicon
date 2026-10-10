@@ -1,0 +1,449 @@
+{
+  "evaluated_at": "2026-10-09T21:17:24.386Z",
+  "parity_max_abs_diff": 0.0347,
+  "held_out": {
+    "n": 636,
+    "model": {
+      "discriminator_precision": 0.664,
+      "discriminator_recall": 0.708,
+      "colour_accuracy": 0.821,
+      "under_triage_rate": 0.061,
+      "over_triage_rate": 0.118
+    },
+    "lexicon": {
+      "discriminator_precision": 0.628,
+      "discriminator_recall": 0.138,
+      "colour_accuracy": 0.616,
+      "under_triage_rate": 0.352,
+      "over_triage_rate": 0.031
+    },
+    "model+lexicon": {
+      "discriminator_precision": 0.641,
+      "discriminator_recall": 0.739,
+      "colour_accuracy": 0.816,
+      "under_triage_rate": 0.052,
+      "over_triage_rate": 0.132
+    },
+    "department_accuracy": 0.769
+  },
+  "vignettes": {
+    "n": 28,
+    "lite": {
+      "colour_accuracy": 0.857,
+      "under_triage_rate": 0.036,
+      "over_triage_rate": 0.107,
+      "department_acceptable": 0.964
+    },
+    "gemini": {
+      "colour_accuracy": 1,
+      "under_triage_rate": 0,
+      "department_acceptable": 1
+    }
+  },
+  "latency_ms": 8.31,
+  "rows": [
+    {
+      "id": "v01",
+      "lang": "roman_urdu",
+      "text": "seenay mein dard hai jo baayen baazu tak ja raha hai, paseena bhi aa raha hai",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "chest_pain"
+      ],
+      "lite_department": "cardiology",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v02",
+      "lang": "english",
+      "text": "I had a fit about ten minutes ago and now I feel very drowsy and confused",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "reduced_consciousness",
+        "seizure_post_ictal"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v03",
+      "lang": "urdu",
+      "text": "مجھے اچانک بولنے میں مشکل ہو رہی ہے اور دائیں بازو میں کمزوری ہے",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "focal_neurology_acute"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v04",
+      "lang": "roman_urdu",
+      "text": "saans bilkul nahi aa rahi, honth neelay ho rahe hain",
+      "expected_colour": "RED",
+      "lite_colour": "RED",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "not_breathing"
+      ],
+      "lite_department": "emergency",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "RED",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v05",
+      "lang": "english",
+      "text": "Coughing up blood since yesterday and I have been losing weight for two months",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "coughing_blood"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v06",
+      "lang": "roman_urdu",
+      "text": "subah se ulti mein khoon aa raha hai",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "vomiting_fresh_blood",
+        "vomiting_persistent",
+        "haemorrhage_uncontrolled"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v07",
+      "lang": "english",
+      "text": "I am seven months pregnant and I have strong pain in my stomach",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "pregnancy_abdo",
+        "abdominal_pain"
+      ],
+      "lite_department": "gynae",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v08",
+      "lang": "roman_urdu",
+      "text": "do din se pait mein dard hai aur halka bukhar hai",
+      "expected_colour": "YELLOW",
+      "lite_colour": "YELLOW",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "abdominal_pain"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "YELLOW",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v09",
+      "lang": "english",
+      "text": "Fell off my motorbike, my wrist is swollen and looks bent",
+      "expected_colour": "YELLOW",
+      "lite_colour": "YELLOW",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "fracture_closed"
+      ],
+      "lite_department": "orthopaedics",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "YELLOW",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v10",
+      "lang": "urdu",
+      "text": "تین دن سے بخار ہے اور جسم میں درد ہے",
+      "expected_colour": "GREEN",
+      "lite_colour": "YELLOW",
+      "lite_triage": "over",
+      "lite_discriminators": [],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v11",
+      "lang": "english",
+      "text": "Itchy rash on both arms for two weeks",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "dermatology",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v12",
+      "lang": "roman_urdu",
+      "text": "teen din se daant mein dard hai aur gaal thora sooj gaya hai",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "dental",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v13",
+      "lang": "english",
+      "text": "Pain and discharge from my left ear for five days",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "ent",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v14",
+      "lang": "roman_urdu",
+      "text": "do din se aankh laal hai aur paani aa raha hai",
+      "expected_colour": "GREEN",
+      "lite_colour": "YELLOW",
+      "lite_triage": "over",
+      "lite_discriminators": [],
+      "lite_department": "eye",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v15",
+      "lang": "english",
+      "text": "I have been feeling very low for a month, I can't sleep and have no interest in anything",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "psychiatry",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v16",
+      "lang": "roman_urdu",
+      "text": "sugar ki mareez hoon, sugar 450 aa rahi hai, ultiyan ho rahi hain aur saans tez chal rahi hai",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "diabetic_ketosis",
+        "sob_acute",
+        "vomiting_persistent"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v17",
+      "lang": "english",
+      "text": "He swallowed rat poison about half an hour ago",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "poisoning_overdose"
+      ],
+      "lite_department": "paediatrics",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v18",
+      "lang": "roman_urdu",
+      "text": "haath par garam paani gir gaya, chhaala ban gaya hai",
+      "expected_colour": "YELLOW",
+      "lite_colour": "YELLOW",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "burn_other"
+      ],
+      "lite_department": "dermatology",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "YELLOW",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v19",
+      "lang": "english",
+      "text": "Knee pain for six months, worse when climbing stairs",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "orthopaedics",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v20",
+      "lang": "roman_urdu",
+      "text": "do hafton se periods bohat zyada aa rahe hain aur kamzori hai",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "gynae",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v21",
+      "lang": "english",
+      "text": "There is a lump in my neck that has been growing for three months",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "surgical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v22",
+      "lang": "roman_urdu",
+      "text": "achanak sar mein shadeed dard shuru hua, zindagi ka sab se bura dard hai",
+      "expected_colour": "ORANGE",
+      "lite_colour": "YELLOW",
+      "lite_triage": "under",
+      "lite_discriminators": [],
+      "lite_department": "orthopaedics",
+      "lite_dept_acceptable": false,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v23",
+      "lang": "english",
+      "text": "Got an electric shock while fixing a wire, there is a burn on my hand",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "burn_major"
+      ],
+      "lite_department": "surgical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v24",
+      "lang": "urdu",
+      "text": "مجھے ایک ہفتے سے کھانسی ہے",
+      "expected_colour": "GREEN",
+      "lite_colour": "YELLOW",
+      "lite_triage": "over",
+      "lite_discriminators": [],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v25",
+      "lang": "roman_urdu",
+      "text": "do din se dast aur ultiyan ho rahi hain, kuch khaa pee nahi raha",
+      "expected_colour": "YELLOW",
+      "lite_colour": "YELLOW",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "vomiting_persistent"
+      ],
+      "lite_department": "paediatrics",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "YELLOW",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v26",
+      "lang": "english",
+      "text": "I cut my hand with a kitchen knife, the bleeding stopped after I pressed on it",
+      "expected_colour": "YELLOW",
+      "lite_colour": "YELLOW",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "haemorrhage_controlled"
+      ],
+      "lite_department": "surgical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "YELLOW",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v27",
+      "lang": "roman_urdu",
+      "text": "kabhi kabhi ghabrahat hoti hai aur dil tez dharakne lagta hai",
+      "expected_colour": "GREEN",
+      "lite_colour": "GREEN",
+      "lite_triage": "correct",
+      "lite_discriminators": [],
+      "lite_department": "cardiology",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "GREEN",
+      "gemini_triage": "correct"
+    },
+    {
+      "id": "v28",
+      "lang": "english",
+      "text": "Severe chest tightness for the last hour and I can't breathe properly",
+      "expected_colour": "ORANGE",
+      "lite_colour": "ORANGE",
+      "lite_triage": "correct",
+      "lite_discriminators": [
+        "sob_acute",
+        "chest_pain"
+      ],
+      "lite_department": "medical",
+      "lite_dept_acceptable": true,
+      "gemini_colour": "ORANGE",
+      "gemini_triage": "correct"
+    }
+  ]
+}

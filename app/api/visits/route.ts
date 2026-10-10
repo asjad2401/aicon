@@ -9,7 +9,7 @@ const RoutingSchema = z.object({
   confidence: z.number(),
   reasons: z.array(z.string()),
   alternatives: z.array(z.enum(DEPARTMENT_IDS)),
-  source: z.enum(["rule", "ai", "ai_low_confidence"]),
+  source: z.enum(["rule", "ai", "ai_low_confidence", "offline_model"]),
   specialty: z.enum(DEPARTMENT_IDS).optional(),
 });
 

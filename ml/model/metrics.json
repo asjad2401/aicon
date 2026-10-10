@@ -1,0 +1,204 @@
+{
+  "items_generated": 5176,
+  "items_after_cleaning": 5176,
+  "removed_as_eval_contamination": 0,
+  "split": {
+    "train": 3727,
+    "val": 813,
+    "test": 636
+  },
+  "features": 18000,
+  "discriminators": {
+    "micro_f1": 0.681,
+    "micro_recall": 0.711,
+    "micro_precision": 0.653,
+    "per_label": {
+      "abdominal_pain": {
+        "support": 19,
+        "precision": 0.632,
+        "recall": 0.632,
+        "threshold": 0.6
+      },
+      "airway_compromised": {
+        "support": 15,
+        "precision": 0.579,
+        "recall": 0.733,
+        "threshold": 0.35
+      },
+      "burn_facial_inhalation": {
+        "support": 14,
+        "precision": 0.867,
+        "recall": 0.929,
+        "threshold": 0.4
+      },
+      "burn_major": {
+        "support": 8,
+        "precision": 0.6,
+        "recall": 0.75,
+        "threshold": 0.5
+      },
+      "burn_other": {
+        "support": 7,
+        "precision": 0.75,
+        "recall": 0.857,
+        "threshold": 0.45
+      },
+      "cardiac_arrest": {
+        "support": 14,
+        "precision": 0.722,
+        "recall": 0.929,
+        "threshold": 0.3
+      },
+      "chest_pain": {
+        "support": 19,
+        "precision": 0.714,
+        "recall": 0.526,
+        "threshold": 0.65
+      },
+      "coughing_blood": {
+        "support": 12,
+        "precision": 0.643,
+        "recall": 0.75,
+        "threshold": 0.6
+      },
+      "diabetic_hyperglycaemia": {
+        "support": 7,
+        "precision": 0.364,
+        "recall": 0.571,
+        "threshold": 0.35
+      },
+      "diabetic_ketosis": {
+        "support": 7,
+        "precision": 0.462,
+        "recall": 0.857,
+        "threshold": 0.25
+      },
+      "dislocation_large_joint": {
+        "support": 7,
+        "precision": 0.667,
+        "recall": 0.571,
+        "threshold": 0.25
+      },
+      "dislocation_small_joint": {
+        "support": 6,
+        "precision": 0.667,
+        "recall": 0.667,
+        "threshold": 0.45
+      },
+      "focal_neurology_acute": {
+        "support": 13,
+        "precision": 1.0,
+        "recall": 0.692,
+        "threshold": 0.6
+      },
+      "fracture_closed": {
+        "support": 8,
+        "precision": 0.5,
+        "recall": 0.5,
+        "threshold": 0.5
+      },
+      "fracture_compound": {
+        "support": 7,
+        "precision": 0.75,
+        "recall": 0.857,
+        "threshold": 0.2
+      },
+      "haemorrhage_controlled": {
+        "support": 13,
+        "precision": 0.75,
+        "recall": 0.692,
+        "threshold": 0.5
+      },
+      "haemorrhage_uncontrolled": {
+        "support": 6,
+        "precision": 0.214,
+        "recall": 0.5,
+        "threshold": 0.2
+      },
+      "hypoglycaemia": {
+        "support": 13,
+        "precision": 0.444,
+        "recall": 0.923,
+        "threshold": 0.2
+      },
+      "not_breathing": {
+        "support": 16,
+        "precision": 0.417,
+        "recall": 0.938,
+        "threshold": 0.15
+      },
+      "poisoning_overdose": {
+        "support": 16,
+        "precision": 0.846,
+        "recall": 0.688,
+        "threshold": 0.5
+      },
+      "pregnancy_abdo": {
+        "support": 12,
+        "precision": 0.9,
+        "recall": 0.75,
+        "threshold": 0.8
+      },
+      "pregnancy_trauma": {
+        "support": 6,
+        "precision": 1.0,
+        "recall": 0.5,
+        "threshold": 0.6
+      },
+      "psychosis_aggression": {
+        "support": 6,
+        "precision": 0.5,
+        "recall": 0.833,
+        "threshold": 0.2
+      },
+      "reduced_consciousness": {
+        "support": 45,
+        "precision": 0.73,
+        "recall": 0.6,
+        "threshold": 0.75
+      },
+      "seizure_current": {
+        "support": 13,
+        "precision": 0.769,
+        "recall": 0.769,
+        "threshold": 0.35
+      },
+      "seizure_post_ictal": {
+        "support": 6,
+        "precision": 0.667,
+        "recall": 1.0,
+        "threshold": 0.3
+      },
+      "sob_acute": {
+        "support": 34,
+        "precision": 0.731,
+        "recall": 0.559,
+        "threshold": 0.65
+      },
+      "threatened_limb": {
+        "support": 8,
+        "precision": 0.833,
+        "recall": 0.625,
+        "threshold": 0.2
+      },
+      "vomiting_fresh_blood": {
+        "support": 13,
+        "precision": 0.857,
+        "recall": 0.923,
+        "threshold": 0.35
+      },
+      "vomiting_persistent": {
+        "support": 21,
+        "precision": 0.833,
+        "recall": 0.714,
+        "threshold": 0.45
+      }
+    }
+  },
+  "department_accuracy": 0.766,
+  "languages": {
+    "roman_urdu": 1958,
+    "english": 1517,
+    "urdu": 1701
+  }
+}

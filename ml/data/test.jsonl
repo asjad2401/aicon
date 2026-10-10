@@ -1,0 +1,636 @@
+{"text": "میری بیگم کو صبح سے پیٹ میں شدید درد ہو رہا ہے۔ وہ چیخ رہی ہے اور کچھ کھا پی بھی نہیں سکی۔ لگتا ہے اپینڈکس کا مسئلہ ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["abdominal_pain", "vomiting_persistent"]}
+{"text": "Meri bachi ki aankh me kuch gir gaya hai. Wo roye ja rahi hai, kehti hai churi chub rahi hai. Boht lal bhi ho gayi hai.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "میرے والد صاحب کو اچانک ٹانگ میں بہت تیز درد ہوا ہے، اور اب وہ ٹھنڈی پڑ گئی ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["threatened_limb"]}
+{"text": "Mera shohar khansi karte hue gilaas mein khoon dekh kar darr gaya. Kehta hai chest mein dard bhi hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["coughing_blood", "chest_pain"]}
+{"text": "Mera abba saans lene mein takleef mehsoos kar rahe hain aur khansi ke sath zara sa khoon bhi nikla hai abhi.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["coughing_blood", "sob_acute"]}
+{"text": "My brother's cough is bad, and he said some pink froth came out when he coughed. He is diabetic.", "language": "english", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "گلے میں شدید درد اور سوزش ہے، لگتا ہے کچھ پھنس گیا ہے، آواز بھی نہیں نکل رہی اور سانس لینے میں بہت مشکل ہو رہی ہے.", "language": "urdu", "department": "ent", "discriminators": ["airway_compromised"]}
+{"text": "He got some chemical in his mouth, now throat is burning and swelling up, can't speak or breath.", "language": "english", "department": "medical", "discriminators": ["airway_compromised", "burn_facial_inhalation", "poisoning_overdose", "sob_acute"]}
+{"text": "Mera beta raat se khaanse jaa raha hai, aur ab uski saans ghut rahi hai, gala andar se band lag raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["airway_compromised", "sob_acute"]}
+{"text": "میرے بھائی کو نشے کی لت لگ گئی ہے۔ اس سے جان چھڑانا چاہتے ہیں، پر چھوڑ نہیں پاتے۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I can't sleep for more than 2-3 hours a night. Then I feel tired all day. Please help me.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Main bohot overthink karta hoon har baat ko. Sar mein halka sa dard bhi rehta hai is wajah se.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I'm a diabetic, and I have some burning sensation in my feet sometimes, it's not constant but it's there.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "پیٹ میں हल्का सा दर्द ہے، کوئی تیز درد نہیں، بس مروڑ اٹھتے ہیں کبھی کبھی.", "language": "urdu", "department": "medical", "discriminators": ["abdominal_pain"]}
+{"text": "I feel a little pain in my tummy, like gas, it comes and goes, but I ate some spicy food yesterday.", "language": "english", "department": "medical", "discriminators": ["abdominal_pain"]}
+{"text": "Doctor sahab, meri ami ko kal se bohot khansi ho rahi hai, aur aaj subah se khansi ke saath khoon bhi aa raha hai. Unka saans bhi phool raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["coughing_blood", "sob_acute"]}
+{"text": "Mere walid sahab ko dil ka masla hai, aur aaj subah se unko khansi ke saath khoon bhi aa raha hai. Saans bhi bohat mushkil se le rahe hain.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["coughing_blood", "sob_acute"]}
+{"text": "Mera chacha ciggarrete bohat peetey hain, ab unko khansi ke saath bohot ziada khoon nikal raha hai. Lagta hai serious hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "میری جلد پر خارش کرنے سے بہت چھوٹے چھوٹے دانے ہو جاتے ہیں اور کبھی خون بھی نکل آتا ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "Baba ko bavaseer (hemorrhoids) hai, unko toilet mein khoon aata hai occasionally, lekin abhi theek hain, no active bleeding.", "language": "roman_urdu", "department": "surgical", "discriminators": []}
+{"text": "I pricked my finger to check my sugar, and it bled a lot, but I put pressure and it's fine now.", "language": "english", "department": "medical", "discriminators": ["haemorrhage_controlled"]}
+{"text": "یہ میرے چچا ہیں، ان کو تمباکو نوشی کی عادت ہے اور آج صبح سے کھانسی کے ساتھ خون آ رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "ایک مہینے سے کھانسی ہے، اب تو خون بھی آنے لگا ہے کھانستے وقت۔", "language": "urdu", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "یہ میرے بھائی ہیں، ان کو بہت تیز کھانسی آ رہی تھی اور اب تھوڑا خون بھی تھوکا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "Dadaji ke kaan main wax jam gayi hai, unko sunai nahi deta, nikalwani hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Nosebleeds bar bar aati hain mere husband ko. Pehlay bhi aaye thay, dawai li thi, ab phir shuru ho gaye hain.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Mera gala boht khushk rehta hai, aur kabhi kabhi khansi bhi hoti hai, khaas kar raat ko.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "I am worried about my cough. My friend had TB and coughed blood, but I don't.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "کھانسی میں خون کے نشان نظر نہیں آئے، صرف زرد بلغم ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "کھانسی کے ساتھ سردی اور بخار ہے، خون کا کوئی مسئلہ نہیں ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "My husband was stung by a bee on his neck, and now his neck is swelling up, and he's struggling to talk or breathe.", "language": "english", "department": "medical", "discriminators": ["airway_compromised"]}
+{"text": "My son swallowed a toy part, now he is gagging and cannot breathe properly. His face is turning blue.", "language": "english", "department": "medical", "discriminators": ["airway_compromised"]}
+{"text": "Achanak se gala itna suja hai k paani bhi nahi peeya ja raha, aur awaz bhi ghut rahi hai. Lag raha hai block ho gaya.", "language": "roman_urdu", "department": "ent", "discriminators": ["airway_compromised"]}
+{"text": " یہ بندہ ابھی ابھی گرا اور اس کے پٹھے کھنچ رہے ہیں، منہ سے آوازیں آ رہی ہیں۔", "language": "urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "Aah! Mairay bahi ko daura par gaya hai, wo zameen per leta huwa hil raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "This gentleman just fell down, and now he is convulsing continuously. Can't stop.", "language": "english", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "Meri dada abu ne raat ko khaana khaane ke baad ulti ki thi, aur us mein kaafi sara khoon tha, laal tha.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood"]}
+{"text": "Mere abu ko liver cirrhosis hai, aur unho ne abhi dher saara khoon ulti kiya hai, puri tray bhar gai.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood"]}
+{"text": "Kal se bukhaar tha, aur abhi khoon ki ulti bhi ho gai hai, bahut kamzor mehsoos ho raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood"]}
+{"text": "پتے کا درد اٹھتا ہے کبھی کبھی.", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "My mom's small swelling needs to be seen.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "Mujhe gurday me pathri ka dard utha hai.", "language": "roman_urdu", "department": "surgical", "discriminators": []}
+{"text": "My husband suddenly collapsed and stopped breathing. He is not responding.", "language": "english", "department": "medical", "discriminators": ["not_breathing", "cardiac_arrest"]}
+{"text": "بچہ ہے چھوٹا، ایک دم سے سانس رک گئی ہے، بہت زیادہ نیلے ہو گئے ہیں ہونٹ۔", "language": "urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "بابا جی اچانک گرے اور اب ان کی سانس بالکل بند ہو گئی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "میرا شوہر کام سے واپس آیا تو ایک دم اس کا آدھا جسم سن ہو گیا اور بولنے میں بھی دقت ہو رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "میری آنکھوں کے سامنے ایک دم سے اندھیرا چھا گیا تھا، اب نظر تھوڑی بہتر ہے لیکن ابھی بھی دائیں آنکھ سے صاف نہیں دکھ رہا۔", "language": "urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "میری بیوی کو فالج ہو گیا ہے، آدھا جسم حرکت نہیں کر رہا اور بول بھی نہیں پا رہی۔", "language": "urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "میری طبیعت بوجھل سی رہتی ہے۔ کوئی کام کرنے کو دل نہیں کرتا اور سارا دن تھکاوٹ محسوس ہوتی ہے۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Sir, I have been feeling very low for the past three months. Nothing feels interesting anymore. I just want to stay in bed.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "مجھے بہت زیادہ سٹریس ہے یونیورسٹی کے امتحانات کی وجہ سے، ٹھیک سے کھا بھی نہیں رہی میں۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "مجھے ڈاکٹر صاحب نے کہا تھا کہ ایک مہینے بعد دوبارہ آؤں۔ میری دوائی ٹھیک چل رہی ہے، بس تھوڑی سی نیند زیادہ آتی ہے۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Mera mood bilkul theek nahi rehta. Kabhi bht khush ho jaata hu, kabhi bht udas. Ye pehle nahi tha, abhi kuch months se ho raha hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Mujhe apni medicines adjust karwani hain. Mera wazan barh raha hai jab se ye depression ki dawaiyan shuru ki hain.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I'm experiencing mood swings lately, sometimes I'm very happy, then very sad. Been happening for months.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "My daughter's finger got caught near the stove, it's red and a bit swollen.", "language": "english", "department": "medical", "discriminators": ["burn_other"]}
+{"text": "میں نے چائے کا کپ اٹھایا تو گرم لگا ہاتھ پہ، تھوڑی سی لالی آئی ہے اب۔", "language": "urdu", "department": "medical", "discriminators": ["burn_other"]}
+{"text": "میرے بیٹے کے ہاتھ پر چائے گر گئی تھی، تھوڑی سی جلن ہو رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["burn_other"]}
+{"text": "I had my annual check-up due last month, just coming for a routine examination.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "I am breastfeeding my baby and my breasts feel a bit heavy and sometimes a little sore, but no fever.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "I am almost 30 weeks pregnant, and sometimes I feel a mild tightness in my belly. Is this normal?", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "Ammi ki sugar hai, unko chakkar aa rahe hain aur bohat sust hain. Kehti hain dil bhi ghabra raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "لڑکی کو شوگر ہے، آج سے اسے شدید سر درد اور پیاس ہے۔ کچھ کھانے کا دل نہیں کر رہا۔", "language": "urdu", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "میری والدہ شوگر کی مریضہ ہیں، وہ کہہ رہی ہیں ان کا سارا بدن درد کر رہا ہے اور انہیں بہت پیاس لگ رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "امی کو کوئی الرجی ہو گئی ہے، ان کی پوری زبان سوجھ گئی ہے اور گلا بالکل بند ہو رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["airway_compromised"]}
+{"text": "یہ رات سے سوکھا کھانس رہا ہے اور اس کے گلے سے کھڑکھڑاہٹ کی آواز آ رہی ہے۔ لگتا ہے سانس پھنس رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["airway_compromised"]}
+{"text": "میں نے دہی بھلے کھائے تھے، اس کے بعد سے میری زبان اور حلق سوجھتا جا رہا ہے، بولا بھی نہیں جا رہا۔", "language": "urdu", "department": "medical", "discriminators": ["airway_compromised"]}
+{"text": "Meri bhabhi ka left hand aur left leg so gaye hain, ab unko hosh bhi nahi hai sahi se.", "language": "roman_urdu", "department": "medical", "discriminators": ["focal_neurology_acute", "reduced_consciousness"]}
+{"text": "My mother-in-law suddenly started speaking nonsense and her right arm went limp. It just happened.", "language": "english", "department": "medical", "discriminators": ["focal_neurology_acute", "reduced_consciousness"]}
+{"text": "My husband's left leg feels very numb and weak, he can't walk properly. It happened about an hour ago.", "language": "english", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "I have this small white spot inside my cheek, it's not painful but it's been there for a month.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "برش کرتے وقت مسوڑھوں سے ہلکا خون آ جاتا ہے، باقی کوئی تکلیف نہیں ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Meray daant mein thora dard hai, subah se. Kuch garam ya thanda khaun toh feel hota hai.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "میری طبیعت پچھلے ایک مہینے سے ٹھیک نہیں ہے۔ مجھے بہت زیادہ کمزوری اور تھکن محسوس ہوتی ہے۔ شوگر چیک کروانی ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "میری بیگم کی طبیعت ٹھیک نہیں، کہہ رہی ہیں ہاتھ کانپ رہے ہیں اور بھوک لگ رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "میری آنکھوں کے سامنے اندھیرا آ جاتا ہے کبھی کبھی، ڈاکٹر کو دکھانا ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Weldinhg kar raha tha, chingaari chehre pe giri, halka sa nishan hai par jala nahi.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "A small stove fire. I saw smoke, coughed once or twice but my voice is normal and I feel fine.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "Husband was near a small fire, he coughed a bit but his voice is normal, no facial burns.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "My toe hurts whenever I wear closed shoes, it feels compressed. Not dislocated, just painful pressure.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "Beti ki ungli school mein girne se mooch aa gayi, suji hui hai par shape theek hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Meray abbu ki ungli akarr jati hai kabhi kabhi, especially sardi mein. Aisa lagta hai nikalne lagi hai magar theek ho jati hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "کل شام چائے کا کپ گر گیا تھا، میرے ہاتھ پر تھوڑا سا لگا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["burn_other"]}
+{"text": "میرے بچے نے گرم کپڑے کے ساتھ ہاتھ لگا لیا تھا، انگلی پر تھوڑا سا نشان ہے۔", "language": "urdu", "department": "medical", "discriminators": ["burn_other"]}
+{"text": "Main kal raat khana bana rahi thi aur garam cheez gir gayi mere haath par, bas thori si jaga.", "language": "roman_urdu", "department": "medical", "discriminators": ["burn_other"]}
+{"text": "My right eye is very itchy since two days, and it feels like something is in it, but I can't get it out.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "Meri baji ki aankh mein safed hisse par ek surkh nishaan ban gaya hai, dard nahi hai bas dikhne mein ajeeb lagta hai.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "میری ایک آنکھ سے تھوڑا دھندلا دکھتا ہے پچھلے کچھ مہینوں سے، جیسے پردہ سا آگیا ہو۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "Mujhe apni aankhon ka number check karwana hai, pehle jo chashma tha woh toot gaya.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "میرے شوہر کی آنکھوں میں خارش ہوتی ہے اور رگڑنے سے لا ل ہو جاتی ہیں۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "میں کمپیوٹر پر کام کرتی ہوں تو میری آنکھیں بہت تھک جاتی ہیں اور سر بھی بھاری لگتا ہے۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "My grandfather needs a routine eye check-up. He says his vision is okay, but it's been years since he had one.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "My right eye twitches sometimes, especially when I'm tired. It's not painful, just annoying.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "Meri left eye mein kabhi kabhi aik flash sa nazar aata hai. Dar lagta hai kya hai ye.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "I've been noticing a lot of itching in both my eyes, mostly in the evenings. No redness or discharge.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "میرے کان میں ہر وقت شور سا رہتا ہے، جیسے سیٹی بج رہی ہو۔ رات کو نیند بھی نہیں آتی ٹھیک سے۔", "language": "urdu", "department": "ent", "discriminators": []}
+{"text": "Jab se flu hua hai, meri aawaaz theek nahin ho rahi, boht kharab lagti hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Mera beta cricket khelte huye naak pe chot kha gaya tha, ab uski naak ki haddi tedhi ho gayi hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "My son is addicted to some tablets, he's stealing money for them. We found empty strips in his room.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Mujhay lagta hai koi mera peecha kar raha hai. Har waqt darr laga rehta hai. Neend bhi theek se nahi aati.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Mujhe ghabrahat hoti hai, jese abhi kuch bura ho jaye ga. Hath pair thande ho jate hain.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "مجھے چھوٹی چھوٹی باتوں پر غصہ آ جاتا ہے۔ پھر خود ہی افسوس ہوتا ہے پر کنٹرول نہیں کر پاتا۔ سر میں بھی تھوڑا تناؤ رہتا ہے۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I have these voices sometimes, they tell me things. It's not always, but it makes me confused. Sometimes my head hurts a little from it.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "مجھے رات کو نیند نہیں آتی، صرف دو یا تین گھنٹے سو پاتا ہوں۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I can't focus on my studies. My mind is always racing, thinking about bad things. I feel a pressure in my head sometimes.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "When I was ironing clothes, the iron slightly grazed my finger. It's not a proper burn, just red.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "ایک مہینے پہلے میرا ہاتھ جل گیا تھا، اب زخم بھر گیا ہے بس داغ رہ گیا ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "گرم دودھ گرا تھا ٹانگ پر، بس اب رنگت تھوڑی کالی ہو گئی ہے، ویسے سب ٹھیک ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "میری بیٹی کے آنسو نہیں رکتے، ہر وقت پانی بہتا رہتا ہے ایک آنکھ سے، پر نہ تو لالی ہے نہ سوجن۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "چھ ماہ سے میری آنکھوں میں ہلکی سوجن ہے اور جلن ہوتی ہے۔ ڈاکٹر صاحب، کوئی خاص تکلیف نہیں ہے۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "My right eye is a little red and itchy for two days. Not very bad, but annoying.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "Shoulder joint main pain feel ho raha.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Kal se hath dard kar raha.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "پیر میں درد رھتا ہے.", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "She got burned on her face from the stove. Now she keeps trying to clear her throat, like something is stuck.", "language": "english", "department": "surgical", "discriminators": ["burn_facial_inhalation"]}
+{"text": "Aag lag gayi thi ghar mein, iska munh jal gaya, aur usko saans lenay mein bahot zor lag raha hai.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute", "burn_major"]}
+{"text": "He fell into the fire pit. His face is burnt, and his throat feels blocked, can't speak properly.", "language": "english", "department": "surgical", "discriminators": ["burn_facial_inhalation", "airway_compromised", "burn_major"]}
+{"text": "My younger brother, he's only 25, his whole left side just went numb, and his voice is thick. I'm really scared.", "language": "english", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "میری بیٹی کو اچانک سے ایک طرف کی ٹانگ میں کمزوری ہو گئی ہے اور وہ چل نہیں پا رہی۔", "language": "urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "اچانک سے میری بیوی کے ایک ہاتھ میں کمزوری آ گئی ہے اور وہ بات کرتے ہوئے اٹک رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "Yaar, mera hath, jo plaster charhaya tha, us k baad se unglian sari thandi hogai hain aur sunn hain. Plaster bohat tight lag raha hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["threatened_limb"]}
+{"text": "ہمارے مریض کی ٹانگ میں گہری چوٹ لگی تھی، اب پنڈلی سے نیچے والا حصہ بہت ٹھنڈا اور نیلا پڑ گیا ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["threatened_limb"]}
+{"text": "میرا پاؤں ٹریفک حادثے کے بعد سے بے حس و حرکت اور رنگت میں پیلا ہو گیا ہے، ٹھنڈا بھی ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["threatened_limb"]}
+{"text": "Feeling very weak, no energy.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "جسم میں درد رہتا ہے، ہر جوڑ میں", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Had a mild headache for hours.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "Mujhe abhi abhi seene mein tezz dard hua hai, aur dil ki dharkan bhi bohot tez lag rahi hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "Subah se seene mein dard hai, aur saath mein chakkar bhi aa rahe hain.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "Jab main chalti hoon to seene mein dard shuru ho jata hai, aur thodi der rukne se theek ho jata hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "The patient came in with severe nosebleed, we tried pressing but it keeps coming, his shirt is soaked.", "language": "english", "department": "ent", "discriminators": ["haemorrhage_uncontrolled"]}
+{"text": "My periods are very heavy, and I'm passing big clots, it's been like this for two days, very weak.", "language": "english", "department": "gynae", "discriminators": ["haemorrhage_uncontrolled"]}
+{"text": "This old man is on blood thinners, he had a fall, and now his gum is bleeding heavily, continuously.", "language": "english", "department": "dental", "discriminators": ["haemorrhage_uncontrolled"]}
+{"text": "He sometimes hears sounds that are not there, but he knows they are not real.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "My mind is racing, I cannot focus, but I'm not violent.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Mujhe khud ko hurt karne ka khayal aata hai kabhi kabhi, par mai aisa karungi nahi.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "My father, he is 65 years old, his eyes are always watery. He says especially when he goes outside, in the sun or wind, they start watering a lot. He also complains about blurred vision sometimes. He had cataract surgery years ago in one eye.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "Doctor sahib, meri ami ki ankhoon mein subha se jalan ho rahi hai, aur pani bhi nikal raha hai. Wo kehti hain unko jaise mirchi lag gayi ho, aur ab unka sar bhi dukh raha hai. Kal hum aik shadi mein gaye thay, wahan bohat dhuan tha.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "میرا بیٹا ہے، چھ سال کا۔ ٹی وی بہت دیکھتا ہے، اس کی آنکھیں درد کرنے لگی ہیں اور وہ کہتے ہیں کہ سر میں بھی درد ہوتا ہے۔ ہم نے سوچا عینک لگوا دیں شاید۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "Mere bete ke sir mein juain hain, kitni dawain use ki hain, khatam hi nahi hoti. School se pakar ke leke aaya hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "I am here for a check-up of my chronic eczema. It flares up sometimes, but right now it's okay. Need a new prescription.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "Sir, mere face pe pimples hain bohat ziyada. Main 17 saal ka hoon. Koi cream de dain please.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "پچھلے ہفتے میری امی کو یہ کالے نشان پڑ گئے ہیں۔ ان کو شوگر بھی ہے، چیک کروانا ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "Doctor ne bola tha 3 mahine baad dobara checkup ke liye aana hai, main wohi follow-up ke liye aai hun.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "My back is very itchy, especially after taking a shower. No rash visible, but it's very annoying.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "میری ناخنوں کا رنگ پیلا ہو گیا ہے اور وہ موٹے بھی ہو گئے ہیں۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "I've been feeling a bit tired lately and my heart rate seems a bit fast at rest. No pain.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "I have mild chest discomfort after eating heavy meals. It goes away after some time.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "Seene mein thora bhoj sa rehta hai kabhi kabhi, jaise kuch rakha ho. Koi dardh nahi hai wesay.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "My son, he's 19, just vomited a lot of red liquid, like blood. He looks very pale now, I'm scared.", "language": "english", "department": "medical", "discriminators": ["vomiting_fresh_blood"]}
+{"text": "Meri beti ko bukhar bhi hai aur subha se vomit kar rahi hai, aik dafa to sara taza khoon bahar agaya tha, hum bohat pareshan hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood", "vomiting_persistent"]}
+{"text": "Mujhe raat se vomit ho rahi hai, abhi to sirf khoon hi nikla hai, woh bhi bilkul fresh. Pait mein jalan bhi hai bohat.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood", "vomiting_persistent", "abdominal_pain"]}
+{"text": "میری بغل میں پچھلے مہینے سے ایک گومڑ ہے جو کبھی کبھی درد کرتا ہے۔ پہلے چھوٹا تھا اب کافی بڑا ہو گیا ہے اور میں نے اسے چھیڑا تو اور درد کرنے لگا۔ مجھے بہت زیادہ پسینہ بھی آتا ہے وہاں پر۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "میرے سر میں بہت خارش ہوتی ہے اور بال بھی بہت گر رہے ہیں۔ پچھلے کچھ مہینوں سے بہت زیادہ مسئلہ ہو رہا ہے۔ میں نے سرسوں کا تیل بھی لگا کر دیکھا ہے لیکن کوئی فرق نہیں پڑا۔ میری بہو کہتی ہے کہ شاید موسم کی وجہ سے ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "Mere honton ke kinaron pe phate phate se rehte hain aur jaln bhi hoti hai. Pani bhi bohot peeta hoon main, pata nahi kyun ho raha hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "Doctor sahib, mere haath ki fingers pe aur thore se arm pe bhi pichle do hafte se bohot kharish ho rahi hai. Raat ko to sone nahi deti. Pehle kabhi aisa nahi hua, mera beta keh raha tha shayad allergy hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "Meri ankle pe ek chota sa wart (massa) nikal aya hai, aur woh grow kar raha hai. Chalte hue kabhi kabhi lagta hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "I've been experiencing significant hair loss, like, really noticeable, for the last six months. My brush is full of hair every day. I'm a 45-year-old woman, and it's making me quite upset. My blood tests for thyroid were normal last year.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "Meri walida ke balon mein bohot dandruff ho gaya hai. Itna zyada k unke kandhon pe girta rehta hai. Aur sir mein kharish bhi bohot hoti hai. Woh shampoo bhi badal badal ke dekh chuki hain lekin kuch faida nahi ho raha. Unka khayal hai k pani change hua hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "Mujhe thori si saans phoolti hai jab main seerhiyan chadhata hoon, pehle aisa nahi tha. Umar bhi ho gayi hai.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "Ammi ko pichle teen din se dast lage hue hain, aur ulti bhi hui thi aik baar. Kamzori bohot ho gai hai.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "Mera blood pressure uncha rehta hai aksar, doctor ne medicine adjust karni hai. Sir mein dard bhi hota hai kabhi kabar.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "میری بیگم کو دل کی دھڑکن تیز محسوس ہوتی ہے۔ کبھی کبھار، اچانک سے بہت تیز ہو جاتی ہے پھر خود ہی ٹھیک ہو جاتی ہے۔ پچھلے ہفتے سے زیادہ ہو رہا ہے۔", "language": "urdu", "department": "cardiology", "discriminators": []}
+{"text": "My husband has a history of heart attack. He needs his regular medication for high blood pressure and cholesterol. The prescription is expiring.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "Mujhe aksar hath paon thande rehte hain, aur kabhi kabhi chakar bhi aate hain. Dil ki takleef hai mujhe.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "I'm pregnant, six months. I'm having morning sickness, vomiting daily, but no red stuff.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "Kal raat biryani khayi thi, tab se pet kharab hai aur aik-do baar ulti bhi hui, safed thi.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "I have food poisoning, I think. Vomiting frequently, but it's just digestive fluids, no blood at all.", "language": "english", "department": "medical", "discriminators": ["vomiting_persistent"]}
+{"text": "مجھے خونی الٹیاں آ رہی ہیں، ایسا لگ رہا ہے جیسے میرے اندر سے خون پھوٹ رہا ہو، ابھی تک نہیں رکا۔", "language": "urdu", "department": "medical", "discriminators": ["haemorrhage_uncontrolled", "vomiting_fresh_blood"]}
+{"text": "My uncle had a fall, he has a big gash on his head, and it's bleeding like a river. We put a towel on it, but it's soaked.", "language": "english", "department": "surgical", "discriminators": ["haemorrhage_uncontrolled"]}
+{"text": "My husband had a road accident, his leg is badly injured and bleeding profusely. We tried to stop it with a cloth, but it just keeps coming.", "language": "english", "department": "orthopaedics", "discriminators": ["haemorrhage_uncontrolled", "fracture_compound"]}
+{"text": "Woh buhat bechain hai, uska pet phoola hua hai aur kehta hai gas ki wajah se dard hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["abdominal_pain"]}
+{"text": "Last night I had a lot of food, now my stomach is very heavy and painful. Like full, but pain.", "language": "english", "department": "medical", "discriminators": ["abdominal_pain"]}
+{"text": "میرے چھوٹے بھائی کا پیٹ پھول گیا ہے اور اسے سانس لینے میں بھی مشکل ہو رہی ہے۔ بہت درد میں ہے۔", "language": "urdu", "department": "medical", "discriminators": ["abdominal_pain", "sob_acute"]}
+{"text": "گزشتہ دو گھنٹے سے میرا دم گھٹ رہا ہے اور میں ٹھیک سے سانس نہیں لے پا رہا۔ پلیز مدد کریں!", "language": "urdu", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "Mujhe fever hai do din se aur aaj subah se saans bilkul band hone lagi hai. Meri awaaz bhi theek nahi nikal rahi.", "language": "roman_urdu", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "رات سے کھانسی کے ساتھ سانس بہت تنگ ہو گئی ہے۔ اٹھنے بیٹھنے میں بھی تکلیف ہو رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "Bahu ko sugar hai, abhi woh baathroom mein gir gai. Uth nahi rahi aur bohot pasina aaya hua hai. Ghar pe check kiya toh 2.7 thi.", "language": "roman_urdu", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "Abu ko sugar hai, aaj subah se bohot confused hain aur haath kaamp rahe hain. Pasina bhi aa raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "Mujhe apni sugar low feel ho rahi hai, jism thanda ho raha hai aur saari taqat nikal gai hai. Main diabetic patient hoon.", "language": "roman_urdu", "department": "medical", "discriminators": ["hypoglycaemia"]}
+{"text": "Mera hath girte hi bohot sooj gaya hai, neeche se neela bhi ho gaya hai. Doctor sahab ne kaha tha ke haddi tooti hai lekin andar hi hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["fracture_closed"]}
+{"text": "Mujhe two weeks pehlay accident hua tha, leg mein fracture hua tha. Plaster laga hua hai, bas checkup ke liye aaye hain.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Meray husband ka leg ek dam sy sooj gaya hai, giray thay par ghaao koi nahi hai. Haddi ka masla ho sakta hai?", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": " مجھے حیض کی حالت میں بہت زیادہ کمزوری اور چکر آتے ہیں۔ میں کھانا بھی نہیں کھا پاتی۔", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "Meray pait ke neechay halka halka dard rehta hai aksar, khas tor par jab period honay walay hotay hain.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "Doctor sahab, mera uterus mein cyst hai, pehle se pata hai. Ab dard thoda barh gaya hai pichle kuch dinon mein.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "My son fell from his bike a week ago, got a scrape on his knee. It's healing well, but I want to make sure it won't scar badly.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "My mother got a small skin tag near her eye. It's not bothering her, but she wants to get it removed for cosmetic reasons.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "Mujhe apni back pe ek daana sa mehsoos ho raha hai, kabhi kabhi halka dard karta hai agar dabaoon. Warna theek hai.", "language": "roman_urdu", "department": "surgical", "discriminators": []}
+{"text": "میری بیٹی کو کسی چیز نے کاٹا ہے بازو پر، اب بازو سوج گیا ہے اور اس کا رنگ بدل رہا ہے، بہت ٹھنڈا محسوس ہو رہا ہے مجھے۔", "language": "urdu", "department": "medical", "discriminators": ["threatened_limb"]}
+{"text": "Doctor sahib, meri ami ka paoon bilkul thanda par gaya hai aur woh kehti hain kuch mehsoos nahi ho raha. Gir gayee thin subah.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["threatened_limb"]}
+{"text": "My grandfather has diabetes. His foot is very cold, and he says he can't feel when I touch it. It looks a bit blue.", "language": "english", "department": "medical", "discriminators": ["threatened_limb"]}
+{"text": "I ate something bad yesterday, now I'm throwing up continuously and feeling very weak.", "language": "english", "department": "medical", "discriminators": ["vomiting_persistent"]}
+{"text": "صبح سے کچھ بھی میرے اندر نہیں ٹھہر رہا، مسلسل الٹیاں آ رہی ہیں، بہت پریشان ہوں۔", "language": "urdu", "department": "medical", "discriminators": ["vomiting_persistent"]}
+{"text": "Bete ko teez bukhar bhi hai aur ultiyan bhi bohot aa rahi hain, kuch khata nahi ruk raha.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_persistent"]}
+{"text": "اکثر چکر آتے ہیں اور دل بھی گھبراتا ہے، خاص طور پر صبح کے وقت۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Meri bachi ke poore jism pe chote chote dane nikal gaye hain aur khujli bhi hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "میں نے صبح سے تین چار دفعہ vomit kiya hai, کچھ ہضم نہیں ہو رہا۔", "language": "urdu", "department": "medical", "discriminators": ["vomiting_persistent"]}
+{"text": "My husband suddenly fainted on way here, now he is not waking up and his body is very cold, not breathing.", "language": "english", "department": "medical", "discriminators": ["cardiac_arrest", "not_breathing", "reduced_consciousness"]}
+{"text": "This man is not breathing and no pulse. He just fell down, eyes wide open but no life.", "language": "english", "department": "medical", "discriminators": ["cardiac_arrest", "not_breathing", "reduced_consciousness"]}
+{"text": "ابو جان دل کے مریض ہیں، ابھی اچانک گر کر بے ہوش ہو گئے ہیں اور سانس نہیں لے رہے۔", "language": "urdu", "department": "cardiology", "discriminators": ["cardiac_arrest", "not_breathing", "reduced_consciousness"]}
+{"text": "My jaw has been clicking when I open my mouth wide, especially when I yawn or eat a burger. No pain, just that annoying sound. My wife laughs at me. It started after I had that big dental work done last month, maybe related?", "language": "english", "department": "dental", "discriminators": []}
+{"text": "جی ڈاکٹر صاحب، میری بیگم کو دانت میں درد ہے، رات سے سو نہیں سکی۔ وہ کہتی ہے کہ بہت شدید درد ہے، یہاں گال میں بھی سوجن سی محسوس ہو رہی ہے۔ پچھلے دو ماہ سے تھوڑا بہت درد تھا، پر اس نے نظر انداز کر دیا۔ اب پانی بھی مشکل سے پی رہی ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "میرے مسوڑھوں میں سوجن ہے، ایک سائیڈ پہ۔ درد تو نہیں ہے زیادہ، بس سوجا ہوا لگتا ہے۔ برش کرتا ہوں تو کبھی کبھار خون آ جاتا ہے۔ میں نے گرم پانی میں نمک ڈال کر کلی کی ہے، مگر کوئی فرق نہیں پڑا۔ یہ تقریبا چار دن سے ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Ji, mujhe apne munh mein bohot dryness feel hoti hai. Matlab, hamesha pyaas lagti rehti hai aur zabaan bhi khushk rehti hai. Koi masla hai daanton ka ya kuch aur? Ye pichle chand hafte se zyada ho gaya hai. Meri umar 60 saal hai, dawaiyan bhi leti hoon blood pressure ki.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "My wisdom tooth is coming out, I think. It's in the very back, and it's been a bit sore for the past few days. No pus or severe pain, just discomfort when I chew on that side. I'm 25, so I guess it's time for them to appear. My friend had her wisdom teeth removed, and she said it was a terrible experience, so I'm a bit nervous.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "میرے منہ کے اندر ایک سفید نشان بن گیا ہے، یہ کوئی چار پانچ دن سے ہے۔ کوئی درد نہیں، بس تھوڑا عجیب لگتا ہے۔ مجھے تمباکو نوشی کی عادت ہے، کیا اسی وجہ سے تو نہیں؟ میری بیگم کہتی ہے سگریٹ چھوڑ دو، لیکن چھوڑنا مشکل ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "I have this tooth, on the bottom left side, it feels very sensitive to cold water. Like, if I drink cold juice, it really hurts for a few seconds. It started maybe two weeks ago. I tried changing my toothpaste to a sensitive one, but no major improvement. My husband says I should just stop drinking cold stuff, but that's not a solution, right?", "language": "english", "department": "dental", "discriminators": []}
+{"text": "میری بیگم کو ابھی کھانسی آئی اور اس میں خون کے بڑے بڑے دھبے تھے۔ وہ سانس بھی مشکل سے لے رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["coughing_blood", "sob_acute"]}
+{"text": "My husband has TB history, today he coughed fresh blood, not just a little, quite a bit.", "language": "english", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "Mujhe pichle ek hafte se khaansi mein halka halka khoon aa raha hai, ab thoda zyada hogaya hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["coughing_blood"]}
+{"text": "Aik hafte se light se aankhen chundhya jati hain. Bahar dhoop mein dekhna mushkil ho gaya hai.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "Bete ki aankh mein kal khelte huye mitti chali gayi thi. Ab wo masal raha hai bar bar.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "My right eye is red and feels very itchy for the past two days. I tried some drops but no relief.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "I think I have dandruff. My scalp is very flaky and itchy, especially after washing hair.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "Mere abbu ke pait pe ek lump hai, woh chhota sa hai aur koi dard nahi. Bas hum dekhna chahte hain.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "My armpit is very itchy and has turned a bit dark. It's been like this for few weeks.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "یہاں ایک آدمی گر پڑا ہے، اس کی سانس نہیں چل رہی۔", "language": "urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "ایک جوان لڑکی بے ہوش پڑی ہے، اس کا سینہ اوپر نیچے نہیں ہو رہا، شاید سانس رک گئی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["not_breathing", "reduced_consciousness"]}
+{"text": "میری بیٹی کو تیز بخار ہوا تھا اور اب اس کی سانس بند ہو گئی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "Mere chote bhai ke left side ke haath aur paon mein bilkul jaan nahi hai, aur usko bolne mein bhi bohat mushkil ho rahi hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "Yaar, aaj subah se mere chehre ka ek hissa, matlab left side, kaam nahi kar raha aur thoda teda bhi lag raha hai. Falij to nahi?", "language": "roman_urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "Subah se ammi ka right arm aur leg weak ho gaya hai, unko chalne mein bhi problem ho rahi hai, aur unki speech bhi clear nahi hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["focal_neurology_acute"]}
+{"text": "Mera dost nashe ki halat mein tha, usne unknown pills kha li hain. Wo ab hosh mein nahi hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["poisoning_overdose", "reduced_consciousness"]}
+{"text": "Mere uncle ne pesticide pi lia hai, unke munh se jhaag nikal rahi hai aur unko jhatkay lag rahey hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["poisoning_overdose", "seizure_current"]}
+{"text": "Meri beti ne koi chemical pee liya hai, uski zubaan soojh gai hai aur galay main chubhan ho rahi hai.", "language": "roman_urdu", "department": "ent", "discriminators": ["poisoning_overdose", "airway_compromised"]}
+{"text": "Just feeling very tired for no reason. My energy levels are very low for the past few weeks.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "مجھے قبض کا مسئلہ بہت عرصے سے ہے، کوئی دوا بتادیں جو آسانی سے مل جائے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Doctor sahab, kal se bukhaar hai aur jism mein bht dard ho raha hai. Thora sa sardi bhi lag rahi hai.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "My daughter is pregnant, 5 months. She has this very sharp pain in her lower abdomen that comes and goes, very worrying.", "language": "english", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "حمل سے ہے یہ، چار ماہ۔ صبح اٹھتے ہی پیٹ میں درد شروع ہوا جو اب بڑھ گیا ہے، کچھ کھایا پیا بھی نہیں۔", "language": "urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "Meri beti ko abhi 4-5 mahine ka hamal hai. Raat se pet mein zor ka dard hai aur thore chakkar bhi aa rahe hain.", "language": "roman_urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "دھوپ سے منہ اور بازو بہت لال ہو گئے ہیں، کوئی جلن محسوس نہیں ہو رہی۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "کل بچے کے پاؤں پر گرم ائل کے چند چھینٹے پڑے تھے، آج ہلکی سوجن ہے، زیادہ جلنے کا نشان نہیں۔", "language": "urdu", "department": "dermatology", "discriminators": ["burn_other"]}
+{"text": "Mera hath jala tha stove se 2 din pehlay, ab theek lag raha hai bas thori kharish hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "After a big meal, I feel very bloated and my breathing feels restricted. Not like, dying, but annoying.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "میرا چھوٹا بچہ، اسکی سانس تیز چلتی ہے اکثر سوتے ہوئے، بس تھوڑی پریشانی ہے مجھے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "My grandmother, she's old, sometimes her breathing becomes heavy at night. We just want to make sure it's not serious.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "میرے مسوڑھوں پر سوزش سی ہے، ایک جگہ سے پھول گئے ہیں.", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "ایک دانت میں سوراخ محسوس ہو رہا ہے، اور جب میٹھا کھاؤں تو درد ہوتا ہے.", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Bachay ka daant dukh raha hai, raat se so nahi paa raha theek se.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "My husband is diabetic. He vomited several times in the morning and his breath smells like something sweet, very strange. He's also very weak.", "language": "english", "department": "medical", "discriminators": ["diabetic_ketosis", "vomiting_persistent"]}
+{"text": "شوگر کے مریض ہیں، کئی بار اُلٹیاں کر چکے ہیں اور جسم میں شدید درد ہو رہا ہے، خاص کر پیٹ میں۔", "language": "urdu", "department": "medical", "discriminators": ["diabetic_ketosis", "vomiting_persistent", "abdominal_pain"]}
+{"text": "Bhaiyya diabetic hain, subah se unko bohat pyas lag rahi hai aur washroom bhi bar bar ja rahe hain. Ab unki body bhi thori garam lag rahi hai aur lagta hai neend mein hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_ketosis", "reduced_consciousness"]}
+{"text": "میں اینجیو پلاسٹی کروا چکا ہوں، اب مجھے تھوڑی کمزوری لگتی ہے، ڈاکٹر کو دکھانا تھا۔", "language": "urdu", "department": "cardiology", "discriminators": []}
+{"text": "مجھے دو سال پہلے بائی پاس ہوا تھا، اب چلتے ہوئے ذرا سانس پھول جاتی ہے۔ پہلے ایسا نہیں تھا، کیا یہ نارمل ہے؟", "language": "urdu", "department": "cardiology", "discriminators": []}
+{"text": "Amma ki appointment thi. Unko dil ki dharkan kabhi slow lagti hai aur unko thand lagti rehti hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "Mujhe lagta hai haath ki haddi toot gayi hai, bilkul hil nahi pa raha aur numb mehsoos ho raha hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["fracture_closed", "threatened_limb"]}
+{"text": "I can't put any weight on my foot after twisting it badly. It's very painful.", "language": "english", "department": "orthopaedics", "discriminators": ["fracture_closed"]}
+{"text": "اس کے پیر پر ایسی چوٹ لگی ہے کہ وہ بالکل چل نہیں پا رہا، بہت سوج گیا ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["fracture_closed"]}
+{"text": "Main apni pregnancy ka last trimester mein hoon. Bas routine checkup ke liye aayi hoon.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "مجھے اندام نہانی میں خارش ہو رہی ہے کافی دنوں سے، کوئی کریم بتادیں۔", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "I'm here for my regular antenatal check-up. Everything feels fine.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "سوئی ہوئی ہے مسوڑا.", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Loose filling in my tooth.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "Bad breath problem, since long.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "Masooray neechay ho gaye.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "Masoorhon se khoon aata hai.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "I broke my tooth, thora sa.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "Got a small hole in tooth.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "Unglion mein infection ho gaya.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "پاؤں پر الرجی ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "My elbow skin is rough.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "پاؤں میں پھپھوندی لگ گئی ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "جسم پر خارش ہوتی ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "I have some red patches.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "My skin is very dry.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "مجھے اپنی سگریٹ نوشی کی وجہ سے دانتوں کی صفائی کروانی ہے۔ بہت داغ ہو گئے ہیں۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Ammi ki daant ki filling nikal gai hai. Unko dobara lagwani hai, abhi koi dard nahi hai.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "میرے منہ میں چھالے پڑے ہوئے ہیں، ایک ہفتے سے کچھ بھی کھانے میں مشکل ہوتی ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "میرے بیٹے کے چہرے پر چھوٹے چھوٹے تل ہیں، ان کی تعداد بڑھ رہی ہے۔ چیک کروانے آئے ہیں۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "My nails are brittle and breaking easily. Also, one toenail looks a bit yellowish, maybe fungal?", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "Mera beta pichle 2 hafte se khujata rehta hai. Subah se thori khujli zyada ho gayi hai. Poori body pe chote chote danay ban gaye hain.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "Meri ammi ka kamar dard bohot purana hai. Medicines se bhi farq nahi parh raha. Ap check kar dein please.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "I have this constant pain in my right shoulder for about three months now. It's getting worse when I lift things.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "میری بیٹی کو سکول میں کھیلوں کے دوران کمر میں درد ہو گیا ہے، کل سے چلنے میں بھی تھوڑی دشواری ہو رہی ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "My husband tried to put out a fire, his face got some burns and his nose hairs are singed. He is having a hard time breathing.", "language": "english", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute"]}
+{"text": "کل رات گھر میں آگ لگی تھی، میرے والد صاحب کا چہرہ جھلس گیا ہے اور انہیں سانس لینے میں بہت دشواری ہو رہی ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute"]}
+{"text": "Kal raat cylinder mein aag lag gayi thi. Meri bahu ka chehra jal gaya hai aur usay saans lene mein bohut takleef ho rahi hai, naak ke baal bhi jalay hain.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute"]}
+{"text": "Sir, inka dum ghut raha hai, bilkul saans nahi aa rahi, lagta hai abhi jaan nikal jayegi.", "language": "roman_urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "Mera chacha saans ke liye tadap raha hai, aisa lag raha hai jaise abhi dam nikal jayega.", "language": "roman_urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "Sahib, ye marij bilkul saans nahi le pa raha, tarap raha hai bus, meri ankhon ke samne dam ghut raha hai uska.", "language": "roman_urdu", "department": "medical", "discriminators": ["not_breathing"]}
+{"text": "Mere pet ke nichle hisse mein halka halka dard rehta hai, periods ke ilawa bhi.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "I need family planning advice. What are the options available?", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "میری بیوی کو پرائیویٹ پارٹس میں جلن اور خارش رہتی ہے۔ شوہر کے ساتھ آئی ہے.", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "Koohnee mein halki si takleef hai, koi char din se. Weight uthaya tha kal.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Mere abu ke paon mein janjhanahat hoti rehti hai. Kehte hain ziada der khare nahi reh sakte.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "I have this nagging pain in my lower back, especially when I sit for too long. Been like this for ages.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "My son has a high fever and his whole body is aching very badly. He keeps crying from the pain, says it's 10/10.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "My head is throbbing so bad, I can't even open my eyes. It's like someone is hammering inside. Worst pain ever.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "Mera daant toot gaya hai aur itna dard horaha hai ke kuch kha bhi nahi sakta. Sara chehra sooj gaya hai, puri raat so nahi paya.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "کل بچے کے گلے میں مچھر کاٹ گیا تھا، تھوڑی سوجن ہوئی مگر سانس لینے میں کوئی تکلیف نہیں ہوئی۔ اب ہلکا سا نشان ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "Kal se gala dard ho raha hai, awaz bhi theek se nahi nikal rahi. Lekin saans mein koi masla nahi hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "I had a bad cough for days, and my throat was very sore, making it hard to talk, but never choked or stopped breathing.", "language": "english", "department": "ent", "discriminators": []}
+{"text": "I am not pregnant. I fell on my hand yesterday, it's a bit swollen and painful, but I can move my fingers.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "My wife is pregnant and has been feeling dizzy lately. She hasn't fallen, but I'm worried she might.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "Mera beta peechle hafte cycle se gir gaya tha, haath mein thodi chot aayi hai lekin ab theek hai, bas school ke liye certificate chahiye. Pregnancy ka koi masla nahi.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "امی کے کندھے میں کافی دیر سے درد ہے، ہاتھ اُٹھانے میں بھی تکلیف ہوتی ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "پیر میں درد ہو رہا ہے صبح سے، پاؤں صحیح سے زمین پر نہیں رکھا جا رہا۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "I feel a dull ache in my hip after sitting for long periods. It's not severe, just annoying.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "Ammi ko pichle aik hafte se sine mein halka halka dard rehta hai, aur kabhi kabhi left arm bhi dukhta hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "Mera dil ghabra raha hai, aur thori saans phoolti hai chalne pe. Pehle bhi ye masla hua hai, doctor ko dikhana hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "سردی میں میری انگلیاں نیلی پڑ جاتی ہیں، اور دل کی دھڑکن بھی عجیب سی ہوتی ہے۔", "language": "urdu", "department": "cardiology", "discriminators": []}
+{"text": "My elbow got twisted when I played cricket. It was painful for a bit, but then it got better. I just want to make sure no damage.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "Mere hip joint mein dard hota hai jab zyada der chaloon, lagta hai koi joint issue hai, par dislocate nahi hua.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "My son twisted his ankle playing, it swelled up but the doctor said it's just a sprain, no dislocation.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "ایک عورت کو دکان کے باہر دورہ پڑ گیا ہے، وہ زمین پر گر کر کانپ رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "یہ شخص شراب پی کر گرا تھا، اب اسے تشنج ہو رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["seizure_current", "reduced_consciousness"]}
+{"text": "ایک مریض ہسپتال کے ویٹنگ ایریا میں گر گیا ہے اور اسے شدید جھٹکے لگ رہے ہیں۔", "language": "urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "Ammi ko vomiting ho rahi thi bohat ziada aur ab toh unko bilkul hosh nahi hai. Kidney patient hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["reduced_consciousness", "vomiting_persistent"]}
+{"text": "Mere abu ko liver ka masla hai, kal raat se unki tabiyat kharab hai, hosh mein nahi hain poore.", "language": "roman_urdu", "department": "medical", "discriminators": ["reduced_consciousness"]}
+{"text": "My mother is very old, she's having trouble breathing and now she's just not responding much.", "language": "english", "department": "medical", "discriminators": ["reduced_consciousness", "sob_acute"]}
+{"text": "I have some yellowish stains on my teeth, want to get them removed.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "I just want a routine cleaning. My teeth feel a bit rough and I haven't had one in two years. I'm 35.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "میری زبان پر سفید تہہ جم گئی ہے اور تھوڑا کڑوا ذائقہ رہتا ہے منہ میں۔ یہ دو ہفتے سے ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Doctor sahab, mera daant pichle ek hafte se halka halka dukhta hai. Pehle itna nahi tha, ab thora zyaada ho gaya hai. Khana khane mein mushkil hoti hai, bas thora sa.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "میرے دانتوں میں ٹھنڈا پانی لگنے سے تکلیف ہوتی ہے، خاص کر سامنے والے دانتوں میں۔ گرم سے نہیں ہوتا۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Can I get a cleaning appointment? My teeth feel a bit rough.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "One of my front teeth is turning slightly grey. It happened after I hit my face a few months ago, but there's no pain.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "یہ دیکھو میرے پاؤں کی انگلی کیسے ٹیڑھی ہو گئی ہے، چوٹ لگی تھی اور اب موڑ نہیں پا رہی.", "language": "urdu", "department": "orthopaedics", "discriminators": ["dislocation_small_joint"]}
+{"text": "My big toe got twisted during football, and now it's pointing the wrong way. I can't even touch it.", "language": "english", "department": "orthopaedics", "discriminators": ["dislocation_small_joint"]}
+{"text": "میرے چھوٹے بیٹے کی انگلی ہڈی سے ہٹ گئی ہے، کھیلتے ہوئے گرا تھا، بہت رو رہا ہے.", "language": "urdu", "department": "orthopaedics", "discriminators": ["dislocation_small_joint"]}
+{"text": "Salam doctor, mera na operation hua tha, appendix ka, abhi teen hafte pehle. Stitches nikal diye hain, sab theek hai. Bas mujhe na, yeh dar lag raha hai ke kahin andar koi infection na hojaye, ya koi masla na hojaye. Meri phuphi ko bhi appendix ka operation hua tha, unko baad mein complications hui thi. Tho mein bus tasalli karne aayi hun.", "language": "roman_urdu", "department": "surgical", "discriminators": []}
+{"text": "میرے والد صاحب کا ایک آپریشن ہوا تھا کچھ سال پہلے، گردے میں پتھری کا۔ اب انہیں کبھی کبھی اس جگہ پر ہلکا سا درد محسوس ہوتا ہے۔ ہم یہ دیکھنے آئے ہیں کہ کوئی پرانی جگہ پر مسئلہ تو نہیں ہو رہا۔ ڈاکٹر نے کہا تھا کہ باقاعدگی سے چیک اپ کرواتے رہیں۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "Meri bachi ki umar 8 saal hai, uske gale mein na, yahan side pe ek choti si guthli si mehsoos hoti hai. Woh na khansi aane pe zyada numaya hoti hai. Dard nahi hai, na usko koi bukhar. Bas mujhe fikar ho rahi hai. Meri neighborhood wali aunty ne kaha tha ke yeh thyroid ho sakta hai, par itni choti bachi ko?", "language": "roman_urdu", "department": "surgical", "discriminators": []}
+{"text": "Mera beta kuch khaa raha tha aur achank se usko khaansi aai aur ab woh sans nahi le paa raha. Neela ho gaya hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["airway_compromised", "not_breathing", "sob_acute"]}
+{"text": "Amma ki zubaan sooj gai hai, allergy hui hai. Bol nahin paa rahi aur saans lene mein bhi takleef hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["airway_compromised", "sob_acute"]}
+{"text": "Meri behan ko dama ka shadeed hamla hua hai, saans ghut rahi hai aur uski awaz band ho gai hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["airway_compromised", "sob_acute"]}
+{"text": "مجھے چھاتی میں جکڑن ہے اور سانس نہیں آرہی۔ ایسا لگ رہا ہے جیسے کوئی گلا دبا رہا ہو۔", "language": "urdu", "department": "cardiology", "discriminators": ["sob_acute", "chest_pain"]}
+{"text": "پچھلے ایک گھنٹے سے کھانسی کے ساتھ سانس بہت پھول رہی ہے۔ کھانسی بھی رک نہیں رہی۔", "language": "urdu", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "میں چلتی ہوں تو سانس پھول جاتی ہے۔ اب تو بیٹھے بیٹھے بھی یہی حال ہو رہا ہے۔", "language": "urdu", "department": "cardiology", "discriminators": ["sob_acute"]}
+{"text": "Meri behan subah se deewaron se baatein kar rahi hai, aur usne mera haath bhi marora jab maine usko bulaya. Bohot dar lag raha hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": ["psychosis_aggression"]}
+{"text": "یہ لڑکا اپنے کمرے میں چیزیں توڑ رہا تھا اور کہہ رہا تھا کہ خدا نے اسے یہ کرنے کا حکم دیا ہے۔", "language": "urdu", "department": "psychiatry", "discriminators": ["psychosis_aggression"]}
+{"text": "میری بیٹی کو عجیب و غریب آوازیں سنائی دیتی ہیں اور وہ کہہ رہی ہے کہ وہ اب مزید زندہ نہیں رہنا چاہتی۔", "language": "urdu", "department": "psychiatry", "discriminators": ["psychosis_aggression"]}
+{"text": "چلنے سے سانس پھولتا ہے۔", "language": "urdu", "department": "cardiology", "discriminators": []}
+{"text": "Blood pressure problem, checking.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "My heart sometimes jumps.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "Mujhe boht zyada siney mein pressure feel ho raha hai. Mera BP bhi high rehta hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "Chest mein dard hai sir, aur ye dard mere left hand tak ja raha hai. Please check karein.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "Mera dil ghabra raha hai, aur seene mein bojh mehsoos ho raha hai. Kuch samajh nahi aa raha.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "I have difficulty smelling anything for the past week. Everything tastes bland too, because I can't smell it. It's very frustrating, especially when I cook. My wife thinks I'm making it up to avoid cooking.", "language": "english", "department": "ent", "discriminators": []}
+{"text": "مجھے کان میں پھنسی ہوئی محسوس ہو رہی ہے، جیسے کوئی کیڑا ہو۔ بہت بے چینی ہو رہی ہے۔ میں نے خود ٹارچ مار کر دیکھا پر کچھ نظر نہیں آیا۔", "language": "urdu", "department": "ent", "discriminators": []}
+{"text": "Doctor saab, mere right ear mein dard hai, do din se. Aur thoda bukhar bhi lag raha hai. Jab jaw hilata hoon ya khana khata hoon to dard aur barh jata hai. Bachpan mein bhi kaan ka masla rehta tha.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "My sinus is really acting up. I have a headache, especially around my forehead and cheeks, and my nose is completely blocked. It's worse when I bend down. I've been taking some paracetamol but it's not helping much.", "language": "english", "department": "ent", "discriminators": []}
+{"text": "Doctor sahib, mere gale mein tonsils hain, aur bar bar dard hota hai. Har do teen mahine baad yehi masla shuru ho jata hai. Bukhar bhi ho jata hai kabhi kabhi. Mere ghar mein sab ke tonsils hain, lagta hai ye khandani bimari hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Doctor sahab, yeh pichle ek mahine se mere kaan mein shoo shoo ki awaz aati hai, jaise koi pankha chal raha ho. Raat ko sote waqt toh aur zyada hota hai. Meri ammi kehti hain shayad hawa lag gayi hai, lekin mujhe lagta hai andar kuch aur masla hai. Bohat tang karti hai ye awaz.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Meri naak se peeche gale mein kuch tapakta rehta hai, aur iski wajah se khansi aati hai, khas kar raat ko. Raat bhar so nahi pata, bachon ki bhi neend kharab hoti hai. Kya koi ilaaj hai iska?", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Mera husband, unko sugar hai, woh bar bar qe kar rahe hain aur unko chakkar bhi aa rahe hain. Kuch kha nahi pa rahe.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_persistent", "diabetic_ketosis"]}
+{"text": "She's pregnant, and she's been throwing up non-stop for two days. She's getting very dehydrated.", "language": "english", "department": "gynae", "discriminators": ["vomiting_persistent"]}
+{"text": "Since morning, I've vomited five times. No food or water is staying in. I feel so dizzy.", "language": "english", "department": "medical", "discriminators": ["vomiting_persistent"]}
+{"text": "My friend had an attack while we were walking. He's okay now but feels very weak and wants to sleep.", "language": "english", "department": "medical", "discriminators": ["seizure_post_ictal"]}
+{"text": "میرے بھائی کو دماغ کا مسئلہ ہے، ابھی دورہ پڑا تھا اور اب وہ ٹھیک سے بول نہیں پا رہا اور الجھا ہوا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["focal_neurology_acute", "reduced_consciousness", "seizure_post_ictal"]}
+{"text": "Pichli raat meri ammi ko fit para, tab se woh sirf soi hui hain aur unko kuch yaad nahi aa raha. Bahot pareshan hain hum.", "language": "roman_urdu", "department": "medical", "discriminators": ["reduced_consciousness", "seizure_post_ictal"]}
+{"text": "Meri amma ke hath ki ungliyon mein sujan rehti hai subah, aur akad bhi jati hain.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "My son complains of pain in his heel after playing cricket. It's been like this for a week.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "پیروں کی ایڑھی میں بہت درد ہوتا ہے، خاص کر صبح اٹھنے پر۔ چلنے پھرنے میں مشکل ہوتی ہے، بہت دنوں سے ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Hamare uncle ko chest mein dard hua, phir woh gir gaye, ab saans nahi le rahe, hil bhi nahi rahe hain.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain", "not_breathing", "cardiac_arrest"]}
+{"text": "میری بیوی کو زہر دیا گیا تھا، اب وہ ساکن پڑی ہے اور سانس بھی نہیں لے رہی، مجھے بہت ڈر لگ رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["not_breathing", "poisoning_overdose", "reduced_consciousness"]}
+{"text": "ایک بندہ سیڑھیوں سے گر گیا ہے، اور اب سانس لینے میں مشکل ہو رہی ہے، منہ بھی نیلا ہو گیا ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["not_breathing", "sob_acute"]}
+{"text": "Mujhe aksar sir mein dard rehta hai aur naak ke upar wale hisse mein pressure feel hota hai. Maybe sinus?", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Mere kaan mein pichle ek hafte se halka sa dard hai aur thori si kharish bhi hoti hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "Mere chote bhai ke kaan mein kharish hoti hai aur kabhi kabhi usko lagta hai jese kuch andar hai.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "My arm is hanging funny after I fell from the motorbike. I can't move my elbow at all. It's killing me.", "language": "english", "department": "orthopaedics", "discriminators": ["dislocation_large_joint"]}
+{"text": "Mera hath dislocated hai. Kal rat se shoulder apni jagah se hata hua hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["dislocation_large_joint"]}
+{"text": "My knee went out of place during football practice. It's swollen and looks all twisted, I can't put any weight on it.", "language": "english", "department": "orthopaedics", "discriminators": ["dislocation_large_joint"]}
+{"text": "Doctor, mujhe periods ke baad halki spotting rehti hai for 4-5 days. Pata nahi yeh normal hai ya nahi. Mere husband abroad hain, abhi interview de rahe hain online.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "میری شادی کو دس سال ہو گئے ہیں اور میں حاملہ نہیں ہو پا رہی۔ ڈاکٹر صاحب، میں نے بہت علاج کروایا ہے، لیکن کوئی فائدہ نہیں ہوا۔ میری ساس ہر وقت طعنے دیتی رہتی ہے۔", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "Doctor, meri periods irregular hain. Kabhi time pe aati hain, kabhi 15 din late. Abhi jo aai hain, bahut kam hain, sirf ek din. Kya yeh koi bimari hai? Humari family mein sab healthy hain.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "Aankhon mein kharish hoti hai.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "Subah ankhain chipak jati hain.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "Aankhon me halkay par gaye.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "Hamara driver ne pata nahi kya pi liya hai. Uska dil ghabra raha hai aur paseene aa rahe hain, bohat thanda hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["poisoning_overdose", "chest_pain"]}
+{"text": "میرا چھوٹا بچہ مچھر مارنے والی دوائی پی گیا ہے، بہت الٹیاں کر رہا ہے اور بے چین ہے۔", "language": "urdu", "department": "medical", "discriminators": ["poisoning_overdose", "vomiting_persistent"]}
+{"text": "Mera susar, usne suicide attempt kia hai. Goliyaan khai hain. Ab chehra neela par raha hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": ["poisoning_overdose", "reduced_consciousness", "sob_acute"]}
+{"text": "Doctor ne bola tha do maheene baad aana hai checkup ke liye, ye meri purani report hai. Meri nazar thori blur ho rahi hai aaj kal.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "ڈاکٹر صاحب نے ٹیسٹ لکھے تھے، ان کی رپورٹ آ گئی ہے، وہ دکھانی ہے۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "Meri aankh mein pichle hafte chot lagi thi, ab dard nahi hai lekin thoda neela nishan hai. Dikhaana tha.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "Mujhe chashma banwana hai, nazar kamzor ho gayi hai. Pehle bhi yahan se banwaya tha.", "language": "roman_urdu", "department": "eye", "discriminators": []}
+{"text": "My father needs a repeat prescription for his glaucoma drops. He's been using them for years.", "language": "english", "department": "eye", "discriminators": []}
+{"text": "میری بیگم کی آنکھوں سے لیس دار پانی آتا ہے، خاص طور پر صبح کے وقت۔ پرانی دوا کام نہیں کر رہی۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "میری دائیں آنکھ میں پچھلے کچھ دنوں سے ہلکا درد ہے اور تھوڑی سوجن بھی ہے۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "رات کو مجھے چھاتی پر بوجھ محسوس ہوا تھا لیکن ابھی بالکل ٹھیک ہوں، کوئی درد یا پریشانی نہیں۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "سینے میں جلن ہو رہی ہے پچھلے دو گھنٹے سے، کچھ کھایا تھا عجیب سا۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "چھاتی کے بائیں جانب ہلکی سی بے چینی ہے، پین نہیں ہے بس انکمفرٹیبل فیل ہو رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "میرے بھائی نے غلطی سے کیڑے مار دوا چھوٹی بوتل میں رکھی تھی، اب اس کا سر درد اور الٹیاں ہو رہی ہیں۔", "language": "urdu", "department": "medical", "discriminators": ["poisoning_overdose", "vomiting_persistent"]}
+{"text": "مجھے چکر آ رہے ہیں اور آنکھوں کے آگے اندھیرا چھا رہا ہے، میں نے غلطی سے اپنی بلڈ پریشر کی دو ڈوز لے لی ہیں۔", "language": "urdu", "department": "medical", "discriminators": ["poisoning_overdose", "reduced_consciousness"]}
+{"text": "والدہ نے اپنی شوگر کی دوا کے ساتھ بی پی کی بھی ڈبل ڈوز لے لی ہے، اب انہیں چکر آ رہے ہیں اور کمزوری ہے۔", "language": "urdu", "department": "medical", "discriminators": ["poisoning_overdose", "reduced_consciousness"]}
+{"text": "Subha galti se doppler ki ek extra tablet le li thi, ab thora neend aa rahi hai bas.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "My sister used a new hair dye, and now she has a rash. She's worried it's some chemical reaction, not something she drank.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "I was very worried my uncle took too many blood pressure pills, but he said he took the correct dose. Just wanted to confirm.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "I am on blood thinners, and I notice small bruises very easily, but no major bleeding.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "I was shaving and cut myself, very small cut, it bled for a minute then stopped. Just want a tetanus shot.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "Mere pet mein dard hai, vomiting bhi hui hai lekin khoon nahi aa raha.", "language": "roman_urdu", "department": "medical", "discriminators": ["abdominal_pain", "vomiting_persistent"]}
+{"text": "امی کو چکر آئے اور وہ گر گئیں، اب انہیں ہوش نہیں آ رہا اور سانس بھی بہت کم ہے۔", "language": "urdu", "department": "medical", "discriminators": ["cardiac_arrest"]}
+{"text": "میرا شوہر ایک دم سے بے ہوش ہو کر گر گئے ہیں اور سانس بھی نہیں آ رہی۔ ان کی نبض بھی چیک کی، وہ بھی نہیں چل رہی۔", "language": "urdu", "department": "cardiology", "discriminators": ["cardiac_arrest"]}
+{"text": "ایک مریض راستے میں چلتے چلتے گر گیا، اب نہ ہل رہا ہے، نہ بول رہا ہے اور نہ سانس لے رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["cardiac_arrest"]}
+{"text": "میری بیگم 9 ماہ کی حاملہ ہیں۔ اس کو پیشاب میں جلن ہو رہی ہے، پیٹ کے نچلے حصے میں درد نہیں ہے۔", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "Meri bivi 6 maah ki pregnant hai, usko halka sa pet mein dard ho raha hai kal se. Bas thoda sa khichaav hai.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "Subha se bohat ultiyan aa rahi hain, mai pregnant hun lekin pet dard nahi. Sirf nausea hai.", "language": "roman_urdu", "department": "gynae", "discriminators": ["vomiting_persistent"]}
+{"text": "I need to get my dressing changed. I had a small procedure on my hand last week, doctor told me to come today.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "Mere gale ke paas ek chhota sa boil (gumri) hai, pichle do hafte se hai, abhi tak phooti nahi hai.", "language": "roman_urdu", "department": "surgical", "discriminators": []}
+{"text": "My son fell and got a cut on his knee. It's small, not deep, just want to make sure it's clean and doesn't need stitches.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "Feeling pain in my throat.", "language": "english", "department": "ent", "discriminators": []}
+{"text": "ناک سے خون آیا ہے.", "language": "urdu", "department": "ent", "discriminators": []}
+{"text": "گلے میں سوزش ہے.", "language": "urdu", "department": "ent", "discriminators": []}
+{"text": "I'm pregnant and my feet swell a lot. They feel a bit cold sometimes too, is that normal?", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "میں نے اپنا ہاتھ زور سے کسی چیز پر مارا تھا، تھوڑی دیر کے لیے سن ہوا تھا لیکن اب درد نہیں ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Mera hath thora sunn lag raha hai agar main ek position mein ziada der rahoon. Chalti phirti rahoon toh theek hai.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "Doctor sab, ghar mein aag lag gayi thi, meri beti ki aik taang, poori tarah, aur aik hath kaafi jal gaya hai. Kapde bhi jism pe chipak gaye hain.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_major"]}
+{"text": "Doctor sahib, mera beta press theek kar raha tha, current laga aur uska poora baazu jal gaya hai, kalay rang ka ho gaya hai. Bohot dard hai usay.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_major"]}
+{"text": "He got a severe electric shock from an open wire. His entire arm from shoulder to wrist is black and hard. He is very weak.", "language": "english", "department": "surgical", "discriminators": ["burn_major"]}
+{"text": "کچھ دنوں سے طبیعت بھاری بھاری رہتی ہے، نیند زیادہ آتی ہے، لیکن مکمل ہوش میں ہوں اور کام بھی کر رہا ہوں۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Mujhe ghabrahat bohot hoti hai, dil tez dhadakta hai, phir lagta hai ke kahin gir na jaun. Magar gira nahi aaj tak.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "میرے ابا جان کو شوگر ہے، آج کل ذرا چکر آ رہے ہیں جب چلتے ہیں۔ وہ ہوش میں ہیں بس ذرا گرنے کا خطرہ لگتا ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "My husband forced me to come. I don't feel anything, just empty. Sometimes I think about... you know, ending it all.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "I feel very disconnected from everything. My friends call me to hang out, but I just don't feel like it. I used to be so outgoing, always the life of the party, but now... I just feel empty inside. Maybe it's the weather, it's been so hot lately.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Humare neighbour ne kaha mein pagal ho gayee hoon. Bas mein chup rehti hoon aur kisi se baat nahi karti, to kya mein pagal ho gayee?", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "My son, he started using drugs. He comes home late, he's always asking for money. We tried talking to him, but he just gets angry. He used to be such a sweet boy, always helping around. My brother-in-law had this problem too, it's very difficult.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "I have these sudden panic attacks. My heart starts racing, I feel like I can't breathe, and my hands get sweaty. It happened once in the market, I thought I was having a heart attack. My neighbour, he had one last year, he's fine now.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Meri bivi boli mujhe doctor ko dikhana chahiye. Mein bas har cheez bhool jata hoon, ghar ki chabi kahan rakhi, phone kahan hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I feel very overwhelmed since my new baby came. I cry all the time. Is this normal?", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Baji ka sugar 410 hai, kal shaam se. Kehti hain koi masla nahi, theek lag raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "Mere patient ka sugar 315 hai. Unko bas neend zyada aa rahi hai, aur koi shikasht nahi.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "I am a diabetic. My machine shows 25 mmol/L. I ate too much mangoes yesterday.", "language": "english", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "Mera neighbour shugar ka mareez hai, usko kal se vomiting aur looseness hai, aur saans bari mushkil se le raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_ketosis"]}
+{"text": "Mera bhai diabetic hai, usko chakkar aa rahay hain, woh theek se baat nahin kar raha, aur ghra saans le raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_ketosis", "reduced_consciousness"]}
+{"text": "Patient is diabetic, completely unresponsive. Deep breathing and smell of acetone on breath. Collapsed a few minutes ago.", "language": "english", "department": "medical", "discriminators": ["diabetic_ketosis", "reduced_consciousness"]}
+{"text": "نیچے درد رہتی ہے", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "Feeling very tired always.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "My periods are irregular.", "language": "english", "department": "gynae", "discriminators": []}
+{"text": "Meri bahu pregnant hai aur usko gestational diabetes bhi hai. Aaj subah se usko itne paseene aa rahe hain aur woh chakkar kha ke gir gai hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "My mother is diabetic and she's not herself. She's disoriented and very sweaty. Her sugar was low.", "language": "english", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "Patient is diabetic, became suddenly very drowsy and agitated. Also sweating too much. Sugar was 2.9.", "language": "english", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "I'm having difficulty hearing from my right ear for a few weeks now. Feels like something is blocked inside.", "language": "english", "department": "ent", "discriminators": []}
+{"text": "رات سے میرے بیٹے کی ناک سے خون آ رہا ہے، ہلکا ہلکا۔ ٹھنڈا پانی ڈالا ہے لیکن رکتا نہیں صحیح سے۔", "language": "urdu", "department": "ent", "discriminators": ["haemorrhage_controlled"]}
+{"text": "I have a foreign body sensation in my throat. It feels like something is stuck, but I can't cough it out.", "language": "english", "department": "ent", "discriminators": []}
+{"text": "میری ناف کے پاس تھوڑی سوجن ہے، کئی مہینوں سے ہے۔ زیادہ تکلیف نہیں دیتی لیکن بری لگتی ہے۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "میرے بغل میں ایک گانٹھ ہے، چھوٹی سی ہے۔ کوئی درد نہیں ہے لیکن میں بس دکھانا چاہتا ہوں۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "میرے بائیں ہاتھ کی انگلی میں تھوڑا گہرا کٹ لگ گیا تھا۔ ڈاکٹر نے ٹانکے لگائے تھے، اب وہ کٹوانے ہیں۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "یہ بچی ابھی گری ہے اور اس کے ہاتھ پاؤں اکڑ رہے ہیں، آنکھیں اوپر کو چڑھ گئی ہیں۔", "language": "urdu", "department": "medical", "discriminators": ["seizure_current", "reduced_consciousness"]}
+{"text": "This patient is shaking violently and unresponsive. He just collapsed a minute ago.", "language": "english", "department": "medical", "discriminators": ["seizure_current", "reduced_consciousness"]}
+{"text": "My son just had a seizure, he's still jerking uncontrollably. He bit his tongue very bad.", "language": "english", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "میری بیٹی نے غلطی سے کچھ دوائیاں کھا لی تھیں، اب وہ سو گئی ہے اور اٹھ نہیں رہی۔", "language": "urdu", "department": "medical", "discriminators": ["reduced_consciousness", "poisoning_overdose"]}
+{"text": "امی کل سے ہوش میں نہیں ہیں، کبھی آنکھیں کھولتی ہیں مگر پہچان نہیں رہیں۔", "language": "urdu", "department": "medical", "discriminators": ["reduced_consciousness"]}
+{"text": "یہ رات سے بڑبڑا رہے ہیں، جاگتے ہیں تو بھی ہوش میں نہیں لگتے، عجیب سی باتیں کر رہے ہیں۔", "language": "urdu", "department": "psychiatry", "discriminators": ["reduced_consciousness"]}
+{"text": "मेरी बीवी प्रेग्नेंट है, हाथ पर चोट लगी है, बिल्डिंग में काम करते हुए गिरी है.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["pregnancy_trauma"]}
+{"text": "Bahu pregnant hai, kitchen me bartan gir gaye uske paun pe, ungli dukhh rahi hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["pregnancy_trauma"]}
+{"text": "My wife, she's expecting, some heavy box fell on her foot. Can't move her toes, looks broken.", "language": "english", "department": "orthopaedics", "discriminators": ["pregnancy_trauma", "fracture_closed"]}
+{"text": "My uncle has been taking these meds for high BP, just need a check-up.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "مجھے کھانسی اور زکام کی شکایت ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "پچھلے ہفتے سے پیٹ میں ہلکی گڑبڑ اور بھوک نہ لگنا۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "My arm feels a bit weak sometimes, especially after lifting heavy things. It's not one side, both feel tired.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "I had a panic attack last week and my face felt tingly and numb, but it passed. Is it normal?", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "میری بیٹی کو اچانک آنکھ کے سامنے کالی لکیریں نظر آنے لگی ہیں پچھلے کچھ گھنٹوں سے، لیکن نظر نہیں گئی ہے۔", "language": "urdu", "department": "eye", "discriminators": []}
+{"text": "Mujhe bawaseer hai, stool ke sath khoon aaya tha ek baar, ab nahi aa raha par dard hai.", "language": "roman_urdu", "department": "surgical", "discriminators": ["haemorrhage_controlled"]}
+{"text": "میری بیوی کو بچہ ہونے والا ہے، آج صبح تھوڑا سا خون آیا تھا، پر اب نہیں آ رہا۔", "language": "urdu", "department": "gynae", "discriminators": ["haemorrhage_controlled"]}
+{"text": "I cut my leg shaving, it was bleeding a bit but I put a tissue on it and it stopped. Just a small cut.", "language": "english", "department": "dermatology", "discriminators": ["haemorrhage_controlled"]}
+{"text": "Ammi keh rahi hain unke paon mein sujan hai aur pain bhi hai. Zyada der khari nahi ho sakti. Sugar ki mareez hain.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "This finger on my left hand keeps getting stuck, like it locks up. I have to force it straight. It's annoying.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "مجھے اپنی ران میں درد محسوس ہوتا ہے، جب سیڑھیاں چڑھتا ہوں۔ ڈاکٹر صاحب، پتا نہیں کیا ہو گیا ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "میری نانی کی شوگر بہت لو ہوئی ہے، ہم نے چینی کھلائی ہے لیکن ابھی بھی سست ہیں وہ۔", "language": "urdu", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "میں نے آج انسولین لگائی تھی، ابھی سر بہت بھاری ہو رہا ہے اور آنکھوں کے آگے اندھیرا آ رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["hypoglycaemia"]}
+{"text": "میری طبیعت بہت خراب ہے، شوگر نیچے آ گئی ہے، میں صحیح سے دیکھ نہیں پا رہا۔", "language": "urdu", "department": "medical", "discriminators": ["hypoglycaemia"]}
+{"text": "This poor old man fell on the street, his hip looks weird, and he's screaming from the pain. Can you please see him quickly?", "language": "english", "department": "orthopaedics", "discriminators": ["dislocation_large_joint"]}
+{"text": "I was playing football and my knee just gave way. It feels like it's out of place, I can't put any weight on it. The pain is unbearable.", "language": "english", "department": "orthopaedics", "discriminators": ["dislocation_large_joint"]}
+{"text": "میرے بھائی کا ٹخنا ہٹ گیا ہے، کثیر منزلہ عمارت کی سیڑھیوں سے گرنے کی وجہ سے۔ بہت مشکل سے سانس لے رہے ہیں۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["dislocation_large_joint"]}
+{"text": "Mera bacha diabetic hai, 12 saal ka hai. Aaj usko schools se wapas late hogaya, ab woh bohat kamzoor lag raha hai, aankhein band kar raha hai aur keh raha hai chakkar aa rahe hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["hypoglycaemia", "reduced_consciousness"]}
+{"text": "مجھ شوگر ہے، آج صبح سے طبیعت ٹھیک نہیں، ہاتھ پاؤں کانپ رہے ہیں اور بہت گھبراہٹ ہو رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["hypoglycaemia"]}
+{"text": "میں نے آج صبح انسولین لی تھی اور کھانا نہیں کھایا، اب مجھے بہت گھبراہٹ ہو رہی ہے اور آنکھوں کے سامنے اندھیرا آ رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["hypoglycaemia"]}
+{"text": "I had a surgery on my leg two months ago, everything is fine but I still feel some weakness in the leg.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "Ammi kay paon mein mooch aayi thi pichle hafte, ab theek hai dard nahi, bas thori kamzori mehsoos hoti hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Abbu ka haath pichle hafte darwazay mein aaya tha, ab dard theek hai, bas thoda neela nishan hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Kal raat hubby ka jhagda hua tha, to unhone pata nahi kya pee liya. Ab pet mein shadeed dard hai aur ultiyan kar rahe hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["poisoning_overdose", "abdominal_pain", "vomiting_persistent"]}
+{"text": "Aik patient hai, usne khud ko nuqsan pohchane k liye zehar khaya hai. Uska dil ki dharkan tez ho gai hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["poisoning_overdose", "chest_pain"]}
+{"text": "Wife ne ghar main jhagde k baad washing powder ghol k pee liya. Us k munh say foam nikal raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["poisoning_overdose", "airway_compromised"]}
+{"text": "میں بہت جلدی تھک جاتا ہوں، کوئی بھاری کام کرنے کا دل نہیں کرتا۔ دل کا مریض ہوں میں۔", "language": "urdu", "department": "cardiology", "discriminators": []}
+{"text": "I have a family history of heart disease, and I'm feeling a general sense of fatigue and slight chest discomfort.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "I feel a slight pressure in my chest sometimes, especially when stressed. It's not severe, just uncomfortable.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "صبح سے طبیعت ٹھیک نہیں تھی، اب مجھے بہت تیز قے ہوئی اور اس میں لال خون تھا۔", "language": "urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood"]}
+{"text": "ابو جی کو چکر آ رہے تھے، پھر اچانک انہوں نے منہ سے تازہ خون نکالا ہے۔ ہم بہت گھبرائے ہوئے ہیں۔", "language": "urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood", "reduced_consciousness"]}
+{"text": "کل شام سے اس کے پیٹ میں درد تھا، آج صبح اٹھ کر اس نے خالص خون کی اُلٹی کر دی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood", "abdominal_pain"]}
+{"text": "میرے والد صاحب کو پرانی کھانسی کا مسئلہ ہے، جو سردی آتے ہی بڑھ جاتا ہے۔ انہیں کوئی دوائی لکھوانی ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Mujhe subha se gala kharab hai aur awaaz bhi theek nahi nikal rahi. halka sa badan dard b hai. General checkup.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "My father is on blood thinners and has a small cut on his hand that is taking a long time to stop bleeding. Not severe, but concerned.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "اکثر نزلہ زکام رہتا ہے، چھینکیں آتی ہیں بہت زیادہ، اور ناک بہتی رہتی ہے۔ الرجی لگتی ہے۔", "language": "urdu", "department": "ent", "discriminators": []}
+{"text": "I had a nosebleed this morning, it was quite a bit of blood but it stopped after 10 minutes. Just worried.", "language": "english", "department": "ent", "discriminators": ["haemorrhage_controlled"]}
+{"text": "گلے میں خراش ہے اور نگلنے میں تکلیف ہوتی ہے۔ بخار بھی ہے ہلکا سا۔", "language": "urdu", "department": "ent", "discriminators": []}
+{"text": "میرے سینے میں گیس کی وجہ سے درد ہو رہا ہے یا پھر دل میں؟ مجھے سمجھ نہیں آ رہی۔", "language": "urdu", "department": "medical", "discriminators": ["chest_pain", "abdominal_pain"]}
+{"text": "کام کرتے ہوئے اچانک دل میں درد ہوا، اور اب سیدھا کندھے تک جا رہا ہے۔", "language": "urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "سینے کے بیچ میں جلن والا درد ہے اور کبھی کبھی کندھے تک جاتا ہے۔", "language": "urdu", "department": "medical", "discriminators": ["chest_pain"]}
+{"text": "جب سے مجھے شوگر ہوئی ہے، کبھی کبھار یوں لگتا ہے جیسے دل بیٹھ جائے گا اور میں مر جاؤں گی۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "My grandmother just called me, she said she felt a jolt in her chest and felt like her heart stopped for a moment, then it started beating fast.", "language": "english", "department": "cardiology", "discriminators": []}
+{"text": "جب سے یہ میری سرجری ہوئی ہے، میں چلتے چلتے تھک جاتا ہوں اور کبھی کبھی یوں لگتا ہے جیسے گر جاؤں گا۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "میرا بچہ رات کو khans raha tha aur sans zor se le raha tha, ab theek hai.", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "جب میں غصہ کرتا ہوں to meri saans tez ho jati hai, koi masla to nahi?", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I feel breathless after climbing stairs, it's been happening for months.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "Dadi ko subha BP ki goli khane ke baad thori si ulti hogai thi. Ab theek hain, sirf sust hain.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "Raat ko party se aaya toh thora vomit kar diya tha. Ab subha se headache ho raha hai boht.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "My husband has a bad cough, he coughed so hard this morning that he almost vomited, but nothing came out.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "Mera bhai kal raat se gira hua hai, sar pe chot lagi hai. Abhi tak theek se hosh nahi aaya.", "language": "roman_urdu", "department": "surgical", "discriminators": ["reduced_consciousness"]}
+{"text": "Meri saas ko sugar low ho gayi thi, abhi bhi poori tarah hosh mein nahi aayi hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["reduced_consciousness", "hypoglycaemia"]}
+{"text": "Meri baji ka BP low ho gaya tha, ab aankhein khol rahi hain par samajh nahi aa raha kya bol rahi hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["reduced_consciousness"]}
+{"text": "Amma ko thori si ghabrahat hoti hai, dil ki dharkan bhi kabhi kabhi barh jati hai. Wo dil ki mareez hain.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "Doctor sahab, mera abbu ko saans thora phoolta hai jab wo namaz parhte hain, woh 80 saal ke hain, unka pehle bhi dil ka masla ho chuka hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "Mera blood pressure kabhi high ho jata hai, kabhi normal, Doctor ne kaha tha ke regularly check karwana hai. Hum subah se safar kar ke aaye hain.", "language": "roman_urdu", "department": "cardiology", "discriminators": []}
+{"text": "My husband, he's very agitated, he's been talking to someone who isn't there for days. Tried to break the TV.", "language": "english", "department": "psychiatry", "discriminators": ["psychosis_aggression"]}
+{"text": "Mera abba jaan bus khamosh rehte hain ya phir bohot gussa karte hain, logon ko buri nazar se dekhte hain.", "language": "roman_urdu", "department": "psychiatry", "discriminators": ["psychosis_aggression"]}
+{"text": "She is just staring blankly, sometimes laughing to herself. She becomes very restless and tries to run outside.", "language": "english", "department": "psychiatry", "discriminators": ["psychosis_aggression"]}
+{"text": "My son, he suddenly got very breathless, can't talk proper. He has asthma history.", "language": "english", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "My mother is very weak, she fell down, now she's not fully conscious, and her breathing is very shallow and fast.", "language": "english", "department": "medical", "discriminators": ["reduced_consciousness", "sob_acute"]}
+{"text": "میری بیٹی کو اچانک سانس لینے میں دشواری ہو رہی ہے، سینہ بیٹھ رہا ہے جیسے، اور بہت تیز تیز سانس لے رہی ہے۔", "language": "urdu", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "مجھے دو سال پہلے مرگی کا دورہ پڑا تھا، اب میں دوائی پر ہوں۔ بس فالو اپ کے لیے آیا ہوں۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "مجھے سونے میں بہت مشکل پیش آتی ہے اور کبھی کبھی ایسے لگتا ہے جیسے میرا جسم اچانک اچھل پڑتا ہے۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "My neighbour has fits, and I'm worried because I felt a bit numb in my arm this morning, could it be a seizure coming?", "language": "english", "department": "medical", "discriminators": []}
+{"text": "My relative is pregnant. She fell from chair. Side pe giri thi, hip mein pain ho raha hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["pregnancy_trauma"]}
+{"text": "Mam, I am pregnant, 5 months. Mera paon phisla tha bathroom mein, and my ankle twisted very badly. Ab chalna mushkil hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["pregnancy_trauma"]}
+{"text": "My pregnant sister got a minor cut on her hand with a knife while cutting vegetables. It's not stopping bleeding.", "language": "english", "department": "surgical", "discriminators": ["pregnancy_trauma", "haemorrhage_controlled"]}
+{"text": "My father collapsed suddenly! He's not breathing and his body is cold. Please help!", "language": "english", "department": "medical", "discriminators": ["cardiac_arrest"]}
+{"text": "Nana jan bathroom mein giray thay, uthaya tou sans band thi aur dil bhi nahi chal raha.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["cardiac_arrest"]}
+{"text": "This patient in the wheelchair just slumped forward and stopped breathing. No pulse felt.", "language": "english", "department": "medical", "discriminators": ["cardiac_arrest"]}
+{"text": "I'm here for my post-operative check-up. I had a gallbladder removal a month ago.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "ڈاکٹر صاحب نے میری امی کے varicose veins کے بارے میں مشورہ دیا تھا، ہم دوبارہ آئے ہیں مزید معلومات کے لیے۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "میرے چچا کو شوگر کی وجہ سے پاؤں میں ایک زخم ہوا تھا، وہ ٹھیک ہو گیا ہے لیکن ڈاکٹر نے کہا تھا دوبارہ آ کر دکھانا ہے۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "ابو کو رات کو بار بار نیند سے جھٹکا لگتا ہے، جیسے وہ گر رہے ہوں، لیکن وہ پوری طرح بے ہوش نہیں ہوتے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Meri ami ki haalat kharaab ho gai thi kal, unko shiddat ki kamzori thi, par woh hosh mein theen aur koi fit nahi hua.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "My sister was very stressed, she hyperventilated and passed out briefly. No fits. She is stable now.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "Yeh sar dard se behosh ho gaya tha, abhi hosh main aaya hai, par batein ulli seedhi kar raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["reduced_consciousness"]}
+{"text": "She had a fall, hit her head. Now she's not fully conscious, just moaning.", "language": "english", "department": "surgical", "discriminators": ["reduced_consciousness"]}
+{"text": "My grandmother just stopped talking and became very sleepy. She can't follow commands.", "language": "english", "department": "medical", "discriminators": ["reduced_consciousness"]}
+{"text": "Madam, my husband has this heavy feeling in his chest since last night, he also feel shortness of breath when he walk.", "language": "english", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "Mera seena bohot bhari ho raha hai aur saans lene mein takleef ho rahi hai. Kal raat se hai, abhi ziada ho gaya.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["sob_acute", "chest_pain"]}
+{"text": "Bhai ko seene mein dardh hai, aur jab wo chalte hain to sans bhi pholti hai. Bol rahe hain dil dukhta hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["chest_pain"]}
+{"text": "My stomach is hurting very bad since last night. I took some painkillers but no relief.", "language": "english", "department": "medical", "discriminators": ["abdominal_pain"]}
+{"text": "میرا بچہ رات سے پیٹ پکڑ کر رو رہا ہے، ساتھ میں الٹیاں بھی آ رہی ہیں۔", "language": "urdu", "department": "surgical", "discriminators": ["abdominal_pain", "vomiting_persistent"]}
+{"text": "I feel a sharp, stabbing pain just below my ribs on the right side. It comes and goes.", "language": "english", "department": "surgical", "discriminators": ["abdominal_pain"]}
+{"text": "Ammi ki sugar kal shaam ko 18 thi, aj subah 16. Wo theek hain bas thora thakawat hai. Saans waghera theek chal rahi hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["diabetic_hyperglycaemia"]}
+{"text": "میں ذیابیطس کا مریض نہیں ہوں، لیکن میرے منہ سے کبھی کبھی پھلوں جیسی خوشبو آتی ہے۔ کیا یہ کوئی مسئلہ ہے؟", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "Baji ko sugar hai, lekin abhi unko sirf khansee lag gai hai aur gala kharab hai. Koi ulti ya saans ka masla nahi.", "language": "roman_urdu", "department": "ent", "discriminators": []}
+{"text": "جب سے وہ حادثہ ہوا ہے، مجھے ہر وقت اُسی منظر کی فلیش بیکس آتی ہیں، اور دل کی دھڑکن تیز ہو جاتی ہے۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "میری طبیعت بہت بے چین رہتی ہے۔ کبھی سکون نہیں ملتا، بس سوچتا رہتا ہوں۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Meri beti ko exam se pehle itni tension ho jati hai ke pet main dard shuru ho jata hai aur ulti bhi ho jati hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I got some sort of infection on my toe nail, it's yellow and thick now.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "My son has these small bumps on his arms, they sometimes get itchy. It started last month.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "مجھے بازوؤں پر چھوٹے چھوٹے سرخ نشان ہیں، کبھی کبھار خارش کرتے ہیں۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "My scalp feels very sensitive and sometimes burns a little after washing. No visible rash though.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "Haath pe ek chhota sa lump hai, jab say aaya hai dard nahi karta, bas kharab lagta hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "چہرے پہ کالے دھبے پڑ گئے ہیں دھوپ سے، بہت پریشان ہوں ان سے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "میری بیٹی کے ہاتھوں میں گرمی دانے نکل آئے ہیں، کچھ دن سے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "میری بیٹی سیڑھیوں سے گر گئی تھی۔ اس کی ٹانگ الٹی ہو گئی ہے اور جلد پھٹ کر ہڈی نظر آ رہی ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["fracture_compound"]}
+{"text": "Ek mazdoor ke paon par lohe ka piece gir gaya. Uski ungli bilkul alag ho gai hai aur haddi saaf dikh rahi hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["fracture_compound"]}
+{"text": "This man had a motorbike crash, his leg bone is visible through the skin, and it's bleeding a lot. We tried to stop it with cloth.", "language": "english", "department": "orthopaedics", "discriminators": ["fracture_compound", "haemorrhage_controlled"]}
+{"text": "Meray peechay wale daant mein thora sa ghada ho gaya hai. Abhi dard nai, but I'm worried.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "My old filling came out, and now there's a hole. It's not hurting right now.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "My teeth are getting yellowish, I want to get them cleaned or something. Just aesthetic.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "My filling came out yesterday when I was eating roti. No pain right now but it feels weird.", "language": "english", "department": "dental", "discriminators": []}
+{"text": "میری زبان پر سفید تہہ جم گئی ہے اور منہ سے بو آتی ہے۔", "language": "urdu", "department": "dental", "discriminators": []}
+{"text": "Mera ak daant pichle 3 din se thora dard kar rha hai, jab thanda pani peeta hu.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "Uncle ka daant hil raha hai, unko kuch khaya nahi jaa raha. Umar bhi kafi hai.", "language": "roman_urdu", "department": "dental", "discriminators": []}
+{"text": "He just stopped for a bit, then shaking. Now he's just staring, not blinking, not responding properly.", "language": "english", "department": "medical", "discriminators": ["seizure_post_ictal", "reduced_consciousness"]}
+{"text": "میرے دادا کو ابھی چند منٹ پہلے دورہ پڑا تھا، منہ سے جھاگ بھی نکلی۔ اب وہ صرف لیٹے ہوئے ہیں، بات نہیں کر رہے۔", "language": "urdu", "department": "medical", "discriminators": ["seizure_post_ictal", "reduced_consciousness"]}
+{"text": "Mere abu ko abhi thori der pehle jhatke lage thay, saans bhi mushkil se aa rahi thi. Ab woh so rahe hain aur uthte nahi.", "language": "roman_urdu", "department": "medical", "discriminators": ["seizure_post_ictal", "reduced_consciousness"]}
+{"text": "My elbow has been hurting after I lifted something heavy, it's sore but I can still move my arm.", "language": "english", "department": "orthopaedics", "discriminators": []}
+{"text": "میری کمر میں درد ہوتا ہے جب میں بیٹھتا ہوں زیادہ دیر، پھر اٹھ کر چلتا ہوں تو ٹھیک ہو جاتا ہے.", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Bhabhi ko period ka dard horaha hai, har mahinay hota hai, medicines li hain to thoda control hai.", "language": "roman_urdu", "department": "gynae", "discriminators": []}
+{"text": "صبح سے یہ انگلی درد کر رہی ہے اور مڑی ہوئی ہے، میں اس کو سیدھا نہیں کر پا رہا۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["dislocation_small_joint"]}
+{"text": "یہ انگوٹھا دیکھیں، کھیلتا ہوا گر گیا تھا بچہ، اب ٹیڑھا ہو گیا ہے اور درد کر رہا ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["dislocation_small_joint"]}
+{"text": "Is ungli mein dard ho raha hai itna, aur yeh seedhi karne par bilkul nahi jati, bas aise hi reh rahi hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["dislocation_small_joint"]}
+{"text": "ابو کے گھٹنے میں سوجن رہتی ہے پچھلے ایک ہفتے سے۔ چلنے میں کافی دقت ہوتی ہے انکو۔", "language": "urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Mera paon ka angutha bohot dukhta hai, jab shoes pehente hain to aur zyada. Doctor ko dikhana hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Amma ke ungli me dard hota hai. Subha uthti hain to akkar jati hai. Pura haath nahi hilta.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": []}
+{"text": "Abu ko abhi fresh red blood ki ulti aai hai. Pehlay kabhi aisa nahin hua, unka BP bhi low lag raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood"]}
+{"text": "I'm having a really bad stomach ache, 8/10, and just threw up bright red blood. I'm feeling dizzy.", "language": "english", "department": "medical", "discriminators": ["vomiting_fresh_blood", "abdominal_pain"]}
+{"text": "Mera beta subah se khoon ki ultian kar raha hai, taza khoon hai, aur uska pait bhi bohot dard kar raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["vomiting_fresh_blood", "abdominal_pain"]}
+{"text": "Mera beta nasha karta hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Bohot gussa ata hai mujhey.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Bahut tension rehti hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "نیند کا مسئلہ ہے، جاگتے رہتے ہیں۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Seems like a drug problem.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "کوئی کام کرنے کو دل نہیں کرتا۔", "language": "urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Can't focus at work.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "میں بچے دانی میں ریشہ کا علاج کروانے آئی تھی۔ پہلی اپوائنٹمنٹ تھی، اب پھر دکھانا ہے۔", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "تین مہینے پہلے آپریشن ہوا تھا، اب ٹانکے والی جگہ پر ہلکا درد ہے اور تھوڑی سوزش لگتی ہے۔", "language": "urdu", "department": "gynae", "discriminators": []}
+{"text": "پیٹ میں ہلکا درد ہے اور تھوڑا سا ڈسچارج بھی ہے، ڈاکٹر کو دکھانا ہے۔", "language": "urdu", "department": "gynae", "discriminators": ["abdominal_pain"]}
+{"text": "My hand got cut by glass. It was deep, but my husband bandaged it tightly and it's not bleeding now. I think I need stitches.", "language": "english", "department": "surgical", "discriminators": ["haemorrhage_controlled"]}
+{"text": "Mera pao murh gaya tha, shayad nail andar chala gaya hai. Khoon aaya thora sa par maine dabaya to ruk gaya hai. Bohat dard hai, chalna mushkil ho raha hai.", "language": "roman_urdu", "department": "surgical", "discriminators": ["haemorrhage_controlled"]}
+{"text": "I had a small growth removed from my back. It was bleeding during the procedure, but the doctor put a dressing. Now it's just a bit tender, no more blood.", "language": "english", "department": "dermatology", "discriminators": ["haemorrhage_controlled"]}
+{"text": "Subha slip ho gaya kitchen main, abhi tak paon pe weight nahi daal pa raha. Bohat dard hai, sujan bhi hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["fracture_closed"]}
+{"text": "کل دیوار سے گرنے کے بعد میری کمر میں شدید درد ہے اور میں سیدھا کھڑا نہیں ہو پا رہا۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["fracture_closed"]}
+{"text": "Shaam ko chat se gira tha, abhi kamar main bohat dard hai aur chalna phirna mushkil hogaya hai.", "language": "roman_urdu", "department": "orthopaedics", "discriminators": ["fracture_closed"]}
+{"text": "میری بھابھی حاملہ ہے اور اچانک اس کے پیٹ میں درد شروع ہو گیا ہے اور وہ بے چین لگ رہی ہے۔", "language": "urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "میری بیٹی کو ساتواں مہینہ ہے اور آج اس کو پیٹ میں مروڑ کے ساتھ ہلکا خون بھی آ رہا ہے۔", "language": "urdu", "department": "gynae", "discriminators": ["pregnancy_abdo", "haemorrhage_controlled"]}
+{"text": "میں Pregnant ہوں اور دو دن سے میرے پیٹ میں کچھ عجیب سا درد ہے، جو کبھی زیادہ کبھی کم ہوتا ہے۔", "language": "urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "بچے کا چہرہ جلا ہوا ہے اور وہ روتے روتے سانس روک رہا ہے، بہت ڈری ہوئی ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute"]}
+{"text": "رات کو آگ لگی، میرا چہرہ جل گیا، اب بولنے میں بھی تکلیف ہو رہی ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation"]}
+{"text": "کھانا بنا رہی تھی، چولہا پھٹا، چہرے پہ آگ آئی اور اب گلا بھی خراب لگ رہا ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation"]}
+{"text": "Bhai sahab ko ghar main seenay mein takleef hoi, phir gir paray aur ab hil bhi nahi rahay. Nabz check ki hai, bilkul band lag rahi hai.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["cardiac_arrest", "chest_pain"]}
+{"text": "Mariam 15 saal ki hai. Party mein thi, dance kartay kartay gir parri. Ab be-jaan pari hai, koi pulse nahi mil rahi.", "language": "roman_urdu", "department": "medical", "discriminators": ["cardiac_arrest"]}
+{"text": "Mera shohar office ja raha tha, lift main be-hosh ho gaya. Jab nikaala, to nabz nahi thi aur saans bhi band thi.", "language": "roman_urdu", "department": "medical", "discriminators": ["cardiac_arrest"]}
+{"text": "My son has a red patch on his scalp, it looks like ringworm. We got it from school, I think.", "language": "english", "department": "dermatology", "discriminators": []}
+{"text": "Meri beti ko poore jism pe chukkar se nikal aaye hain, kal raat se shuru huye hain aur kharish boht hai.", "language": "roman_urdu", "department": "dermatology", "discriminators": []}
+{"text": "ڈاکٹر صاحب، میرے پاؤں کی ایڑیوں میں بہت زیادہ دراڑیں پڑ گئی ہیں، چلنے میں درد ہوتا ہے۔", "language": "urdu", "department": "dermatology", "discriminators": []}
+{"text": "Mera beta nasha karta hai. Kehta hai chhorna chahta hai lekin control nahi kar pata. Hum boht pareshan hain.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "I'm having really bad mood swings, one moment I'm happy, the next I'm very sad or angry.", "language": "english", "department": "psychiatry", "discriminators": []}
+{"text": "Pichle maheene se main office se chuttiyan le raha hun, subah uthne ka dil nahi karta, har cheez bekaar lagti hai.", "language": "roman_urdu", "department": "psychiatry", "discriminators": []}
+{"text": "Meri biwi ko 3 mahine ki pregnancy hai, usne kuch ulta seedha kha liya tha. Ab pet mein maroor hain aur motions bhi lag gaye hain.", "language": "roman_urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "Mujhe 6 mahine ki pregnancy hai, 2 din se pet mein upar ki taraf dard hai, jaise gas ho. Lekin ab bardasht se bahar ho raha hai.", "language": "roman_urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "Pregnant hun 12 hafte se. Kuch khaya nahi ja raha, vomiting aur pet dard, bukhar bhi hai.", "language": "roman_urdu", "department": "gynae", "discriminators": ["pregnancy_abdo", "vomiting_persistent"]}
+{"text": "Doctor sahab, mere walid sahib ko pichle do hafte se qabz rehti hai. Koi cheez bhi khaen to pet bhara bhara lagta hai. Wo abhi tak kuch khaane se katra rahey hain. Unki umer 70 saal hai.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "My sugar is always high, I don't know why. I take my medicine regularly, but still. My son-in-law says maybe I need a new medicine. And I feel so tired all the time, can't even walk to the market.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "My whole body aches, like I've been beaten. And I have some muscle pain in my arms and legs. No fever, just this general discomfort. My mother-in-law told me to drink ginger tea, but no use.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "I'm 9 months pregnant, meri gas ki wajah se pet mein bohat dard hai, aur yeh dard ab peeche kamar mein bhi ja raha hai.", "language": "roman_urdu", "department": "gynae", "discriminators": ["pregnancy_abdo", "abdominal_pain"]}
+{"text": "میری بیٹی کو پانچویں مہینہ لگا ہے اور پیٹ میں اوپر کی طرف درد ہے، کھانا بھی ہضم نہیں ہو رہا۔", "language": "urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "پانچویں مہینے میں ہوں اور پیٹ کے نچلے حصے میں شدید درد ہے، بالکل برداشت نہیں ہو رہا۔", "language": "urdu", "department": "gynae", "discriminators": ["pregnancy_abdo"]}
+{"text": "Yeh patient, isko abhi fits par rahay hain. Zindagi mein pehli baar.", "language": "roman_urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "Sir, meri ami ko abhi current lagne jese jhatkay lag rahay hain. Hosh mein nahi hain.", "language": "roman_urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "Mera cousin, usko abhi fits par rahay hain. Please help him.", "language": "roman_urdu", "department": "medical", "discriminators": ["seizure_current"]}
+{"text": "My little sister got severe burns from a faulty geyser explosion. Her left arm and side of her face are badly damaged, and her hair is singed.", "language": "english", "department": "surgical", "discriminators": ["burn_major", "burn_facial_inhalation"]}
+{"text": "Mein welder hoon, kaam karte huye sparks ud kar mere chest par gir gaye, mera seena pura jal gaya hai. Saans lene mein takleef horahi.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_major", "sob_acute"]}
+{"text": "میری بیٹی کا آدھا دھڑ اور ایک ٹانگ جل گئی ہے گرم پانی سے، اس کی عمر صرف پانچ سال ہے۔ بہت درد میں ہے۔", "language": "urdu", "department": "surgical", "discriminators": ["burn_major"]}
+{"text": "اونچائی سے گرنے کی وجہ سے میرے بھائی کی کہنی کی ہڈی باہر آ گئی ہے۔ وہ ہوش میں نہیں ہے.", "language": "urdu", "department": "orthopaedics", "discriminators": ["fracture_compound", "dislocation_large_joint", "reduced_consciousness"]}
+{"text": "A cow kicked me very hard. My shin bone is broken and I can see it. It's bleeding but slowly, not like gushing.", "language": "english", "department": "orthopaedics", "discriminators": ["fracture_compound", "haemorrhage_controlled"]}
+{"text": "درخت سے گرا تھا، میرے پاؤں کی ہڈی باہر نکلی ہوئی ہے۔ خون زیادہ نہیں لیکن زخم کھلا ہے۔", "language": "urdu", "department": "orthopaedics", "discriminators": ["fracture_compound"]}
+{"text": "Doctor, mera pet aksar kharab rehta hai, gas hoti hai bohot. Dard nahi hota lekin bechaini hoti hai.", "language": "roman_urdu", "department": "medical", "discriminators": []}
+{"text": "مجھے قبض کا مسئلہ ہے، دو دن سے پیٹ صاف نہیں ہوا۔ تھوڑا بوجھ محسوس ہو رہا ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "مجھے کافی دن سے بدہضمی کا مسئلہ ہے، کھانا ہضم نہیں ہوتا۔ پیٹ پر دباؤ محسوس ہوتا ہے۔", "language": "urdu", "department": "medical", "discriminators": []}
+{"text": "My sugar was 16 last night, but I took my medicine. Feeling fine now, just for a follow-up.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "I am a diabetic patient, and I need to refill my insulin. My sugar is generally under control.", "language": "english", "department": "medical", "discriminators": []}
+{"text": "مجھے ذیابیطس ہے، اور میرا پاؤں کاٹ گیا تھا، زخم بھر نہیں رہا ہے۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "Iske chehre pe bhi chote chote burns hain aur aawaz bhi theek nahi nikal rahi. Keh raha hai dhuen se saans band ho rahi thi.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute"]}
+{"text": "Ghar mein aag lagi thi, bachay ka munh jala hai. Aur dhuan andar jaane se saans lene mein dikkat ho rahi hai usko.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation", "sob_acute"]}
+{"text": "Meri bhanji ke chehre pe hot oil gir gaya tha. Naak ke paas bhi jala hai. Shayad dhuan bhi andar gaya hai, use khansi aa rahi hai.", "language": "roman_urdu", "department": "surgical", "discriminators": ["burn_facial_inhalation"]}
+{"text": "Sir, mere dost ne kuch zehreela kha liya tha. Ab woh be-hosh ho raha hai aur saans bhi bohot mushkil se le raha hai.", "language": "roman_urdu", "department": "medical", "discriminators": ["sob_acute", "reduced_consciousness", "poisoning_overdose"]}
+{"text": "Mere sine main kal raat se dard hai aur ab saans lene main bhi takleef ho rahi hai. Aik puri baat nahi keh pa raha main.", "language": "roman_urdu", "department": "cardiology", "discriminators": ["sob_acute", "chest_pain"]}
+{"text": "Meri saas ko achanak se saans rukne lagi hai, aur woh bohot kamzor lag rahi hain. Baat bhi nahi kar pa rahin puri tarha.", "language": "roman_urdu", "department": "medical", "discriminators": ["sob_acute"]}
+{"text": "بہن کے بازو پر ایک پھوڑا نکلا تھا، اب وہ بیٹھ گیا ہے مگر اس کا نشان رہ گیا ہے۔", "language": "urdu", "department": "surgical", "discriminators": []}
+{"text": "My father had a surgery last year for gallbladder, he just needs a routine follow-up.", "language": "english", "department": "surgical", "discriminators": []}
+{"text": "میرے والد صاحب کو پاؤں پر پرانی چوٹ ہے، اس کی پٹی کروانے آئے ہیں، بہت معمولی درد ہے۔", "language": "urdu", "department": "surgical", "discriminators": []}

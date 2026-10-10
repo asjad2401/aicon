@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { useRecorder } from "./use-recorder";
 
 type Analysis = {
+  offline: boolean;
   intake: Intake;
   triage: TriageResult;
   routing: Routing;
@@ -34,6 +35,35 @@ function Bilingual({ ur, en, className }: { ur: string; en: string; className?: 
   );
 }
 
+const PAIN_FACES = ["😀", "🙂", "😐", "🙁", "😣", "😫"];
+
+/** 0–10 pain scale with faces: the patient's own rating feeds SATS pain rules directly. */
+function PainScale({ value, onChange }: { value: number | null; onChange: (v: number | null) => void }) {
+  return (
+    <div className="flex w-full flex-col items-center gap-2">
+      <p className="text-sm text-muted-foreground">
+        How bad is the pain? (optional) · <span className="font-urdu">درد کتنا ہے؟</span>
+      </p>
+      <div className="flex flex-wrap justify-center gap-1">
+        {Array.from({ length: 11 }, (_, n) => (
+          <button
+            key={n}
+            type="button"
+            onClick={() => onChange(value === n ? null : n)}
+            className={cn(
+              "flex h-12 w-11 flex-col items-center justify-center rounded-lg border text-xs tabular-nums",
+              value === n ? "border-primary bg-primary/10 font-semibold" : "hover:bg-muted",
+            )}
+          >
+            <span className="text-base leading-none">{PAIN_FACES[Math.min(5, Math.floor(n / 2))]}</span>
+            {n}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function Kiosk() {
   const router = useRouter();
   const recorder = useRecorder((audio) => void analyze({ audio }));
@@ -41,6 +71,8 @@ export function Kiosk() {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [sex, setSex] = useState<Sex | null>(null);
+  const [offlineMode, setOfflineMode] = useState(false);
+  const [pain, setPain] = useState<number | null>(null);
   const [typing, setTyping] = useState(false);
   const [text, setText] = useState("");
   const [analysis, setAnalysis] = useState<Analysis | null>(null);
@@ -71,6 +103,8 @@ export function Kiosk() {
     if (input.audio) form.append("audio", input.audio, "speech");
     if (input.text) form.append("text", input.text);
     form.append("age", age);
+    if (pain != null) form.append("pain", String(pain));
+    if (offlineMode) form.append("offline", "1");
     if (sex) form.append("sex", sex);
     if (returning) form.append("passport", returning.passportToken);
     try {
@@ -123,6 +157,19 @@ export function Kiosk() {
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-8 p-6">
+      <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+        {offlineMode || analysis?.offline ? (
+          <span className="rounded-full bg-triage-yellow/15 px-3 py-1 font-medium text-triage-yellow">
+            Offline mode · Priora Lite on-device model · typing only
+          </span>
+        ) : (
+          <span />
+        )}
+        <label className="flex items-center gap-1.5">
+          <input type="checkbox" checked={offlineMode} onChange={(e) => setOfflineMode(e.target.checked)} />
+          Simulate internet outage
+        </label>
+      </div>
       {error && (
         <p className="rounded-lg bg-destructive/10 p-3 text-center text-destructive">{error}</p>
       )}
@@ -221,8 +268,9 @@ export function Kiosk() {
       {step === "describe" && (
         <section className="flex flex-col items-center gap-8">
           <Bilingual ur="اپنی تکلیف بتائیں" en="Tell us what's wrong, in your own words" />
+          <PainScale value={pain} onChange={setPain} />
 
-          {!typing ? (
+          {!typing && !offlineMode ? (
             <>
               <button
                 type="button"

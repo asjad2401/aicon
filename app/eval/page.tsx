@@ -5,6 +5,8 @@ import { DEPARTMENT_BY_ID, type DepartmentId } from "@/lib/routing/departments";
 import type { Colour } from "@/lib/triage/discriminators";
 import { cn } from "@/lib/utils";
 import results from "@/eval/results.json";
+import liteEval from "@/ml/model/eval.json";
+import liteMetrics from "@/ml/model/metrics.json";
 
 export const metadata: Metadata = { title: "Evaluation · Priora" };
 
@@ -157,6 +159,51 @@ export default function EvalPage() {
             </table>
           </div>
         </div>
+
+        <section className="flex flex-col gap-4 rounded-xl border bg-card p-5">
+          <div>
+            <h2 className="text-xl font-semibold">Priora Lite: our own offline model</h2>
+            <p className="mt-1 max-w-3xl text-sm text-muted-foreground">
+              When the internet drops, Priora falls back to a model we trained ourselves: Gemini generated {liteMetrics.items_generated.toLocaleString()} labelled
+              complaints in three languages, and we distilled them into a {liteMetrics.features.toLocaleString()}-feature character + word n-gram classifier that
+              predicts SATS signs and the department in ~{Math.round(liteEval.latency_ms)} ms on a CPU, with no network. A red-flag phrase lexicon can only add
+              urgency; the SATS engine still sets the colour and a nurse confirms. Details: <code className="rounded bg-muted px-1">ml/README.md</code>.
+            </p>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm tabular-nums">
+              <thead className="text-left text-xs text-muted-foreground">
+                <tr>
+                  <th className="py-1">Test set</th><th>Model</th><th>Colour accuracy</th><th>Under-triage</th><th>Department</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-t">
+                  <td className="py-2">28 hand-written cases</td><td>Gemini 2.5 Flash (online)</td>
+                  <td>{Math.round(liteEval.vignettes.gemini.colour_accuracy * 1000) / 10}%</td>
+                  <td>{Math.round(liteEval.vignettes.gemini.under_triage_rate * 1000) / 10}%</td>
+                  <td>{Math.round(liteEval.vignettes.gemini.department_acceptable * 1000) / 10}% acceptable</td>
+                </tr>
+                <tr className="border-t">
+                  <td className="py-2">28 hand-written cases</td><td className="font-medium">Priora Lite (offline)</td>
+                  <td>{Math.round(liteEval.vignettes.lite.colour_accuracy * 1000) / 10}%</td>
+                  <td>{Math.round(liteEval.vignettes.lite.under_triage_rate * 1000) / 10}%</td>
+                  <td>{Math.round(liteEval.vignettes.lite.department_acceptable * 1000) / 10}% acceptable</td>
+                </tr>
+                <tr className="border-t">
+                  <td className="py-2">{liteEval.held_out.n} held-out synthetic</td><td className="font-medium">Priora Lite (offline)</td>
+                  <td>{Math.round(liteEval.held_out["model+lexicon"].colour_accuracy * 1000) / 10}%</td>
+                  <td>{Math.round(liteEval.held_out["model+lexicon"].under_triage_rate * 1000) / 10}%</td>
+                  <td>{Math.round(liteEval.held_out.department_accuracy * 1000) / 10}% exact</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            Offline is a safety net, not a replacement: results are provisional and nurse-confirmed. The lexicon was refined after an early miss on one
+            hand-written case, so its score there is optimistic; the held-out set is the fairer measure.
+          </p>
+        </section>
 
         <p className="text-sm text-muted-foreground">
           Limitations: a small synthetic set written by the team, text input only (voice is tested manually), provisional triage without

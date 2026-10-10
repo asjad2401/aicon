@@ -15,6 +15,9 @@ export async function POST(request: Request) {
   const age = form.get("age") ? Number(form.get("age")) : undefined;
   const sex = (form.get("sex") as string | null) ?? undefined;
   const passport = (form.get("passport") as string | null)?.trim();
+  const pain = form.get("pain") ? Number(form.get("pain")) : undefined;
+  const painScore = pain != null && pain >= 0 && pain <= 10 ? pain : undefined;
+  const forceOffline = form.get("offline") === "1";
 
   if (!text && !audio) {
     return Response.json({ error: "Provide text or audio" }, { status: 400 });
@@ -35,10 +38,11 @@ export async function POST(request: Request) {
     // Returning patient: known history from digitised reports sharpens routing.
     const patient = passport ? await findPatient(passport) : null;
     const history = patient ? [...(await knownHistory(patient.id)), ...(await priorDiagnoses(patient.id))] : [];
-    const result = await runIntakePipeline(input, { age, sex, knownHistory: history });
+    const result = await runIntakePipeline(input, { age, sex, knownHistory: history, painScore, forceOffline });
     return Response.json({ ...result, knownHistoryUsed: history.length });
   } catch (err) {
     console.error("[intake] failed", err);
-    return Response.json({ error: "Could not understand the input. Please try again." }, { status: 502 });
+    const message = err instanceof Error && err.message.startsWith("Voice is unavailable offline") ? err.message : "Could not understand the input. Please try again.";
+    return Response.json({ error: message }, { status: 502 });
   }
 }

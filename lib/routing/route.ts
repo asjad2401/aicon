@@ -26,7 +26,7 @@ export type Routing = {
   confidence: number;
   reasons: string[];
   alternatives: DepartmentId[];
-  source: "rule" | "ai" | "ai_low_confidence";
+  source: "rule" | "ai" | "ai_low_confidence" | "offline_model";
   /** Department to see after Emergency stabilises a RED patient. */
   specialty?: DepartmentId;
 };

@@ -103,7 +103,7 @@ export default function Home() {
           <div>
             <p className="eyebrow !text-[#bdbdbd]">District early-warning network · Islamabad &amp; Rawalpindi</p>
             <h1 className="mt-5 text-5xl leading-[1.04] sm:text-7xl">
-              Priora sees outbreaks <span className="display-italic text-[#ff6b4a]">a week</span> before the lab reports do.
+              Priora sees outbreaks a week before the lab reports do.
             </h1>
             <p className="mt-6 max-w-xl text-xl leading-relaxed text-[#f2f2f2]/50">
               An AI triage nurse at every hospital front desk,{" "}

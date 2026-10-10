@@ -119,7 +119,7 @@ export default function Home() {
           </div>
           <div className="flex flex-col items-center gap-3">
             <DistrictRadar />
-            <p className="font-mono text-[11px] tracking-wider text-[#f5f1e8]/50">● AREA &nbsp; □ HOSPITAL &nbsp; <span className="text-[#ff8a70]">● ACTIVE ALERT</span></p>
+            <p className="font-mono text-[11px] tracking-wider text-[#f5f1e8]/50">● AREA &nbsp; □ HOSPITAL &nbsp; <span className="text-[#ff8a70]">● ACTIVE ALERT</span> &nbsp; MAP © OPENSTREETMAP</p>
           </div>
         </div>
         <LiveTicker />

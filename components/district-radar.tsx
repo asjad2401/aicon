@@ -10,15 +10,29 @@ type Snapshot = { today: string; network: { hospital: string; intakes: number }[
 const SIZE = 440;
 const C = SIZE / 2;
 const POINTS = [...AREAS, ...HOSPITALS];
-const LAT0 = (Math.min(...POINTS.map((p) => p.lat)) + Math.max(...POINTS.map((p) => p.lat))) / 2;
-const LON0 = (Math.min(...POINTS.map((p) => p.lon)) + Math.max(...POINTS.map((p) => p.lon))) / 2;
-const K = Math.cos((LAT0 * Math.PI) / 180);
-const SPAN = Math.max(...POINTS.map((p) => Math.hypot((p.lon - LON0) * K, p.lat - LAT0)));
-/** Project a lat/lon into the radar disc (equirectangular, north up). */
-const xy = (lat: number, lon: number) => ({
-  x: C + (((lon - LON0) * K) / SPAN) * (C - 34),
-  y: C - ((lat - LAT0) / SPAN) * (C - 34),
-});
+/** Web Mercator, the same projection as the map tiles, so blips sit on their real streets. */
+const Z = 12;
+const WORLD = 256 * 2 ** Z;
+const mx = (lon: number) => ((lon + 180) / 360) * WORLD;
+const my = (lat: number) => {
+  const r = (lat * Math.PI) / 180;
+  return ((1 - Math.log(Math.tan(r) + 1 / Math.cos(r)) / Math.PI) / 2) * WORLD;
+};
+const PX = POINTS.map((p) => ({ x: mx(p.lon), y: my(p.lat) }));
+const CX = (Math.min(...PX.map((p) => p.x)) + Math.max(...PX.map((p) => p.x))) / 2;
+const CY = (Math.min(...PX.map((p) => p.y)) + Math.max(...PX.map((p) => p.y))) / 2;
+const SCALE = (C - 34) / Math.max(...PX.map((p) => Math.hypot(p.x - CX, p.y - CY)));
+const xy = (lat: number, lon: number) => ({ x: C + (mx(lon) - CX) * SCALE, y: C + (my(lat) - CY) * SCALE });
+
+/** OSM tiles covering the radar disc. */
+const R_WORLD = C / SCALE;
+const TILES: { x: number; y: number; url: string }[] = [];
+for (let tx = Math.floor((CX - R_WORLD) / 256); tx <= Math.floor((CX + R_WORLD) / 256); tx++) {
+  for (let ty = Math.floor((CY - R_WORLD) / 256); ty <= Math.floor((CY + R_WORLD) / 256); ty++) {
+    TILES.push({ x: C + (tx * 256 - CX) * SCALE, y: C + (ty * 256 - CY) * SCALE, url: `https://tile.openstreetmap.org/${Z}/${tx}/${ty}.png` });
+  }
+}
+const TILE = 256 * SCALE;
 
 export function useDistrictSnapshot() {
   return useSWR<Snapshot>("/api/public/district", fetcher, { refreshInterval: 60_000 });
@@ -42,7 +56,16 @@ export function DistrictRadar() {
           <stop offset="100%" stopColor="#7fd3c0" stopOpacity="0.35" />
         </linearGradient>
       </defs>
-      <circle cx={C} cy={C} r={C - 2} fill="url(#radar-bg)" stroke="#f5f1e8" strokeOpacity="0.25" />
+      <circle cx={C} cy={C} r={C - 2} fill="url(#radar-bg)" />
+      <clipPath id="radar-disc">
+        <circle cx={C} cy={C} r={C - 2} />
+      </clipPath>
+      <g clipPath="url(#radar-disc)" style={{ filter: "grayscale(1) invert(1) contrast(1.15)", opacity: 0.26, mixBlendMode: "screen" }}>
+        {TILES.map((t) => (
+          <image key={t.url} href={t.url} x={t.x} y={t.y} width={TILE + 0.5} height={TILE + 0.5} preserveAspectRatio="none" />
+        ))}
+      </g>
+      <circle cx={C} cy={C} r={C - 2} fill="none" stroke="#f5f1e8" strokeOpacity="0.25" />
       {[0.25, 0.5, 0.75].map((f) => (
         <circle key={f} cx={C} cy={C} r={(C - 2) * f} fill="none" stroke="#f5f1e8" strokeOpacity="0.12" strokeDasharray="2 5" />
       ))}

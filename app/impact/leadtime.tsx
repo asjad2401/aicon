@@ -6,8 +6,8 @@ import { DEFAULT_LEADTIME, runLeadTime, type LeadTimeParams } from "@/lib/survei
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 // Emphasis form: bars where Priora is earlier in the brand accent; where today's system is earlier in gray.
-const EARLIER = "#0f766e";
-const LATER = "#a8a29e";
+const EARLIER = "#ededed";
+const LATER = "#5c5c5c";
 
 function Tile({ label, value, note }: { label: string; value: string; note: string }) {
   return (
@@ -26,7 +26,7 @@ function Slider({ label, value, min, max, step, onChange, source }: { label: str
         <span className="text-muted-foreground">{label}</span>
         <span className="font-medium tabular-nums">{pct(value)}</span>
       </span>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="accent-[#0f766e]" />
+      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="accent-[#ededed]" />
       {source && <span className="text-[11px] text-muted-foreground">{source}</span>}
     </label>
   );

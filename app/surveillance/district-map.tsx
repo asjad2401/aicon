@@ -76,7 +76,7 @@ export function DistrictMap({
         onSelect={onSelect ? (area) => onSelect(area, syndrome) : undefined}
       />
       <p className="mt-2 text-xs text-muted-foreground">
-        Circle size and shade = cases in the last 3 days. Pulsing red = alert. <span className="font-semibold text-[#0f766e]">H</span> = hospital in the
+        Circle size and shade = cases in the last 3 days. Pulsing red = alert. <span className="font-semibold text-foreground">H</span> = hospital in the
         network (intakes over 30 days). Approximate positions; anonymous counts only. Map data © OpenStreetMap contributors.
       </p>
     </div>

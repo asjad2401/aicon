@@ -1,5 +1,6 @@
 "use client";
 
+import { MatteCard } from "@/components/ui/matte-stack";
 import { useState } from "react";
 import useSWR from "swr";
 import { AlertTriangle, Eye, Loader2, ShieldCheck } from "lucide-react";
@@ -34,13 +35,13 @@ type BriefResponse = {
 const areaName = (id: string) => (id === "all" ? "All areas" : (AREA_BY_ID[id as AreaId]?.name ?? id));
 const fmtDate = (d: string) => new Date(`${d}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", timeZone: "UTC" });
 
-// Sequential teal ramp for counts (one hue, light → dark); every cell also prints its number.
+// Sequential gray ramp for counts (one hue, dark → light on the dark theme); every cell also prints its number.
 function heat(count: number) {
   if (count === 0) return "bg-muted/60 text-muted-foreground/50";
-  if (count === 1) return "bg-[#ccfbf1] text-foreground";
-  if (count <= 3) return "bg-[#5eead4] text-foreground";
-  if (count <= 6) return "bg-[#14b8a6] text-white";
-  return "bg-[#0f766e] text-white";
+  if (count === 1) return "bg-[#333333] text-foreground";
+  if (count <= 3) return "bg-[#555555] text-white";
+  if (count <= 6) return "bg-[#9a9a9a] text-black";
+  return "bg-[#ededed] text-black";
 }
 
 function LevelBadge({ level }: { level: Level }) {
@@ -85,7 +86,7 @@ function TrendChart({ signal }: { signal: Signal }) {
               width={Math.max(bw - 2, 1)}
               height={Math.max(H - bottom - y(p.count), 0)}
               rx={2}
-              fill="#0f766e"
+              fill="#ededed"
               opacity={hover == null || hover === i ? 1 : 0.55}
             />
             {p.level && (
@@ -222,7 +223,7 @@ function NetworkBreakdown({ signal }: { signal: NetSignal }) {
           <div
             key={r.hospital}
             className="flex items-center justify-center text-[11px] font-semibold text-white"
-            style={{ width: `${(r.count / total) * 100}%`, background: ["#0f766e", "#14b8a6", "#5eead4", "#99f6e4"][i] ?? "#cbd5e1", color: i >= 2 ? "#0f2a2a" : "#fff" }}
+            style={{ width: `${(r.count / total) * 100}%`, background: ["#ededed", "#a3a3a3", "#6b6b6b", "#3f3f3f"][i] ?? "#333333", color: i < 2 ? "#111111" : "#fff" }}
             title={`${HOSPITAL_BY_ID[r.hospital as HospitalId]?.name ?? r.hospital}: ${r.count}`}
           >
             {HOSPITAL_BY_ID[r.hospital as HospitalId]?.name ?? r.hospital} {r.count}
@@ -274,7 +275,7 @@ export function Surveillance() {
           const hot = label === "Active alerts" && value !== "0";
           return (
             <div key={label} className={cn("paper-card relative overflow-hidden p-5", hot && "ink-panel border-transparent")}>
-              <p className={cn("eyebrow", hot && "!text-[#ff8a70]")}>{label}</p>
+              <p className={cn("eyebrow", hot && "!text-[#ff6b4a]")}>{label}</p>
               <p className="mt-2 font-display text-5xl font-medium tracking-tight">{value}</p>
               {hot && <span className="absolute right-5 top-5 size-3 animate-ping rounded-full bg-signal" />}
             </div>
@@ -294,30 +295,20 @@ export function Surveillance() {
       {flagged.length > 0 ? (
         <div className="grid gap-4 lg:grid-cols-[320px_1fr]">
           <div className="flex flex-col gap-2">
-            {flagged.map((s) => {
-              const active = current?.area === s.area && current?.syndrome === s.syndrome;
-              return (
-                <button
-                  key={`${s.area}-${s.syndrome}`}
-                  onClick={() => setSelected({ area: s.area, syndrome: s.syndrome })}
-                  className={cn(
-                    "flex flex-col gap-1 rounded-xl border bg-card p-4 text-left transition hover:border-primary",
-                    active && "border-primary ring-2 ring-primary/20",
-                  )}
-                >
-                  <div className="flex items-center justify-between">
-                    <LevelBadge level={s.level} />
-                    <span className="text-xs text-muted-foreground">score {s.score}</span>
-                  </div>
-                  <p className="font-semibold">
-                    {SYNDROME_BY_ID[s.syndrome].label} · {areaName(s.area)}
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    {s.today} today vs ~{s.baselineMean}/day · {s.last3} in 3 days
-                  </p>
-                </button>
-              );
-            })}
+            <p className="eyebrow">{flagged.length} signal{flagged.length === 1 ? "" : "s"} · click to investigate</p>
+            {flagged.map((s) => (
+              <MatteCard
+                key={`${s.area}-${s.syndrome}`}
+                active={current?.area === s.area && current?.syndrome === s.syndrome}
+                onClick={() => setSelected({ area: s.area, syndrome: s.syndrome })}
+                item={{
+                  id: `${s.area}-${s.syndrome}`,
+                  title: `${SYNDROME_BY_ID[s.syndrome].label} · ${areaName(s.area)}`,
+                  description: `${s.level === "alert" ? "Alert" : "Watch"} · ${s.today} today vs ~${s.baselineMean}/day · ${s.last3} in 3 days · score ${s.score}`,
+                  tone: s.level === "alert" ? "alert" : "info",
+                }}
+              />
+            ))}
           </div>
 
           {current && (

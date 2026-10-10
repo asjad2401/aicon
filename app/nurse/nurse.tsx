@@ -1,5 +1,6 @@
 "use client";
 
+import { notify } from "@/components/ui/matte-stack";
 import { useMemo, useState } from "react";
 import useSWR from "swr";
 import { Loader2, Stethoscope } from "lucide-react";
@@ -149,6 +150,11 @@ function VitalsPanel({ visitId, onDone }: { visitId: number; onDone: () => void 
         vitals,
         nurseColour,
         ...(override && { overrideColour: override, overrideReason: reason }),
+      });
+      notify({
+        title: `${detail!.visit.tokenNo} triaged ${finalColour}`,
+        description: `Sent to the ${dept?.name ?? "department"} queue`,
+        tone: finalColour === "RED" ? "alert" : "success",
       });
       onDone();
     } catch (e) {

@@ -34,10 +34,10 @@ export default function LeafletMap({
   const areaIcon = (a: MapArea) => {
     const size = Math.round(22 + Math.sqrt(a.cases / maxCases) * 54);
     const shade = a.cases === 0 ? 0 : 0.25 + 0.65 * (a.cases / maxCases);
-    const ring = a.level === "alert" ? "#dc2626" : a.level === "watch" ? "#ca8a04" : "#ffffff";
+    const ring = a.level === "alert" ? "#e5482d" : a.level === "watch" ? "#ca8a04" : "#ffffff";
     const pulse = a.level === "alert" ? `<span class="priora-pulse" style="width:${size + 18}px;height:${size + 18}px"></span>` : "";
-    const fill = a.cases === 0 ? "rgba(148,163,184,0.45)" : `rgba(15,118,110,${shade.toFixed(2)})`;
-    const text = shade > 0.55 ? "#fff" : "#0f2a2a";
+    const fill = a.cases === 0 ? "rgba(90,90,90,0.7)" : `rgba(237,237,237,${shade.toFixed(2)})`;
+    const text = shade > 0.55 ? "#111111" : "#ffffff";
     return L.divIcon({
       className: "priora-area",
       iconSize: [size, size],
@@ -83,7 +83,7 @@ export default function LeafletMap({
             {a.level && (
               <>
                 <br />
-                <span style={{ color: a.level === "alert" ? "#dc2626" : "#ca8a04" }}>
+                <span style={{ color: a.level === "alert" ? "#e5482d" : "#ca8a04" }}>
                   {a.level.toUpperCase()} · score {a.score} · {onSelect ? "click for the brief" : "health officers see the AI brief"}
                 </span>
               </>

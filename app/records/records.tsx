@@ -1,5 +1,6 @@
 "use client";
 
+import { notify } from "@/components/ui/matte-stack";
 import { useState } from "react";
 import useSWR from "swr";
 import { Camera, FileImage, Loader2, Search, Trash2, TriangleAlert } from "lucide-react";
@@ -41,7 +42,7 @@ export function FlagBadge({ flag }: { flag: string | null }) {
       className={cn(
         "rounded px-1.5 py-0.5 text-[10px] font-bold uppercase",
         flag === "high" && "bg-triage-red/15 text-triage-red",
-        flag === "low" && "bg-blue-500/15 text-blue-700",
+        flag === "low" && "bg-blue-500/15 text-blue-300",
         flag === "abnormal" && "bg-triage-orange/15 text-triage-orange",
       )}
     >
@@ -71,8 +72,10 @@ export function Records({ initialCode }: { initialCode: string }) {
           form.append("file", await compressImage(blob), name.replace(/\.\w+$/, ".jpg"));
           const res = await fetch("/api/records", { method: "POST", body: form });
           if (!res.ok) throw new Error((await res.json()).error);
+          notify({ title: "Report digitised", description: `${name} · findings extracted by AI` });
         } catch (e) {
           setError(e instanceof Error ? e.message : "Upload failed");
+          notify({ title: "Upload failed", description: name, tone: "alert" });
         } finally {
           setPending((p) => p.filter((n) => n !== name));
           void mutate();

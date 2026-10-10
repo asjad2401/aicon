@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Noto_Nastaliq_Urdu, Fraunces } from "next/font/google";
+import { Inter, Geist_Mono, Noto_Nastaliq_Urdu, Sora } from "next/font/google";
+import { MatteToaster } from "@/components/ui/matte-stack";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,10 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const display = Fraunces({
+const display = Sora({
   variable: "--font-display",
   subsets: ["latin"],
-  axes: ["SOFT", "opsz"],
 });
 
 const urdu = Noto_Nastaliq_Urdu({
@@ -34,9 +34,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${urdu.variable} ${display.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${urdu.variable} ${display.variable} dark h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <MatteToaster />
+      </body>
     </html>
   );
 }

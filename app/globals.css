@@ -16,11 +16,13 @@
   --color-triage-orange: #e0661b;
   --color-triage-yellow: #c08a0a;
   --color-triage-green: #2f8a4c;
-  --color-brand: #0b5d52;
-  --color-ink: #0e2420;
+  --color-brand: #ededed;
+  --color-matte: #1c1c1c;
+  --color-matte-tile: #2a2a2a;
+  --color-ink: #0b0b0b;
   --color-signal: #e5482d;
   --color-saffron: #e9a23b;
-  --color-paper: #f5f1e8;
+  --color-paper: #f2f2f2;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -59,31 +61,33 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+@layer base { html { color-scheme: dark; } }
+
 :root {
-  --background: oklch(0.962 0.012 85);
-  --foreground: oklch(0.22 0.025 175);
-  --card: oklch(0.992 0.006 85);
-  --card-foreground: oklch(0.22 0.025 175);
-  --popover: oklch(0.992 0.006 85);
-  --popover-foreground: oklch(0.22 0.025 175);
-  --primary: oklch(0.42 0.075 178);
-  --primary-foreground: oklch(0.98 0.01 85);
-  --secondary: oklch(0.93 0.018 85);
-  --secondary-foreground: oklch(0.25 0.03 175);
-  --muted: oklch(0.935 0.016 85);
-  --muted-foreground: oklch(0.48 0.02 170);
-  --accent: oklch(0.93 0.025 165);
-  --accent-foreground: oklch(0.25 0.03 175);
-  --destructive: oklch(0.58 0.2 30);
-  --border: oklch(0.875 0.02 85);
-  --input: oklch(0.86 0.02 85);
-  --ring: oklch(0.55 0.08 178);
-  --chart-1: oklch(0.42 0.075 178);
-  --chart-2: oklch(0.64 0.19 35);
-  --chart-3: oklch(0.76 0.14 75);
-  --chart-4: oklch(0.6 0.06 178);
-  --chart-5: oklch(0.35 0.03 175);
-  --radius: 0.75rem;
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.94 0 0);
+  --card: oklch(0.185 0 0);
+  --card-foreground: oklch(0.94 0 0);
+  --popover: oklch(0.22 0 0);
+  --popover-foreground: oklch(0.94 0 0);
+  --primary: oklch(0.94 0 0);
+  --primary-foreground: oklch(0.16 0 0);
+  --secondary: oklch(0.25 0 0);
+  --secondary-foreground: oklch(0.94 0 0);
+  --muted: oklch(0.235 0 0);
+  --muted-foreground: oklch(0.66 0 0);
+  --accent: oklch(0.26 0 0);
+  --accent-foreground: oklch(0.94 0 0);
+  --destructive: oklch(0.66 0.19 30);
+  --border: oklch(0.28 0 0);
+  --input: oklch(0.32 0 0);
+  --ring: oklch(0.7 0 0);
+  --chart-1: oklch(0.94 0 0);
+  --chart-2: oklch(0.68 0.19 35);
+  --chart-3: oklch(0.6 0 0);
+  --chart-4: oklch(0.45 0 0);
+  --chart-5: oklch(0.8 0 0);
+  --radius: 0.875rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -134,17 +138,11 @@
   }
   body {
     @apply bg-background text-foreground;
-    /* Survey-paper grid: a faint nod to the district map */
-    background-image:
-      linear-gradient(oklch(0.42 0.075 178 / 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.42 0.075 178 / 0.045) 1px, transparent 1px);
-    background-size: 28px 28px;
   }
   h1, h2:not(.uppercase), h3:not(.uppercase) {
-    font-family: var(--font-display), Georgia, serif;
-    font-variation-settings: "SOFT" 50, "opsz" 72;
-    letter-spacing: -0.015em;
-    font-weight: 560;
+    font-family: var(--font-display), system-ui, sans-serif;
+    letter-spacing: -0.035em;
+    font-weight: 600;
   }
   html {
     @apply font-sans;
@@ -160,13 +158,13 @@
 .priora-area { position: relative; }
 .priora-dot {
   position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-  border-radius: 9999px; border: 2.5px solid #fff; font: 600 12px/1 var(--font-sans), system-ui;
+  border-radius: 9999px; border: 2.5px solid #0b0b0b; font: 600 12px/1 var(--font-sans), system-ui;
   box-shadow: 0 1px 4px rgb(0 0 0 / 0.18); font-variant-numeric: tabular-nums;
 }
 .priora-label {
   position: absolute; top: 100%; left: 50%; transform: translate(-50%, 3px); white-space: nowrap;
-  font: 500 11px/1.2 var(--font-sans), system-ui; color: #0f2a2a;
-  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+  font: 500 11px/1.2 var(--font-sans), system-ui; color: #ededed;
+  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
 }
 .priora-pulse {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 9999px;
@@ -178,31 +176,32 @@
 }
 .priora-h {
   display: flex; width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 5px;
-  background: #fffdf8; border: 2px solid #0b5d52; color: #0b5d52; font: 700 12px/1 var(--font-sans), system-ui;
+  background: #1f1f1f; border: 2px solid #ededed; color: #ededed; font: 700 12px/1 var(--font-sans), system-ui;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
 }
 .priora-hlabel {
-  position: absolute; left: 26px; top: 3px; white-space: nowrap; font: 600 10px/1.2 var(--font-sans), system-ui; color: #0b5d52;
-  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+  position: absolute; left: 26px; top: 3px; white-space: nowrap; font: 600 10px/1.2 var(--font-sans), system-ui; color: #ededed;
+  text-shadow: 0 0 3px #000, 0 0 3px #000, 0 0 3px #000;
 }
 /* Soften the OSM basemap so data markers stand out */
-.priora-map .leaflet-tile-pane { filter: grayscale(1) sepia(0.18) contrast(0.9) brightness(1.04); }
+.priora-map .leaflet-tile-pane { filter: grayscale(1) invert(1) contrast(0.85) brightness(0.8); }
 
-/* ---------- Priora design language ---------- */
-/* Bulletin eyebrow: monospaced, numbered section labels */
+/* ---------- Priora design language: matte monochrome ---------- */
+/* Small label: monospaced, quiet */
 .eyebrow {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
-  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+  font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 500;
   color: var(--muted-foreground);
 }
-.display-italic { font-family: var(--font-display), Georgia, serif; font-style: italic; font-variation-settings: "SOFT" 100, "opsz" 144; }
-/* Cards lift on paper */
-.paper-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 1px 0 oklch(0.22 0.025 175 / 0.04), 0 8px 24px -16px oklch(0.22 0.025 175 / 0.18); }
-/* Ink panels (district / hero) */
-.ink-panel { background-color: #0e2420; color: #f5f1e8;
-  background-image: radial-gradient(circle at 80% 20%, oklch(0.42 0.075 178 / 0.55), transparent 55%),
-    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
-  background-size: auto, 28px 28px, 28px 28px; }
+/* The one coloured word in a headline */
+.display-italic { color: #e5482d; }
+/* Flat light surface (no shadow, hairline border) */
+.paper-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); }
+/* Matte charcoal surface (cards, panels) */
+.matte { background: #1f1f1f; color: #f2f2f2; border: 1px solid #2e2e2e; border-radius: var(--radius-xl); }
+.matte-tile { background: #2f2f2f; border-radius: 0.6rem; }
+/* Near-black canvas (hero, district header) */
+.ink-panel { background-color: #0b0b0b; color: #f2f2f2; border-color: #262626; }
 /* Radar sweep for the hero */
 @keyframes priora-sweep { to { transform: rotate(360deg); } }
 .radar-sweep { animation: priora-sweep 6s linear infinite; transform-origin: 50% 50%; }
@@ -211,4 +210,18 @@
 /* Live ticker */
 @keyframes priora-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .marquee { animation: priora-marquee 40s linear infinite; }
-@media (prefers-reduced-motion: reduce) { .radar-sweep, .radar-ping, .marquee, .priora-pulse { animation: none; } }
+/* Matte stack: enter / leave */
+@keyframes matte-in { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: none; } }
+.matte-in { animation: matte-in 0.22s ease-out both; }
+/* Hover preview card */
+@keyframes preview-in { from { opacity: 0; transform: translateY(6px) scale(0.96); } to { opacity: 1; transform: none; } }
+.preview-in { animation: preview-in 0.18s ease-out both; }
+@media (prefers-reduced-motion: reduce) { .radar-sweep, .radar-ping, .marquee, .priora-pulse, .matte-in, .preview-in { animation: none; } }
+/* Leaflet controls on the dark theme */
+.priora-map .leaflet-bar { border: 1px solid #2e2e2e; box-shadow: none; }
+.priora-map .leaflet-bar a { background: #1f1f1f; color: #ededed; border-bottom-color: #2e2e2e; }
+.priora-map .leaflet-bar a:hover { background: #2a2a2a; }
+.priora-map .leaflet-control-attribution { background: rgb(0 0 0 / 0.6); color: #9a9a9a; }
+.priora-map .leaflet-control-attribution a { color: #d4d4d4; }
+.priora-map .leaflet-tooltip { background: #1f1f1f; color: #ededed; border-color: #2e2e2e; }
+.priora-map .leaflet-tooltip-top::before { border-top-color: #1f1f1f; }

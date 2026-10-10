@@ -33,7 +33,7 @@ type Sex = "male" | "female";
 function Bilingual({ ur, en, className }: { ur: string; en: string; className?: string }) {
   return (
     <div className={cn("text-center", className)}>
-      <p className="font-urdu text-4xl text-ink" dir="rtl">{ur}</p>
+      <p className="font-urdu text-4xl text-foreground" dir="rtl">{ur}</p>
       <p className="mt-1 font-display text-xl text-muted-foreground">{en}</p>
     </div>
   );
@@ -392,7 +392,7 @@ export function Kiosk({ hospital }: { hospital: string }) {
                 type="button"
                 onClick={recorder.recording ? recorder.stop : recorder.start}
                 className={cn(
-                  "relative my-8 flex size-44 items-center justify-center rounded-full text-white shadow-xl shadow-primary/30 ring-8 ring-card transition",
+                  "relative my-8 flex size-44 items-center justify-center rounded-full text-primary-foreground shadow-xl shadow-black/40 ring-8 ring-card transition",
                   recorder.recording ? "animate-pulse bg-triage-red" : "bg-primary hover:scale-105",
                 )}
                 aria-label={recorder.recording ? "Stop recording" : "Start recording"}

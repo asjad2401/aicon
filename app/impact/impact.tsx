@@ -11,8 +11,8 @@ const COLOURS: Colour[] = ["RED", "ORANGE", "YELLOW", "GREEN"];
 const TARGET_LABEL: Record<Colour, string> = { RED: "immediate", ORANGE: "10 min", YELLOW: "60 min", GREEN: "4 h" };
 
 // Emphasis form: "today" in de-emphasis gray, Priora in the brand accent (validated pair, labels always on).
-const TODAY = "#a8a29e";
-const PRIORA = "#0f766e";
+const TODAY = "#5c5c5c";
+const PRIORA = "#ededed";
 
 const fmtMin = (m: number) => (m < 1 ? "<1 min" : m < 60 ? `${Math.round(m)} min` : `${Math.floor(m / 60)}h ${Math.round(m % 60)}m`);
 const pct = (x: number) => `${Math.round(x * 100)}%`;
@@ -115,7 +115,7 @@ function Slider({
         <span className="text-muted-foreground">{label}</span>
         <span className="font-medium tabular-nums">{format(value)}</span>
       </span>
-      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="accent-[#0f766e]" />
+      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} className="accent-[#ededed]" />
     </label>
   );
 }

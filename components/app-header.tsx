@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 const STYLE: Record<Portal, { bar: string; badge: string; icon: typeof Building2 }> = {
   showcase: { bar: "bg-card/85 backdrop-blur", badge: "bg-primary/10 text-primary", icon: Sparkles },
   hospital: { bar: "bg-card/90 backdrop-blur", badge: "bg-primary text-primary-foreground", icon: Building2 },
-  district: { bar: "ink-panel text-[#f5f1e8] border-white/10", badge: "bg-signal text-white", icon: Radar },
+  district: { bar: "ink-panel text-[#f2f2f2] border-white/10", badge: "bg-signal text-white", icon: Radar },
 };
 
 /**
@@ -39,7 +39,7 @@ export function AppHeader({ title, portal: portalProp = "showcase", children }: 
   return (
     <header className={cn("sticky top-0 z-[1100] flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-6 py-2.5", style.bar)}>
       <Link href={portal === "showcase" ? "/" : nav[0]?.href ?? "/"} className="flex items-center gap-2">
-        <span className={cn("font-display text-2xl font-semibold tracking-tight", dark ? "text-[#f5f1e8]" : "text-brand")}>Priora</span>
+        <span className={cn("font-display text-2xl font-semibold tracking-tight", dark ? "text-[#f2f2f2]" : "text-brand")}>Priora</span>
         {portal !== "showcase" && (
           <span className={cn("flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider", style.badge)}>
             <style.icon className="size-3.5" /> {info.tagline}

@@ -1,5 +1,6 @@
 "use client";
 
+import { notify } from "@/components/ui/matte-stack";
 import { useState } from "react";
 import useSWR from "swr";
 import { Loader2, PhoneCall } from "lucide-react";
@@ -30,6 +31,8 @@ export function DoctorQueue({ department, initialVisit }: { department: Departme
 
   async function act(id: number, action: "call" | "seen") {
     await postJSON(`/api/visits/${id}/status`, { action });
+    const token = items.find((v) => v.id === id)?.tokenNo ?? "Patient";
+    notify(action === "call" ? { title: `Calling ${token}`, description: "Moved to In consultation", tone: "info" } : { title: `${token} seen`, description: "Removed from the queue" });
     if (action === "seen" && selected === id) setSelected(null);
     await mutate();
   }

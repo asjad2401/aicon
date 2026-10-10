@@ -15,15 +15,15 @@ async function KioskForHospital({ searchParams }: { searchParams: Promise<{ hosp
     <>
       <header className="ink-panel -mx-4 flex flex-wrap items-center justify-between gap-3 px-6 py-3">
         <span className="flex items-center gap-2 font-display text-2xl font-semibold tracking-tight">
-          Priora <span className="font-urdu text-base font-normal text-[#f5f1e8]/60">مریض کا استقبال</span>
+          Priora <span className="font-urdu text-base font-normal text-[#f2f2f2]/60">مریض کا استقبال</span>
         </span>
         <span className="text-sm">
-          <span className="font-medium">{h.full}</span> <span className="text-[#f5f1e8]/60">· {h.city} · OPD Intake</span>
+          <span className="font-medium">{h.full}</span> <span className="text-[#f2f2f2]/60">· {h.city} · OPD Intake</span>
         </span>
-        <span className="flex flex-wrap gap-1 font-mono text-[10px] uppercase tracking-wider text-[#f5f1e8]/50">
+        <span className="flex flex-wrap gap-1 font-mono text-[10px] uppercase tracking-wider text-[#f2f2f2]/50">
           Kiosk at:
           {HOSPITALS.map((x) => (
-            <Link key={x.id} href={`/kiosk?hospital=${x.id}`} className={x.id === id ? "font-semibold text-[#f5f1e8]" : "hover:text-[#f5f1e8]"}>
+            <Link key={x.id} href={`/kiosk?hospital=${x.id}`} className={x.id === id ? "font-semibold text-[#f2f2f2]" : "hover:text-[#f2f2f2]"}>
               {x.name}
             </Link>
           ))}

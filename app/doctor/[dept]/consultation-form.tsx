@@ -1,5 +1,6 @@
 "use client";
 
+import { notify } from "@/components/ui/matte-stack";
 import { useState } from "react";
 import { CheckCircle2, Loader2, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -87,6 +88,7 @@ export function ConsultationForm({ detail, onSaved }: { detail: VisitDetail; onS
         ...(briefRating && { briefRating }),
         ...(briefRating === "had_error" && { briefIssue }),
       });
+      notify({ title: "Consultation saved", description: `${detail.visit.tokenNo} · added to the patient's record` });
       onSaved();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not save");

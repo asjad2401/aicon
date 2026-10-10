@@ -17,7 +17,7 @@ async function Department({
   if (!department) notFound();
   return (
     <>
-      <AppHeader title={`Doctor · ${department.name}`} />
+      <AppHeader portal="hospital" title={`Doctor · ${department.name}`} />
       <DoctorQueue department={department.id} initialVisit={visit ? Number(visit) : null} />
     </>
   );

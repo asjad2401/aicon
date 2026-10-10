@@ -102,7 +102,7 @@ async function History({ params }: { params: Promise<{ id: string }> }) {
 export default function PatientPage({ params }: PageProps<"/patients/[id]">) {
   return (
     <main className="flex min-h-screen flex-col bg-muted/30">
-      <AppHeader title="Patient history" />
+      <AppHeader portal="hospital" title="Patient history" />
       <Suspense fallback={<Loader2 className="m-10 animate-spin text-muted-foreground" />}>
         <History params={params} />
       </Suspense>

@@ -3,28 +3,40 @@
  * Clinical/public-health configuration, kept separate from logic for review.
  */
 
-/** Catchment areas with approximate centre coordinates (schematic map, not survey-grade). */
+/** Catchment areas with approximate centre coordinates (schematic, not survey-grade). */
 export const AREAS = [
+  { id: "f-6", name: "F-6", city: "Islamabad", lat: 33.7275, lon: 73.0757 },
+  { id: "f-7", name: "F-7", city: "Islamabad", lat: 33.7215, lon: 73.0563 },
+  { id: "f-10", name: "F-10", city: "Islamabad", lat: 33.6955, lon: 73.0138 },
+  { id: "e-11", name: "E-11", city: "Islamabad", lat: 33.6995, lon: 72.9769 },
   { id: "g-6", name: "G-6", city: "Islamabad", lat: 33.7172, lon: 73.0868 },
   { id: "g-9", name: "G-9", city: "Islamabad", lat: 33.6936, lon: 73.0349 },
   { id: "g-10", name: "G-10", city: "Islamabad", lat: 33.6797, lon: 73.0156 },
-  { id: "f-7", name: "F-7", city: "Islamabad", lat: 33.7215, lon: 73.0563 },
-  { id: "f-10", name: "F-10", city: "Islamabad", lat: 33.6955, lon: 73.0138 },
+  { id: "g-11", name: "G-11", city: "Islamabad", lat: 33.6685, lon: 72.9957 },
+  { id: "g-13", name: "G-13", city: "Islamabad", lat: 33.6455, lon: 72.9612 },
   { id: "i-8", name: "I-8", city: "Islamabad", lat: 33.668, lon: 73.077 },
   { id: "i-10", name: "I-10", city: "Islamabad", lat: 33.6466, lon: 73.0389 },
   { id: "bhara-kahu", name: "Bhara Kahu", city: "Islamabad", lat: 33.7333, lon: 73.1667 },
+  { id: "tarlai", name: "Tarlai", city: "Islamabad", lat: 33.6567, lon: 73.1497 },
   { id: "saddar", name: "Saddar", city: "Rawalpindi", lat: 33.5985, lon: 73.048 },
+  { id: "raja-bazar", name: "Raja Bazar", city: "Rawalpindi", lat: 33.6155, lon: 73.0587 },
   { id: "dhok-hassu", name: "Dhok Hassu", city: "Rawalpindi", lat: 33.6262, lon: 73.0336 },
   { id: "satellite-town", name: "Satellite Town", city: "Rawalpindi", lat: 33.6347, lon: 73.0655 },
+  { id: "westridge", name: "Westridge", city: "Rawalpindi", lat: 33.6012, lon: 73.0198 },
   { id: "chaklala", name: "Chaklala", city: "Rawalpindi", lat: 33.5867, lon: 73.0897 },
+  { id: "gulzar-e-quaid", name: "Gulzar-e-Quaid", city: "Rawalpindi", lat: 33.5915, lon: 73.1128 },
 ] as const;
 
 /** Hospitals in the network: each kiosk belongs to one. Approximate coordinates. */
 export const HOSPITALS = [
   { id: "pims", name: "PIMS", full: "Pakistan Institute of Medical Sciences", city: "Islamabad", lat: 33.7046, lon: 73.049 },
   { id: "polyclinic", name: "Polyclinic", full: "Federal Government Polyclinic", city: "Islamabad", lat: 33.713, lon: 73.082 },
+  { id: "capital", name: "Capital Hospital", full: "Capital Hospital (CDA)", city: "Islamabad", lat: 33.7232, lon: 73.0792 },
+  { id: "fgh", name: "FGH Chak Shahzad", full: "Federal General Hospital, Chak Shahzad", city: "Islamabad", lat: 33.6647, lon: 73.1397 },
   { id: "hfh", name: "Holy Family", full: "Holy Family Hospital", city: "Rawalpindi", lat: 33.6375, lon: 73.0691 },
   { id: "bbh", name: "Benazir Bhutto", full: "Benazir Bhutto Hospital", city: "Rawalpindi", lat: 33.6155, lon: 73.07 },
+  { id: "dhq", name: "DHQ Rawalpindi", full: "District Headquarters Hospital, Rawalpindi", city: "Rawalpindi", lat: 33.6098, lon: 73.0634 },
+  { id: "ffh", name: "Fauji Foundation", full: "Fauji Foundation Hospital", city: "Rawalpindi", lat: 33.577, lon: 73.087 },
 ] as const;
 
 export type HospitalId = (typeof HOSPITALS)[number]["id"];

@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Triage nurse · Priora" };
 export default function NursePage() {
   return (
     <main className="flex h-screen flex-col bg-muted/30">
-      <AppHeader title="Triage nurse" />
+      <AppHeader portal="hospital" title="Triage nurse" />
       <Nurse />
     </main>
   );

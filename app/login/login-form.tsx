@@ -26,7 +26,7 @@ const DEMO_ACCOUNTS: { username: string; name: string; role: Role; note: string 
   { username: "admin", name: "Dr. Qureshi", role: "admin", note: "Everything + validation" },
 ];
 
-export function LoginForm({ next, denied }: { next?: string; denied?: string }) {
+export function LoginForm({ next, denied, portal }: { next?: string; denied?: string; portal?: "hospital" | "district" }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -59,7 +59,9 @@ export function LoginForm({ next, denied }: { next?: string; denied?: string }) 
         }}
         className="flex flex-col gap-4 rounded-2xl border bg-card p-6"
       >
-        <h1 className="text-2xl font-semibold">Staff sign in</h1>
+        <h1 className="text-2xl font-semibold">
+          {portal === "district" ? "District Health Office" : portal === "hospital" ? "Hospital staff" : "Staff sign in"}
+        </h1>
         {denied && <p className="rounded-md bg-muted p-2 text-sm">Your role can&apos;t open {denied}. Sign in with a different account.</p>}
         <label className="flex flex-col gap-1 text-sm">
           <span className="text-muted-foreground">Username</span>
@@ -81,7 +83,7 @@ export function LoginForm({ next, denied }: { next?: string; denied?: string }) 
         <p className="text-sm text-muted-foreground">
           Password for all: <code className="rounded bg-muted px-1">{DEMO_PASSWORD}</code>. Click to sign in.
         </p>
-        {(["nurse", "doctor", "records", "officer", "admin"] as Role[]).map((role) => (
+        {(portal === "district" ? (["officer"] as Role[]) : portal === "hospital" ? (["nurse", "doctor", "records", "admin"] as Role[]) : (["nurse", "doctor", "records", "officer", "admin"] as Role[])).map((role) => (
           <div key={role} className="flex flex-col gap-1.5">
             <p className="mt-1 text-xs font-medium uppercase text-muted-foreground">{ROLE_LABEL[role]}</p>
             <div className={role === "doctor" ? "grid grid-cols-2 gap-1.5" : "flex flex-col gap-1.5"}>

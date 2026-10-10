@@ -5,9 +5,9 @@ import { LoginForm } from "./login-form";
 
 export const metadata: Metadata = { title: "Staff sign in · Priora" };
 
-async function Form({ searchParams }: { searchParams: Promise<{ next?: string; denied?: string }> }) {
-  const { next, denied } = await searchParams;
-  return <LoginForm next={next} denied={denied} />;
+async function Form({ searchParams }: { searchParams: Promise<{ next?: string; denied?: string; portal?: string }> }) {
+  const { next, denied, portal } = await searchParams;
+  return <LoginForm next={next} denied={denied} portal={portal === "hospital" || portal === "district" ? portal : undefined} />;
 }
 
 export default function LoginPage({ searchParams }: PageProps<"/login">) {
@@ -16,7 +16,7 @@ export default function LoginPage({ searchParams }: PageProps<"/login">) {
       <AppHeader title="Staff sign in" />
       <div className="flex flex-1 items-start justify-center p-8">
         <Suspense>
-          <Form searchParams={searchParams as Promise<{ next?: string; denied?: string }>} />
+          <Form searchParams={searchParams as Promise<{ next?: string; denied?: string; portal?: string }>} />
         </Suspense>
       </div>
     </main>

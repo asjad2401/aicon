@@ -87,7 +87,7 @@ export function LeadTime() {
       <div>
         <h2 className="text-3xl font-semibold tracking-tight">Outbreak early warning: how many days earlier?</h2>
         <p className="mt-1 max-w-3xl text-muted-foreground">
-          {p.scenarios} simulated outbreaks in a 12-area district. <strong className="text-foreground">Priora</strong> watches AI-tagged symptoms
+          {p.scenarios} simulated outbreaks in a {p.areas}-area district. <strong className="text-foreground">Priora</strong> watches AI-tagged symptoms
           from kiosk intake every day. <strong className="text-foreground">Today</strong>, an outbreak shows up only through lab-confirmed cases in
           weekly reports, and a quarter of those reports arrive late.
         </p>
@@ -97,7 +97,7 @@ export function LeadTime() {
         <Tile label="Median warning lead" value={s.medianLeadDays == null ? "n/a" : `${s.medianLeadDays} days`} note={s.leadIqr ? `middle half: ${s.leadIqr[0]} to ${s.leadIqr[1]} days` : ""} />
         <Tile label="Outbreaks caught within 2 weeks" value={pct(s.prioraDetectedWithin14)} note={`today: ${pct(s.todayDetectedWithin14)}`} />
         <Tile label="Median day of detection" value={s.prioraMedianDay == null ? "n/a" : `day ${s.prioraMedianDay}`} note={`today: ${s.todayMedianDay == null ? "not detected" : `day ${s.todayMedianDay}`}`} />
-        <Tile label="Priora false alarms" value={`${(s.prioraFalseAlarmsPerAreaMonth * 12).toFixed(2)} / month`} note="across the whole 12-area district" />
+        <Tile label="Priora false alarms" value={`${(s.prioraFalseAlarmsPerAreaMonth * p.areas).toFixed(2)} / month`} note={`across the whole ${p.areas}-area district`} />
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_300px]">

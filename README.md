@@ -8,7 +8,7 @@
 
 | Outbreak warning | Outbreaks caught within 2 weeks | Missed emergencies | Critical patients wait |
 |:---:|:---:|:---:|:---:|
-| **7 days earlier** than lab-confirmed reporting | **86% vs 41%** today | **0%** on 110 hard cases | **1h 5m → 1 min** |
+| **7 days earlier** than lab-confirmed reporting | **87% vs 39%** caught in 2 weeks | **0%** on 110 hard cases | **1h 5m → 1 min** |
 
 | 110 hard test cases | Real Urdu speech | Works offline | Problem scale |
 |:---:|:---:|:---:|:---:|
@@ -59,10 +59,10 @@ _Problem identified, and the solution reviewed, with a medical student who works
 | **What's different** | No forms, no reading, works offline with our own model | Sees clusters days before lab confirmation, across hospitals that today don't share data |
 
 ### The district early-warning network
-- **12 areas, 4 hospitals** (PIMS, Polyclinic, Holy Family, Benazir Bhutto) on one live map. Each alert shows which hospitals saw the cases: in the demo, the busiest single hospital saw only 36–50% of a cluster.
+- **20 areas, 8 hospitals** across Islamabad and Rawalpindi (PIMS, Polyclinic, Capital Hospital, FGH Chak Shahzad, Holy Family, Benazir Bhutto, DHQ Rawalpindi, Fauji Foundation) on one live street map. Each alert shows which hospitals saw the cases: in the demo, no single hospital saw more than 27% of any cluster, so no hospital on its own would notice.
 - **Detection:** a CDC EARS-style aberration check on daily syndrome counts per area (deterministic, explainable).
 - **For each alert:** a cited AI brief for the health officer (actions only from a standard response checklist), a **3-day surge projection** and what to stock: beds (using the sourced 13.3% dengue admission rate from Rawalpindi's teaching hospitals, 2025), NS1 kits, ORS.
-- **Lead-time study** ([/impact](https://priora.asjad.dev/impact)): across 1,000 simulated outbreaks, Priora alerts a **median 7 days earlier** than lab-confirmed weekly reporting (middle half: 2–11 days), catches **86% vs 41%** within two weeks, with about one false alarm every three months across the district. It needs real coverage: below ~40% of care-seeking patients passing a Priora kiosk, today's system wins, which is why the pilot targets the district's largest OPDs. Only the 75% report-compliance figure is sourced; the rest are stated, adjustable assumptions.
+- **Lead-time study** ([/impact](https://priora.asjad.dev/impact)): across 1,000 simulated outbreaks, Priora alerts a **median 7 days earlier** than lab-confirmed weekly reporting (middle half: 2–11 days), catches **87% vs 39%** within two weeks, with about one false alarm every two months across all 20 areas. It needs real coverage: below ~40% of care-seeking patients passing a Priora kiosk, today's system wins, which is why the pilot targets the district's largest OPDs. Only the 75% report-compliance figure is sourced; the rest are stated, adjustable assumptions.
 
 ## Meet Priora
 
@@ -206,7 +206,15 @@ _For the demo, the dashboard is pre-filled with clearly labelled synthetic pilot
 
 ## Try it yourself
 
-**[priora.asjad.dev](https://priora.asjad.dev)**: the kiosk, impact simulator and evaluation are public. Staff screens use these demo accounts (password **`priora2026`** for all, or one click on the sign-in page):
+**[priora.asjad.dev](https://priora.asjad.dev)**: the kiosk, live district map, impact simulator and evaluation are public. Each audience has its own front door:
+
+| Portal | Address | For |
+|---|---|---|
+| Patient kiosk | [kiosk.priora.asjad.dev](https://kiosk.priora.asjad.dev) | Patients at the hospital entrance |
+| Hospital | [hospital.priora.asjad.dev](https://hospital.priora.asjad.dev) | Triage nurse, doctors, records desk, medical superintendent |
+| District Health Office | [district.priora.asjad.dev](https://district.priora.asjad.dev) | District health officer: early-warning map, alerts, surge plans |
+
+Staff screens use these demo accounts (password **`priora2026`** for all, or one click on the sign-in page):
 
 | Role | Username | Sees |
 |---|---|---|
@@ -222,7 +230,7 @@ _For the demo, the dashboard is pre-filled with clearly labelled synthetic pilot
 1. **Kiosk** ([/kiosk](https://priora.asjad.dev/kiosk), turn your sound on): enter **`AHMED54K7Q`** → *Find me* → say or type a complaint. Try something vague like *"pait ke neeche dard hai"* as a 28-year-old woman to hear Priora ask a follow-up question in Urdu → answer → confirm and get a token.
 2. **Nurse** (`nurse.ayesha`): open his token, enter HR 130 · RR 30 · BP 95 · Temp 37, pick your own colour, then watch SATS reveal **RED**. Confirm.
 3. **Doctor** (`dr.emergency`): Ahmed is at the top. Read the brief, click any citation to see the original report, then record the consultation.
-4. **Early warning** (`officer.dho`): see the dengue cluster in G-9 and the diarrhoea cluster in Dhok Hassu, each with an AI-written response brief.
+4. **Early warning** (`officer.dho`): see the dengue cluster in G-9, the measles-like cluster in Tarlai and the diarrhoea cluster in Dhok Hassu on the live map, each with an AI-written response brief and surge plan.
 5. **Validation** (`admin`): watch your triage appear in the agreement statistics.
 
 ---

@@ -13,7 +13,7 @@ async function RecordsWithCode({ searchParams }: { searchParams: Promise<{ code?
 export default function RecordsPage({ searchParams }: PageProps<"/records">) {
   return (
     <main className="flex min-h-screen flex-col bg-muted/30">
-      <AppHeader title="Records desk · digitise old reports" />
+      <AppHeader portal="hospital" title="Records desk · digitise old reports" />
       <Suspense>
         <RecordsWithCode searchParams={searchParams as Promise<{ code?: string }>} />
       </Suspense>

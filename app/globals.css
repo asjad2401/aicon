@@ -138,3 +138,36 @@
   font-family: var(--font-urdu), serif;
   line-height: 2.1;
 }
+
+/* District map markers (Leaflet divIcons) */
+.priora-area, .priora-hospital { background: transparent; border: 0; }
+.priora-area { position: relative; }
+.priora-dot {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  border-radius: 9999px; border: 2.5px solid #fff; font: 600 12px/1 var(--font-sans), system-ui;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.18); font-variant-numeric: tabular-nums;
+}
+.priora-label {
+  position: absolute; top: 100%; left: 50%; transform: translate(-50%, 3px); white-space: nowrap;
+  font: 500 11px/1.2 var(--font-sans), system-ui; color: #0f2a2a;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+.priora-pulse {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 9999px;
+  border: 3px solid #dc2626; animation: priora-pulse 2s ease-out infinite;
+}
+@keyframes priora-pulse {
+  0% { opacity: 0.9; transform: translate(-50%, -50%) scale(0.85); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+}
+.priora-h {
+  display: flex; width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 5px;
+  background: #fff; border: 2px solid #0f766e; color: #0f766e; font: 700 12px/1 var(--font-sans), system-ui;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
+}
+.priora-hlabel {
+  position: absolute; left: 26px; top: 3px; white-space: nowrap; font: 600 10px/1.2 var(--font-sans), system-ui; color: #0f766e;
+  text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+}
+/* Soften the OSM basemap so data markers stand out */
+.priora-map .leaflet-tile-pane { filter: grayscale(0.85) contrast(0.92) brightness(1.06); }

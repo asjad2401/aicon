@@ -16,7 +16,7 @@ import type { DepartmentId } from "@/lib/routing/departments";
 import { triage, type Vitals } from "@/lib/triage/sats";
 import { hashPassword } from "@/lib/auth/password";
 import type { Colour } from "@/lib/triage/discriminators";
-import { AREA_BY_ID, AREA_IDS, SYNDROME_BY_ID, type AreaId } from "@/lib/surveillance/config";
+import { AREA_BY_ID, AREA_IDS, HOSPITALS, SYNDROME_BY_ID, type AreaId } from "@/lib/surveillance/config";
 
 const db = getDb();
 const NORMAL: Vitals = { rr: 16, hr: 84, sbp: 124, temp: 37, avpu: "alert", mobility: "walking", trauma: false };
@@ -149,20 +149,20 @@ for (const p of PATIENTS) {
 console.log("Generating 30 days of surveillance history…");
 let seed = 7;
 const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
-// Where residents go: Islamabad mostly PIMS/Polyclinic, Rawalpindi mostly Holy Family/BBH.
-// Outbreak cases are spread across all four (patients go wherever is nearest or least crowded).
+// Where residents go: mostly the nearest hospitals (weight falls off with distance).
+// Outbreak cases spread wider: patients go wherever is nearest or least crowded.
+const km = (aLat: number, aLon: number, bLat: number, bLon: number) =>
+  Math.hypot((aLat - bLat) * 111, (aLon - bLon) * 111 * Math.cos((aLat * Math.PI) / 180));
 const pickHospital = (area: string, outbreak = false) => {
-  const weights = outbreak
-    ? { pims: 0.35, polyclinic: 0.25, hfh: 0.22, bbh: 0.18 }
-    : AREA_BY_ID[area as AreaId]?.city === "Rawalpindi"
-      ? { pims: 0.1, polyclinic: 0.05, hfh: 0.5, bbh: 0.35 }
-      : { pims: 0.55, polyclinic: 0.35, hfh: 0.06, bbh: 0.04 };
-  let u = rand();
-  for (const [h, w] of Object.entries(weights)) {
-    if (u < w) return h;
-    u -= w;
+  const a = AREA_BY_ID[area as AreaId];
+  const scale = outbreak ? 7 : 3.5;
+  const weights = HOSPITALS.map((h) => Math.exp(-km(a.lat, a.lon, h.lat, h.lon) / scale) + 0.01);
+  let u = rand() * weights.reduce((x, y) => x + y, 0);
+  for (let i = 0; i < HOSPITALS.length; i++) {
+    if (u < weights[i]) return HOSPITALS[i].id;
+    u -= weights[i];
   }
-  return "pims";
+  return HOSPITALS[0].id;
 };
 const poisson = (lambda: number) => {
   let k = 0;
@@ -178,6 +178,7 @@ const RATES: Record<string, number> = {
 const CLUSTERS: { area: string; syndrome: string; extra: number[] }[] = [
   { area: "g-9", syndrome: "dengue_like", extra: [2, 4, 6, 9, 12] },
   { area: "dhok-hassu", syndrome: "awd", extra: [3, 6, 8] },
+  { area: "tarlai", syndrome: "measles_like", extra: [1, 2, 3, 5] },
 ];
 const COMPLAINT: Record<string, string[]> = {
   dengue_like: ["High fever with body aches", "Fever, headache and pain behind the eyes", "Fever with joint pain and rash"],
@@ -295,7 +296,7 @@ for (let i = 0; i < pilotMix.length; i += 60) {
           nurseColour: nurse,
           triagedBy: nurseId,
           department: cfg.dept,
-          hospital: (["pims", "polyclinic", "hfh", "bbh"] as const)[Math.floor(rand() * 4)],
+          hospital: HOSPITALS[Math.floor(rand() * HOSPITALS.length)].id,
           status: "seen",
           arrivedAt,
           triagedAt: new Date(arrivedAt.getTime() + 60_000),

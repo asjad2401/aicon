@@ -55,6 +55,12 @@ const SCALE = [
   { value: "~1.8 min", label: "average primary-care consultation in Pakistan", src: "Irving et al., BMJ Open 2017", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5695512/" },
 ];
 
+const PORTALS = [
+  { href: "/kiosk", icon: UserRound, title: "Patient kiosk", sub: "kiosk.priora.asjad.dev", text: "At the hospital entrance: speak your problem in Urdu, answer one question, get a token.", cta: "Open the kiosk", tone: "bg-card" },
+  { href: "/login?portal=hospital", icon: Building2, title: "Hospital staff", sub: "hospital.priora.asjad.dev", text: "Triage nurse, doctors, records desk and the medical superintendent's validation dashboard.", cta: "Staff sign in", tone: "bg-primary text-primary-foreground border-primary" },
+  { href: "/login?portal=district", icon: Radar, title: "District Health Office", sub: "district.priora.asjad.dev", text: "The early-warning map across all hospitals: alerts, AI briefs, surge plans.", cta: "Officer sign in", tone: "bg-[#0f2a2a] text-white border-[#0f2a2a]" },
+];
+
 const ROLES = [
   { href: "/kiosk", icon: UserRound, title: "Talking kiosk", text: "Speak a complaint, hear the follow-up in Urdu" },
   { href: "/surveillance", icon: Radar, title: "District early warning", text: "Map, alerts, AI briefs, surge plans (officer.dho)" },
@@ -94,12 +100,30 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-6xl px-6 pt-2">
+        <div className="grid gap-3 md:grid-cols-3">
+          {PORTALS.map((p) => (
+            <Link key={p.title} href={p.href} className={`group flex flex-col gap-2 rounded-2xl border p-5 transition hover:shadow-md ${p.tone}`}>
+              <div className="flex items-center justify-between">
+                <p.icon className="size-7" />
+                <code className="text-[11px] opacity-70">{p.sub}</code>
+              </div>
+              <p className="text-lg font-semibold">{p.title}</p>
+              <p className="text-sm opacity-80">{p.text}</p>
+              <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium">
+                {p.cta} <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+              </span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <section id="live" className="mx-auto w-full max-w-6xl scroll-mt-6 px-6 py-8">
         <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
           <div>
             <h2 className="text-2xl font-semibold">Live: the district right now</h2>
             <p className="text-sm text-muted-foreground">
-              Four hospitals, twelve areas. Pulsing red = an unusual cluster flagged before lab confirmation. Anonymous counts only (demo data).
+              Eight hospitals, twenty areas across Islamabad and Rawalpindi. Pulsing red = an unusual cluster flagged before lab confirmation. Anonymous counts only (demo data).
             </p>
           </div>
           <Link href="/surveillance" className="text-sm text-primary hover:underline">

@@ -38,7 +38,7 @@ export type LeadTimeParams = {
 
 export const DEFAULT_LEADTIME: LeadTimeParams = {
   scenarios: 400,
-  areas: 12,
+  areas: 20, // matches the demo district (lib/surveillance/config.ts AREAS)
   days: 77,
   outbreakStart: 49,
   backgroundRate: 0.6,

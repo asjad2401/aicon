@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local-only (gitignored): planning notes and the Python venv.
+    "_planning/**",
+    "ml/.venv/**",
   ]),
 ]);
 

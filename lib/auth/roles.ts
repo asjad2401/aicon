@@ -44,13 +44,32 @@ export function homeFor(user: Pick<SessionUser, "role" | "dept">) {
   }
 }
 
-export const NAV: { href: string; label: string; roles: Role[] | "public" }[] = [
-  { href: "/kiosk", label: "Kiosk", roles: "public" },
-  { href: "/nurse", label: "Nurse", roles: ["nurse", "admin"] },
-  { href: "/doctor", label: "Doctor", roles: ["doctor", "admin"] },
-  { href: "/records", label: "Records", roles: ["records", "nurse", "doctor", "admin"] },
-  { href: "/surveillance", label: "Early warning", roles: ["officer", "admin"] },
-  { href: "/validation", label: "Validation", roles: ["admin", "officer", "doctor"] },
-  { href: "/impact", label: "Impact", roles: "public" },
-  { href: "/eval", label: "Evaluation", roles: "public" },
-];
+/** Four portals, each with its own audience, look and navigation. */
+export type Portal = "showcase" | "hospital" | "district";
+
+export const PORTAL_INFO: Record<Portal, { label: string; tagline: string; subdomain: string | null }> = {
+  showcase: { label: "Priora", tagline: "Evidence & demo", subdomain: null },
+  hospital: { label: "Priora Hospital", tagline: "Clinical staff", subdomain: "hospital" },
+  district: { label: "Priora District", tagline: "District Health Office", subdomain: "district" },
+};
+
+export const PORTAL_NAV: Record<Portal, { href: string; label: string; roles: Role[] | "public" }[]> = {
+  showcase: [
+    { href: "/", label: "Overview", roles: "public" },
+    { href: "/impact", label: "Impact", roles: "public" },
+    { href: "/eval", label: "Evaluation", roles: "public" },
+  ],
+  hospital: [
+    { href: "/nurse", label: "Triage station", roles: ["nurse", "admin"] },
+    { href: "/doctor", label: "Doctor queue", roles: ["doctor", "admin"] },
+    { href: "/records", label: "Records desk", roles: ["records", "nurse", "doctor", "admin"] },
+    { href: "/validation", label: "Clinical validation", roles: ["admin", "doctor"] },
+  ],
+  district: [
+    { href: "/surveillance", label: "Early-warning map", roles: ["officer", "admin"] },
+    { href: "/validation", label: "Clinical validation", roles: ["officer", "admin"] },
+  ],
+};
+
+/** Which portal a role belongs to (where it lands, and whose header it sees). */
+export const portalOf = (role: Role): Portal => (role === "officer" ? "district" : "hospital");

@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Doctor · Priora" };
 export default function DoctorIndex() {
   return (
     <main className="flex min-h-screen flex-col bg-muted/30">
-      <AppHeader title="Doctor" />
+      <AppHeader portal="hospital" title="Doctor" />
       <div className="mx-auto w-full max-w-4xl p-8">
         <h1 className="mb-6 text-2xl font-semibold">Choose your department</h1>
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">

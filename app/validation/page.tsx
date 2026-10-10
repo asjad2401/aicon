@@ -165,7 +165,7 @@ async function Dashboard() {
 export default function ValidationPage() {
   return (
     <main className="flex min-h-screen flex-col bg-muted/30">
-      <AppHeader title="Clinical validation" />
+      <AppHeader portal="auto" title="Clinical validation" />
       <Suspense fallback={<Loader2 className="m-10 animate-spin text-muted-foreground" />}>
         <Dashboard />
       </Suspense>

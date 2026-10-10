@@ -270,12 +270,16 @@ export function Surveillance() {
           ["Syndrome cases, last 30 days", data.syndromeCases.toLocaleString()],
           ["Active alerts", String(alerts.length)],
           ["On watch", String(flagged.length - alerts.length)],
-        ].map(([label, value]) => (
-          <div key={label} className="rounded-xl border bg-card p-4">
-            <p className="text-sm text-muted-foreground">{label}</p>
-            <p className="text-3xl font-semibold">{value}</p>
-          </div>
-        ))}
+        ].map(([label, value]) => {
+          const hot = label === "Active alerts" && value !== "0";
+          return (
+            <div key={label} className={cn("paper-card relative overflow-hidden p-5", hot && "ink-panel border-transparent")}>
+              <p className={cn("eyebrow", hot && "!text-[#ff8a70]")}>{label}</p>
+              <p className="mt-2 font-display text-5xl font-medium tracking-tight">{value}</p>
+              {hot && <span className="absolute right-5 top-5 size-3 animate-ping rounded-full bg-signal" />}
+            </div>
+          );
+        })}
       </div>
 
       <DistrictMap

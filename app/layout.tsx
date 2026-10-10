@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Geist_Mono, Noto_Nastaliq_Urdu } from "next/font/google";
+import { Inter, Geist_Mono, Noto_Nastaliq_Urdu, Fraunces } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,6 +12,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const display = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  axes: ["SOFT", "opsz"],
+});
+
 const urdu = Noto_Nastaliq_Urdu({
   variable: "--font-urdu",
   subsets: ["arabic"],
@@ -19,16 +25,16 @@ const urdu = Noto_Nastaliq_Urdu({
 });
 
 export const metadata: Metadata = {
-  title: "Priora — AI Triage & Records for OPDs",
+  title: "Priora · sees outbreaks a week before the lab reports do",
   description:
-    "Severity-based triage, department routing and cited patient history for government hospital OPDs.",
+    "An AI triage nurse at every hospital front desk, speaking Urdu. Every conversation becomes an anonymous signal in a district early-warning network.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geistMono.variable} ${urdu.variable} h-full antialiased`}
+      className={`${inter.variable} ${geistMono.variable} ${urdu.variable} ${display.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

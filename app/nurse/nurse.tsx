@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from "react";
 import useSWR from "swr";
-import { Loader2 } from "lucide-react";
+import { Loader2, Stethoscope } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ReasonTrail } from "@/components/reason-trail";
-import { TriageBadge } from "@/components/triage-badge";
+import { TRIAGE_META, TriageBadge } from "@/components/triage-badge";
 import { fetcher, formatWait, postJSON, type QueueEntry, type VisitDetail } from "@/lib/client/api";
 import { DEPARTMENT_BY_ID, type DepartmentId } from "@/lib/routing/departments";
 import { DISCRIMINATOR_BY_ID, type Colour } from "@/lib/triage/discriminators";
@@ -23,7 +23,7 @@ export function Nurse() {
 
   return (
     <div className="grid flex-1 grid-cols-[340px_1fr] overflow-hidden">
-      <aside className="flex flex-col overflow-y-auto border-r bg-background">
+      <aside className="flex flex-col overflow-y-auto border-r bg-card">
         <p className="border-b px-4 py-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
           Awaiting vitals · {items.length}
         </p>
@@ -36,12 +36,13 @@ export function Nurse() {
             key={v.id}
             onClick={() => setSelected(v.id)}
             className={cn(
-              "flex flex-col gap-1 border-b px-4 py-3 text-left hover:bg-muted/50",
-              selected === v.id && "bg-muted",
+              "flex flex-col gap-1 border-b border-l-4 px-4 py-3 text-left transition hover:bg-muted/50",
+              TRIAGE_META[v.colour as Colour].edge,
+              selected === v.id && "bg-accent",
             )}
           >
             <div className="flex items-center justify-between">
-              <span className="font-semibold tabular-nums">{v.tokenNo}</span>
+              <span className="font-display text-xl font-semibold tabular-nums">{v.tokenNo}</span>
               <TriageBadge colour={v.colour as Colour} size="sm" />
             </div>
             <span className="text-sm">{v.chiefComplaint}</span>
@@ -65,7 +66,16 @@ export function Nurse() {
             }}
           />
         ) : (
-          <p className="mt-20 text-center text-muted-foreground">Select a patient to record vitals.</p>
+          <div className="mt-24 flex flex-col items-center gap-3 text-center">
+            <span className="relative flex size-24 items-center justify-center rounded-full border border-dashed border-primary/30">
+              <span className="absolute size-36 rounded-full border border-dashed border-primary/15" />
+              <Stethoscope className="size-9 text-primary" />
+            </span>
+            <p className="font-display text-2xl">Pick the next patient</p>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Most urgent first. Record your own colour before the system&apos;s SATS result is shown: that blinded pair feeds clinical validation.
+            </p>
+          </div>
         )}
       </section>
     </div>

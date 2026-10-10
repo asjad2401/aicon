@@ -17,6 +17,7 @@ import hard from "@/eval/hard-results.json";
 import leadtime from "@/eval/leadtime.json";
 import syndromes from "@/eval/syndrome-results.json";
 import liteEval from "@/ml/model/eval.json";
+import { DistrictRadar, LiveTicker } from "@/components/district-radar";
 import { LiveDistrict } from "./live-district";
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
@@ -56,9 +57,9 @@ const SCALE = [
 ];
 
 const PORTALS = [
-  { href: "/kiosk", icon: UserRound, title: "Patient kiosk", sub: "kiosk.priora.asjad.dev", text: "At the hospital entrance: speak your problem in Urdu, answer one question, get a token.", cta: "Open the kiosk", tone: "bg-card" },
-  { href: "/login?portal=hospital", icon: Building2, title: "Hospital staff", sub: "hospital.priora.asjad.dev", text: "Triage nurse, doctors, records desk and the medical superintendent's validation dashboard.", cta: "Staff sign in", tone: "bg-primary text-primary-foreground border-primary" },
-  { href: "/login?portal=district", icon: Radar, title: "District Health Office", sub: "district.priora.asjad.dev", text: "The early-warning map across all hospitals: alerts, AI briefs, surge plans.", cta: "Officer sign in", tone: "bg-[#0f2a2a] text-white border-[#0f2a2a]" },
+  { href: "/kiosk", icon: UserRound, n: "01", title: "Patient kiosk", sub: "kiosk.priora.asjad.dev", text: "At the hospital entrance: speak your problem in Urdu, answer one question, get a token.", cta: "Open the kiosk", tone: "paper-card", ring: "#0b5d52" },
+  { href: "/login?portal=hospital", icon: Building2, n: "02", title: "Hospital staff", sub: "hospital.priora.asjad.dev", text: "Triage nurse, doctors, records desk and the medical superintendent's validation dashboard.", cta: "Staff sign in", tone: "bg-primary text-primary-foreground shadow-lg shadow-primary/20", ring: "#f5f1e8" },
+  { href: "/login?portal=district", icon: Radar, n: "03", title: "District Health Office", sub: "district.priora.asjad.dev", text: "The early-warning map across all hospitals: alerts, AI briefs, surge plans.", cta: "Officer sign in", tone: "ink-panel shadow-lg shadow-black/20", ring: "#e5482d" },
 ];
 
 const ROLES = [
@@ -70,130 +71,171 @@ const ROLES = [
   { href: "/impact", icon: Gauge, title: "Impact & lead time", text: "Days earlier, waits, and every assumption" },
 ];
 
+function Rings({ color, className }: { color: string; className?: string }) {
+  return (
+    <svg viewBox="0 0 120 120" className={className} aria-hidden>
+      {[20, 38, 56].map((r) => (
+        <circle key={r} cx="120" cy="0" r={r} fill="none" stroke={color} strokeOpacity="0.35" strokeDasharray="2 4" />
+      ))}
+      <circle cx="120" cy="0" r="6" fill={color} fillOpacity="0.6" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <section className="bg-gradient-to-b from-primary/10 to-background px-6 pb-10 pt-8">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between">
-          <span className="text-2xl font-semibold text-brand">Priora</span>
-          <span className="flex items-center gap-4 text-sm text-muted-foreground">
-            AICON&apos;26 · Build With AI · Health Operations
-            <Link href="/login" className="rounded-md border bg-background px-3 py-1.5 text-foreground hover:bg-muted">
+      <section className="ink-panel">
+        <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 pt-6">
+          <span className="flex items-center gap-2 font-display text-3xl font-semibold tracking-tight">
+            Priora
+            <span className="font-urdu text-lg font-normal text-[#f5f1e8]/60">پرائیورا</span>
+          </span>
+          <span className="flex items-center gap-4 text-sm text-[#f5f1e8]/60">
+            <span className="hidden font-mono text-xs tracking-wider sm:inline">AICON&apos;26 · BUILD WITH AI · HEALTH OPERATIONS</span>
+            <Link href="/login" className="rounded-full border border-white/25 px-4 py-1.5 text-[#f5f1e8] hover:bg-white/10">
               Staff sign in
             </Link>
           </span>
         </nav>
-        <div className="mx-auto mt-12 max-w-4xl text-center">
-          <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl">Priora sees outbreaks a week before the lab reports do.</h1>
-          <p className="mx-auto mt-5 max-w-3xl text-xl text-muted-foreground">
-            An AI triage nurse at every hospital front desk, speaking Urdu. Every conversation becomes an anonymous signal in a district early-warning
-            network across Islamabad and Rawalpindi.
-          </p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3">
-            <Link href="#live" className="inline-flex h-12 items-center gap-2 rounded-xl bg-primary px-6 text-lg text-primary-foreground hover:bg-primary/85">
-              See the live district <ArrowRight className="size-5" />
-            </Link>
-            <Link href="/kiosk" className="inline-flex h-12 items-center gap-2 rounded-xl border bg-background px-6 text-lg hover:bg-muted">
-              Talk to the kiosk
-            </Link>
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 pb-14 pt-12 lg:grid-cols-[1.25fr_1fr]">
+          <div>
+            <p className="eyebrow !text-[#7fd3c0]">District early-warning network · Islamabad &amp; Rawalpindi</p>
+            <h1 className="mt-5 text-5xl leading-[1.04] sm:text-7xl">
+              Priora sees outbreaks <span className="display-italic text-[#ff8a70]">a week</span> before the lab reports do.
+            </h1>
+            <p className="mt-6 max-w-xl text-lg text-[#f5f1e8]/75">
+              An AI triage nurse at every hospital front desk, speaking Urdu. Every conversation becomes an anonymous signal in a district
+              early-warning network.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link href="#live" className="inline-flex h-12 items-center gap-2 rounded-full bg-[#f5f1e8] px-6 text-base font-semibold text-ink hover:bg-white">
+                See the live district <ArrowRight className="size-5" />
+              </Link>
+              <Link href="/kiosk" className="inline-flex h-12 items-center gap-2 rounded-full border border-white/25 px-6 text-base hover:bg-white/10">
+                <Mic className="size-4" /> Talk to the kiosk
+              </Link>
+            </div>
+          </div>
+          <div className="flex flex-col items-center gap-3">
+            <DistrictRadar />
+            <p className="font-mono text-[11px] tracking-wider text-[#f5f1e8]/50">● AREA &nbsp; □ HOSPITAL &nbsp; <span className="text-[#ff8a70]">● ACTIVE ALERT</span></p>
           </div>
         </div>
+        <LiveTicker />
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pt-2">
-        <div className="grid gap-3 md:grid-cols-3">
+      <section className="mx-auto w-full max-w-6xl px-6 pt-12">
+        <p className="eyebrow">§ 01 · Three front doors, one network</p>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
           {PORTALS.map((p) => (
-            <Link key={p.title} href={p.href} className={`group flex flex-col gap-2 rounded-2xl border p-5 transition hover:shadow-md ${p.tone}`}>
-              <div className="flex items-center justify-between">
-                <p.icon className="size-7" />
-                <code className="text-[11px] opacity-70">{p.sub}</code>
+            <Link key={p.title} href={p.href} className={`group relative flex min-h-56 flex-col gap-2 overflow-hidden rounded-2xl p-6 transition hover:-translate-y-0.5 ${p.tone}`}>
+              <Rings color={p.ring} className="absolute right-0 top-0 size-32 transition group-hover:scale-110" />
+              <div className="flex items-center gap-3">
+                <span className="font-mono text-xs opacity-60">{p.n}</span>
+                <p.icon className="size-6" />
               </div>
-              <p className="text-lg font-semibold">{p.title}</p>
+              <p className="mt-3 font-display text-2xl font-medium">{p.title}</p>
               <p className="text-sm opacity-80">{p.text}</p>
-              <span className="mt-auto inline-flex items-center gap-1 text-sm font-medium">
-                {p.cta} <ArrowRight className="size-4 transition group-hover:translate-x-1" />
-              </span>
+              <div className="mt-auto flex items-end justify-between gap-2 pt-4">
+                <span className="inline-flex items-center gap-1 text-sm font-semibold">
+                  {p.cta} <ArrowRight className="size-4 transition group-hover:translate-x-1" />
+                </span>
+                <code className="text-[10px] opacity-55">{p.sub}</code>
+              </div>
             </Link>
           ))}
         </div>
       </section>
 
-      <section id="live" className="mx-auto w-full max-w-6xl scroll-mt-6 px-6 py-8">
-        <div className="mb-3 flex flex-wrap items-end justify-between gap-2">
+      <section id="live" className="mx-auto w-full max-w-6xl scroll-mt-6 px-6 pt-14">
+        <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 className="text-2xl font-semibold">Live: the district right now</h2>
-            <p className="text-sm text-muted-foreground">
-              Eight hospitals, twenty areas across Islamabad and Rawalpindi. Pulsing red = an unusual cluster flagged before lab confirmation. Anonymous counts only (demo data).
+            <p className="eyebrow">§ 02 · Live, the district right now</p>
+            <h2 className="mt-2 text-3xl sm:text-4xl">Eight hospitals. Twenty areas. One map.</h2>
+            <p className="mt-1 max-w-2xl text-muted-foreground">
+              Pulsing red is an unusual cluster flagged before lab confirmation. No single hospital sees enough of it to notice alone. Anonymous counts
+              only (demo data).
             </p>
           </div>
-          <Link href="/surveillance" className="text-sm text-primary hover:underline">
-            Open the health officer&apos;s view →
+          <Link href="/surveillance" className="inline-flex items-center gap-1 rounded-full border bg-card px-4 py-2 text-sm font-medium hover:border-primary">
+            Health officer&apos;s view <ArrowRight className="size-4" />
           </Link>
         </div>
         <LiveDistrict />
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 py-8">
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PROOF.map((p) => (
-            <Link key={p.label} href={p.href} className="rounded-xl border bg-card p-4 hover:border-primary">
-              <p className="text-3xl font-semibold">{p.value}</p>
-              <p className="text-sm text-muted-foreground">{p.label}</p>
+      <section className="mx-auto w-full max-w-6xl px-6 pt-16">
+        <p className="eyebrow">§ 03 · Proven, not promised</p>
+        <div className="mt-4 grid border-t sm:grid-cols-2 lg:grid-cols-3">
+          {PROOF.map((p, i) => (
+            <Link
+              key={p.label}
+              href={p.href}
+              className={`group border-b p-6 transition hover:bg-card ${i % 3 !== 2 ? "lg:border-r" : ""} ${i % 2 === 0 ? "sm:max-lg:border-r" : ""}`}
+            >
+              <p className="font-display text-5xl font-medium tracking-tight text-primary">{p.value}</p>
+              <p className="mt-2 text-sm text-muted-foreground group-hover:text-foreground">{p.label}</p>
             </Link>
           ))}
         </div>
       </section>
 
-      <section className="bg-muted/40 px-6 py-12">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">How it works · from one patient to the whole district</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {LAYERS.map((l, i) => (
-              <div key={l.title} className="flex flex-col rounded-xl border bg-card p-5">
-                <div className="flex items-center gap-3">
-                  <span className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <l.icon className="size-5" />
-                  </span>
-                  <span className="text-xs font-semibold text-muted-foreground">STEP {i + 1}</span>
-                </div>
-                <p className="mt-3 text-lg font-semibold">{l.title}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{l.text}</p>
+      <section className="mx-auto w-full max-w-6xl px-6 pt-16">
+        <p className="eyebrow">§ 04 · From one patient to the whole district</p>
+        <div className="mt-4 grid gap-4 md:grid-cols-3">
+          {LAYERS.map((l, i) => (
+            <div key={l.title} className="paper-card relative flex flex-col p-6">
+              <div className="flex items-center justify-between">
+                <span className="flex size-11 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                  <l.icon className="size-5" />
+                </span>
+                <span className="font-display text-5xl font-light text-primary/15">0{i + 1}</span>
               </div>
-            ))}
-          </div>
-          <div className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
-            <p className="flex items-center gap-2 rounded-lg bg-background p-3">
-              <MessageCircleQuestion className="size-4 shrink-0 text-primary" /> Asks one smart follow-up question, aloud in Urdu
-            </p>
-            <p className="flex items-center gap-2 rounded-lg bg-background p-3">
-              <WifiOff className="size-4 shrink-0 text-primary" /> Keeps triaging offline with our own trained model
-            </p>
-            <p className="flex items-center gap-2 rounded-lg bg-background p-3">
-              <Building2 className="size-4 shrink-0 text-primary" /> Pools hospitals that today don&apos;t share data
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-6xl px-6 py-12">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Why it matters</h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {SCALE.map((s) => (
-            <a key={s.value} href={s.url} target="_blank" rel="noreferrer" className="rounded-xl border bg-card p-4 hover:border-primary">
-              <p className="text-2xl font-semibold">{s.value}</p>
-              <p className="text-sm">{s.label}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{s.src} ↗</p>
-            </a>
+              <p className="mt-4 font-display text-xl font-medium">{l.title}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{l.text}</p>
+            </div>
           ))}
         </div>
+        <div className="mt-4 grid gap-3 text-sm sm:grid-cols-3">
+          {[
+            [MessageCircleQuestion, "Asks one smart follow-up question, aloud in Urdu"],
+            [WifiOff, "Keeps triaging offline with our own trained model"],
+            [Building2, "Pools hospitals that today don't share data"],
+          ].map(([Icon, t]) => {
+            const I = Icon as typeof Mic;
+            return (
+              <p key={t as string} className="flex items-center gap-2 rounded-full border bg-card px-4 py-2.5">
+                <I className="size-4 shrink-0 text-primary" /> {t as string}
+              </p>
+            );
+          })}
+        </div>
       </section>
 
-      <section className="mx-auto w-full max-w-6xl px-6 pb-12">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">Open the demo · staff password priora2026</h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mt-16 bg-ink px-6 py-14 text-[#f5f1e8]">
+        <div className="mx-auto max-w-6xl">
+          <p className="eyebrow !text-[#7fd3c0]">§ 05 · Why it matters</p>
+          <div className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {SCALE.map((s) => (
+              <a key={s.value} href={s.url} target="_blank" rel="noreferrer" className="group border-l border-white/15 pl-4">
+                <p className="font-display text-4xl font-medium text-[#ff8a70]">{s.value}</p>
+                <p className="mt-2 text-sm text-[#f5f1e8]/85">{s.label}</p>
+                <p className="mt-2 font-mono text-[10px] tracking-wide text-[#f5f1e8]/45 group-hover:text-[#7fd3c0]">{s.src} ↗</p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-6 py-14">
+        <p className="eyebrow">§ 06 · Open the demo · staff password priora2026</p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {ROLES.map((r) => (
-            <Link key={r.href} href={r.href} className="group flex items-center gap-4 rounded-xl border bg-card p-4 transition hover:border-primary hover:shadow-sm">
-              <r.icon className="size-8 text-primary" />
+            <Link key={r.href} href={r.href} className="paper-card group flex items-center gap-4 p-4 transition hover:border-primary">
+              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-accent text-primary">
+                <r.icon className="size-5" />
+              </span>
               <div className="flex-1">
                 <p className="font-semibold">{r.title}</p>
                 <p className="text-sm text-muted-foreground">{r.text}</p>

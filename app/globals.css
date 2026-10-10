@@ -9,13 +9,18 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-display: var(--font-display);
   --font-urdu: var(--font-urdu);
-  --color-triage-red: #dc2626;
-  --color-triage-orange: #ea580c;
-  --color-triage-yellow: #ca8a04;
-  --color-triage-green: #16a34a;
-  --color-brand: #0f766e;
+  --color-triage-red: #d0342c;
+  --color-triage-orange: #e0661b;
+  --color-triage-yellow: #c08a0a;
+  --color-triage-green: #2f8a4c;
+  --color-brand: #0b5d52;
+  --color-ink: #0e2420;
+  --color-signal: #e5482d;
+  --color-saffron: #e9a23b;
+  --color-paper: #f5f1e8;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -55,30 +60,30 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.511 0.086 186.4);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.6 0.09 186.4);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
+  --background: oklch(0.962 0.012 85);
+  --foreground: oklch(0.22 0.025 175);
+  --card: oklch(0.992 0.006 85);
+  --card-foreground: oklch(0.22 0.025 175);
+  --popover: oklch(0.992 0.006 85);
+  --popover-foreground: oklch(0.22 0.025 175);
+  --primary: oklch(0.42 0.075 178);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.93 0.018 85);
+  --secondary-foreground: oklch(0.25 0.03 175);
+  --muted: oklch(0.935 0.016 85);
+  --muted-foreground: oklch(0.48 0.02 170);
+  --accent: oklch(0.93 0.025 165);
+  --accent-foreground: oklch(0.25 0.03 175);
+  --destructive: oklch(0.58 0.2 30);
+  --border: oklch(0.875 0.02 85);
+  --input: oklch(0.86 0.02 85);
+  --ring: oklch(0.55 0.08 178);
+  --chart-1: oklch(0.42 0.075 178);
+  --chart-2: oklch(0.64 0.19 35);
+  --chart-3: oklch(0.76 0.14 75);
+  --chart-4: oklch(0.6 0.06 178);
+  --chart-5: oklch(0.35 0.03 175);
+  --radius: 0.75rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
   --sidebar-primary: oklch(0.205 0 0);
@@ -129,6 +134,17 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Survey-paper grid: a faint nod to the district map */
+    background-image:
+      linear-gradient(oklch(0.42 0.075 178 / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.42 0.075 178 / 0.045) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  h1, h2:not(.uppercase), h3:not(.uppercase) {
+    font-family: var(--font-display), Georgia, serif;
+    font-variation-settings: "SOFT" 50, "opsz" 72;
+    letter-spacing: -0.015em;
+    font-weight: 560;
   }
   html {
     @apply font-sans;
@@ -154,7 +170,7 @@
 }
 .priora-pulse {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); border-radius: 9999px;
-  border: 3px solid #dc2626; animation: priora-pulse 2s ease-out infinite;
+  border: 3px solid #e5482d; animation: priora-pulse 2s ease-out infinite;
 }
 @keyframes priora-pulse {
   0% { opacity: 0.9; transform: translate(-50%, -50%) scale(0.85); }
@@ -162,12 +178,37 @@
 }
 .priora-h {
   display: flex; width: 22px; height: 22px; align-items: center; justify-content: center; border-radius: 5px;
-  background: #fff; border: 2px solid #0f766e; color: #0f766e; font: 700 12px/1 var(--font-sans), system-ui;
+  background: #fffdf8; border: 2px solid #0b5d52; color: #0b5d52; font: 700 12px/1 var(--font-sans), system-ui;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.2);
 }
 .priora-hlabel {
-  position: absolute; left: 26px; top: 3px; white-space: nowrap; font: 600 10px/1.2 var(--font-sans), system-ui; color: #0f766e;
+  position: absolute; left: 26px; top: 3px; white-space: nowrap; font: 600 10px/1.2 var(--font-sans), system-ui; color: #0b5d52;
   text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
 }
 /* Soften the OSM basemap so data markers stand out */
-.priora-map .leaflet-tile-pane { filter: grayscale(0.85) contrast(0.92) brightness(1.06); }
+.priora-map .leaflet-tile-pane { filter: grayscale(1) sepia(0.18) contrast(0.9) brightness(1.04); }
+
+/* ---------- Priora design language ---------- */
+/* Bulletin eyebrow: monospaced, numbered section labels */
+.eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 500;
+  color: var(--muted-foreground);
+}
+.display-italic { font-family: var(--font-display), Georgia, serif; font-style: italic; font-variation-settings: "SOFT" 100, "opsz" 144; }
+/* Cards lift on paper */
+.paper-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-xl); box-shadow: 0 1px 0 oklch(0.22 0.025 175 / 0.04), 0 8px 24px -16px oklch(0.22 0.025 175 / 0.18); }
+/* Ink panels (district / hero) */
+.ink-panel { background-color: #0e2420; color: #f5f1e8;
+  background-image: radial-gradient(circle at 80% 20%, oklch(0.42 0.075 178 / 0.55), transparent 55%),
+    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px), linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+  background-size: auto, 28px 28px, 28px 28px; }
+/* Radar sweep for the hero */
+@keyframes priora-sweep { to { transform: rotate(360deg); } }
+.radar-sweep { animation: priora-sweep 6s linear infinite; transform-origin: 50% 50%; }
+@keyframes priora-ping { 0% { r: 4; opacity: 0.9; } 100% { r: 22; opacity: 0; } }
+.radar-ping { animation: priora-ping 2.2s ease-out infinite; }
+/* Live ticker */
+@keyframes priora-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.marquee { animation: priora-marquee 40s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .radar-sweep, .radar-ping, .marquee, .priora-pulse { animation: none; } }

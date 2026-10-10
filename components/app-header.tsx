@@ -10,9 +10,9 @@ import { fetcher } from "@/lib/client/api";
 import { cn } from "@/lib/utils";
 
 const STYLE: Record<Portal, { bar: string; badge: string; icon: typeof Building2 }> = {
-  showcase: { bar: "bg-background", badge: "bg-primary/10 text-primary", icon: Sparkles },
-  hospital: { bar: "bg-background", badge: "bg-primary text-primary-foreground", icon: Building2 },
-  district: { bar: "bg-[#0f2a2a] text-white", badge: "bg-white/15 text-white", icon: Radar },
+  showcase: { bar: "bg-card/85 backdrop-blur", badge: "bg-primary/10 text-primary", icon: Sparkles },
+  hospital: { bar: "bg-card/90 backdrop-blur", badge: "bg-primary text-primary-foreground", icon: Building2 },
+  district: { bar: "ink-panel text-[#f5f1e8] border-white/10", badge: "bg-signal text-white", icon: Radar },
 };
 
 /**
@@ -37,11 +37,11 @@ export function AppHeader({ title, portal: portalProp = "showcase", children }: 
   }
 
   return (
-    <header className={cn("flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-6 py-3", style.bar)}>
+    <header className={cn("sticky top-0 z-[1100] flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-6 py-2.5", style.bar)}>
       <Link href={portal === "showcase" ? "/" : nav[0]?.href ?? "/"} className="flex items-center gap-2">
-        <span className={cn("text-xl font-semibold", dark ? "text-white" : "text-brand")}>Priora</span>
+        <span className={cn("font-display text-2xl font-semibold tracking-tight", dark ? "text-[#f5f1e8]" : "text-brand")}>Priora</span>
         {portal !== "showcase" && (
-          <span className={cn("flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-semibold", style.badge)}>
+          <span className={cn("flex items-center gap-1 rounded-full px-2.5 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-wider", style.badge)}>
             <style.icon className="size-3.5" /> {info.tagline}
           </span>
         )}
@@ -67,7 +67,7 @@ export function AppHeader({ title, portal: portalProp = "showcase", children }: 
         </div>
       ) : (
         data && (
-          <Link href="/login" className={cn("rounded-md border px-3 py-1.5 text-sm", dark ? "border-white/30 hover:bg-white/10" : "hover:bg-muted")}>
+          <Link href="/login" className={cn("rounded-full border px-4 py-1.5 text-sm", dark ? "border-white/30 hover:bg-white/10" : "hover:bg-muted")}>
             Staff sign in
           </Link>
         )
@@ -93,10 +93,10 @@ function NavLinks({ nav, dark, portal, pathname }: { nav: NavItem[]; dark: boole
             key={n.href}
             href={n.href}
             className={cn(
-              "rounded-md px-3 py-1.5",
+              "rounded-full px-3.5 py-1.5 transition",
               dark
                 ? active ? "bg-white/15 text-white" : "text-white/70 hover:bg-white/10 hover:text-white"
-                : active ? "bg-muted font-medium text-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                : active ? "bg-primary font-medium text-primary-foreground" : "text-muted-foreground hover:bg-muted hover:text-foreground",
             )}
           >
             {n.label}
@@ -104,7 +104,7 @@ function NavLinks({ nav, dark, portal, pathname }: { nav: NavItem[]; dark: boole
         );
       })}
       {portal === "showcase" && (
-        <Link href="/kiosk" className="rounded-md px-3 py-1.5 text-muted-foreground hover:bg-muted hover:text-foreground">
+        <Link href="/kiosk" className="rounded-full px-3.5 py-1.5 text-muted-foreground hover:bg-muted hover:text-foreground">
           Patient kiosk
         </Link>
       )}

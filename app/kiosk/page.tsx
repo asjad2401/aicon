@@ -13,15 +13,17 @@ async function KioskForHospital({ searchParams }: { searchParams: Promise<{ hosp
   const h = HOSPITAL_BY_ID[id];
   return (
     <>
-      <header className="flex flex-wrap items-center justify-between gap-3 border-b bg-background px-6 py-3">
-        <span className="text-xl font-semibold text-brand">Priora</span>
-        <span className="text-sm">
-          <span className="font-medium">{h.full}</span> <span className="text-muted-foreground">· {h.city} · OPD Intake</span>
+      <header className="ink-panel -mx-4 flex flex-wrap items-center justify-between gap-3 px-6 py-3">
+        <span className="flex items-center gap-2 font-display text-2xl font-semibold tracking-tight">
+          Priora <span className="font-urdu text-base font-normal text-[#f5f1e8]/60">مریض کا استقبال</span>
         </span>
-        <span className="flex gap-1 text-xs text-muted-foreground">
+        <span className="text-sm">
+          <span className="font-medium">{h.full}</span> <span className="text-[#f5f1e8]/60">· {h.city} · OPD Intake</span>
+        </span>
+        <span className="flex flex-wrap gap-1 font-mono text-[10px] uppercase tracking-wider text-[#f5f1e8]/50">
           Kiosk at:
           {HOSPITALS.map((x) => (
-            <Link key={x.id} href={`/kiosk?hospital=${x.id}`} className={x.id === id ? "font-semibold text-foreground" : "hover:text-foreground"}>
+            <Link key={x.id} href={`/kiosk?hospital=${x.id}`} className={x.id === id ? "font-semibold text-[#f5f1e8]" : "hover:text-[#f5f1e8]"}>
               {x.name}
             </Link>
           ))}
@@ -34,7 +36,7 @@ async function KioskForHospital({ searchParams }: { searchParams: Promise<{ hosp
 
 export default function KioskPage({ searchParams }: PageProps<"/kiosk">) {
   return (
-    <main className="flex min-h-screen flex-col bg-muted/30">
+    <main className="flex min-h-screen flex-col px-4">
       <Suspense>
         <KioskForHospital searchParams={searchParams as Promise<{ hospital?: string }>} />
       </Suspense>

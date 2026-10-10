@@ -33,9 +33,45 @@ type Sex = "male" | "female";
 function Bilingual({ ur, en, className }: { ur: string; en: string; className?: string }) {
   return (
     <div className={cn("text-center", className)}>
-      <p className="font-urdu text-3xl" dir="rtl">{ur}</p>
-      <p className="mt-1 text-lg text-muted-foreground">{en}</p>
+      <p className="font-urdu text-4xl text-ink" dir="rtl">{ur}</p>
+      <p className="mt-1 font-display text-xl text-muted-foreground">{en}</p>
     </div>
+  );
+}
+
+const TRAIL = [
+  { en: "You", ur: "آپ" },
+  { en: "Speak", ur: "بتائیں" },
+  { en: "Question", ur: "سوال" },
+  { en: "Token", ur: "ٹوکن" },
+];
+const TRAIL_INDEX: Record<string, number> = { details: 0, describe: 1, processing: 1, followup: 2, confirm: 3, saving: 3 };
+
+/** Where the patient is in the four kiosk steps (always visible, bilingual). */
+function StepTrail({ step }: { step: string }) {
+  const at = TRAIL_INDEX[step] ?? 0;
+  return (
+    <ol className="flex items-center gap-2">
+      {TRAIL.map((t, i) => (
+        <li key={t.en} className="flex flex-1 items-center gap-2">
+          <span
+            className={cn(
+              "flex size-8 shrink-0 items-center justify-center rounded-full font-mono text-xs font-semibold transition",
+              i < at && "bg-primary/15 text-primary",
+              i === at && "bg-primary text-primary-foreground ring-4 ring-primary/15",
+              i > at && "border text-muted-foreground",
+            )}
+          >
+            {i < at ? "✓" : i + 1}
+          </span>
+          <span className={cn("hidden text-xs leading-tight sm:block", i === at ? "font-semibold text-foreground" : "text-muted-foreground")}>
+            {t.en}
+            <span className="block font-urdu text-[11px] leading-[1.6]">{t.ur}</span>
+          </span>
+          {i < TRAIL.length - 1 && <span className={cn("h-px flex-1", i < at ? "bg-primary/40" : "bg-border")} />}
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -209,8 +245,9 @@ export function Kiosk({ hospital }: { hospital: string }) {
   const detailsValid = age !== "" && ageNum >= 0 && ageNum <= 120 && sex !== null;
 
   return (
-    <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-8 p-6">
-      <div className="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+    <div className="paper-card mx-auto my-8 flex w-full max-w-2xl flex-col gap-8 p-6 sm:p-10">
+      <StepTrail step={step} />
+      <div className="-mt-4 flex items-center justify-between gap-3 text-xs text-muted-foreground">
         {offlineMode || analysis?.offline ? (
           <span className="rounded-full bg-triage-yellow/15 px-3 py-1 font-medium text-triage-yellow">
             Offline mode · Priora Lite on-device model · typing only
@@ -342,17 +379,27 @@ export function Kiosk({ hospital }: { hospital: string }) {
 
           {!typing && !offlineMode ? (
             <>
+              <div className="relative flex items-center justify-center">
+              {[1, 2, 3].map((i) => (
+                <span
+                  key={i}
+                  aria-hidden
+                  className={cn("pointer-events-none absolute rounded-full border border-dashed", recorder.recording ? "animate-ping border-triage-red/40" : "border-primary/25")}
+                  style={{ width: 176 + i * 44, height: 176 + i * 44, animationDuration: `${1.4 + i * 0.4}s` }}
+                />
+              ))}
               <button
                 type="button"
                 onClick={recorder.recording ? recorder.stop : recorder.start}
                 className={cn(
-                  "flex size-44 items-center justify-center rounded-full text-white shadow-lg transition",
+                  "relative my-8 flex size-44 items-center justify-center rounded-full text-white shadow-xl shadow-primary/30 ring-8 ring-card transition",
                   recorder.recording ? "animate-pulse bg-triage-red" : "bg-primary hover:scale-105",
                 )}
                 aria-label={recorder.recording ? "Stop recording" : "Start recording"}
               >
                 {recorder.recording ? <Square className="size-16" /> : <Mic className="size-20" />}
               </button>
+              </div>
               <p className="text-center text-muted-foreground">
                 {recorder.recording ? (
                   <>

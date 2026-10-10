@@ -1,11 +1,11 @@
 import { cn } from "@/lib/utils";
 import type { Colour } from "@/lib/triage/discriminators";
 
-export const TRIAGE_META: Record<Colour, { label: string; urdu: string; bg: string; text: string; ring: string }> = {
-  RED: { label: "Emergency", urdu: "ایمرجنسی", bg: "bg-triage-red", text: "text-triage-red", ring: "ring-triage-red" },
-  ORANGE: { label: "Very urgent", urdu: "انتہائی فوری", bg: "bg-triage-orange", text: "text-triage-orange", ring: "ring-triage-orange" },
-  YELLOW: { label: "Urgent", urdu: "فوری", bg: "bg-triage-yellow", text: "text-triage-yellow", ring: "ring-triage-yellow" },
-  GREEN: { label: "Routine", urdu: "معمول", bg: "bg-triage-green", text: "text-triage-green", ring: "ring-triage-green" },
+export const TRIAGE_META: Record<Colour, { label: string; urdu: string; bg: string; text: string; ring: string; edge: string }> = {
+  RED: { label: "Emergency", urdu: "ایمرجنسی", bg: "bg-triage-red", text: "text-triage-red", ring: "ring-triage-red", edge: "border-l-triage-red" },
+  ORANGE: { label: "Very urgent", urdu: "انتہائی فوری", bg: "bg-triage-orange", text: "text-triage-orange", ring: "ring-triage-orange", edge: "border-l-triage-orange" },
+  YELLOW: { label: "Urgent", urdu: "فوری", bg: "bg-triage-yellow", text: "text-triage-yellow", ring: "ring-triage-yellow", edge: "border-l-triage-yellow" },
+  GREEN: { label: "Routine", urdu: "معمول", bg: "bg-triage-green", text: "text-triage-green", ring: "ring-triage-green", edge: "border-l-triage-green" },
 };
 
 const ICON: Record<Colour, string> = { RED: "▲", ORANGE: "◆", YELLOW: "●", GREEN: "■" };

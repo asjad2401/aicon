@@ -4,7 +4,7 @@ import { useState } from "react";
 import useSWR from "swr";
 import { Loader2, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { TriageBadge } from "@/components/triage-badge";
+import { TRIAGE_META, TriageBadge } from "@/components/triage-badge";
 import { fetcher, formatWait, postJSON, type QueueEntry } from "@/lib/client/api";
 import type { DepartmentId } from "@/lib/routing/departments";
 import type { Colour } from "@/lib/triage/discriminators";
@@ -48,8 +48,9 @@ export function DoctorQueue({ department, initialVisit }: { department: Departme
       key={v.id}
       onClick={() => setSelected(v.id)}
       className={cn(
-        "grid grid-cols-[auto_1fr_auto] items-center gap-3 border-b px-4 py-3 text-left hover:bg-muted/50",
-        selected === v.id && "bg-muted",
+        "grid grid-cols-[auto_1fr_auto] items-center gap-3 border-b border-l-4 px-4 py-3 text-left transition hover:bg-muted/50",
+        TRIAGE_META[v.colour as Colour].edge,
+        selected === v.id && "bg-accent",
       )}
     >
       <TriageBadge colour={v.colour as Colour} size="sm" className="w-fit" />
@@ -72,7 +73,7 @@ export function DoctorQueue({ department, initialVisit }: { department: Departme
 
   return (
     <div className="grid flex-1 grid-cols-[380px_1fr] overflow-hidden">
-      <aside className="flex flex-col overflow-y-auto border-r bg-background">
+      <aside className="flex flex-col overflow-y-auto border-r bg-card">
         <div className="border-b p-3">
           <Button className="h-12 w-full text-base" disabled={!waiting.length || calling} onClick={callNext}>
             {calling ? <Loader2 className="animate-spin" /> : <PhoneCall />}
@@ -104,7 +105,16 @@ export function DoctorQueue({ department, initialVisit }: { department: Departme
             }}
           />
         ) : (
-          <p className="mt-20 text-center text-muted-foreground">Select a patient or press “Call next”.</p>
+          <div className="mt-24 flex flex-col items-center gap-3 text-center">
+            <span className="relative flex size-24 items-center justify-center rounded-full border border-dashed border-primary/30">
+              <span className="absolute size-36 rounded-full border border-dashed border-primary/15" />
+              <PhoneCall className="size-9 text-primary" />
+            </span>
+            <p className="font-display text-2xl">Ready for the next patient</p>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Press “Call next” for the most urgent patient. Their cited history brief opens here before they reach your door.
+            </p>
+          </div>
         )}
       </section>
     </div>

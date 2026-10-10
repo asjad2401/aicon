@@ -17,7 +17,7 @@ import hard from "@/eval/hard-results.json";
 import leadtime from "@/eval/leadtime.json";
 import syndromes from "@/eval/syndrome-results.json";
 import liteEval from "@/ml/model/eval.json";
-import { DistrictRadar, LiveAlertStack, LiveTicker } from "@/components/district-radar";
+import { DistrictRadar, LiveTicker } from "@/components/district-radar";
 import { HoverPreview } from "@/components/ui/hover-preview";
 import { LiveDistrict } from "./live-district";
 
@@ -128,7 +128,6 @@ export default function Home() {
           <div className="flex flex-col items-center gap-3">
             <div className="relative w-full max-w-[440px]">
               <DistrictRadar />
-              <LiveAlertStack />
             </div>
             <p className="mt-2 font-mono text-[11px] tracking-wider text-[#f2f2f2]/50">● AREA &nbsp; □ HOSPITAL &nbsp; <span className="text-[#ff6b4a]">● ACTIVE ALERT</span> &nbsp; MAP © OPENSTREETMAP</p>
           </div>

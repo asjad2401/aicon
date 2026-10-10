@@ -3,7 +3,6 @@
 import useSWR from "swr";
 import { AREAS, AREA_BY_ID, HOSPITALS, SYNDROME_BY_ID } from "@/lib/surveillance/config";
 import { fetcher } from "@/lib/client/api";
-import { MatteStack } from "@/components/ui/matte-stack";
 import type { Signal } from "@/lib/surveillance/detect";
 
 type Snapshot = { today: string; network: { hospital: string; intakes: number }[]; signals: Signal[] };
@@ -137,23 +136,5 @@ export function LiveTicker() {
         </div>
       </div>
     </div>
-  );
-}
-
-/** Today's alerts as a matte stack over the radar: three visible, the rest wait in line. */
-export function LiveAlertStack() {
-  const { data } = useDistrictSnapshot();
-  const alerts = (data?.signals ?? []).filter((s) => s.level === "alert" && s.area !== "all").sort((a, b) => b.score - a.score);
-  if (!alerts.length) return null;
-  return (
-    <MatteStack
-      className="relative z-10 -mt-14 ml-auto w-80 max-sm:mt-4 max-sm:w-full"
-      items={alerts.map((s) => ({
-        id: `${s.area}-${s.syndrome}`,
-        title: `${SYNDROME_BY_ID[s.syndrome]?.label ?? s.syndrome} · ${AREA_BY_ID[s.area as keyof typeof AREA_BY_ID]?.name ?? s.area}`,
-        description: `${s.last3} cases in 3 days · before lab confirmation`,
-        tone: "alert" as const,
-      }))}
-    />
   );
 }
